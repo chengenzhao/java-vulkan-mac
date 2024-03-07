@@ -6,8 +6,8 @@
 * Vulkan macOS version should be installed, you may get Vulkan SDK here: https://vulkan.lunarg.com/sdk/home
 * Make sure set up the environment after installation, typically in your .zshrc you may need following variables:
 ```text
-export JAVA_HOME=/Users/chengenzhao/JDK/jdk-22.jdk/Contents/Home
-export VULKAN_SDK=/Users/chengenzhao/VulkanSDK/1.3.275.0/macOS
+export JAVA_HOME=~/JDK/jdk-22.jdk/Contents/Home
+export VULKAN_SDK=~/VulkanSDK/1.3.275.0/macOS
 export PATH=$JAVA_HOME/bin:$VULKAN_SDK/bin:$PATH
 export DYLD_LIBRARY_PATH=$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH
 export VK_ICD_FILENAMES=$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json
