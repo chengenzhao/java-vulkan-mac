@@ -3,7 +3,7 @@
 # Requirement:  
 
 * Java 22
-* Vulkan MacOS should be installed, you may get Vulkan SDK here: https://vulkan.lunarg.com/sdk/home
+* Vulkan macOS version should be installed, you may get Vulkan SDK here: https://vulkan.lunarg.com/sdk/home
 * Make sure set up the environment after installation, typically in your .zshrc you may need following variables:
 ```text
 export JAVA_HOME=/Users/chengenzhao/JDK/jdk-22.jdk/Contents/Home
@@ -13,6 +13,11 @@ export DYLD_LIBRARY_PATH=$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH
 export VK_ICD_FILENAMES=$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json
 export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 ```
+
+# SDK Versions 
+
+* Java SDK(JDK) 22
+* VulkanSDK 1.3.275.0
 
 # How to use it?
 
