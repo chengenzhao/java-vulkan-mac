@@ -19,7 +19,7 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 * Java SDK(JDK) 22
 * VulkanSDK 1.3.275.0
 
-# How to biuild it?
+# How to build it?
 
 * (Optional, project has already have generated java files) Using jextract to generate corresponding java files of vulkan.h, jextract command(in your $pathToVulkanSDK/$version/macOS/ directory): 
 ```text
