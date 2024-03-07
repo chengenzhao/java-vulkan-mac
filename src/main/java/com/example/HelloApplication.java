@@ -10,15 +10,15 @@ import javafx.scene.image.PixelFormat;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.vulkan.VkApplicationInfo;
-import org.vulkan.VkInstanceCreateInfo;
-import org.vulkan.vulkan_h;
+import org.vulkan.*;
 
+import java.io.File;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.ValueLayout;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
@@ -60,9 +60,13 @@ public class HelloApplication extends Application {
   }
 
   public static void main(String[] args) {
+    String javaHome = System.getProperty("java.home");
+    File f = new File(javaHome);
+    System.out.println("Java Home:"+new File(javaHome));
+
     System.loadLibrary("osx");
     System.loadLibrary("vulkan.1");
-    System.loadLibrary("vulkan");
+//    System.loadLibrary("MoltenVK");
 
     try(Arena arena = Arena.ofShared()){
       ARENA = arena;
@@ -74,43 +78,58 @@ public class HelloApplication extends Application {
   }
 
   private static MemorySegment createVkInstance(Arena arena) {
-    MemorySegment pAppInfo = VkApplicationInfo.allocate(arena);
-    VkApplicationInfo.sType(pAppInfo, vulkan_h.VK_STRUCTURE_TYPE_APPLICATION_INFO());
-    VkApplicationInfo.pApplicationName(pAppInfo, arena.allocateFrom("Java Vulkan App", StandardCharsets.UTF_8));
-    VkApplicationInfo.applicationVersion(pAppInfo, 0x010000);
-    VkApplicationInfo.pEngineName(pAppInfo, arena.allocateFrom("Java Vulkan", StandardCharsets.UTF_8));
-    VkApplicationInfo.engineVersion(pAppInfo, 0x010000);
-    VkApplicationInfo.apiVersion(pAppInfo, vulkan_h.VK_API_VERSION_1_0());
+    var appInfo = VkApplicationInfo.allocate(arena);
+    VkApplicationInfo.sType(appInfo, vulkan_h.VK_STRUCTURE_TYPE_APPLICATION_INFO());
+    VkApplicationInfo.pApplicationName(appInfo, arena.allocateFrom("Java Vulkan App", StandardCharsets.UTF_8));
+    VkApplicationInfo.applicationVersion(appInfo, 0x010000);
+    VkApplicationInfo.pEngineName(appInfo, arena.allocateFrom("Java Vulkan", StandardCharsets.UTF_8));
+    VkApplicationInfo.engineVersion(appInfo, 0x010000);
+    VkApplicationInfo.apiVersion(appInfo, vulkan_h.VK_API_VERSION_1_0());
 
-    MemorySegment pInstanceCreateInfo = VkInstanceCreateInfo.allocate(arena);
-    VkInstanceCreateInfo.sType(pInstanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
-    VkInstanceCreateInfo.flags(pInstanceCreateInfo, VkInstanceCreateInfo.flags(pInstanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
-    VkInstanceCreateInfo.pApplicationInfo(pInstanceCreateInfo, pAppInfo);
-    int enabledExtensionCount = DEBUG ? 4 : 3;
+    var instanceCreateInfo = VkInstanceCreateInfo.allocate(arena);
+    VkInstanceCreateInfo.sType(instanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
+    VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
+    VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
+    int enabledExtensionCount = DEBUG ? 3 : 2;
 
-    VkInstanceCreateInfo.enabledExtensionCount(pInstanceCreateInfo, enabledExtensionCount);
-    MemorySegment pEnabledExtensionNames = allocatePtrArray(DEBUG ? new MemorySegment[]{
+    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionCount);
+    var enabledExtensionNames = allocatePtrArray(DEBUG ? new MemorySegment[]{
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
       vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME(),
+//      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
       vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME()}
       : new MemorySegment[]{
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
+//      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
       vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()}, arena);
-    VkInstanceCreateInfo.ppEnabledExtensionNames(pInstanceCreateInfo, pEnabledExtensionNames);
+    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, enabledExtensionNames);
+
+    //todo use direct loader to load the driver rather than using environment variables,help needed
+//    var directLoadingInfo = VkDirectDriverLoadingInfoLUNARG.allocate(arena);
+//    VkDirectDriverLoadingInfoLUNARG.sType(directLoadingInfo, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_INFO_LUNARG());
+//    VkDirectDriverLoadingInfoLUNARG.pfnGetInstanceProcAddr(directLoadingInfo, arena.allocateFrom("~/VulkanSDK/1.3.275.0/macOS/share/vulkan/icd.d/MoltenVK_icd.json", StandardCharsets.UTF_8));
+//
+//    var directDriverList = VkDirectDriverLoadingListLUNARG.allocate(arena);
+//    VkDirectDriverLoadingListLUNARG.sType(directDriverList, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_LIST_LUNARG());
+//    VkDirectDriverLoadingListLUNARG.mode(directDriverList, vulkan_h.VK_DIRECT_DRIVER_LOADING_MODE_INCLUSIVE_LUNARG());
+//    VkDirectDriverLoadingListLUNARG.driverCount(directDriverList, 1);
+//    VkDirectDriverLoadingListLUNARG.pDrivers(directDriverList, directLoadingInfo);
+//
+//    VkInstanceCreateInfo.pNext(pInstanceCreateInfo, directDriverList);
+
     if (DEBUG) {
-      MemorySegment pEnabledLayerNames = allocatePtrArray(new MemorySegment[]{
+      var pEnabledLayerNames = allocatePtrArray(new MemorySegment[]{
         arena.allocateFrom("VK_LAYER_KHRONOS_validation", StandardCharsets.UTF_8)}, arena);
-      VkInstanceCreateInfo.enabledLayerCount(pInstanceCreateInfo, 1);
-      VkInstanceCreateInfo.ppEnabledLayerNames(pInstanceCreateInfo, pEnabledLayerNames);
+      VkInstanceCreateInfo.enabledLayerCount(instanceCreateInfo, 1);
+      VkInstanceCreateInfo.ppEnabledLayerNames(instanceCreateInfo, pEnabledLayerNames);
     }
 
     // VKInstance is an opaque pointer defined by VK_DEFINE_HANDLE macro.
     var pVkInstance = arena.allocate(C_POINTER);
 
-    var result = VkResult(vulkan_h.vkCreateInstance(pInstanceCreateInfo,
-      MemorySegment.NULL, pVkInstance));
+    var result = VkResult(vulkan_h.vkCreateInstance(instanceCreateInfo, MemorySegment.NULL, pVkInstance));
     if (result != VK_SUCCESS) {
       if (DEBUG && result == VK_ERROR_LAYER_NOT_PRESENT) {
         System.out.println("Could not enable debug validation layer - make sure Vulkan SDK is installed.");
