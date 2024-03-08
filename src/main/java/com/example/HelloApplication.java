@@ -90,7 +90,7 @@ public class HelloApplication extends Application {
     VkInstanceCreateInfo.sType(instanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
     VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
-    int enabledExtensionCount = DEBUG ? 3 : 2;
+    int enabledExtensionCount = DEBUG ? 4 : 3;
 
     VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionCount);
     var enabledExtensionNames = allocatePtrArray(DEBUG ? new MemorySegment[]{
