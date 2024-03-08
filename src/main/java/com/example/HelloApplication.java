@@ -13,9 +13,7 @@ import javafx.stage.Stage;
 import org.vulkan.*;
 
 import java.io.File;
-import java.lang.foreign.Arena;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.ValueLayout;
+import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
@@ -90,10 +88,8 @@ public class HelloApplication extends Application {
     VkInstanceCreateInfo.sType(instanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
     VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
-    int enabledExtensionCount = DEBUG ? 4 : 3;
 
-    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionCount);
-    var enabledExtensionNames = allocatePtrArray(DEBUG ? new MemorySegment[]{
+    var enabledExtensionArray = DEBUG ? new MemorySegment[]{
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
       vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME(),
@@ -103,13 +99,16 @@ public class HelloApplication extends Application {
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
 //      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
-      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()}, arena);
+      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()};
+
+    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionArray.length);
+    var enabledExtensionNames = allocatePtrArray(enabledExtensionArray, arena);
     VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, enabledExtensionNames);
 
-    //todo use direct loader to load the driver rather than using environment variables,help needed
+    //todo how to get the pfnGetInstanceProcAddr???
 //    var directLoadingInfo = VkDirectDriverLoadingInfoLUNARG.allocate(arena);
 //    VkDirectDriverLoadingInfoLUNARG.sType(directLoadingInfo, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_INFO_LUNARG());
-//    VkDirectDriverLoadingInfoLUNARG.pfnGetInstanceProcAddr(directLoadingInfo, arena.allocateFrom("~/VulkanSDK/1.3.275.0/macOS/share/vulkan/icd.d/MoltenVK_icd.json", StandardCharsets.UTF_8));
+//    VkDirectDriverLoadingInfoLUNARG.pfnGetInstanceProcAddr(directLoadingInfo, Linker.nativeLinker().defaultLookup().find("vkGetInstanceProcAddr").orElseThrow());
 //
 //    var directDriverList = VkDirectDriverLoadingListLUNARG.allocate(arena);
 //    VkDirectDriverLoadingListLUNARG.sType(directDriverList, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_LIST_LUNARG());
@@ -117,7 +116,7 @@ public class HelloApplication extends Application {
 //    VkDirectDriverLoadingListLUNARG.driverCount(directDriverList, 1);
 //    VkDirectDriverLoadingListLUNARG.pDrivers(directDriverList, directLoadingInfo);
 //
-//    VkInstanceCreateInfo.pNext(pInstanceCreateInfo, directDriverList);
+//    VkInstanceCreateInfo.pNext(instanceCreateInfo, directDriverList);
 
     if (DEBUG) {
       var pEnabledLayerNames = allocatePtrArray(new MemorySegment[]{
