@@ -108,7 +108,7 @@ public class HelloApplication extends Application {
     //todo how to get the pfnGetInstanceProcAddr???
 //    var directLoadingInfo = VkDirectDriverLoadingInfoLUNARG.allocate(arena);
 //    VkDirectDriverLoadingInfoLUNARG.sType(directLoadingInfo, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_INFO_LUNARG());
-//    VkDirectDriverLoadingInfoLUNARG.pfnGetInstanceProcAddr(directLoadingInfo, Linker.nativeLinker().defaultLookup().find("vkGetInstanceProcAddr").orElseThrow());
+//    VkDirectDriverLoadingInfoLUNARG.pfnGetInstanceProcAddr(directLoadingInfo, Linker.nativeLinker().defaultLookup().find("vkGetInstanceProcAddr").orElseThrow());//how to get the pfnGetInstanceProcAddr???
 //
 //    var directDriverList = VkDirectDriverLoadingListLUNARG.allocate(arena);
 //    VkDirectDriverLoadingListLUNARG.sType(directDriverList, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_LIST_LUNARG());
