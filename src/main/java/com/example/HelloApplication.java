@@ -95,8 +95,8 @@ public class HelloApplication extends Application {
     var enabledExtensionList = new ArrayList<>(Arrays.asList(
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
-      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()
 //      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
+      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()
     ));
     if(DEBUG){
       enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
@@ -119,10 +119,10 @@ public class HelloApplication extends Application {
 //    VkInstanceCreateInfo.pNext(instanceCreateInfo, directDriverList);
 
     if (DEBUG) {
-      var pEnabledLayerNames = allocatePtrArray(new MemorySegment[]{
+      var enabledLayerNames = allocatePtrArray(new MemorySegment[]{
         arena.allocateFrom("VK_LAYER_KHRONOS_validation", StandardCharsets.UTF_8)}, arena);
       VkInstanceCreateInfo.enabledLayerCount(instanceCreateInfo, 1);
-      VkInstanceCreateInfo.ppEnabledLayerNames(instanceCreateInfo, pEnabledLayerNames);
+      VkInstanceCreateInfo.ppEnabledLayerNames(instanceCreateInfo, enabledLayerNames);
     }
 
     // VKInstance is an opaque pointer defined by VK_DEFINE_HANDLE macro.
