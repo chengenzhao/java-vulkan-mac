@@ -25,11 +25,12 @@ public class HelloApplication extends Application {
 
   private static final boolean DEBUG = false;
 
-  public static final int SCREEN_WIDTH = (int)(Screen.getPrimary().getBounds().getWidth()*3/4);
-  public static final int SCREEN_HEIGHT = (int)(Screen.getPrimary().getBounds().getHeight()*3/4);
+  public static final int SCREEN_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() * 3 / 4);
+  public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
   public static Arena ARENA;
+
   @Override
-  public void start(Stage stage){
+  public void start(Stage stage) {
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
 
     WritableImage writableImage;
@@ -47,11 +48,11 @@ public class HelloApplication extends Application {
     new AnimationTimer() {
       @Override
       public void handle(long now) {
-        for(int i = 0;i<memorySegment.byteSize()/4;i++){
-          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE,i* 4L   ,(byte)0x00);//blue
-          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE,i* 4L +1,(byte)0x00);//green
-          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE,i* 4L +2,(byte)0xff);//red
-          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE,i* 4L +3,(byte)0xff);//alpha
+        for (int i = 0; i < memorySegment.byteSize() / 4; i++) {
+          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+          memorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
         }
       }
     }.start();
@@ -60,13 +61,13 @@ public class HelloApplication extends Application {
   public static void main(String[] args) {
     String javaHome = System.getProperty("java.home");
     File f = new File(javaHome);
-    System.out.println("Java Home:"+new File(javaHome));
+    System.out.println("Java Home:" + new File(javaHome));
 
     System.loadLibrary("osx");
     System.loadLibrary("vulkan.1");
 //    System.loadLibrary("MoltenVK");
 
-    try(Arena arena = Arena.ofShared()){
+    try (Arena arena = Arena.ofShared()) {
       ARENA = arena;
 
       var pVkInstance = createVkInstance(arena);
@@ -102,8 +103,7 @@ public class HelloApplication extends Application {
       vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()};
 
     VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionArray.length);
-    var enabledExtensionNames = allocatePtrArray(enabledExtensionArray, arena);
-    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, enabledExtensionNames);
+    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, allocatePtrArray(enabledExtensionArray, arena));
 
     //todo how to get the pfnGetInstanceProcAddr???
 //    var directLoadingInfo = VkDirectDriverLoadingInfoLUNARG.allocate(arena);
