@@ -16,6 +16,8 @@ import java.io.File;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 import static com.example.VKResult.*;
@@ -90,20 +92,18 @@ public class HelloApplication extends Application {
     VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
 
-    var enabledExtensionArray = DEBUG ? new MemorySegment[]{
+    var enabledExtensionList = new ArrayList<>(Arrays.asList(
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
-      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME(),
+      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()
 //      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
-      vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME()}
-      : new MemorySegment[]{
-      vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
-      vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
-//      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
-      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()};
+    ));
+    if(DEBUG){
+      enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
+    }
 
-    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionArray.length);
-    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, allocatePtrArray(enabledExtensionArray, arena));
+    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionList.size());
+    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, allocatePtrArray(enabledExtensionList.toArray(MemorySegment[]::new), arena));
 
     //todo how to get the pfnGetInstanceProcAddr???
 //    var directLoadingInfo = VkDirectDriverLoadingInfoLUNARG.allocate(arena);
