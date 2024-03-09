@@ -19,10 +19,25 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 * Java SDK(JDK) 22
 * VulkanSDK 1.3.275.0
 
-# Releasing on Steam etc.
+# How to build it?
 
-For using Vulkan in Java program, setting environment variables is required.  
-Manually typing in export environment variables is OK, but could be difficult for production environment e.g. releasing on Steam.  
+* (Optional, project has already generated java files) Using jextract to generate corresponding java files of vulkan.h, jextract command(in your $VulkanSDK directory): 
+```text
+ ~/JDK/jextract-22/bin/jextract -I "./include" -D "VK_USE_PLATFORM_MACOS_MVK" -D "VK_USE_PLATFORM_METAL_EXT" -D "_MACOS" -t org.vulkan ./include/vulkan/vulkan.h
+```
+* Make sure the path of the lib folder in Vulkan SDK is included in java.library.path, otherwise it won't be able to find it.
+* Also files in the share fold is required, make sure the path includes VK_ICD_FILENAMES and VK_LAYER_PATH.
+* Run the main class: com.example.HelloApplication
+
+# Distribution / Releasing on Steam etc.
+
+For using Vulkan in Java program there are two requirements:
+## $Vulkan_SDK/macOS/lib should be included in the Java Library Path
+1) Developer may manually copy all files in the $Vulkan_SDK/macOS/lib to $JAVA_HOME/lib directory
+2) Using Java program argument java.library.path to add them, check the following Swift code.
+
+## setting environment variables is required.
+Manually typing in export environment variables for development is OK, but could be difficult for production environment e.g. releasing on Steam.  
 Traditionally we could write a script like zsh script or shell script to set the environment variables first then start the Java program using java command.  
 However with tools provided by Apple, we could use Swift to do the similar job.
 A typical Swift wrapper code like:
@@ -34,7 +49,6 @@ func run() {
     
     let currentPath = FileManager.default.currentDirectoryPath
     
-    //copy all files in the lib to JAVA_HOME/lib
     //envorinment varaibles
     task.environment = [
         "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
@@ -46,6 +60,7 @@ func run() {
     let moduleName = "demo"
     let mainClass = "com.example.HelloApplication"
     let jarName = "demo.jar"
+    //-Djava.library.path also goes here e.g. ["-Djava.library.path=\(vulkanSDKLibPath)",...
     task.arguments = ["--enable-native-access=\(moduleName)","-p","\(jarName)","-m","\(moduleName)/\(mainClass)"]
 
     task.standardInput = nil
@@ -57,13 +72,3 @@ func run() {
 run()
 ```
 compile it, then you will get a starting binary executable file which could be used in Steam launch options.
-
-# How to build it?
-
-* (Optional, project has already generated java files) Using jextract to generate corresponding java files of vulkan.h, jextract command(in your $VulkanSDK directory): 
-```text
- ~/JDK/jextract-22/bin/jextract -I "./include" -D "VK_USE_PLATFORM_MACOS_MVK" -D "VK_USE_PLATFORM_METAL_EXT" -D "_MACOS" -t org.vulkan ./include/vulkan/vulkan.h
-```
-* Make sure the path of the lib folder in Vulkan SDK is included in java.library.path, otherwise it won't be able to find it.
-* Also files in the share fold is required, make sure the path includes VK_ICD_FILENAMES and VK_LAYER_PATH.
-* Run the main class: com.example.HelloApplication
