@@ -37,19 +37,19 @@ func run() {//-> String
 //    
 //    task.standardOutput = pipe
 //    task.standardError = pipe
+    let currentPath = FileManager.default.currentDirectoryPath
+    
     //envorinment varaibles
     task.environment = [
-        "JAVA_HOME":"~/JDK/jdk-22.jdk/Contents/Home",
-        "VULKAN_SDK":"~/VulkanSDK/1.3.275.0/macOS",
-        "PATH":"$JAVA_HOME/bin:$VULKAN_SDK/bin:$PATH",
-        "DYLD_LIBRARY_PATH":"$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH",
-        "VK_DRIVER_FILES":"$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json",
-        "VK_LAYER_PATH":"$VULKAN_SDK/share/vulkan/explicit_layer.d"
+        "DYLD_LIBRARY_PATH":"\(currentPath)/lib",
+        "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
+        "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d"
     ]
-    //path to your Java_Home/bin/java
-    task.launchPath = "~/JDK/jdk-22.jdk/Contents/Home/bin/java"
+    print(task.environment)
+    //path to your JAVA_HOME/bin/java
+    task.launchPath = "\(currentPath)/bin/java"
     //options, main class and arugments
-    task.arguments = ["--version"]//multiple arugments using ["-cp",".","com.whitewoodcity.Main"]
+    task.arguments = ["-cp","Xtrike.jar","com.whitewoodcity.Main"]
 
     task.standardInput = nil
     task.launch()
