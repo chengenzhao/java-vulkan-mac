@@ -45,7 +45,7 @@ func run() {//-> String
         "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
         "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d"
     ]
-    print(task.environment)
+
     //path to your JAVA_HOME/bin/java
     task.launchPath = "\(currentPath)/bin/java"
     //options, main class and arugments
