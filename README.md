@@ -33,8 +33,9 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 
 For using Vulkan in Java program there are two requirements:
 ## All files in the $Vulkan_SDK/macOS/lib should be included in the Java Library Path
-1) Developer may manually copy all files in the $Vulkan_SDK/macOS/lib to $JAVA_HOME/lib directory.
-2) Using Java program argument java.library.path to add them, check the following Swift code.
+Choose one of following options:
+* Manually copy all files in the $Vulkan_SDK/macOS/lib to $JAVA_HOME/lib directory. 
+* Using Java program argument java.library.path to add them, check the following Swift code.
 
 ## Setting environment variables is required.
 Manually typing in export environment variables for development is OK, but could be difficult for production environment e.g. releasing on Steam.  
