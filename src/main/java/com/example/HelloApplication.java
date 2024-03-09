@@ -12,8 +12,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vulkan.*;
 
-import java.io.File;
 import java.lang.foreign.*;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -91,7 +93,7 @@ public class HelloApplication extends Application {
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
       vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()
     ));
-    if(DEBUG){
+    if (DEBUG) {
       enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
     }
 
@@ -108,7 +110,7 @@ public class HelloApplication extends Application {
     // VKInstance is an opaque pointer defined by VK_DEFINE_HANDLE macro.
     var pVkInstance = arena.allocate(C_POINTER);
 
-    var result = VkResult(vulkan_h.vkCreateInstance(instanceCreateInfo, MemorySegment.NULL, pVkInstance));
+    var result = VKResult.vkResult(vulkan_h.vkCreateInstance(instanceCreateInfo, MemorySegment.NULL, pVkInstance));
     if (result != VK_SUCCESS) {
       if (DEBUG && result == VK_ERROR_LAYER_NOT_PRESENT) {
         System.out.println("Could not enable debug validation layer - make sure Vulkan SDK is installed.");
@@ -129,5 +131,51 @@ public class HelloApplication extends Application {
       pArray.set(C_POINTER, i * C_POINTER.byteSize(), array[i]);
     }
     return pArray;
+  }
+
+  private static void setupDebugMessagesCallback(Arena arena, MemorySegment pVkInstance) {
+    MethodHandle debugCallbackHandle = null;
+    try {
+      debugCallbackHandle = MethodHandles.lookup().findStatic(VulkanDebug.class, "debugCallbackFunc",
+        MethodType.methodType(int.class, int.class, int.class, MemorySegment.class, MemorySegment.class));
+    } catch (NoSuchMethodException | IllegalAccessException ex) {
+      ex.printStackTrace();
+      System.exit(-1);
+    }
+
+    if (debugCallbackHandle == null) {
+      System.out.println("debugCallbackHandle was null!");
+      System.exit(-1);
+    }
+    MemorySegment debugCallbackFunc = Linker.nativeLinker().upcallStub(debugCallbackHandle, VulkanDebug.DebugCallback$FUNC, arena);
+
+    var vkInstance = pVkInstance.get(C_POINTER, 0);
+
+    var debugUtilsMessengerCreateInfo = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
+    VkDebugUtilsMessengerCreateInfoEXT.sType(debugUtilsMessengerCreateInfo,
+      vulkan_h.VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT());
+    VkDebugUtilsMessengerCreateInfoEXT.messageSeverity(debugUtilsMessengerCreateInfo,
+      vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT() |
+        vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT() |
+        vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT());
+    VkDebugUtilsMessengerCreateInfoEXT.messageType(debugUtilsMessengerCreateInfo,
+      vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT() |
+        vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT() |
+        vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT());
+    VkDebugUtilsMessengerCreateInfoEXT.pfnUserCallback(debugUtilsMessengerCreateInfo, debugCallbackFunc);
+    VkDebugUtilsMessengerCreateInfoEXT.pUserData(debugUtilsMessengerCreateInfo, MemorySegment.NULL);
+
+//    PFN_vkCreateDebugUtilsMessengerEXT vkCreateDebugUtilsMessengerEXTFunc = PFN_vkCreateDebugUtilsMessengerEXT.ofAddress(vulkan_h.vkGetInstanceProcAddr(vkInstance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8)), arena.scope());
+    var vkCreateDebugUtilsMessengerEXTFunc = vulkan_h.vkGetInstanceProcAddr(vkInstance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
+    var debugMessenger = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
+//    var result = VKResult.vkResult(vkCreateDebugUtilsMessengerEXTFunc.apply(vkInstance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, debugMessenger));
+    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, vkInstance,debugUtilsMessengerCreateInfo,MemorySegment.NULL, debugMessenger));
+
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateDebugUtilsMessengerEXT failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateDebugUtilsMessengerEXT succeeded");
+    }
   }
 }

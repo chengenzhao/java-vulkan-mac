@@ -74,7 +74,7 @@ public enum VkStructureType {
     return this.val;
   }
 
-  public static VkStructureType VkStructureType(int structureType) {
+  public static VkStructureType vkStructureType(int structureType) {
     if (structureType == vulkan_h.VK_STRUCTURE_TYPE_APPLICATION_INFO()) {
       return VK_STRUCTURE_TYPE_APPLICATION_INFO;
     } else if (structureType == vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO()) {

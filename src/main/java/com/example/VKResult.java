@@ -26,7 +26,7 @@ public enum VKResult {
   VK_ERROR_OUT_OF_DATE_KHR,
   INTERNAL_UNKNOWN;
 
-  public static VKResult VkResult(int result) {
+  public static VKResult vkResult(int result) {
     return switch (result) {
       case 0 -> VK_SUCCESS;
       case 1 -> VK_NOT_READY;
