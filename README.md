@@ -41,10 +41,10 @@ func run() {//-> String
     task.environment = [
         "JAVA_HOME":"~/JDK/jdk-22.jdk/Contents/Home",
         "VULKAN_SDK":"~/VulkanSDK/1.3.275.0/macOS",
-        "PATH":"$JAVA_HOME/bin:$FLUTTER_HOME/bin:$VULKAN_SDK/bin:$PATH",
+        "PATH":"$JAVA_HOME/bin:$VULKAN_SDK/bin:$PATH",
         "DYLD_LIBRARY_PATH":"$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH",
-        "VK_DRIVER_FILES":"/Users/chengenzhao/VulkanSDK/1.3.275.0/macOS/share/vulkan/icd.d/MoltenVK_icd.json",
-        "VK_LAYER_PATH":"/Users/chengenzhao/VulkanSDK/1.3.275.0/macOS/share/vulkan/explicit_layer.d"
+        "VK_DRIVER_FILES":"$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json",
+        "VK_LAYER_PATH":"$VULKAN_SDK/share/vulkan/explicit_layer.d"
     ]
     //path to your Java_Home/bin/java
     task.launchPath = "~/JDK/jdk-22.jdk/Contents/Home/bin/java"
