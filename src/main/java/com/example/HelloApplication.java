@@ -18,7 +18,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Properties;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
@@ -67,14 +66,13 @@ public class HelloApplication extends Application {
 
     System.loadLibrary("osx");
     System.loadLibrary("vulkan.1");
-//    System.loadLibrary("MoltenVK");
 
     try (Arena arena = Arena.ofShared()) {
       ARENA = arena;
 
       var pVkInstance = createVkInstance(arena);
       var vkInstance = pVkInstance.get(C_POINTER, 0);
-//      launch();
+      launch();
     }
   }
 
@@ -95,7 +93,6 @@ public class HelloApplication extends Application {
     var enabledExtensionList = new ArrayList<>(Arrays.asList(
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
-//      vulkan_h.VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME(),
       vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()
     ));
     if(DEBUG){
@@ -104,19 +101,6 @@ public class HelloApplication extends Application {
 
     VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionList.size());
     VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, allocatePtrArray(enabledExtensionList.toArray(MemorySegment[]::new), arena));
-
-    //todo how to get the pfnGetInstanceProcAddr???
-//    var directLoadingInfo = VkDirectDriverLoadingInfoLUNARG.allocate(arena);
-//    VkDirectDriverLoadingInfoLUNARG.sType(directLoadingInfo, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_INFO_LUNARG());
-//    VkDirectDriverLoadingInfoLUNARG.pfnGetInstanceProcAddr(directLoadingInfo, Linker.nativeLinker().defaultLookup().find("vkGetInstanceProcAddr").orElseThrow());//how to get the pfnGetInstanceProcAddr???
-//
-//    var directDriverList = VkDirectDriverLoadingListLUNARG.allocate(arena);
-//    VkDirectDriverLoadingListLUNARG.sType(directDriverList, vulkan_h.VK_STRUCTURE_TYPE_DIRECT_DRIVER_LOADING_LIST_LUNARG());
-//    VkDirectDriverLoadingListLUNARG.mode(directDriverList, vulkan_h.VK_DIRECT_DRIVER_LOADING_MODE_INCLUSIVE_LUNARG());
-//    VkDirectDriverLoadingListLUNARG.driverCount(directDriverList, 1);
-//    VkDirectDriverLoadingListLUNARG.pDrivers(directDriverList, directLoadingInfo);
-//
-//    VkInstanceCreateInfo.pNext(instanceCreateInfo, directDriverList);
 
     if (DEBUG) {
       var enabledLayerNames = allocatePtrArray(new MemorySegment[]{

@@ -14,6 +14,51 @@ export VK_ICD_FILENAMES=$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json
 export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 ```
 
+# Releasing on Steam etc.
+
+For using Vulkan in Java program, setting environment variables is required.  
+Manually typing in export environment variables is OK, but could be difficult for production environment e.g. releasing on Steam.  
+Traditionally we could write a script like zsh script or shell script to set the environment variables first then start the Java program using java command.  
+However with tools provided by Apple, we could use Swift to do the similar job.
+A typical Swift wrapper code like: 
+```swift
+import Foundation
+
+func run() -> String{
+    let task = Process()
+    let pipe = Pipe()
+    
+    task.standardOutput = pipe
+    task.standardError = pipe
+    //envorinment varaibles
+    task.environment = [
+        "JAVA_HOME":"~/JDK/jdk-22.jdk/Contents/Home",
+        "VULKAN_SDK":"~/VulkanSDK/1.3.275.0/macOS",
+        "PATH":"$JAVA_HOME/bin:$FLUTTER_HOME/bin:$VULKAN_SDK/bin:$PATH",
+        "DYLD_LIBRARY_PATH":"$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH",
+        "VK_DRIVER_FILES":"/Users/chengenzhao/VulkanSDK/1.3.275.0/macOS/share/vulkan/icd.d/MoltenVK_icd.json",
+        "VK_LAYER_PATH":"/Users/chengenzhao/VulkanSDK/1.3.275.0/macOS/share/vulkan/explicit_layer.d"
+    ]
+    //path to your Java_Home/bin/java
+    task.launchPath = "~/JDK/jdk-22.jdk/Contents/Home/bin/java"
+    //options, main class and arugments
+    task.arguments = ["--version"]//multiple arugments like ["-cp",".","com.whitewoodcity.Main"]
+
+    task.standardInput = nil
+    task.launch()
+    //following are optional, if you don't want to see the output
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+    let output = String(data: data, encoding: .utf8)!
+    return output
+}
+
+let output =
+run()
+
+print(output)
+```
+compile it, then you will get a starting binary executable file which could be useful for the Steam launch options.
+
 # SDK Versions 
 
 * Java SDK(JDK) 22
