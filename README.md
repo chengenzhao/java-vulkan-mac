@@ -24,12 +24,14 @@ A typical Swift wrapper code like:
 ```swift
 import Foundation
 
-func run() -> String{
+//comment out part are optional, uncomment them if you want to see the output
+
+func run() {//-> String
     let task = Process()
-    let pipe = Pipe()
-    
-    task.standardOutput = pipe
-    task.standardError = pipe
+//    let pipe = Pipe()
+//    
+//    task.standardOutput = pipe
+//    task.standardError = pipe
     //envorinment varaibles
     task.environment = [
         "JAVA_HOME":"~/JDK/jdk-22.jdk/Contents/Home",
@@ -42,20 +44,20 @@ func run() -> String{
     //path to your Java_Home/bin/java
     task.launchPath = "~/JDK/jdk-22.jdk/Contents/Home/bin/java"
     //options, main class and arugments
-    task.arguments = ["--version"]//multiple arugments like ["-cp",".","com.whitewoodcity.Main"]
+    task.arguments = ["--version"]//multiple arugments using ["-cp",".","com.whitewoodcity.Main"]
 
     task.standardInput = nil
     task.launch()
-    //following are optional, if you don't want to see the output
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    let output = String(data: data, encoding: .utf8)!
-    return output
+    
+//    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+//    let output = String(data: data, encoding: .utf8)!
+//    return output
 }
 
-let output =
+//let output =
 run()
 
-print(output)
+//print(output)
 ```
 compile it, then you will get a starting binary executable file which could be useful for the Steam launch options.
 
