@@ -43,7 +43,10 @@ func run() {
     //path to your JAVA_HOME/bin/java
     task.launchPath = "\(currentPath)/bin/java"
     //options, main class and arugments
-    task.arguments = ["--enable-native-access=demo","-p","demo.jar","-m","demo/com.example.HelloApplication"]
+    let moduleName = "demo"
+    let mainClass = "com.example.HelloApplication"
+    let jarName = "demo.jar"
+    task.arguments = ["--enable-native-access=\(moduleName)","-p","\(jarName)","-m","\(moduleName)/\(mainClass)"]
 
     task.standardInput = nil
     task.launch()
@@ -53,7 +56,7 @@ func run() {
 
 run()
 ```
-compile it, then you will get a starting binary executable file which could be useful for the Steam launch options.
+compile it, then you will get a starting binary executable file which could be used in Steam launch options.
 
 # How to build it?
 
