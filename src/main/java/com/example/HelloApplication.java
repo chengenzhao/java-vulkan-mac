@@ -60,10 +60,6 @@ public class HelloApplication extends Application {
   }
 
   public static void main(String[] args) {
-    String javaHome = System.getProperty("java.home");
-    File f = new File(javaHome);
-    System.out.println("Java Home:" + new File(javaHome));
-
     System.loadLibrary("osx");
     System.loadLibrary("vulkan.1");
 

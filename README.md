@@ -29,40 +29,29 @@ A typical Swift wrapper code like:
 ```swift
 import Foundation
 
-//comment out part are optional, uncomment them if you want to see the output
-
-func run() {//-> String
+func run() {
     let task = Process()
-//    let pipe = Pipe()
-//    
-//    task.standardOutput = pipe
-//    task.standardError = pipe
+    
     let currentPath = FileManager.default.currentDirectoryPath
     
+    //copy all files in the lib to JAVA_HOME/lib
     //envorinment varaibles
     task.environment = [
-        "DYLD_LIBRARY_PATH":"\(currentPath)/lib",
         "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
         "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d"
     ]
-
     //path to your JAVA_HOME/bin/java
     task.launchPath = "\(currentPath)/bin/java"
     //options, main class and arugments
-    task.arguments = ["-cp","Xtrike.jar","com.whitewoodcity.Main"]
+    task.arguments = ["--enable-native-access=demo","-p","demo.jar","-m","demo/com.example.HelloApplication"]
 
     task.standardInput = nil
     task.launch()
     
-//    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-//    let output = String(data: data, encoding: .utf8)!
-//    return output
+    task.waitUntilExit()
 }
 
-//let output =
 run()
-
-//print(output)
 ```
 compile it, then you will get a starting binary executable file which could be useful for the Steam launch options.
 
