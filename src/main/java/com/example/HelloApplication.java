@@ -97,13 +97,12 @@ public class HelloApplication extends Application {
     VkInstanceCreateInfo.sType(instanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
     VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
-
-    var enabledExtensionList = new ArrayList<>(Arrays.asList(
-      vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
-      vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
-//      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME(),
-      vulkan_h.VK_EXT_METAL_SURFACE_EXTENSION_NAME()
-    ));
+    //we probably don't need surface, using JavaFX to render the end frame
+    var enabledExtensionList = new ArrayList<MemorySegment>();
+//    enabledExtensionList.add(vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME());
+//    enabledExtensionList.add(vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME());
+//    enabledExtensionList.add(vulkan_h.VK_EXT_METAL_SURFACE_EXTENSION_NAME());
+    enabledExtensionList.add(vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME());
     if (DEBUG) {
       enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
     }
@@ -178,7 +177,7 @@ public class HelloApplication extends Application {
 //    PFN_vkCreateDebugUtilsMessengerEXT vkCreateDebugUtilsMessengerEXTFunc = PFN_vkCreateDebugUtilsMessengerEXT.ofAddress(vulkan_h.vkGetInstanceProcAddr(vkInstance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8)), arena.scope());
     var vkCreateDebugUtilsMessengerEXTFunc = vulkan_h.vkGetInstanceProcAddr(instance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
 //    var result = VKResult.vkResult(vkCreateDebugUtilsMessengerEXTFunc.apply(vkInstance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, debugMessenger));
-    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance,debugUtilsMessengerCreateInfo,MemorySegment.NULL, VkDebugUtilsMessengerCreateInfoEXT.allocate(arena)));
+    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, VkDebugUtilsMessengerCreateInfoEXT.allocate(arena)));
 
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateDebugUtilsMessengerEXT failed: " + result);
@@ -204,7 +203,7 @@ public class HelloApplication extends Application {
       System.exit(-1);
     }
     for (int i = 0; i < pExtensionCount.get(C_INT, 0); i++) {
-      String extensionName = availableExtensions.asSlice(VkExtensionProperties.sizeof() * i).getString(0,StandardCharsets.UTF_8);
+      String extensionName = availableExtensions.asSlice(VkExtensionProperties.sizeof() * i).getString(0, StandardCharsets.UTF_8);
       extensions.add(extensionName);
     }
 
