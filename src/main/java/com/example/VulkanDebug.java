@@ -3,8 +3,7 @@ package com.example;
 import org.vulkan.VkDebugUtilsMessengerCallbackDataEXT;
 import org.vulkan.vulkan_h;
 
-import java.lang.foreign.FunctionDescriptor;
-import java.lang.foreign.MemorySegment;
+import java.lang.foreign.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,8 @@ public class VulkanDebug {
     if (messageSeverity < vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT()) {
       return vulkan_h.VK_FALSE();
     }
-    StringBuilder messageBuilder = new StringBuilder();
+
+    var message = "DEBUG MESSAGE:\n\n";
     List<String> messageTypesStr = new ArrayList<>();
     if ((messageTypes & vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT()) != 0) {
       messageTypesStr.add("GENERAL");
@@ -31,16 +31,13 @@ public class VulkanDebug {
     if ((messageTypes & vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT()) != 0) {
       messageTypesStr.add("PERFORMANCE");
     }
-    messageBuilder.append("DEBUG MESSAGE:\n\n");
-    messageBuilder.append("Message type(s): ").append(String.join(", ", messageTypesStr)).append("\n");
-//    MemorySegment callbackData = VkDebugUtilsMessengerCallbackDataEXT.ofAddress(pCallbackData, SegmentScope.global());
-    VkStructureType structureType = VkStructureType.vkStructureType(VkDebugUtilsMessengerCallbackDataEXT.sType(pCallbackData));
-    messageBuilder.append("Severity: ").append(severity).append("\n");
-    messageBuilder.append("Structure Type: ").append(structureType).append("\n");
-    messageBuilder.append("Message ID name: ").append(VkDebugUtilsMessengerCallbackDataEXT.pMessageIdName(pCallbackData).getString(0,StandardCharsets.UTF_8)).append("\n");
-    messageBuilder.append("Message ID number: ").append(VkDebugUtilsMessengerCallbackDataEXT.messageIdNumber(pCallbackData)).append("\n");
-    messageBuilder.append("Message: ").append(VkDebugUtilsMessengerCallbackDataEXT.pMessage(pCallbackData).getString(0, StandardCharsets.UTF_8)).append("\n");
-    System.out.println(messageBuilder + "\n");
+    message += "Message type(s): " + String.join(", ",messageTypesStr) + "\n";
+    message += "Severity: " + severity + "\n";
+    message += "Structure Type: " + VkStructureType.vkStructureType(VkDebugUtilsMessengerCallbackDataEXT.sType(pCallbackData)) + "\n";
+    message += "Message ID name: " + VkDebugUtilsMessengerCallbackDataEXT.pMessageIdName(pCallbackData).getString(0, StandardCharsets.UTF_8) + "\n";
+    message += "Message ID number: " + VkDebugUtilsMessengerCallbackDataEXT.messageIdNumber(pCallbackData) + "\n";
+    message += "Message: " + VkDebugUtilsMessengerCallbackDataEXT.pMessage(pCallbackData).getString(0, StandardCharsets.UTF_8) + "\n";
+    System.out.println(message + "\n");
     // System.out.println("Queue label count: " + VkDebugUtilsMessengerCallbackDataEXT.queueLabelCount$get(callbackData));
     return vulkan_h.VK_FALSE();
   }
