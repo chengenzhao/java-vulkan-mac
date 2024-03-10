@@ -26,7 +26,7 @@ import static org.vulkan.vulkan_h.*;
 
 public class HelloApplication extends Application {
 
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   public static final int SCREEN_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() * 3 / 4);
   public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
@@ -70,6 +70,11 @@ public class HelloApplication extends Application {
 
       var pVkInstance = createVkInstance(arena);
       var vkInstance = pVkInstance.get(C_POINTER, 0);
+
+      if (DEBUG) {
+        setupDebugMessagesCallback(arena, pVkInstance);
+      }
+
       launch();
     }
   }
@@ -149,7 +154,7 @@ public class HelloApplication extends Application {
     }
     MemorySegment debugCallbackFunc = Linker.nativeLinker().upcallStub(debugCallbackHandle, VulkanDebug.DebugCallback$FUNC, arena);
 
-    var vkInstance = pVkInstance.get(C_POINTER, 0);
+    var instance = pVkInstance.get(C_POINTER, 0);
 
     var debugUtilsMessengerCreateInfo = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
     VkDebugUtilsMessengerCreateInfoEXT.sType(debugUtilsMessengerCreateInfo,
@@ -166,10 +171,9 @@ public class HelloApplication extends Application {
     VkDebugUtilsMessengerCreateInfoEXT.pUserData(debugUtilsMessengerCreateInfo, MemorySegment.NULL);
 
 //    PFN_vkCreateDebugUtilsMessengerEXT vkCreateDebugUtilsMessengerEXTFunc = PFN_vkCreateDebugUtilsMessengerEXT.ofAddress(vulkan_h.vkGetInstanceProcAddr(vkInstance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8)), arena.scope());
-    var vkCreateDebugUtilsMessengerEXTFunc = vulkan_h.vkGetInstanceProcAddr(vkInstance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
-    var debugMessenger = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
+    var vkCreateDebugUtilsMessengerEXTFunc = vulkan_h.vkGetInstanceProcAddr(instance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
 //    var result = VKResult.vkResult(vkCreateDebugUtilsMessengerEXTFunc.apply(vkInstance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, debugMessenger));
-    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, vkInstance,debugUtilsMessengerCreateInfo,MemorySegment.NULL, debugMessenger));
+    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance,debugUtilsMessengerCreateInfo,MemorySegment.NULL, VkDebugUtilsMessengerCreateInfoEXT.allocate(arena)));
 
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateDebugUtilsMessengerEXT failed: " + result);
