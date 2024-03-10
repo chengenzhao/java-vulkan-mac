@@ -78,3 +78,7 @@ task.launch()
 task.waitUntilExit()
 ```
 compile it, then you will get a starting binary executable file which could be used in Steam launch options.
+
+# Basic Ideas
+
+https://mail.openjdk.org/pipermail/openjfx-dev/2021-February/028861.html
