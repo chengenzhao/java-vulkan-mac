@@ -36,7 +36,7 @@ For using Vulkan in Java program there are two requirements:
 1) libMoltenVK.dylib
 2) libvulkan.${vk_version}.dylib e.g. libvulkan.1.3.275.dylib
 3) libvulkan.1.dylib
-4) libvulkan.dylib
+4) libvulkan.dylib   
 Choose one of following options:
 * Manually copy above 4 files to $JAVA_HOME/lib directory.
 or
