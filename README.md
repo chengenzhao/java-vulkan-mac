@@ -41,7 +41,7 @@ For using Vulkan in Java program there are two requirements:
 4) libvulkan.dylib
 
 ### Choose one of following options:
-* Manually copy above 4 files to $JAVA_HOME/lib directory.
+* Manually copy above 4 files to $JAVA_HOME/lib directory.    
 or
 * Using Java program argument add $Vulkan_SDK/macOS/lib to the java.library.path, check the following Swift code.
 
