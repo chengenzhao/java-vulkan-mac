@@ -5,6 +5,7 @@ import org.vulkan.vulkan_h;
 
 import java.lang.foreign.FunctionDescriptor;
 import java.lang.foreign.MemorySegment;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +37,9 @@ public class VulkanDebug {
     VkStructureType structureType = VkStructureType.vkStructureType(VkDebugUtilsMessengerCallbackDataEXT.sType(pCallbackData));
     messageBuilder.append("Severity: ").append(severity).append("\n");
     messageBuilder.append("Structure Type: ").append(structureType).append("\n");
-    messageBuilder.append("Message ID name: ").append(VkDebugUtilsMessengerCallbackDataEXT.pMessageIdName(pCallbackData)).append("\n");
+    messageBuilder.append("Message ID name: ").append(VkDebugUtilsMessengerCallbackDataEXT.pMessageIdName(pCallbackData).getString(0,StandardCharsets.UTF_8)).append("\n");
     messageBuilder.append("Message ID number: ").append(VkDebugUtilsMessengerCallbackDataEXT.messageIdNumber(pCallbackData)).append("\n");
-    messageBuilder.append("Message: ").append(VkDebugUtilsMessengerCallbackDataEXT.pMessage(pCallbackData)).append("\n");
+    messageBuilder.append("Message: ").append(VkDebugUtilsMessengerCallbackDataEXT.pMessage(pCallbackData).getString(0, StandardCharsets.UTF_8)).append("\n");
     System.out.println(messageBuilder + "\n");
     // System.out.println("Queue label count: " + VkDebugUtilsMessengerCallbackDataEXT.queueLabelCount$get(callbackData));
     return vulkan_h.VK_FALSE();

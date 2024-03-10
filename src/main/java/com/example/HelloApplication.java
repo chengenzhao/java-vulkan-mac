@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
@@ -71,6 +72,10 @@ public class HelloApplication extends Application {
       var pVkInstance = createVkInstance(arena);
       var vkInstance = pVkInstance.get(C_POINTER, 0);
 
+      List<String> extensions = getAvailableExtensions(arena);
+      System.out.println("Available extensions:");
+      extensions.forEach(System.out::println);
+
       if (DEBUG) {
         setupDebugMessagesCallback(arena, pVkInstance);
       }
@@ -96,7 +101,8 @@ public class HelloApplication extends Application {
     var enabledExtensionList = new ArrayList<>(Arrays.asList(
       vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME(),
       vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME(),
-      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME()
+//      vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME(),
+      vulkan_h.VK_EXT_METAL_SURFACE_EXTENSION_NAME()
     ));
     if (DEBUG) {
       enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
@@ -106,8 +112,7 @@ public class HelloApplication extends Application {
     VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, allocatePtrArray(enabledExtensionList.toArray(MemorySegment[]::new), arena));
 
     if (DEBUG) {
-      var enabledLayerNames = allocatePtrArray(new MemorySegment[]{
-        arena.allocateFrom("VK_LAYER_KHRONOS_validation", StandardCharsets.UTF_8)}, arena);
+      var enabledLayerNames = allocatePtrArray(new MemorySegment[]{arena.allocateFrom("VK_LAYER_KHRONOS_validation", StandardCharsets.UTF_8)}, arena);
       VkInstanceCreateInfo.enabledLayerCount(instanceCreateInfo, 1);
       VkInstanceCreateInfo.ppEnabledLayerNames(instanceCreateInfo, enabledLayerNames);
     }
@@ -181,5 +186,51 @@ public class HelloApplication extends Application {
     } else {
       System.out.println("vkCreateDebugUtilsMessengerEXT succeeded");
     }
+  }
+
+  private static List<String> getAvailableExtensions(Arena arena) {
+    var pExtensionCount = arena.allocate(C_INT);
+    var result = VKResult.vkResult(vulkan_h.vkEnumerateInstanceExtensionProperties(MemorySegment.NULL, pExtensionCount, MemorySegment.NULL));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkEnumerateInstanceExtensionProperties failed: " + result);
+      System.exit(-1);
+    }
+
+    var availableExtensions = VkExtensionProperties.allocateArray(pExtensionCount.get(C_INT, 0), arena);
+    List<String> extensions = new ArrayList<>(pExtensionCount.get(C_INT, 0));
+    result = VKResult.vkResult(vulkan_h.vkEnumerateInstanceExtensionProperties(MemorySegment.NULL, pExtensionCount, availableExtensions));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkEnumerateInstanceExtensionProperties failed: " + result);
+      System.exit(-1);
+    }
+    for (int i = 0; i < pExtensionCount.get(C_INT, 0); i++) {
+      String extensionName = availableExtensions.asSlice(VkExtensionProperties.sizeof() * i).getString(0,StandardCharsets.UTF_8);
+      extensions.add(extensionName);
+    }
+
+    return extensions;
+  }
+
+  private static MemorySegment createMetalSurface(Arena arena, MemorySegment vkInstance) {
+    var metalSurfaceCreateInfo = VkMetalSurfaceCreateInfoEXT.allocate(arena);
+
+    VkMetalSurfaceCreateInfoEXT.sType(metalSurfaceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT());
+    VkMetalSurfaceCreateInfoEXT.pNext(metalSurfaceCreateInfo, MemorySegment.NULL);
+    VkMetalSurfaceCreateInfoEXT.flags(metalSurfaceCreateInfo, 0);
+
+//    // Get HINSTANCE via GetModuleHandle.
+//    var hinstance = Windows_h.GetModuleHandleW(MemorySegment.NULL);
+//    VkMetalSurfaceCreateInfoEXT.hinstance(metalSurfaceCreateInfo, hinstance);
+//    VkMetalSurfaceCreateInfoEXT.hwnd(metalSurfaceCreateInfo, hwndMain);
+
+    var pVkSurface = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateMetalSurfaceEXT(vkInstance, metalSurfaceCreateInfo, MemorySegment.NULL, pVkSurface));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateMetalSurfaceEXT failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateMetalSurfaceEXT succeeded");
+    }
+    return pVkSurface;
   }
 }
