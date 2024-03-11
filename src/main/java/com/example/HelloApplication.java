@@ -84,7 +84,7 @@ public class HelloApplication extends Application {
       var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
       vkMemorySegment = ARENA.allocate(bufferSize);
 
-      getPhysicalDevices(arena, vkInstance, vkMemorySegment);
+      var physicalDevices = getPhysicalDevices(arena, vkInstance, vkMemorySegment);
 
       launch();
     }
