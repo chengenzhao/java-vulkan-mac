@@ -22,13 +22,13 @@ public class PhysicalDevice {
   private final MemorySegment physicalDeviceMemoryProperties;
   private final int numQueueFamilies;
   private final MemorySegment physicalDeviceQueueFamilyProperties;
-  private final MemorySegment surface;
+//  private final MemorySegment surface;
   private final List<QueueFamily> queueFamilies;
   private final List<Format> formatProperties;
 
   public PhysicalDevice(Arena arena, MemorySegment physicalDevice, MemorySegment physicalDeviceProperties,
                          MemorySegment physicalDeviceFeatures, MemorySegment physicalDeviceMemoryProperties,
-                         int numQueueFamilies, MemorySegment physicalDeviceQueueFamilyProperties, MemorySegment ppSurface,
+                         int numQueueFamilies, MemorySegment physicalDeviceQueueFamilyProperties, //MemorySegment ppSurface,
                          List<Format> formatProperties) {
     Objects.requireNonNull(arena);
     Objects.requireNonNull(physicalDevice);
@@ -36,7 +36,7 @@ public class PhysicalDevice {
     Objects.requireNonNull(physicalDeviceFeatures);
     Objects.requireNonNull(physicalDeviceMemoryProperties);
     Objects.requireNonNull(physicalDeviceQueueFamilyProperties);
-    Objects.requireNonNull(ppSurface);
+//    Objects.requireNonNull(ppSurface);
     System.out.println("numQueueFamilies: " + numQueueFamilies);
     this.arena = arena;
     this.physicalDevice = physicalDevice;
@@ -45,7 +45,7 @@ public class PhysicalDevice {
     this.physicalDeviceMemoryProperties = physicalDeviceMemoryProperties;
     this.numQueueFamilies = numQueueFamilies;
     this.physicalDeviceQueueFamilyProperties = physicalDeviceQueueFamilyProperties;
-    this.surface = ppSurface;
+//    this.surface = ppSurface;
     this.formatProperties = formatProperties;
     if (numQueueFamilies > 0) {
       queueFamilies = new ArrayList<>();

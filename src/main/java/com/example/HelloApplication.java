@@ -279,8 +279,7 @@ public class HelloApplication extends Application {
       vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice,
         pQueueFamilyPropertyCount, pQueueFamilyProperties);
 
-      physicalDevices.add(new PhysicalDevice(arena, physicalDevice, properties, features, pMemoryProperties,
-        familyPropertyCount, pQueueFamilyProperties, pSurface, formatProperties));
+      physicalDevices.add(new PhysicalDevice(arena, physicalDevice, properties, features, pMemoryProperties, familyPropertyCount, pQueueFamilyProperties, formatProperties));
     }
 
     for (PhysicalDevice physicalDevice : physicalDevices) {

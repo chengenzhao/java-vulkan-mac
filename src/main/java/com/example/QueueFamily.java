@@ -10,14 +10,14 @@ public record QueueFamily(MemorySegment physicalDevicePtr, MemorySegment queue, 
   @Override
   public String toString() {
     return "QueueFamily{" +
-      ", queue=" + queue +
-      ", queueFamilyIndex=" + queueFamilyIndex +
-      ", numQueues=" + numQueues +
-      ", supportsGraphicsOperations=" + supportsGraphicsOperations +
-      ", supportsComputeOperations=" + supportsComputeOperations +
-      ", supportsTransferOperations=" + supportsTransferOperations +
-      ", supportsSparseMemoryManagementOperations=" + supportsSparseMemoryManagementOperations +
-      ", supportsPresentToSurface=" + supportsPresentToSurface +
+      " queue=" + queue +
+      " queueFamilyIndex=" + queueFamilyIndex +
+      " numQueues=" + numQueues +
+      " supportsGraphicsOperations=" + supportsGraphicsOperations +
+      " supportsComputeOperations=" + supportsComputeOperations +
+      " supportsTransferOperations=" + supportsTransferOperations +
+      " supportsSparseMemoryManagementOperations=" + supportsSparseMemoryManagementOperations +
+      " supportsPresentToSurface=" + supportsPresentToSurface +
       '}';
   }
 }
