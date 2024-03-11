@@ -32,14 +32,15 @@ public class HelloApplication extends Application {
   public static final int SCREEN_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() * 3 / 4);
   public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
   public static Arena ARENA;
+  public static MemorySegment vkMemorySegment;
 
   @Override
   public void start(Stage stage) {
-    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
+//    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
 
     WritableImage writableImage;
 
-    var vkMemorySegment = ARENA.allocate(bufferSize);
+//    var vkMemorySegment = ARENA.allocate(bufferSize);
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       vkMemorySegment.asByteBuffer(), PixelFormat.getByteBgraPreInstance());
     writableImage = new WritableImage(pixelBuffer);
@@ -79,6 +80,11 @@ public class HelloApplication extends Application {
       if (DEBUG) {
         setupDebugMessagesCallback(arena, pVkInstance);
       }
+
+      var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
+      vkMemorySegment = ARENA.allocate(bufferSize);
+
+      getPhysicalDevices(arena, vkInstance, vkMemorySegment);
 
       launch();
     }
@@ -210,29 +216,107 @@ public class HelloApplication extends Application {
     return extensions;
   }
 
-  private static MemorySegment createMetalSurface(Arena arena, MemorySegment vkInstance) {
-    var metalSurfaceCreateInfo = VkMetalSurfaceCreateInfoEXT.allocate(arena);
+  private static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment vkInstance, MemorySegment pSurface) {
+    MemorySegment pPropertyCount = arena.allocate(C_INT);
+    pPropertyCount.set(C_INT, 0,-1);
+    vulkan_h.vkEnumerateInstanceLayerProperties(pPropertyCount, MemorySegment.NULL);
+    System.out.println("property count: " + pPropertyCount.get(C_INT, 0));
 
-    VkMetalSurfaceCreateInfoEXT.sType(metalSurfaceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT());
-    VkMetalSurfaceCreateInfoEXT.pNext(metalSurfaceCreateInfo, MemorySegment.NULL);
-    VkMetalSurfaceCreateInfoEXT.flags(metalSurfaceCreateInfo, 0);
+    // See how many physical devices Vulkan knows about, then use that number to enumerate them.
+    MemorySegment pPhysicalDeviceCount = arena.allocate(C_INT);
+    pPhysicalDeviceCount.set(C_INT, 0, -1);
+    vulkan_h.vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, MemorySegment.NULL);
 
-//    // Get HINSTANCE via GetModuleHandle.
-//    var hinstance = Windows_h.GetModuleHandleW(MemorySegment.NULL);
-//    VkMetalSurfaceCreateInfoEXT.hinstance(metalSurfaceCreateInfo, hinstance);
-//    VkMetalSurfaceCreateInfoEXT.hwnd(metalSurfaceCreateInfo, hwndMain);
-
-    var pVkSurface = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateMetalSurfaceEXT(vkInstance, metalSurfaceCreateInfo, MemorySegment.NULL, pVkSurface));
-    if (result != VK_SUCCESS) {
-      System.out.println("vkCreateMetalSurfaceEXT failed: " + result);
+    int numPhysicalDevices = pPhysicalDeviceCount.get(C_INT, 0);
+    if (numPhysicalDevices == 0) {
+      System.out.println("numPhysicalDevices was 0!");
       System.exit(-1);
     } else {
-      System.out.println("vkCreateMetalSurfaceEXT succeeded");
+      System.out.println("numPhysicalDevices: " + numPhysicalDevices);
     }
-    return pVkSurface;
+
+    // VkPhysicalDevice is an opaque pointer defined by VK_DEFINE_HANDLE macro - so it has C_POINTER byte size
+    // (64-bit size on a 64-bit system) - thus an array of them has size = size(C_POINTER) * num devices.
+    MemorySegment pPhysicalDevices = arena.allocate(C_POINTER, numPhysicalDevices);
+    var result = VKResult.vkResult(vulkan_h.vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, pPhysicalDevices));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkEnumeratePhysicalDevices failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkEnumeratePhysicalDevices succeeded");
+    }
+
+    System.out.println("physical device count: " + numPhysicalDevices);
+
+    List<PhysicalDevice> physicalDevices = new ArrayList<>(numPhysicalDevices);
+    for (int i = 0; i < numPhysicalDevices; i++) {
+      var properties = VkPhysicalDeviceProperties.allocate(arena);
+      var physicalDevice = pPhysicalDevices.getAtIndex(C_POINTER, i);
+      vulkan_h.vkGetPhysicalDeviceProperties(physicalDevice, properties);
+      var features = VkPhysicalDeviceFeatures.allocate(arena);
+      vulkan_h.vkGetPhysicalDeviceFeatures(physicalDevice, features);
+      var pMemoryProperties = VkPhysicalDeviceMemoryProperties.allocate(arena);
+      vulkan_h.vkGetPhysicalDeviceMemoryProperties(physicalDevice, pMemoryProperties);
+
+      int[] formats = {vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()};
+      List<Format> formatProperties = new ArrayList<>();
+      for (int format : formats) {
+        var pFormatProperties = VkFormatProperties.allocate(arena);
+        vulkan_h.vkGetPhysicalDeviceFormatProperties(physicalDevice, format, pFormatProperties);;
+        formatProperties.add(new Format(format, VkFormatProperties.linearTilingFeatures(pFormatProperties),
+          VkFormatProperties.optimalTilingFeatures(pFormatProperties)));
+      }
+
+      // See how many properties the queue family of the current physical device has, then use that number to
+      // get them.
+      MemorySegment pQueueFamilyPropertyCount = arena.allocate(C_INT);
+      pQueueFamilyPropertyCount.set(C_INT, 0, -1);
+      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice,
+        pQueueFamilyPropertyCount, MemorySegment.NULL);
+      int familyPropertyCount = pQueueFamilyPropertyCount.get(C_INT, 0);
+      System.out.println("familyPropertyCount: " + familyPropertyCount);
+      MemorySegment pQueueFamilyProperties = VkQueueFamilyProperties.allocateArray(familyPropertyCount, arena);
+      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice,
+        pQueueFamilyPropertyCount, pQueueFamilyProperties);
+
+      physicalDevices.add(new PhysicalDevice(arena, physicalDevice, properties, features, pMemoryProperties,
+        familyPropertyCount, pQueueFamilyProperties, pSurface, formatProperties));
+    }
+
+    for (PhysicalDevice physicalDevice : physicalDevices) {
+      physicalDevice.printInfo();
+    }
+    return physicalDevices;
   }
 
+  private static MemorySegment createVkDevice(Arena arena, MemorySegment pDeviceQueueCreateInfo, QueueFamily graphicsQueueFamily) {
+    var physicalDeviceFeatures = VkPhysicalDeviceFeatures.allocate(arena);
+
+    VkPhysicalDeviceFeatures.depthClamp(physicalDeviceFeatures, vulkan_h.VK_FALSE());
+    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, vulkan_h.VK_TRUE());
+    var deviceCreateInfo = VkDeviceCreateInfo.allocate(arena);
+    VkDeviceCreateInfo.sType(deviceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO());
+    VkDeviceCreateInfo.pQueueCreateInfos(deviceCreateInfo, pDeviceQueueCreateInfo);
+    VkDeviceCreateInfo.queueCreateInfoCount(deviceCreateInfo, 1);
+    VkDeviceCreateInfo.pEnabledFeatures(deviceCreateInfo, physicalDeviceFeatures);
+    // Newer Vulkan implementations do not distinguish between instance and device specific validation layers,
+    // but set it to maintain compat with old implementations.
+    VkDeviceCreateInfo.enabledExtensionCount(deviceCreateInfo, 1);
+    MemorySegment pEnabledDeviceExtensionNames = allocatePtrArray(new MemorySegment[]{vulkan_h.VK_KHR_SWAPCHAIN_EXTENSION_NAME()}, arena);
+    VkDeviceCreateInfo.ppEnabledExtensionNames(deviceCreateInfo, pEnabledDeviceExtensionNames);
+
+    var pVkDevice = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateDevice(graphicsQueueFamily.physicalDevicePtr(), deviceCreateInfo,
+      MemorySegment.NULL, pVkDevice));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateDevice failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateDevice succeeded");
+    }
+    return pVkDevice;
+  }
+  
   private static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
                                                            MemorySegment pVertShaderModule, MemorySegment pFragShaderModule,
                                                            MemorySegment vertexInputStateInfo, MemorySegment pRenderPass,
@@ -331,10 +415,11 @@ public class HelloApplication extends Application {
     var pPipelineCreateInfo = VkGraphicsPipelineCreateInfo.allocate(arena);
     VkGraphicsPipelineCreateInfo.sType(pPipelineCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
     MemorySegment stages = VkPipelineShaderStageCreateInfo.allocateArray(2, arena);
-    VkPipelineShaderStageCreateInfo.sType(stages, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
-    VkPipelineShaderStageCreateInfo.stage(stages, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
-    VkPipelineShaderStageCreateInfo.module(stages, pVertShaderModule.get(C_POINTER, 0));
-    VkPipelineShaderStageCreateInfo.pName(stages, arena.allocateFrom("main", StandardCharsets.UTF_8));
+    MemorySegment stage0 = stages.asSlice(0,stages.byteSize()/2);
+    VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPipelineShaderStageCreateInfo.module(stage0, pVertShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(stage0, arena.allocateFrom("main", StandardCharsets.UTF_8));
     MemorySegment stage1 = stages.asSlice(stages.byteSize()/2);
     VkPipelineShaderStageCreateInfo.sType(stage1, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage1, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
