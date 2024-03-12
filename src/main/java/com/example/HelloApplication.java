@@ -138,9 +138,10 @@ public class HelloApplication extends Application {
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
     //we probably don't need surface, using JavaFX to render the end frame
     var enabledExtensionList = new ArrayList<MemorySegment>();
-//    enabledExtensionList.add(vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME());
+    enabledExtensionList.add(vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME());
 //    enabledExtensionList.add(vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME());
 //    enabledExtensionList.add(vulkan_h.VK_EXT_METAL_SURFACE_EXTENSION_NAME());
+    enabledExtensionList.add(vulkan_h.VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME());
     enabledExtensionList.add(vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME());
     if (DEBUG) {
       enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
@@ -330,10 +331,13 @@ public class HelloApplication extends Application {
     VkDeviceCreateInfo.pQueueCreateInfos(deviceCreateInfo, pDeviceQueueCreateInfo);
     VkDeviceCreateInfo.queueCreateInfoCount(deviceCreateInfo, 1);
     VkDeviceCreateInfo.pEnabledFeatures(deviceCreateInfo, physicalDeviceFeatures);
-    // Newer Vulkan implementations do not distinguish between instance and device specific validation layers,
-    // but set it to maintain compat with old implementations.
-    VkDeviceCreateInfo.enabledExtensionCount(deviceCreateInfo, 1);
-    MemorySegment pEnabledDeviceExtensionNames = allocatePtrArray(new MemorySegment[]{vulkan_h.VK_KHR_SWAPCHAIN_EXTENSION_NAME()}, arena);
+    // Newer Vulkan implementations do not distinguish between instance and device specific validation layers, but set it to maintain compact with old implementations.
+    var extensions = new MemorySegment[]{
+      vulkan_h.VK_KHR_SWAPCHAIN_EXTENSION_NAME(),
+      arena.allocateFrom("VK_KHR_portability_subset",StandardCharsets.UTF_8)//couldn't find this typealias or sth. in the headers.file
+    };
+    VkDeviceCreateInfo.enabledExtensionCount(deviceCreateInfo, extensions.length);
+    MemorySegment pEnabledDeviceExtensionNames = allocatePtrArray(extensions, arena);
     VkDeviceCreateInfo.ppEnabledExtensionNames(deviceCreateInfo, pEnabledDeviceExtensionNames);
 
     var pVkDevice = arena.allocate(C_POINTER);
