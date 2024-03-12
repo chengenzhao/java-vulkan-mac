@@ -116,4 +116,8 @@ public class PhysicalDevice {
   public int getDeviceType() {
     return VkPhysicalDeviceProperties.deviceType(physicalDeviceProperties);
   }
+
+  public List<QueueFamily> getQueueFamilies() {
+    return queueFamilies;
+  }
 }

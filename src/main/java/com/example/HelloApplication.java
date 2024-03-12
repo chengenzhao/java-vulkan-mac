@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import static com.example.VKResult.*;
@@ -85,6 +86,38 @@ public class HelloApplication extends Application {
       vkMemorySegment = ARENA.allocate(bufferSize);
 
       var physicalDevices = getPhysicalDevices(arena, vkInstance, vkMemorySegment);
+
+      var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
+      VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
+      PhysicalDevice physicalDevice = null;
+      QueueFamily graphicsQueueFamily = null;
+      boolean foundQueueFamily = false;
+      for (Iterator<PhysicalDevice> iterator = physicalDevices.iterator(); iterator.hasNext() && !foundQueueFamily; ) {
+        PhysicalDevice currDevice = iterator.next();
+        for (QueueFamily queueFamily : currDevice.getQueueFamilies()) {
+          if (queueFamily.supportsGraphicsOperations()) {
+            graphicsQueueFamily = queueFamily;
+            physicalDevice = currDevice;
+            foundQueueFamily = true;
+            break;
+          }
+        }
+      }
+      if (graphicsQueueFamily == null) {
+        System.out.println("Could not find a discrete GPU physical device with a graphics queue family!");
+        System.exit(-1);
+      } else {
+        System.out.println("Found discrete GPU physical device with a graphics family queue");
+      }
+
+      System.out.println("Using queue family: " + graphicsQueueFamily);
+      VkDeviceQueueCreateInfo.queueFamilyIndex(pDeviceQueueCreateInfo, graphicsQueueFamily.queueFamilyIndex());
+      VkDeviceQueueCreateInfo.queueCount(pDeviceQueueCreateInfo, 1);
+      var priority = arena.allocate(C_DOUBLE);
+      priority.set(C_DOUBLE, 0, 1.0);
+      VkDeviceQueueCreateInfo.pQueuePriorities(pDeviceQueueCreateInfo, priority);
+
+      var pVkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
 
       launch();
     }
@@ -267,8 +300,7 @@ public class HelloApplication extends Application {
           VkFormatProperties.optimalTilingFeatures(pFormatProperties)));
       }
 
-      // See how many properties the queue family of the current physical device has, then use that number to
-      // get them.
+      // See how many properties the queue family of the current physical device has, then use that number to get them.
       MemorySegment pQueueFamilyPropertyCount = arena.allocate(C_INT);
       pQueueFamilyPropertyCount.set(C_INT, 0, -1);
       vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice,
@@ -292,7 +324,7 @@ public class HelloApplication extends Application {
     var physicalDeviceFeatures = VkPhysicalDeviceFeatures.allocate(arena);
 
     VkPhysicalDeviceFeatures.depthClamp(physicalDeviceFeatures, vulkan_h.VK_FALSE());
-    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, vulkan_h.VK_TRUE());
+    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, vulkan_h.VK_FALSE());//metal doesn't support depthBounds
     var deviceCreateInfo = VkDeviceCreateInfo.allocate(arena);
     VkDeviceCreateInfo.sType(deviceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO());
     VkDeviceCreateInfo.pQueueCreateInfos(deviceCreateInfo, pDeviceQueueCreateInfo);
