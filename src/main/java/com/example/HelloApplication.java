@@ -324,7 +324,7 @@ public class HelloApplication extends Application {
     var physicalDeviceFeatures = VkPhysicalDeviceFeatures.allocate(arena);
 
     VkPhysicalDeviceFeatures.depthClamp(physicalDeviceFeatures, vulkan_h.VK_FALSE());
-    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, vulkan_h.VK_FALSE());//metal doesn't support depthBounds
+    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, vulkan_h.VK_FALSE());//Metal doesn't support depthBounds yet
     var deviceCreateInfo = VkDeviceCreateInfo.allocate(arena);
     VkDeviceCreateInfo.sType(deviceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO());
     VkDeviceCreateInfo.pQueueCreateInfos(deviceCreateInfo, pDeviceQueueCreateInfo);
