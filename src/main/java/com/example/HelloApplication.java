@@ -87,28 +87,11 @@ public class HelloApplication extends Application {
 
       var physicalDevices = getPhysicalDevices(arena, vkInstance, vkMemorySegment);
 
+      var graphicsQueueFamilies = physicalDevices.getFirst().getQueueFamilies();
+      var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
+
       var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
       VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
-      PhysicalDevice physicalDevice = null;
-      QueueFamily graphicsQueueFamily = null;
-      boolean foundQueueFamily = false;
-      for (Iterator<PhysicalDevice> iterator = physicalDevices.iterator(); iterator.hasNext() && !foundQueueFamily; ) {
-        PhysicalDevice currDevice = iterator.next();
-        for (QueueFamily queueFamily : currDevice.getQueueFamilies()) {
-          if (queueFamily.supportsGraphicsOperations()) {
-            graphicsQueueFamily = queueFamily;
-            physicalDevice = currDevice;
-            foundQueueFamily = true;
-            break;
-          }
-        }
-      }
-      if (graphicsQueueFamily == null) {
-        System.out.println("Could not find a discrete GPU physical device with a graphics queue family!");
-        System.exit(-1);
-      } else {
-        System.out.println("Found discrete GPU physical device with a graphics family queue");
-      }
 
       System.out.println("Using queue family: " + graphicsQueueFamily);
       VkDeviceQueueCreateInfo.queueFamilyIndex(pDeviceQueueCreateInfo, graphicsQueueFamily.queueFamilyIndex());
@@ -396,8 +379,7 @@ public class HelloApplication extends Application {
     VkPipelineMultisampleStateCreateInfo.alphaToOneEnable(pPipelineMultisampleStateInfo, vulkan_h.VK_FALSE());
 
     var pPipelineColorBlendAttachmentState = VkPipelineColorBlendAttachmentState.allocate(arena);
-    VkPipelineColorBlendAttachmentState.colorWriteMask(pPipelineColorBlendAttachmentState, vulkan_h.VK_COLOR_COMPONENT_R_BIT() |
-      vulkan_h.VK_COLOR_COMPONENT_G_BIT() | vulkan_h.VK_COLOR_COMPONENT_B_BIT() | vulkan_h.VK_COLOR_COMPONENT_A_BIT());
+    VkPipelineColorBlendAttachmentState.colorWriteMask(pPipelineColorBlendAttachmentState, vulkan_h.VK_COLOR_COMPONENT_R_BIT() | vulkan_h.VK_COLOR_COMPONENT_G_BIT() | vulkan_h.VK_COLOR_COMPONENT_B_BIT() | vulkan_h.VK_COLOR_COMPONENT_A_BIT());
     VkPipelineColorBlendAttachmentState.blendEnable(pPipelineColorBlendAttachmentState, vulkan_h.VK_FALSE());
     VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pPipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ONE());
     VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pPipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ZERO());
