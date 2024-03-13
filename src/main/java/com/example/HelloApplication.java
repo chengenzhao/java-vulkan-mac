@@ -13,20 +13,14 @@ import javafx.stage.Stage;
 import org.vulkan.*;
 
 import java.lang.foreign.*;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
 
-public class HelloApplication extends Application implements HelloApplication1{
+public class HelloApplication extends HelloApplication1{
 
   private static final boolean DEBUG = true;
 
@@ -71,21 +65,21 @@ public class HelloApplication extends Application implements HelloApplication1{
     try (Arena arena = Arena.ofShared()) {
       ARENA = arena;
 
-      var pVkInstance = createVkInstance(arena);
+      var pVkInstance = createVkInstance(arena, DEBUG);
       var vkInstance = pVkInstance.get(C_POINTER, 0);
 
-      List<String> extensions = HelloApplication1.getAvailableExtensions(arena);
+      List<String> extensions = getAvailableExtensions(arena);
       System.out.println("Available extensions:");
       extensions.forEach(System.out::println);
 
       if (DEBUG) {
-        HelloApplication1.setupDebugMessagesCallback(arena, pVkInstance);
+        setupDebugMessagesCallback(arena, pVkInstance);
       }
 
       var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
       vkMemorySegment = ARENA.allocate(bufferSize);
 
-      var physicalDevices = HelloApplication1.getPhysicalDevices(arena, vkInstance, vkMemorySegment);
+      var physicalDevices = getPhysicalDevices(arena, vkInstance, vkMemorySegment);
 
       var graphicsQueueFamilies = physicalDevices.getFirst().getQueueFamilies();
       var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
@@ -100,63 +94,12 @@ public class HelloApplication extends Application implements HelloApplication1{
       priority.set(C_DOUBLE, 0, 1.0);
       VkDeviceQueueCreateInfo.pQueuePriorities(pDeviceQueueCreateInfo, priority);
 
-      var pVkDevice = HelloApplication1.createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
+      var pVkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
 
       launch();
     }
   }
 
-  private static MemorySegment createVkInstance(Arena arena) {
-    var appInfo = VkApplicationInfo.allocate(arena);
-    VkApplicationInfo.sType(appInfo, vulkan_h.VK_STRUCTURE_TYPE_APPLICATION_INFO());
-    VkApplicationInfo.pApplicationName(appInfo, arena.allocateFrom("Java Vulkan App", StandardCharsets.UTF_8));
-    VkApplicationInfo.applicationVersion(appInfo, 0x010000);
-    VkApplicationInfo.pEngineName(appInfo, arena.allocateFrom("Java Vulkan", StandardCharsets.UTF_8));
-    VkApplicationInfo.engineVersion(appInfo, 0x010000);
-    VkApplicationInfo.apiVersion(appInfo, vulkan_h.VK_API_VERSION_1_0());
-
-    var instanceCreateInfo = VkInstanceCreateInfo.allocate(arena);
-    VkInstanceCreateInfo.sType(instanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
-    VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
-    VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
-    //we probably don't need surface, using JavaFX to render the end frame
-    var enabledExtensionList = new ArrayList<MemorySegment>();
-    enabledExtensionList.add(vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME());
-//    enabledExtensionList.add(vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME());
-//    enabledExtensionList.add(vulkan_h.VK_EXT_METAL_SURFACE_EXTENSION_NAME());
-    enabledExtensionList.add(vulkan_h.VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME());
-    enabledExtensionList.add(vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME());
-    if (DEBUG) {
-      enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
-    }
-
-    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionList.size());
-    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, HelloApplication1.allocatePtrArray(enabledExtensionList.toArray(MemorySegment[]::new), arena));
-
-    if (DEBUG) {
-      var enabledLayerNames = HelloApplication1.allocatePtrArray(new MemorySegment[]{arena.allocateFrom("VK_LAYER_KHRONOS_validation", StandardCharsets.UTF_8)}, arena);
-      VkInstanceCreateInfo.enabledLayerCount(instanceCreateInfo, 1);
-      VkInstanceCreateInfo.ppEnabledLayerNames(instanceCreateInfo, enabledLayerNames);
-    }
-
-    // VKInstance is an opaque pointer defined by VK_DEFINE_HANDLE macro.
-    var pVkInstance = arena.allocate(C_POINTER);
-
-    var result = VKResult.vkResult(vulkan_h.vkCreateInstance(instanceCreateInfo, MemorySegment.NULL, pVkInstance));
-    if (result != VK_SUCCESS) {
-      if (DEBUG && result == VK_ERROR_LAYER_NOT_PRESENT) {
-        System.out.println("Could not enable debug validation layer - make sure Vulkan SDK is installed.");
-      } else {
-        System.out.println("vkCreateInstance failed: " + result);
-      }
-      System.exit(-1);
-    } else {
-      System.out.println("vkCreateInstance succeeded");
-    }
-
-    return pVkInstance;
-  }
-  
   private static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
                                                            MemorySegment pVertShaderModule, MemorySegment pFragShaderModule,
                                                            MemorySegment vertexInputStateInfo, MemorySegment pRenderPass,
