@@ -104,9 +104,9 @@ public class HelloApplication extends HelloApplication1{
   }
   
   private static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
-                                                           MemorySegment pVertShaderModule, MemorySegment pFragShaderModule,
-                                                           MemorySegment vertexInputStateInfo, MemorySegment pRenderPass,
-                                                           MemorySegment pDescriptorSetLayout) {
+                                                           MemorySegment vertShaderModule, MemorySegment fragShaderModule,
+                                                           MemorySegment vertexInputStateInfo, MemorySegment renderPass,
+                                                           MemorySegment descriptorSetLayout) {
     var pViewport = VkViewport.allocate(arena);
     VkViewport.x(pViewport, 0.0f);
     VkViewport.y(pViewport, 0.0f);
@@ -185,7 +185,7 @@ public class HelloApplication extends HelloApplication1{
     var pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo.allocate(arena);
     VkPipelineLayoutCreateInfo.sType(pipelineLayoutCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO());
     VkPipelineLayoutCreateInfo.setLayoutCount(pipelineLayoutCreateInfo, 1);
-    VkPipelineLayoutCreateInfo.pSetLayouts(pipelineLayoutCreateInfo, pDescriptorSetLayout);
+    VkPipelineLayoutCreateInfo.pSetLayouts(pipelineLayoutCreateInfo, descriptorSetLayout);
     VkPipelineLayoutCreateInfo.pPushConstantRanges(pipelineLayoutCreateInfo, pushConstantRange);
     VkPipelineLayoutCreateInfo.pushConstantRangeCount(pipelineLayoutCreateInfo, 1);
 
@@ -204,12 +204,12 @@ public class HelloApplication extends HelloApplication1{
     MemorySegment stage0 = stages.asSlice(0,VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
     VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
-    VkPipelineShaderStageCreateInfo.module(stage0, pVertShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.module(stage0, vertShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(stage0, arena.allocateFrom("main", StandardCharsets.UTF_8));
     MemorySegment stage1 = stages.asSlice(VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
     VkPipelineShaderStageCreateInfo.sType(stage1, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage1, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
-    VkPipelineShaderStageCreateInfo.module(stage1, pFragShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.module(stage1, fragShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(stage1, arena.allocateFrom("main", StandardCharsets.UTF_8));
     VkGraphicsPipelineCreateInfo.stageCount(pipelineCreateInfo, 2);
     VkGraphicsPipelineCreateInfo.pStages(pipelineCreateInfo, stages);
@@ -221,7 +221,7 @@ public class HelloApplication extends HelloApplication1{
     VkGraphicsPipelineCreateInfo.pColorBlendState(pipelineCreateInfo, pipelineColorBlendStateInfo);
     VkGraphicsPipelineCreateInfo.pDynamicState(pipelineCreateInfo, MemorySegment.NULL);
     VkGraphicsPipelineCreateInfo.layout(pipelineCreateInfo, pipelineLayout.get(C_POINTER, 0));
-    VkGraphicsPipelineCreateInfo.renderPass(pipelineCreateInfo, pRenderPass.get(C_POINTER, 0));
+    VkGraphicsPipelineCreateInfo.renderPass(pipelineCreateInfo, renderPass.get(C_POINTER, 0));
     VkGraphicsPipelineCreateInfo.subpass(pipelineCreateInfo, 0);
     VkGraphicsPipelineCreateInfo.basePipelineHandle(pipelineCreateInfo, vulkan_h.VK_NULL_HANDLE());
     VkGraphicsPipelineCreateInfo.basePipelineIndex(pipelineCreateInfo, -1);
