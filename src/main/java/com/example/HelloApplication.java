@@ -66,7 +66,7 @@ public class HelloApplication extends HelloApplication1{
       ARENA = arena;
 
       var pInstance = createVkInstance(arena, DEBUG);
-      var instance = pInstance.get(C_POINTER, 0);
+      var instance = pInstance.get(C_POINTER, 0);//or vkInstance
 
       List<String> extensions = getAvailableExtensions(arena);
       System.out.println("Available extensions:");
