@@ -96,6 +96,9 @@ public class HelloApplication extends HelloApplication1{
 
       var pVkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
 
+      int swapChainImageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();
+      int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
+
       launch();
     }
   }
@@ -197,6 +200,7 @@ public class HelloApplication extends HelloApplication1{
     var pPipelineCreateInfo = VkGraphicsPipelineCreateInfo.allocate(arena);
     VkGraphicsPipelineCreateInfo.sType(pPipelineCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
     MemorySegment stages = VkPipelineShaderStageCreateInfo.allocateArray(2, arena);
+    assert (stages.byteSize()/2 == VkPipelineShaderStageCreateInfo.sizeof());
     MemorySegment stage0 = stages.asSlice(0,VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
     VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());

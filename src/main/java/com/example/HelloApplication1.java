@@ -302,4 +302,100 @@ public abstract class HelloApplication1 extends Application {
     }
     return pSemaphores;
   }
+
+  protected static MemorySegment createImageView(Arena arena, MemorySegment vkDevice, int imageFormat, int aspectMask, MemorySegment pImage) {
+    var pImageView = arena.allocate(C_POINTER);
+    var imageViewCreateInfo = VkImageViewCreateInfo.allocate(arena);
+    VkImageViewCreateInfo.sType(imageViewCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO());
+    VkImageViewCreateInfo.image(imageViewCreateInfo, pImage);
+    VkImageViewCreateInfo.viewType(imageViewCreateInfo, vulkan_h.VK_IMAGE_VIEW_TYPE_2D());
+    VkImageViewCreateInfo.format(imageViewCreateInfo, imageFormat);
+    VkComponentMapping.r(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.g(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.b(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.a(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkImageSubresourceRange.aspectMask(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), aspectMask);
+    VkImageSubresourceRange.baseMipLevel(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 0);
+    VkImageSubresourceRange.levelCount(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 1);
+    VkImageSubresourceRange.baseArrayLayer(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 0);
+    VkImageSubresourceRange.layerCount(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 1);
+
+    var result = VKResult.vkResult(vulkan_h.vkCreateImageView(vkDevice, imageViewCreateInfo, MemorySegment.NULL, pImageView));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateImageView failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateImageView succeeded");
+    }
+
+    return pImageView;
+  }
+
+  protected static MemorySegment createRenderPass(Arena arena, MemorySegment vkDevice, int imageFormat, int depthFormat) {
+    var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
+    
+    var attachment0 = pAttachments.asSlice(0, VkAttachmentDescription.sizeof());
+    assert(VkAttachmentDescription.sizeof() == pAttachments.byteSize()/2);
+    
+    VkAttachmentDescription.format(attachment0, imageFormat);
+    VkAttachmentDescription.samples(attachment0, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+    VkAttachmentDescription.loadOp(attachment0, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
+    VkAttachmentDescription.storeOp(attachment0, vulkan_h.VK_ATTACHMENT_STORE_OP_STORE());
+    VkAttachmentDescription.stencilLoadOp(attachment0, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
+    VkAttachmentDescription.stencilStoreOp(attachment0, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
+    VkAttachmentDescription.initialLayout(attachment0, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+    VkAttachmentDescription.finalLayout(attachment0, vulkan_h.VK_IMAGE_LAYOUT_PRESENT_SRC_KHR());
+
+    var pColorAttachmentReference = VkAttachmentReference.allocate(arena);
+    VkAttachmentReference.attachment(pColorAttachmentReference, 0);
+    VkAttachmentReference.layout(pColorAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL());
+
+    var attachment1 = pAttachments.asSlice(VkAttachmentDescription.sizeof(), VkAttachmentDescription.sizeof());
+    VkAttachmentDescription.format(attachment1, depthFormat);
+    VkAttachmentDescription.samples(attachment1, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+    VkAttachmentDescription.loadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
+    VkAttachmentDescription.storeOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
+    VkAttachmentDescription.stencilLoadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
+    VkAttachmentDescription.stencilStoreOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
+    VkAttachmentDescription.initialLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+    VkAttachmentDescription.finalLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+
+    var pDepthAttachmentReference = VkAttachmentReference.allocate(arena);
+    VkAttachmentReference.attachment(pDepthAttachmentReference, 1);
+    VkAttachmentReference.layout(pDepthAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+
+    var pSubpassDescription = VkSubpassDescription.allocate(arena);
+    VkSubpassDescription.pipelineBindPoint(pSubpassDescription, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS());
+    VkSubpassDescription.colorAttachmentCount(pSubpassDescription, 1);
+    VkSubpassDescription.pColorAttachments(pSubpassDescription, pColorAttachmentReference);
+    VkSubpassDescription.pDepthStencilAttachment(pSubpassDescription, pDepthAttachmentReference);
+
+    var pSubpassDependency = VkSubpassDependency.allocate(arena);
+    VkSubpassDependency.srcSubpass(pSubpassDependency, vulkan_h.VK_SUBPASS_EXTERNAL());
+    VkSubpassDependency.dstSubpass(pSubpassDependency, 0);
+    VkSubpassDependency.srcStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
+    VkSubpassDependency.srcAccessMask(pSubpassDependency, 0);
+    VkSubpassDependency.dstStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
+    VkSubpassDependency.dstAccessMask(pSubpassDependency, vulkan_h.VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
+
+    var pRenderPass = arena.allocate(C_POINTER);
+    var pRenderPassCreateInfo = VkRenderPassCreateInfo.allocate(arena);
+    VkRenderPassCreateInfo.sType(pRenderPassCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO());
+    VkRenderPassCreateInfo.attachmentCount(pRenderPassCreateInfo, 2);
+    VkRenderPassCreateInfo.pAttachments(pRenderPassCreateInfo, pAttachments);
+    VkRenderPassCreateInfo.subpassCount(pRenderPassCreateInfo, 1);
+    VkRenderPassCreateInfo.pSubpasses(pRenderPassCreateInfo, pSubpassDescription);
+    VkRenderPassCreateInfo.dependencyCount(pRenderPassCreateInfo, 1);
+    VkRenderPassCreateInfo.pDependencies(pRenderPassCreateInfo, pSubpassDependency);
+
+    var result = VKResult.vkResult(vulkan_h.vkCreateRenderPass(vkDevice,
+      pRenderPassCreateInfo, MemorySegment.NULL, pRenderPass));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateRenderPass failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateRenderPass succeeded");
+    }
+    return pRenderPass;
+  }
 }
