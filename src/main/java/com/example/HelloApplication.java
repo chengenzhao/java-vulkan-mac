@@ -99,7 +99,7 @@ public class HelloApplication extends HelloApplication1{
       launch();
     }
   }
-
+  
   private static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
                                                            MemorySegment pVertShaderModule, MemorySegment pFragShaderModule,
                                                            MemorySegment vertexInputStateInfo, MemorySegment pRenderPass,
@@ -197,12 +197,12 @@ public class HelloApplication extends HelloApplication1{
     var pPipelineCreateInfo = VkGraphicsPipelineCreateInfo.allocate(arena);
     VkGraphicsPipelineCreateInfo.sType(pPipelineCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
     MemorySegment stages = VkPipelineShaderStageCreateInfo.allocateArray(2, arena);
-    MemorySegment stage0 = stages.asSlice(0,stages.byteSize()/2);
+    MemorySegment stage0 = stages.asSlice(0,VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
     VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
     VkPipelineShaderStageCreateInfo.module(stage0, pVertShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(stage0, arena.allocateFrom("main", StandardCharsets.UTF_8));
-    MemorySegment stage1 = stages.asSlice(stages.byteSize()/2);
+    MemorySegment stage1 = stages.asSlice(VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
     VkPipelineShaderStageCreateInfo.sType(stage1, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage1, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
     VkPipelineShaderStageCreateInfo.module(stage1, pFragShaderModule.get(C_POINTER, 0));

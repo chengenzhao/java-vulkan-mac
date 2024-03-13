@@ -15,8 +15,7 @@ import java.util.List;
 
 import static com.example.VKResult.VK_ERROR_LAYER_NOT_PRESENT;
 import static com.example.VKResult.VK_SUCCESS;
-import static org.vulkan.vulkan_h_5.C_INT;
-import static org.vulkan.vulkan_h_5.C_POINTER;
+import static org.vulkan.vulkan_h_5.*;
 
 public abstract class HelloApplication1 extends Application {
 
@@ -245,5 +244,62 @@ public abstract class HelloApplication1 extends Application {
     }
 
     return pVkInstance;
+  }
+
+  protected static MemorySegment getShaderModule(MemorySegment vkDevice, byte[] shaderSpv, Arena arena) {
+    var pShaderModuleCreateInfo = VkShaderModuleCreateInfo.allocate(arena);
+    VkShaderModuleCreateInfo.sType(pShaderModuleCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO());
+    VkShaderModuleCreateInfo.codeSize(pShaderModuleCreateInfo, shaderSpv.length);
+    System.out.println("shaderSpv num bytes: " + shaderSpv.length);
+    VkShaderModuleCreateInfo.pCode(pShaderModuleCreateInfo, arena.allocateFrom(C_CHAR, shaderSpv));
+
+    var pShaderModule = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateShaderModule(vkDevice, pShaderModuleCreateInfo, MemorySegment.NULL, pShaderModule));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateShaderModule failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateShaderModule succeeded");
+    }
+
+    return pShaderModule;
+  }
+  public static MemorySegment copyBytes(final byte[] bytes, Arena arena) {
+    MemorySegment addr = arena.allocate(bytes.length);
+    MemorySegment.copy(MemorySegment.ofArray(bytes), 0, addr, 0, bytes.length);
+    return addr;
+  }
+
+  protected static MemorySegment createFence(Arena arena, MemorySegment vkDevice) {
+    var pFenceCreateInfo = VkFenceCreateInfo.allocate(arena);
+    VkFenceCreateInfo.sType(pFenceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_FENCE_CREATE_INFO());
+    VkFenceCreateInfo.flags(pFenceCreateInfo, vulkan_h.VK_FENCE_CREATE_SIGNALED_BIT());
+    var pFence = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateFence(vkDevice, pFenceCreateInfo, MemorySegment.NULL, pFence));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateFence failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateFence succeeded!");
+    }
+    return pFence;
+  }
+
+  private static MemorySegment createSemaphores(Arena arena, MemorySegment vkDevice) {
+    var pSemaphoreCreateInfo = VkSemaphoreCreateInfo.allocate(arena);
+    VkSemaphoreCreateInfo.sType(pSemaphoreCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO());
+
+    MemorySegment pSemaphores = arena.allocate(C_POINTER, 2);
+
+    for (int i = 0; i < 2; i++) {
+      var result = VKResult.vkResult(vulkan_h.vkCreateSemaphore(vkDevice, pSemaphoreCreateInfo, MemorySegment.NULL, pSemaphores.asSlice(C_POINTER.byteSize() * i)));
+      if (result != VK_SUCCESS) {
+        System.out.println("vkCreateSemaphore failed: " + result);
+        System.exit(-1);
+      } else {
+        System.out.println("vkCreateSemaphore succeeded (semaphore #" + (i + 1) + " created).");
+      }
+    }
+    return pSemaphores;
   }
 }
