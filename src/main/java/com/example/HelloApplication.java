@@ -65,21 +65,21 @@ public class HelloApplication extends HelloApplication1{
     try (Arena arena = Arena.ofShared()) {
       ARENA = arena;
 
-      var pVkInstance = createVkInstance(arena, DEBUG);
-      var vkInstance = pVkInstance.get(C_POINTER, 0);
+      var instanceSegment = createVkInstance(arena, DEBUG);
+      var instance = instanceSegment.get(C_POINTER, 0);//instance full name should be pInstance, we ignore p(pointer) prefix just keep it simple
 
       List<String> extensions = getAvailableExtensions(arena);
       System.out.println("Available extensions:");
       extensions.forEach(System.out::println);
 
       if (DEBUG) {
-        setupDebugMessagesCallback(arena, pVkInstance);
+        setupDebugMessagesCallback(arena, instance);
       }
 
       var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
       vkMemorySegment = ARENA.allocate(bufferSize);
 
-      var physicalDevices = getPhysicalDevices(arena, vkInstance, vkMemorySegment);
+      var physicalDevices = getPhysicalDevices(arena, instance, vkMemorySegment);
 
       var graphicsQueueFamilies = physicalDevices.getFirst().getQueueFamilies();
       var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
@@ -96,7 +96,6 @@ public class HelloApplication extends HelloApplication1{
 
       var pVkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
       var vkDevice = pVkDevice.get(C_POINTER, 0);
-
       int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
       int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
 

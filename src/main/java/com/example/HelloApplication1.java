@@ -50,7 +50,7 @@ public abstract class HelloApplication1 extends Application {
     return extensions;
   }
 
-  protected static void setupDebugMessagesCallback(Arena arena, MemorySegment pVkInstance) {
+  protected static void setupDebugMessagesCallback(Arena arena, MemorySegment instance) {
     MethodHandle debugCallbackHandle = null;
     try {
       debugCallbackHandle = MethodHandles.lookup().findStatic(VulkanDebug.class, "debugCallbackFunc",
@@ -65,8 +65,6 @@ public abstract class HelloApplication1 extends Application {
       System.exit(-1);
     }
     MemorySegment debugCallbackFunc = Linker.nativeLinker().upcallStub(debugCallbackHandle, VulkanDebug.DebugCallback$FUNC, arena);
-
-    var instance = pVkInstance.get(C_POINTER, 0);
 
     var debugUtilsMessengerCreateInfo = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
     VkDebugUtilsMessengerCreateInfoEXT.sType(debugUtilsMessengerCreateInfo,
