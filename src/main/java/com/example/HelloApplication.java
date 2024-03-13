@@ -65,21 +65,21 @@ public class HelloApplication extends HelloApplication1{
     try (Arena arena = Arena.ofShared()) {
       ARENA = arena;
 
-      var instanceSegment = createVkInstance(arena, DEBUG);
-      var instance = instanceSegment.get(C_POINTER, 0);//instance full name should be pInstance, we ignore p(pointer) prefix just keep it simple
+      var pInstance = createVkInstance(arena, DEBUG);
+      var vkInstance = pInstance.get(C_POINTER, 0);//VKInstance instance
 
       List<String> extensions = getAvailableExtensions(arena);
       System.out.println("Available extensions:");
       extensions.forEach(System.out::println);
 
       if (DEBUG) {
-        setupDebugMessagesCallback(arena, instance);
+        setupDebugMessagesCallback(arena, vkInstance);
       }
 
       var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
       vkMemorySegment = ARENA.allocate(bufferSize);
 
-      var physicalDevices = getPhysicalDevices(arena, instance, vkMemorySegment);
+      var physicalDevices = getPhysicalDevices(arena, vkInstance);
 
       var graphicsQueueFamilies = physicalDevices.getFirst().getQueueFamilies();
       var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
@@ -94,14 +94,17 @@ public class HelloApplication extends HelloApplication1{
       priority.set(C_DOUBLE, 0, 1.0);
       VkDeviceQueueCreateInfo.pQueuePriorities(pDeviceQueueCreateInfo, priority);
 
-      var pVkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
-      var vkDevice = pVkDevice.get(C_POINTER, 0);
+      var vkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily).get(C_POINTER, 0);
       int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
       int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
 
       var renderPass = createRenderPass(arena, vkDevice, imageFormat, depthFormat);
 
       launch();
+
+      vulkan_h.vkDestroyRenderPass(vkDevice, renderPass, MemorySegment.NULL);
+      vulkan_h.vkDestroyDevice(vkDevice, MemorySegment.NULL);
+      vulkan_h.vkDestroyInstance(vkInstance, MemorySegment.NULL);
     }
   }
   

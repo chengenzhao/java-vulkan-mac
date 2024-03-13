@@ -91,7 +91,7 @@ public abstract class HelloApplication1 extends Application {
     }
   }
 
-  protected static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment vkInstance, MemorySegment pSurface) {
+  protected static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment pInstance) {
     MemorySegment pPropertyCount = arena.allocate(C_INT);
     pPropertyCount.set(C_INT, 0,-1);
     vulkan_h.vkEnumerateInstanceLayerProperties(pPropertyCount, MemorySegment.NULL);
@@ -100,7 +100,7 @@ public abstract class HelloApplication1 extends Application {
     // See how many physical devices Vulkan knows about, then use that number to enumerate them.
     MemorySegment pPhysicalDeviceCount = arena.allocate(C_INT);
     pPhysicalDeviceCount.set(C_INT, 0, -1);
-    vulkan_h.vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, MemorySegment.NULL);
+    vulkan_h.vkEnumeratePhysicalDevices(pInstance, pPhysicalDeviceCount, MemorySegment.NULL);
 
     int numPhysicalDevices = pPhysicalDeviceCount.get(C_INT, 0);
     if (numPhysicalDevices == 0) {
@@ -113,7 +113,7 @@ public abstract class HelloApplication1 extends Application {
     // VkPhysicalDevice is an opaque pointer defined by VK_DEFINE_HANDLE macro - so it has C_POINTER byte size
     // (64-bit size on a 64-bit system) - thus an array of them has size = size(C_POINTER) * num devices.
     MemorySegment pPhysicalDevices = arena.allocate(C_POINTER, numPhysicalDevices);
-    var result = VKResult.vkResult(vulkan_h.vkEnumeratePhysicalDevices(vkInstance, pPhysicalDeviceCount, pPhysicalDevices));
+    var result = VKResult.vkResult(vulkan_h.vkEnumeratePhysicalDevices(pInstance, pPhysicalDeviceCount, pPhysicalDevices));
     if (result != VK_SUCCESS) {
       System.out.println("vkEnumeratePhysicalDevices failed: " + result);
       System.exit(-1);
@@ -329,7 +329,7 @@ public abstract class HelloApplication1 extends Application {
     return pImageView;
   }
 
-  protected static MemorySegment createRenderPass(Arena arena, MemorySegment vkDevice, int imageFormat, int depthFormat) {
+  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device, int imageFormat, int depthFormat) {
     var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
     
     var attachment0 = pAttachments.asSlice(0, VkAttachmentDescription.sizeof());
@@ -386,8 +386,7 @@ public abstract class HelloApplication1 extends Application {
     VkRenderPassCreateInfo.dependencyCount(pRenderPassCreateInfo, 1);
     VkRenderPassCreateInfo.pDependencies(pRenderPassCreateInfo, pSubpassDependency);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreateRenderPass(vkDevice,
-      pRenderPassCreateInfo, MemorySegment.NULL, pRenderPass));
+    var result = VKResult.vkResult(vulkan_h.vkCreateRenderPass(device, pRenderPassCreateInfo, MemorySegment.NULL, pRenderPass));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateRenderPass failed: " + result);
       System.exit(-1);
