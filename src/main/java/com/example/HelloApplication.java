@@ -97,10 +97,10 @@ public class HelloApplication extends HelloApplication1{
       var pVkDevice = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily);
       var vkDevice = pVkDevice.get(C_POINTER, 0);
 
-      int swapChainImageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();
+      int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
       int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
 
-      var renderPass = createRenderPass(arena, vkDevice, swapChainImageFormat, depthFormat);
+      var renderPass = createRenderPass(arena, vkDevice, imageFormat, depthFormat);
 
       launch();
     }
