@@ -1,7 +1,6 @@
 package com.example;
 
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -15,7 +14,6 @@ import org.vulkan.*;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
@@ -27,7 +25,7 @@ public class HelloApplication extends HelloApplication1{
   public static final int SCREEN_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() * 3 / 4);
   public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
   public static Arena ARENA;
-  public static MemorySegment vkMemorySegment;
+  public static MemorySegment fxSurface;
 
   @Override
   public void start(Stage stage) {
@@ -37,7 +35,7 @@ public class HelloApplication extends HelloApplication1{
 
 //    var vkMemorySegment = ARENA.allocate(bufferSize);
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
-      vkMemorySegment.asByteBuffer(), PixelFormat.getByteBgraPreInstance());
+      fxSurface.asByteBuffer(), PixelFormat.getByteBgraPreInstance());
     writableImage = new WritableImage(pixelBuffer);
 
     Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -48,11 +46,11 @@ public class HelloApplication extends HelloApplication1{
     new AnimationTimer() {
       @Override
       public void handle(long now) {
-        for (int i = 0; i < vkMemorySegment.byteSize() / 4; i++) {
-          vkMemorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-          vkMemorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-          vkMemorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-          vkMemorySegment.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+        for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
         }
       }
     }.start();
@@ -68,37 +66,21 @@ public class HelloApplication extends HelloApplication1{
       var pInstance = createVkInstance(arena, DEBUG);
       var instance = pInstance.get(C_POINTER, 0);//or vkInstance, instance/vkInstance = pInstance.get(C_POINTER, 0);
 
-      List<String> extensions = getAvailableExtensions(arena);
-      System.out.println("Available extensions:");
-      extensions.forEach(System.out::println);
+//      List<String> extensions = getAvailableExtensions(arena);
+//      System.out.println("Available extensions:");
+//      extensions.forEach(System.out::println);
 
       if (DEBUG) {
         setupDebugMessagesCallback(arena, instance);
       }
 
       var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-      vkMemorySegment = ARENA.allocate(bufferSize);
+      fxSurface = ARENA.allocate(bufferSize);
 
-      var physicalDevices = getPhysicalDevices(arena, instance);
+      var physicalDevice = getPhysicalDevices(arena, instance).getFirst();
+      var device = createVkDevice(arena, physicalDevice).get(C_POINTER, 0);
 
-      var graphicsQueueFamilies = physicalDevices.getFirst().getQueueFamilies();
-      var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
-
-      var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
-      VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
-
-      System.out.println("Using queue family: " + graphicsQueueFamily);
-      VkDeviceQueueCreateInfo.queueFamilyIndex(pDeviceQueueCreateInfo, graphicsQueueFamily.queueFamilyIndex());
-      VkDeviceQueueCreateInfo.queueCount(pDeviceQueueCreateInfo, 1);
-      var priority = arena.allocate(C_DOUBLE);
-      priority.set(C_DOUBLE, 0, 1.0);
-      VkDeviceQueueCreateInfo.pQueuePriorities(pDeviceQueueCreateInfo, priority);
-
-      var device = createVkDevice(arena, pDeviceQueueCreateInfo, graphicsQueueFamily).get(C_POINTER, 0);
-      int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
-      int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
-
-      var renderPass = createRenderPass(arena, device, imageFormat, depthFormat);
+      var renderPass = createRenderPass(arena, device);
 
       launch();
 

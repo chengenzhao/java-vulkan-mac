@@ -91,16 +91,16 @@ public abstract class HelloApplication1 extends Application {
     }
   }
 
-  protected static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment pInstance) {
+  protected static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment instance) {
     MemorySegment pPropertyCount = arena.allocate(C_INT);
-    pPropertyCount.set(C_INT, 0,-1);
+    pPropertyCount.set(C_INT, 0, -1);
     vulkan_h.vkEnumerateInstanceLayerProperties(pPropertyCount, MemorySegment.NULL);
     System.out.println("property count: " + pPropertyCount.get(C_INT, 0));
 
     // See how many physical devices Vulkan knows about, then use that number to enumerate them.
     MemorySegment pPhysicalDeviceCount = arena.allocate(C_INT);
     pPhysicalDeviceCount.set(C_INT, 0, -1);
-    vulkan_h.vkEnumeratePhysicalDevices(pInstance, pPhysicalDeviceCount, MemorySegment.NULL);
+    vulkan_h.vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, MemorySegment.NULL);
 
     int numPhysicalDevices = pPhysicalDeviceCount.get(C_INT, 0);
     if (numPhysicalDevices == 0) {
@@ -113,7 +113,7 @@ public abstract class HelloApplication1 extends Application {
     // VkPhysicalDevice is an opaque pointer defined by VK_DEFINE_HANDLE macro - so it has C_POINTER byte size
     // (64-bit size on a 64-bit system) - thus an array of them has size = size(C_POINTER) * num devices.
     MemorySegment pPhysicalDevices = arena.allocate(C_POINTER, numPhysicalDevices);
-    var result = VKResult.vkResult(vulkan_h.vkEnumeratePhysicalDevices(pInstance, pPhysicalDeviceCount, pPhysicalDevices));
+    var result = VKResult.vkResult(vulkan_h.vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices));
     if (result != VK_SUCCESS) {
       System.out.println("vkEnumeratePhysicalDevices failed: " + result);
       System.exit(-1);
@@ -137,7 +137,7 @@ public abstract class HelloApplication1 extends Application {
       List<Format> formatProperties = new ArrayList<>();
       for (int format : formats) {
         var pFormatProperties = VkFormatProperties.allocate(arena);
-        vulkan_h.vkGetPhysicalDeviceFormatProperties(physicalDevice, format, pFormatProperties);;
+        vulkan_h.vkGetPhysicalDeviceFormatProperties(physicalDevice, format, pFormatProperties);
         formatProperties.add(new Format(format, VkFormatProperties.linearTilingFeatures(pFormatProperties),
           VkFormatProperties.optimalTilingFeatures(pFormatProperties)));
       }
@@ -145,13 +145,11 @@ public abstract class HelloApplication1 extends Application {
       // See how many properties the queue family of the current physical device has, then use that number to get them.
       MemorySegment pQueueFamilyPropertyCount = arena.allocate(C_INT);
       pQueueFamilyPropertyCount.set(C_INT, 0, -1);
-      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice,
-        pQueueFamilyPropertyCount, MemorySegment.NULL);
+      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueFamilyPropertyCount, MemorySegment.NULL);
       int familyPropertyCount = pQueueFamilyPropertyCount.get(C_INT, 0);
       System.out.println("familyPropertyCount: " + familyPropertyCount);
       MemorySegment pQueueFamilyProperties = VkQueueFamilyProperties.allocateArray(familyPropertyCount, arena);
-      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice,
-        pQueueFamilyPropertyCount, pQueueFamilyProperties);
+      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueFamilyPropertyCount, pQueueFamilyProperties);
 
       physicalDevices.add(new PhysicalDevice(arena, physicalDevice, properties, features, pMemoryProperties, familyPropertyCount, pQueueFamilyProperties, formatProperties));
     }
@@ -162,7 +160,21 @@ public abstract class HelloApplication1 extends Application {
     return physicalDevices;
   }
 
-  protected static MemorySegment createVkDevice(Arena arena, MemorySegment pDeviceQueueCreateInfo, QueueFamily graphicsQueueFamily) {
+  protected static MemorySegment createVkDevice(Arena arena, PhysicalDevice physicalDevice) {
+
+    var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
+    var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
+
+    var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
+    VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
+
+    System.out.println("Using queue family: " + graphicsQueueFamily);
+    VkDeviceQueueCreateInfo.queueFamilyIndex(pDeviceQueueCreateInfo, graphicsQueueFamily.queueFamilyIndex());
+    VkDeviceQueueCreateInfo.queueCount(pDeviceQueueCreateInfo, 1);
+    var priority = arena.allocate(C_DOUBLE);
+    priority.set(C_DOUBLE, 0, 1.0);
+    VkDeviceQueueCreateInfo.pQueuePriorities(pDeviceQueueCreateInfo, priority);
+
     var physicalDeviceFeatures = VkPhysicalDeviceFeatures.allocate(arena);
 
     VkPhysicalDeviceFeatures.depthClamp(physicalDeviceFeatures, vulkan_h.VK_FALSE());
@@ -175,7 +187,7 @@ public abstract class HelloApplication1 extends Application {
     // Newer Vulkan implementations do not distinguish between instance and device specific validation layers, but set it to maintain compact with old implementations.
     var extensions = new MemorySegment[]{
       vulkan_h.VK_KHR_SWAPCHAIN_EXTENSION_NAME(),
-      arena.allocateFrom("VK_KHR_portability_subset",StandardCharsets.UTF_8)//couldn't find this typealias or sth. in the headers.file
+      arena.allocateFrom("VK_KHR_portability_subset", StandardCharsets.UTF_8)//couldn't find this typealias or sth. in the headers.file
     };
     VkDeviceCreateInfo.enabledExtensionCount(deviceCreateInfo, extensions.length);
     MemorySegment pEnabledDeviceExtensionNames = HelloApplication1.allocatePtrArray(extensions, arena);
@@ -262,6 +274,7 @@ public abstract class HelloApplication1 extends Application {
 
     return pShaderModule;
   }
+
   public static MemorySegment copyBytes(final byte[] bytes, Arena arena) {
     MemorySegment addr = arena.allocate(bytes.length);
     MemorySegment.copy(MemorySegment.ofArray(bytes), 0, addr, 0, bytes.length);
@@ -329,12 +342,15 @@ public abstract class HelloApplication1 extends Application {
     return pImageView;
   }
 
-  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device, int imageFormat, int depthFormat) {
+  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device) {
+    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
+    int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
+
     var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
-    
+
     var attachment0 = pAttachments.asSlice(0, VkAttachmentDescription.sizeof());
-    assert(VkAttachmentDescription.sizeof() == pAttachments.byteSize()/2);
-    
+    assert (VkAttachmentDescription.sizeof() == pAttachments.byteSize() / 2);
+
     VkAttachmentDescription.format(attachment0, imageFormat);
     VkAttachmentDescription.samples(attachment0, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
     VkAttachmentDescription.loadOp(attachment0, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
