@@ -14,6 +14,7 @@ import org.vulkan.*;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
@@ -67,8 +68,6 @@ public class HelloApplication extends HelloApplication1{
       var instance = pInstance.get(C_POINTER, 0);//or vkInstance, instance/vkInstance = pInstance.get(C_POINTER, 0);
 
 //      List<String> extensions = getAvailableExtensions(arena);
-//      System.out.println("Available extensions:");
-//      extensions.forEach(System.out::println);
 
       if (DEBUG) {
         setupDebugMessagesCallback(arena, instance);

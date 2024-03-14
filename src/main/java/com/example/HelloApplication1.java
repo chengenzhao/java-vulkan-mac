@@ -47,6 +47,9 @@ public abstract class HelloApplication1 extends Application {
       extensions.add(extensionName);
     }
 
+    System.out.println("Available extensions:");
+    extensions.forEach(System.out::println);
+
     return extensions;
   }
 
