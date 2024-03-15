@@ -120,4 +120,8 @@ public class PhysicalDevice {
   public List<QueueFamily> getQueueFamilies() {
     return queueFamilies;
   }
+
+  public List<Format> getFormatProperties() {
+    return formatProperties;
+  }
 }

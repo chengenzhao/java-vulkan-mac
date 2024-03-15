@@ -19,7 +19,7 @@ import java.util.List;
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
 
-public class HelloApplication extends HelloApplication1{
+public class HelloApplication extends HelloApplication1 {
 
   private static final boolean DEBUG = true;
 
@@ -65,6 +65,9 @@ public class HelloApplication extends HelloApplication1{
       ARENA = arena;
 
       var pInstance = createVkInstance(arena, DEBUG);
+      //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
+      //following line of code is equivalent ot
+//      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
       var instance = pInstance.get(C_POINTER, 0);//or vkInstance, instance/vkInstance = pInstance.get(C_POINTER, 0);
 
 //      List<String> extensions = getAvailableExtensions(arena);
@@ -73,13 +76,25 @@ public class HelloApplication extends HelloApplication1{
         setupDebugMessagesCallback(arena, instance);
       }
 
-      var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-      fxSurface = ARENA.allocate(bufferSize);
-
       var physicalDevice = getPhysicalDevices(arena, instance).getFirst();
-      var device = createVkDevice(arena, physicalDevice).get(C_POINTER, 0);
+
+      var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
+      var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
+
+      var device = createVkDevice(arena, graphicsQueueFamily, physicalDevice).get(C_POINTER, 0);
+
+      int depthFormat = findSupportedFormat(List.of(vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()), physicalDevice, vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
+        vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
+      System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
+
+      var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
+      fxSurface = arena.allocate(bufferSize);
+
+      var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat, vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
 
       var renderPass = createRenderPass(arena, device);
+      var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
+      var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
 
       launch();
 
@@ -88,7 +103,7 @@ public class HelloApplication extends HelloApplication1{
       vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
     }
   }
-  
+
   private static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
                                                            MemorySegment vertShaderModule, MemorySegment fragShaderModule,
                                                            MemorySegment vertexInputStateInfo, MemorySegment renderPass,
@@ -97,7 +112,7 @@ public class HelloApplication extends HelloApplication1{
     VkViewport.x(pViewport, 0.0f);
     VkViewport.y(pViewport, 0.0f);
     VkViewport.width(pViewport, windowWidth);
-    VkViewport.height(pViewport,windowHeight);
+    VkViewport.height(pViewport, windowHeight);
     VkViewport.minDepth(pViewport, 0f);
     VkViewport.maxDepth(pViewport, 1f);
 
@@ -186,8 +201,8 @@ public class HelloApplication extends HelloApplication1{
     var pipelineCreateInfo = VkGraphicsPipelineCreateInfo.allocate(arena);
     VkGraphicsPipelineCreateInfo.sType(pipelineCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
     MemorySegment stages = VkPipelineShaderStageCreateInfo.allocateArray(2, arena);
-    assert (stages.byteSize()/2 == VkPipelineShaderStageCreateInfo.sizeof());
-    MemorySegment stage0 = stages.asSlice(0,VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
+    assert (stages.byteSize() / 2 == VkPipelineShaderStageCreateInfo.sizeof());
+    MemorySegment stage0 = stages.asSlice(0, VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
     VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
     VkPipelineShaderStageCreateInfo.module(stage0, vertShaderModule.get(C_POINTER, 0));

@@ -163,10 +163,7 @@ public abstract class HelloApplication1 extends Application {
     return physicalDevices;
   }
 
-  protected static MemorySegment createVkDevice(Arena arena, PhysicalDevice physicalDevice) {
-
-    var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
-    var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
+  protected static MemorySegment createVkDevice(Arena arena, QueueFamily graphicsQueueFamily, PhysicalDevice physicalDevice) {
 
     var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
     VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
@@ -413,5 +410,96 @@ public abstract class HelloApplication1 extends Application {
       System.out.println("vkCreateRenderPass succeeded");
     }
     return pRenderPass;
+  }
+
+  protected static MemorySegment createCommandPool(Arena arena, QueueFamily graphicsQueueFamily, MemorySegment vkDevice) {
+    var pCommandPoolCreateInfo = VkCommandPoolCreateInfo.allocate(arena);
+    VkCommandPoolCreateInfo.sType(pCommandPoolCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO());
+    VkCommandPoolCreateInfo.queueFamilyIndex(pCommandPoolCreateInfo, graphicsQueueFamily.queueFamilyIndex());
+    VkCommandPoolCreateInfo.flags(pCommandPoolCreateInfo, vulkan_h.VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT());
+
+    var pVkCommandPool = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateCommandPool(vkDevice, pCommandPoolCreateInfo, MemorySegment.NULL, pVkCommandPool));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateCommandPool failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateCommandPool succeeded");
+    }
+    return pVkCommandPool;
+  }
+  
+  protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment vkDevice, MemorySegment pVkCommandPool, int commandBufferCount) {
+    MemorySegment pCommandBuffers = arena.allocate(C_POINTER, commandBufferCount);
+
+    var pCommandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
+    VkCommandBufferAllocateInfo.sType(pCommandBufferAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
+    VkCommandBufferAllocateInfo.commandPool(pCommandBufferAllocateInfo, pVkCommandPool.get(C_POINTER, 0));
+    VkCommandBufferAllocateInfo.level(pCommandBufferAllocateInfo, vulkan_h.VK_COMMAND_BUFFER_LEVEL_PRIMARY());
+    VkCommandBufferAllocateInfo.commandBufferCount(pCommandBufferAllocateInfo, commandBufferCount);
+
+    var result = VKResult.vkResult(vulkan_h.vkAllocateCommandBuffers(vkDevice, pCommandBufferAllocateInfo, pCommandBuffers));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkAllocateCommandBuffers failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkAllocateCommandBuffers succeeded");
+    }
+    return pCommandBuffers;
+  }
+
+  static ImageMemoryPair createImage(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, int imageWidth, int imageHeight, int format, int tiling, int usage, int memoryProperties) {
+    var pImageCreateInfo = VkImageCreateInfo.allocate(arena);
+    VkImageCreateInfo.sType(pImageCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO());
+    VkImageCreateInfo.imageType(pImageCreateInfo, vulkan_h.VK_IMAGE_TYPE_2D());
+    VkExtent3D.width(VkImageCreateInfo.extent(pImageCreateInfo), imageWidth);
+    VkExtent3D.height(VkImageCreateInfo.extent(pImageCreateInfo), imageHeight);
+    VkExtent3D.depth(VkImageCreateInfo.extent(pImageCreateInfo), 1);
+    VkImageCreateInfo.mipLevels(pImageCreateInfo, 1);
+    VkImageCreateInfo.arrayLayers(pImageCreateInfo, 1);
+    VkImageCreateInfo.format(pImageCreateInfo, format);
+    VkImageCreateInfo.tiling(pImageCreateInfo, tiling);
+    VkImageCreateInfo.initialLayout(pImageCreateInfo, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+    VkImageCreateInfo.usage(pImageCreateInfo, usage);
+    VkImageCreateInfo.samples(pImageCreateInfo, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+    VkImageCreateInfo.sharingMode(pImageCreateInfo, vulkan_h.VK_SHARING_MODE_EXCLUSIVE());
+    var pImage = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateImage(vkDevice, pImageCreateInfo, MemorySegment.NULL, pImage));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateImage failed: " + result);
+      System.exit(-1);
+    }
+
+    var pImageMemoryRequirements = VkMemoryRequirements.allocate(arena);
+    vulkan_h.vkGetImageMemoryRequirements(vkDevice, pImage.get(C_POINTER, 0), pImageMemoryRequirements);
+
+    var pImageMemoryAllocateInfo = VkMemoryAllocateInfo.allocate(arena);
+    VkMemoryAllocateInfo.sType(pImageMemoryAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
+    VkMemoryAllocateInfo.allocationSize(pImageMemoryAllocateInfo, VkMemoryRequirements.size(pImageMemoryRequirements));
+    VkMemoryAllocateInfo.memoryTypeIndex(pImageMemoryAllocateInfo, physicalDevice.findMemoryType(VkMemoryRequirements.memoryTypeBits(pImageMemoryRequirements), memoryProperties));
+
+    var pImageMemory = arena.allocate(C_POINTER);
+    result = VKResult.vkResult(vulkan_h.vkAllocateMemory(vkDevice, pImageMemoryAllocateInfo, MemorySegment.NULL, pImageMemory));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkAllocateMemory failed for texture: " + result);
+      System.exit(-1);
+    }
+    vulkan_h.vkBindImageMemory(vkDevice, pImage.get(C_POINTER, 0), pImageMemory.get(C_POINTER, 0), 0);
+    return new ImageMemoryPair(pImage, pImageMemory);
+  }
+
+  static int findSupportedFormat(List<Integer> candidates, PhysicalDevice physicalDevice, int tiling, int features) {
+    for (Integer candidate : candidates) {
+      for (Format format : physicalDevice.getFormatProperties()) {
+        if (tiling == vulkan_h.VK_IMAGE_TILING_LINEAR() && (format.linearTilingFeatures() & features) == features) {
+          System.out.println("Found supported format with linear tiling: " + format);
+          return candidate;
+        } else if (tiling == vulkan_h.VK_IMAGE_TILING_OPTIMAL() && (format.optimalTilingFeatures() & features) == features) {
+          System.out.println("Found supported format with optimal tiling: " + format);
+          return candidate;
+        }
+      }
+    }
+    throw new RuntimeException("Could not find supported format from candidates: " + candidates);
   }
 }
