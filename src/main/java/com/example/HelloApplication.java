@@ -68,7 +68,9 @@ public class HelloApplication extends HelloApplication1 {
       //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
       //following two lines of code are equivalent
 //      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
-      var instance = pInstance.get(C_POINTER, 0);//or vkInstance, instance/vkInstance = pInstance.get(C_POINTER, 0);
+      var instance = pInstance.get(C_POINTER, 0);//or vkInstance
+
+      System.out.println(instance);
 
 //      List<String> extensions = getAvailableExtensions(arena);
 
@@ -81,7 +83,10 @@ public class HelloApplication extends HelloApplication1 {
       var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
       var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
 
-      var device = createVkDevice(arena, graphicsQueueFamily, physicalDevice).get(C_POINTER, 0);
+      var pDevice = createVkDevice(arena, graphicsQueueFamily, physicalDevice);
+      var device = pDevice.get(C_POINTER, 0);
+      //or
+//      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
 
       int depthFormat = findSupportedFormat(List.of(vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()), physicalDevice, vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
         vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
