@@ -66,7 +66,7 @@ public class HelloApplication extends HelloApplication1 {
 
       var pInstance = createVkInstance(arena, DEBUG);
       //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
-      //following line of code is equivalent ot
+      //following two lines of code are equivalent
 //      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
       var instance = pInstance.get(C_POINTER, 0);//or vkInstance, instance/vkInstance = pInstance.get(C_POINTER, 0);
 
