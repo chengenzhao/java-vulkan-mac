@@ -429,7 +429,7 @@ public abstract class HelloApplication1 extends Application {
     }
     return pVkCommandPool;
   }
-  
+
   protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment vkDevice, MemorySegment pVkCommandPool, int commandBufferCount) {
     MemorySegment pCommandBuffers = arena.allocate(C_POINTER, commandBufferCount);
 
@@ -545,14 +545,14 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static int[] getRGBAIntArrayFromImage(Image image) {
-    var width = (int)image.getWidth();
-    var height = (int)image.getHeight();
+    var width = (int) image.getWidth();
+    var height = (int) image.getHeight();
 
-    int[] argbPixels = new int[width*height];
+    int[] argbPixels = new int[width * height];
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
         var pixel = image.getPixelReader().getArgb(i, j);
-        argbPixels[i * width + j] = ((pixel & 0x00ffffff) << 8) | ((pixel & 0xff000000) >>> 24); //argb -> rgba
+        argbPixels[i + j * width] = ((pixel & 0x00ffffff) << 8) | ((pixel & 0xff000000) >>> 24); //argb -> rgba
       }
     }
     return argbPixels;
