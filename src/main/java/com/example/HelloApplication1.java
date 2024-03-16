@@ -7,6 +7,7 @@ import org.vulkan.*;
 import java.lang.foreign.Arena;
 import java.lang.foreign.Linker;
 import java.lang.foreign.MemorySegment;
+import java.lang.foreign.ValueLayout;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
@@ -556,5 +557,67 @@ public abstract class HelloApplication1 extends Application {
       }
     }
     return rgbaPixels;
+  }
+
+  static BufferMemoryPair createStagingBuffer(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, Object stagingDataArr) {
+    var pData = arena.allocate(C_POINTER);
+    long bufferSize = -1;
+    switch (stagingDataArr) {
+      case int[] intStagingDataArr -> bufferSize = intStagingDataArr.length * 4L;
+      case float[] floatStagingDataArr -> bufferSize = floatStagingDataArr.length * 4L;
+      case short[] shortStagingDataArr -> bufferSize = shortStagingDataArr.length * 2L;
+      case char[] charStagingDataArr -> bufferSize = charStagingDataArr.length * 2L;
+      case byte[] byteStagingDataArr -> bufferSize = byteStagingDataArr.length;
+      default -> {
+      }
+    }
+    System.out.println("Staging buffer size: " + bufferSize);
+    BufferMemoryPair stagingBuffer = createBuffer(arena, vkDevice, physicalDevice, bufferSize,
+      vulkan_h.VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT() | vulkan_h.VK_MEMORY_PROPERTY_HOST_COHERENT_BIT());
+
+    var result = VKResult.vkResult(vulkan_h.vkMapMemory(vkDevice, stagingBuffer.bufferMemory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkMapMemory failed for staging buffer: " + result);
+      System.exit(-1);
+    }
+
+    setDataArrayPtr(pData, stagingDataArr);
+
+    vulkan_h.vkUnmapMemory(vkDevice, stagingBuffer.bufferMemory().get(C_POINTER, 0));
+    return stagingBuffer;
+  }
+
+  protected static MemorySegment setDataArrayPtr(MemorySegment pData, Object dataArray) {
+    switch (dataArray) {
+      case int[] intStagingDataArr -> {
+        for (int i = 0; i < intStagingDataArr.length; i++) {
+          pData.get(C_POINTER, 0).setAtIndex(C_INT, i, intStagingDataArr[i]);
+        }
+      }
+      case float[] floatStagingDataArr -> {
+        for (int i = 0; i < floatStagingDataArr.length; i++) {
+          pData.get(C_POINTER, 0).setAtIndex(C_FLOAT, i, floatStagingDataArr[i]);
+        }
+      }
+      case short[] shortStagingDataArr -> {
+        for (int i = 0; i < shortStagingDataArr.length; i++) {
+          pData.get(C_POINTER, 0).setAtIndex(C_SHORT, i, shortStagingDataArr[i]);
+        }
+      }
+      case char[] charStagingDataArr -> {
+        for (int i = 0; i < charStagingDataArr.length; i++) {
+          pData.get(C_POINTER, 0).setAtIndex(ValueLayout.JAVA_CHAR, i, charStagingDataArr[i]);
+        }
+      }
+      case byte[] byteStagingDataArr -> {
+        for (int i = 0; i < byteStagingDataArr.length; i++) {
+          pData.get(C_POINTER, 0).set(ValueLayout.JAVA_BYTE, i, byteStagingDataArr[i]);
+        }
+      }
+      default -> {
+      }
+    }
+
+    return pData;
   }
 }
