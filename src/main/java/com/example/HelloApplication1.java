@@ -548,13 +548,13 @@ public abstract class HelloApplication1 extends Application {
     var width = (int) image.getWidth();
     var height = (int) image.getHeight();
 
-    int[] argbPixels = new int[width * height];
+    int[] rgbaPixels = new int[width * height];
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
         var pixel = image.getPixelReader().getArgb(i, j);
-        argbPixels[i + j * width] = ((pixel & 0x00ffffff) << 8) | ((pixel & 0xff000000) >>> 24); //argb -> rgba
+        rgbaPixels[i + j * width] = ((pixel & 0x00ffffff) << 8) | ((pixel & 0xff000000) >>> 24); //argb -> rgba
       }
     }
-    return argbPixels;
+    return rgbaPixels;
   }
 }
