@@ -552,9 +552,7 @@ public abstract class HelloApplication1 extends Application {
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
         var pixel = image.getPixelReader().getArgb(i, j);
-        int alpha = (pixel & 0xff000000) >>> 24 ;
-        int rgb = (pixel & 0x00ffffff) << 8;
-        argbPixels[i * width + j] = alpha | rgb; //argb -> rgba
+        argbPixels[i * width + j] = ((pixel & 0x00ffffff) << 8) | ((pixel & 0xff000000) >>> 24); //argb -> rgba
       }
     }
     return argbPixels;
