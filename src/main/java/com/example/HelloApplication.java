@@ -97,7 +97,7 @@ public class HelloApplication extends HelloApplication1 {
 //      System.out.println(fxSurface);
 
       var image = new Image("texture.jpg");
-      var pixels = getIntArrayFromImage(image);
+      var pixels = getRGBAIntArrayFromImage(image);
 
       var renderPass = createRenderPass(arena, device);
       var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
