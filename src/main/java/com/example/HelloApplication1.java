@@ -1,6 +1,7 @@
 package com.example;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import org.vulkan.*;
 
 import java.lang.foreign.Arena;
@@ -448,7 +449,7 @@ public abstract class HelloApplication1 extends Application {
     return pCommandBuffers;
   }
 
-  static ImageMemoryPair createImage(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, int imageWidth, int imageHeight, int format, int tiling, int usage, int memoryProperties) {
+  protected static ImageMemoryPair createImage(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, int imageWidth, int imageHeight, int format, int tiling, int usage, int memoryProperties) {
     var pImageCreateInfo = VkImageCreateInfo.allocate(arena);
     VkImageCreateInfo.sType(pImageCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO());
     VkImageCreateInfo.imageType(pImageCreateInfo, vulkan_h.VK_IMAGE_TYPE_2D());
@@ -488,7 +489,7 @@ public abstract class HelloApplication1 extends Application {
     return new ImageMemoryPair(pImage, pImageMemory);
   }
 
-  static int findSupportedFormat(List<Integer> candidates, PhysicalDevice physicalDevice, int tiling, int features) {
+  protected static int findSupportedFormat(List<Integer> candidates, PhysicalDevice physicalDevice, int tiling, int features) {
     for (Integer candidate : candidates) {
       for (Format format : physicalDevice.getFormatProperties()) {
         if (tiling == vulkan_h.VK_IMAGE_TILING_LINEAR() && (format.linearTilingFeatures() & features) == features) {
@@ -501,5 +502,61 @@ public abstract class HelloApplication1 extends Application {
       }
     }
     throw new RuntimeException("Could not find supported format from candidates: " + candidates);
+  }
+
+  protected static BufferMemoryPair createBuffer(Arena arena, MemorySegment vkDevice, PhysicalDevice physicalDevice, long bufferSize, int usage, int memoryPropertyFlags) {
+    var pBufferCreateInfo = VkBufferCreateInfo.allocate(arena);
+    VkBufferCreateInfo.sType(pBufferCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO());
+    VkBufferCreateInfo.size(pBufferCreateInfo, bufferSize);
+    VkBufferCreateInfo.usage(pBufferCreateInfo, usage);
+    VkBufferCreateInfo.sharingMode(pBufferCreateInfo, vulkan_h.VK_SHARING_MODE_EXCLUSIVE());
+    var pBuffer = arena.allocate(C_POINTER);
+
+    var result = VKResult.vkResult(vulkan_h.vkCreateBuffer(vkDevice, pBufferCreateInfo, MemorySegment.NULL, pBuffer));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateBuffer failed for buffer: " + result);
+      System.exit(-1);
+    }
+
+    var pBufferMemoryRequirements = VkMemoryRequirements.allocate(arena);
+    vulkan_h.vkGetBufferMemoryRequirements(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemoryRequirements);
+
+    var pMemoryAllocateInfo = VkMemoryAllocateInfo.allocate(arena);
+    VkMemoryAllocateInfo.sType(pMemoryAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
+    VkMemoryAllocateInfo.allocationSize(pMemoryAllocateInfo, VkMemoryRequirements.size(pBufferMemoryRequirements));
+    VkMemoryAllocateInfo.memoryTypeIndex(pMemoryAllocateInfo, physicalDevice.findMemoryType(
+      VkMemoryRequirements.memoryTypeBits(pBufferMemoryRequirements),
+      memoryPropertyFlags));
+
+    var pBufferMemory = arena.allocate(C_POINTER);
+    result = VKResult.vkResult(vulkan_h.vkAllocateMemory(vkDevice, pMemoryAllocateInfo, MemorySegment.NULL, pBufferMemory));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkAllocateMemory failed for buffer: " + result);
+      System.exit(-1);
+    }
+
+    result = VKResult.vkResult(vulkan_h.vkBindBufferMemory(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemory.get(C_POINTER, 0), 0));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkBindBufferMemory failed for buffer: " + result);
+      System.exit(-1);
+    }
+
+    return new BufferMemoryPair(pBuffer, pBufferMemory);
+  }
+
+  protected static int[] getRGBAIntArrayFromImage(Image image) {
+    var width = (int)image.getWidth();
+    var height = (int)image.getHeight();
+
+    int[] argbPixels = new int[width*height];
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        var pixel = image.getPixelReader().getArgb(i, j);
+        int alpha = (pixel & 0xff000000) >>> 24 ;
+        int rgb = (pixel & 0x00ffffff) << 8;
+        argbPixels[i * width + j] = alpha | rgb; //argb -> rgba
+      }
+    }
+    return argbPixels;
   }
 }

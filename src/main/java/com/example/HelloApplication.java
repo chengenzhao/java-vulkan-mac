@@ -3,10 +3,7 @@ package com.example;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelBuffer;
-import javafx.scene.image.PixelFormat;
-import javafx.scene.image.WritableImage;
+import javafx.scene.image.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vulkan.*;
@@ -44,17 +41,17 @@ public class HelloApplication extends HelloApplication1 {
     stage.setScene(scene);
     stage.show();
 
-    new AnimationTimer() {
-      @Override
-      public void handle(long now) {
-        for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
-        }
-      }
-    }.start();
+//    new AnimationTimer() {
+//      @Override
+//      public void handle(long now) {
+//        for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
+//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+//        }
+//      }
+//    }.start();
   }
 
   public static void main(String[] args) {
@@ -92,10 +89,15 @@ public class HelloApplication extends HelloApplication1 {
         vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
       System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
 
+      var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat, vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+
       var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
       fxSurface = arena.allocate(bufferSize);
+//      fxSurface = MemorySegment.ofAddress(imagePair.imageMemory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
+//      System.out.println(fxSurface);
 
-      var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat, vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+      var image = new Image("texture.jpg");
+      var pixels = getIntArrayFromImage(image);
 
       var renderPass = createRenderPass(arena, device);
       var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
