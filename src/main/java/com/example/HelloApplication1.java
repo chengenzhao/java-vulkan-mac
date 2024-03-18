@@ -726,4 +726,30 @@ public abstract class HelloApplication1 extends Application {
     }
     vulkan_h.vkFreeCommandBuffers(vkDevice, pVkCommandPool.get(C_POINTER, 0), 1, pCommandBuffer);
   }
+
+  protected static void copyBufferToImage(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
+                                MemorySegment pVkGraphicsQueue, BufferMemoryPair stagingBufferPair,
+                                ImageMemoryPair imageMemoryPair, int width, int height) {
+    var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
+
+    var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
+    VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
+    VkBufferImageCopy.bufferRowLength(pBufferImageCopyRegion, 0);
+    VkBufferImageCopy.bufferImageHeight(pBufferImageCopyRegion, 0);
+    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceLayers.mipLevel(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
+    VkImageSubresourceLayers.baseArrayLayer(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
+    VkImageSubresourceLayers.layerCount(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 1);
+    VkExtent3D.width(VkBufferImageCopy.imageExtent(pBufferImageCopyRegion), width); // Number of texels
+    VkExtent3D.height(VkBufferImageCopy.imageExtent(pBufferImageCopyRegion), height); // Number of texels
+    VkExtent3D.depth(VkBufferImageCopy.imageExtent(pBufferImageCopyRegion), 1);
+    VkOffset3D.x(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
+    VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
+    VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
+
+    vulkan_h.vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), stagingBufferPair.buffer().get(C_POINTER, 0),
+      imageMemoryPair.image().get(C_POINTER, 0), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
+
+    endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
+  }
 }

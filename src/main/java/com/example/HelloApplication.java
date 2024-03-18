@@ -108,6 +108,17 @@ public class HelloApplication extends HelloApplication1 {
       var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
       var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
 
+      var pVkGraphicsQueue = arena.allocate(C_POINTER);
+      vulkan_h.vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
+
+      transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(),
+        vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
+      copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBufferPair, textureImageMemoryPair, (int)image.getWidth(), (int)image.getHeight());
+      transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(),
+        vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
+      vulkan_h.vkDestroyBuffer(device, textureStagingBufferPair.buffer().get(C_POINTER, 0), MemorySegment.NULL);
+      vulkan_h.vkFreeMemory(device, textureStagingBufferPair.bufferMemory().get(C_POINTER, 0), MemorySegment.NULL);
+
       launch();
 
       vulkan_h.vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
