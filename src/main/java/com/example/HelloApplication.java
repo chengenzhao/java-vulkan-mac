@@ -102,9 +102,7 @@ public class HelloApplication extends HelloApplication1 {
       BufferMemoryPair textureStagingBufferPair = createStagingBuffer(arena, physicalDevice, device, pixels);
 
       var textureImageMemoryPair = createImage(arena, physicalDevice, device, (int)image.getWidth(), (int)image.getHeight(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
-        vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
-        vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(),
-        vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+        vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
 
       var renderPass = createRenderPass(arena, device);
       var commondPool = createCommandPool(arena, graphicsQueueFamily, device);

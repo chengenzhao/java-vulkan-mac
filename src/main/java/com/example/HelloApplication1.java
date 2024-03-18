@@ -559,7 +559,7 @@ public abstract class HelloApplication1 extends Application {
     return rgbaPixels;
   }
 
-  static BufferMemoryPair createStagingBuffer(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, Object stagingDataArr) {
+  protected static BufferMemoryPair createStagingBuffer(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, Object stagingDataArr) {
     var pData = arena.allocate(C_POINTER);
     long bufferSize = -1;
     switch (stagingDataArr) {
@@ -619,5 +619,111 @@ public abstract class HelloApplication1 extends Application {
     }
 
     return pData;
+  }
+
+  protected static void transitionImageLayout(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice, MemorySegment pVkGraphicsQueue,
+                                    MemorySegment pImage, int format, int oldLayout, int newLayout) {
+    var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
+
+    var pImageMemoryBarrier = VkImageMemoryBarrier.allocate(arena);
+    VkImageMemoryBarrier.sType(pImageMemoryBarrier, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER());
+    VkImageMemoryBarrier.oldLayout(pImageMemoryBarrier, oldLayout);
+    VkImageMemoryBarrier.newLayout(pImageMemoryBarrier, newLayout);
+    VkImageMemoryBarrier.srcQueueFamilyIndex(pImageMemoryBarrier, vulkan_h.VK_QUEUE_FAMILY_IGNORED());
+    VkImageMemoryBarrier.dstQueueFamilyIndex(pImageMemoryBarrier, vulkan_h.VK_QUEUE_FAMILY_IGNORED());
+    VkImageMemoryBarrier.image(pImageMemoryBarrier, pImage.get(C_POINTER, 0));
+    VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceRange.baseMipLevel(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 0);
+    VkImageSubresourceRange.levelCount(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 1);
+    VkImageSubresourceRange.baseArrayLayer(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 0);
+    VkImageSubresourceRange.layerCount(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 1);
+
+    if (newLayout == vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
+      int aspectMask = vulkan_h.VK_IMAGE_ASPECT_DEPTH_BIT();
+      VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), aspectMask);
+      if (hasStencilComponent(format)) {
+        VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), aspectMask | vulkan_h.VK_IMAGE_ASPECT_STENCIL_BIT());
+      }
+    } else {
+      VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    }
+
+    int sourceStage = 0;
+    int destinationStage = 0;
+
+    if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, 0);
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_TRANSFER_WRITE_BIT());
+      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
+      destinationStage = vulkan_h.VK_PIPELINE_STAGE_TRANSFER_BIT();
+    } else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_TRANSFER_WRITE_BIT());
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_SHADER_READ_BIT());
+      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TRANSFER_BIT();
+      destinationStage = vulkan_h.VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT();
+    } else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, 0);
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
+      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
+      destinationStage = vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT();
+    } else {
+      System.out.println("Unsupported layout transition: " + oldLayout + ", " + newLayout);
+      System.exit(-1);
+    }
+    vulkan_h.vkCmdPipelineBarrier(pCommandBuffer.get(C_POINTER, 0), sourceStage, destinationStage, 0, 0,
+      MemorySegment.NULL, 0, MemorySegment.NULL, 1, pImageMemoryBarrier);
+
+    endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
+  }
+
+  protected static boolean hasStencilComponent(int format) {
+    return format == vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT() || format == vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT();
+  }
+
+  protected static MemorySegment beginSingleTimeCommands(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice) {
+    var commandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
+    VkCommandBufferAllocateInfo.sType(commandBufferAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
+    VkCommandBufferAllocateInfo.level(commandBufferAllocateInfo, vulkan_h.VK_COMMAND_BUFFER_LEVEL_PRIMARY());
+    VkCommandBufferAllocateInfo.commandPool(commandBufferAllocateInfo, pVkCommandPool.get(C_POINTER, 0));
+    VkCommandBufferAllocateInfo.commandBufferCount(commandBufferAllocateInfo, 1);
+
+    var pCommandBuffer = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkAllocateCommandBuffers(vkDevice, commandBufferAllocateInfo, pCommandBuffer));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkAllocateCommandBuffers failed for vertex buffer: " + result);
+      System.exit(-1);
+    }
+
+    var beginInfo = VkCommandBufferBeginInfo.allocate(arena);
+    VkCommandBufferBeginInfo.sType(beginInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
+    VkCommandBufferBeginInfo.flags(beginInfo, vulkan_h.VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT());
+    result = VKResult.vkResult(vulkan_h.vkBeginCommandBuffer(pCommandBuffer.get(C_POINTER, 0), beginInfo));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkBeginCommandBuffer failed for vertex buffer: " + result);
+      System.exit(-1);
+    }
+    return pCommandBuffer;
+  }
+
+  protected static void endSingleTimeCommands(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
+                                    MemorySegment pVkGraphicsQueue, MemorySegment pCommandBuffer) {
+    vulkan_h.vkEndCommandBuffer(pCommandBuffer.get(C_POINTER, 0));
+
+    var pSubmitInfo = VkSubmitInfo.allocate(arena);
+    VkSubmitInfo.sType(pSubmitInfo, vulkan_h.VK_STRUCTURE_TYPE_SUBMIT_INFO());
+    VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
+    VkSubmitInfo.pCommandBuffers(pSubmitInfo, pCommandBuffer);
+    var result = VKResult.vkResult(vulkan_h.vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, vulkan_h.VK_NULL_HANDLE()));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
+      System.exit(-1);
+    }
+
+    result = VKResult.vkResult(vulkan_h.vkQueueWaitIdle(pVkGraphicsQueue.get(C_POINTER, 0)));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
+      System.exit(-1);
+    }
+    vulkan_h.vkFreeCommandBuffers(vkDevice, pVkCommandPool.get(C_POINTER, 0), 1, pCommandBuffer);
   }
 }
