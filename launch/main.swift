@@ -11,7 +11,6 @@ let task = Process()
 
 let currentPath = FileManager.default.currentDirectoryPath
 
-//copy all files in the lib to JAVA_HOME/lib
 //envorinment varaibles
 task.environment = [
     "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
