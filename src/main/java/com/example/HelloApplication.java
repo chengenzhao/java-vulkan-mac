@@ -16,6 +16,17 @@ import java.util.List;
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
 
+/**
+ * Steps of using Vulkan
+ * 1. create vk instance
+ * 2. create physical device(GPU) and vk device
+ * 3. create render passs
+ * 4. create frame buffer
+ * 5. create command pool and buffer
+ * 6. create pipeline
+ * 7. semaphore fence
+ * 8. render loop
+ */
 public class HelloApplication extends HelloApplication1 {
 
   private static final boolean DEBUG = true;
