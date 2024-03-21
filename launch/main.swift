@@ -14,7 +14,7 @@ let currentPath = FileManager.default.currentDirectoryPath
 //envorinment varaibles
 task.environment = [
     "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
-    "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d"
+    "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d",
 ]
 //path to your JAVA_HOME/bin/java
 task.launchPath = "\(currentPath)/bin/java"
