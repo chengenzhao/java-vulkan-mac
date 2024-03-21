@@ -283,39 +283,6 @@ public abstract class HelloApplication1 extends Application {
     return addr;
   }
 
-  protected static MemorySegment createFence(Arena arena, MemorySegment vkDevice) {
-    var pFenceCreateInfo = VkFenceCreateInfo.allocate(arena);
-    VkFenceCreateInfo.sType(pFenceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_FENCE_CREATE_INFO());
-    VkFenceCreateInfo.flags(pFenceCreateInfo, vulkan_h.VK_FENCE_CREATE_SIGNALED_BIT());
-    var pFence = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateFence(vkDevice, pFenceCreateInfo, MemorySegment.NULL, pFence));
-    if (result != VK_SUCCESS) {
-      System.out.println("vkCreateFence failed: " + result);
-      System.exit(-1);
-    } else {
-      System.out.println("vkCreateFence succeeded!");
-    }
-    return pFence;
-  }
-
-  private static MemorySegment createSemaphores(Arena arena, MemorySegment vkDevice) {
-    var pSemaphoreCreateInfo = VkSemaphoreCreateInfo.allocate(arena);
-    VkSemaphoreCreateInfo.sType(pSemaphoreCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO());
-
-    MemorySegment pSemaphores = arena.allocate(C_POINTER, 2);
-
-    for (int i = 0; i < 2; i++) {
-      var result = VKResult.vkResult(vulkan_h.vkCreateSemaphore(vkDevice, pSemaphoreCreateInfo, MemorySegment.NULL, pSemaphores.asSlice(C_POINTER.byteSize() * i)));
-      if (result != VK_SUCCESS) {
-        System.out.println("vkCreateSemaphore failed: " + result);
-        System.exit(-1);
-      } else {
-        System.out.println("vkCreateSemaphore succeeded (semaphore #" + (i + 1) + " created).");
-      }
-    }
-    return pSemaphores;
-  }
-
   protected static MemorySegment createImageView(Arena arena, MemorySegment vkDevice, int imageFormat, int aspectMask, MemorySegment pImage) {
     var pImageView = arena.allocate(C_POINTER);
     var imageViewCreateInfo = VkImageViewCreateInfo.allocate(arena);
@@ -754,5 +721,38 @@ public abstract class HelloApplication1 extends Application {
       imageMemoryPair.image().get(C_POINTER, 0), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
+  }
+
+  protected static MemorySegment createSemaphores(Arena arena, MemorySegment vkDevice) {
+    var pSemaphoreCreateInfo = VkSemaphoreCreateInfo.allocate(arena);
+    VkSemaphoreCreateInfo.sType(pSemaphoreCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO());
+
+    MemorySegment pSemaphores = arena.allocate(C_POINTER, 2);
+
+    for (int i = 0; i < 2; i++) {
+      var result = VKResult.vkResult(vulkan_h.vkCreateSemaphore(vkDevice, pSemaphoreCreateInfo, MemorySegment.NULL, pSemaphores.asSlice(C_POINTER.byteSize() * i)));
+      if (result != VK_SUCCESS) {
+        System.out.println("vkCreateSemaphore failed: " + result);
+        System.exit(-1);
+      } else {
+        System.out.println("vkCreateSemaphore succeeded (semaphore #" + (i + 1) + " created).");
+      }
+    }
+    return pSemaphores;
+  }
+
+  protected static MemorySegment createFence(Arena arena, MemorySegment vkDevice) {
+    var pFenceCreateInfo = VkFenceCreateInfo.allocate(arena);
+    VkFenceCreateInfo.sType(pFenceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_FENCE_CREATE_INFO());
+    VkFenceCreateInfo.flags(pFenceCreateInfo, vulkan_h.VK_FENCE_CREATE_SIGNALED_BIT());
+    var pFence = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateFence(vkDevice, pFenceCreateInfo, MemorySegment.NULL, pFence));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateFence failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateFence succeeded!");
+    }
+    return pFence;
   }
 }
