@@ -525,9 +525,7 @@ public abstract class HelloApplication1 extends Application {
     var pMemoryAllocateInfo = VkMemoryAllocateInfo.allocate(arena);
     VkMemoryAllocateInfo.sType(pMemoryAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
     VkMemoryAllocateInfo.allocationSize(pMemoryAllocateInfo, VkMemoryRequirements.size(pBufferMemoryRequirements));
-    VkMemoryAllocateInfo.memoryTypeIndex(pMemoryAllocateInfo, physicalDevice.findMemoryType(
-      VkMemoryRequirements.memoryTypeBits(pBufferMemoryRequirements),
-      memoryPropertyFlags));
+    VkMemoryAllocateInfo.memoryTypeIndex(pMemoryAllocateInfo, physicalDevice.findMemoryType(VkMemoryRequirements.memoryTypeBits(pBufferMemoryRequirements), memoryPropertyFlags));
 
     var pBufferMemory = arena.allocate(C_POINTER);
     result = VKResult.vkResult(vulkan_h.vkAllocateMemory(vkDevice, pMemoryAllocateInfo, MemorySegment.NULL, pBufferMemory));
@@ -543,6 +541,11 @@ public abstract class HelloApplication1 extends Application {
     }
 
     return new BufferMemoryPair(pBuffer, pBufferMemory);
+  }
+
+  protected static void freeBuffer(MemorySegment device, BufferMemoryPair bufferPair){
+    vulkan_h.vkDestroyBuffer(device, bufferPair.buffer().get(C_POINTER, 0), MemorySegment.NULL);
+    vulkan_h.vkFreeMemory(device, bufferPair.bufferMemory().get(C_POINTER, 0), MemorySegment.NULL);
   }
 
   protected static int[] getRGBAIntArrayFromImage(Image image) {
