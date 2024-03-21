@@ -33,12 +33,74 @@ public class HelloApplication extends HelloApplication1 {
 
   public static final int SCREEN_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() * 3 / 4);
   public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
-  public static Arena ARENA;
-  public static MemorySegment fxSurface;
+  public Arena arena;
+  public MemorySegment fxSurface;
+
+  @Override
+  public void init() throws Exception {
+    super.init();
+    System.loadLibrary("osx");
+    System.loadLibrary("vulkan.1");
+  }
 
   @Override
   public void start(Stage stage) {
 //    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
+
+    arena = Arena.ofShared();
+
+    var pInstance = createVkInstance(arena, DEBUG);
+    //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
+    //following two lines of code are equivalent
+//      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
+    var instance = pInstance.get(C_POINTER, 0);//or vkInstance
+
+//      List<String> extensions = getAvailableExtensions(arena);
+
+    if (DEBUG) {
+      setupDebugMessagesCallback(arena, instance);
+    }
+
+    var physicalDevice = getPhysicalDevices(arena, instance).getFirst();
+
+    var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
+    var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
+
+    var pDevice = createVkDevice(arena, graphicsQueueFamily, physicalDevice);
+    var device = pDevice.get(C_POINTER, 0);
+    //or
+//      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
+
+    int depthFormat = findSupportedFormat(List.of(vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()), physicalDevice, vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
+      vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
+    System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
+
+    var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat, vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+
+    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
+    fxSurface = arena.allocate(bufferSize);
+//      fxSurface = MemorySegment.ofAddress(imagePair.imageMemory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
+//      System.out.println(fxSurface);
+
+    var image = new Image("texture.jpg");
+    var pixels = getRGBAIntArrayFromImage(image);
+
+    BufferMemoryPair textureStagingBufferPair = createStagingBuffer(arena, physicalDevice, device, pixels);
+
+    var textureImageMemoryPair = createImage(arena, physicalDevice, device, (int)image.getWidth(), (int)image.getHeight(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
+      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+
+    var renderPass = createRenderPass(arena, device);
+    var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
+//      var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
+
+    var pVkGraphicsQueue = arena.allocate(C_POINTER);
+    vulkan_h.vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
+
+    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
+    copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBufferPair, textureImageMemoryPair, (int)image.getWidth(), (int)image.getHeight());
+    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
+    freeBuffer(device, textureStagingBufferPair);
 
     WritableImage writableImage;
 
@@ -52,87 +114,37 @@ public class HelloApplication extends HelloApplication1 {
     stage.setScene(scene);
     stage.show();
 
-//    new AnimationTimer() {
-//      @Override
-//      public void handle(long now) {
-//        for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
-//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-//          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
-//        }
-//      }
-//    }.start();
+    new AnimationTimer() {
+      @Override
+      public void handle(long now) {
+        for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+        }
+      }
+
+      @Override
+      public void stop() {
+        super.stop();
+      }
+    }.start();
+
+    //    vulkan_h.vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
+//    vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
+//    vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
+  }
+
+  @Override
+  public void stop() throws Exception {
+    super.stop();
+
+    arena.close();
   }
 
   public static void main(String[] args) {
-    System.loadLibrary("osx");
-    System.loadLibrary("vulkan.1");
-
-    try (Arena arena = Arena.ofShared()) {
-      ARENA = arena;
-
-      var pInstance = createVkInstance(arena, DEBUG);
-      //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
-      //following two lines of code are equivalent
-//      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
-      var instance = pInstance.get(C_POINTER, 0);//or vkInstance
-
-      System.out.println(instance);
-
-//      List<String> extensions = getAvailableExtensions(arena);
-
-      if (DEBUG) {
-        setupDebugMessagesCallback(arena, instance);
-      }
-
-      var physicalDevice = getPhysicalDevices(arena, instance).getFirst();
-
-      var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
-      var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
-
-      var pDevice = createVkDevice(arena, graphicsQueueFamily, physicalDevice);
-      var device = pDevice.get(C_POINTER, 0);
-      //or
-//      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
-
-      int depthFormat = findSupportedFormat(List.of(vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()), physicalDevice, vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
-        vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
-      System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
-
-      var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat, vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-
-      var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-      fxSurface = arena.allocate(bufferSize);
-//      fxSurface = MemorySegment.ofAddress(imagePair.imageMemory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
-//      System.out.println(fxSurface);
-
-      var image = new Image("texture.jpg");
-      var pixels = getRGBAIntArrayFromImage(image);
-
-      BufferMemoryPair textureStagingBufferPair = createStagingBuffer(arena, physicalDevice, device, pixels);
-
-      var textureImageMemoryPair = createImage(arena, physicalDevice, device, (int)image.getWidth(), (int)image.getHeight(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
-        vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-
-      var renderPass = createRenderPass(arena, device);
-      var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
-//      var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
-
-      var pVkGraphicsQueue = arena.allocate(C_POINTER);
-      vulkan_h.vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
-
-      transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
-      copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBufferPair, textureImageMemoryPair, (int)image.getWidth(), (int)image.getHeight());
-      transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
-      freeBuffer(device, textureStagingBufferPair);
-
-      launch();
-
-      vulkan_h.vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
-      vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
-      vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
-    }
+    launch();
   }
 
   private static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
