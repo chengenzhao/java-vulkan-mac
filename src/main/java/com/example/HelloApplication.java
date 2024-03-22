@@ -17,15 +17,16 @@ import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
 
 /**
- * Steps of using Vulkan
+ * Steps of using Vulkan(off-screen/off-surface rendering)
  * 1. create vk instance
  * 2. create physical device(GPU) and vk device
- * 3. create render pass
- * 4. create frame buffer
- * 5. create command pool and buffer
- * 6. create pipeline
- * 7. semaphore fence
- * 8. render loop
+ * 3. create image and imageview
+ * 4. create render pass
+ * 5. create frame buffer
+ * 6. create command pool and buffer
+ * 7. create pipeline
+ * 8. semaphore fence
+ * 9. render loop
  */
 public class HelloApplication extends HelloApplication1 {
 
@@ -48,7 +49,13 @@ public class HelloApplication extends HelloApplication1 {
 //    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
 
     arena = Arena.ofShared();
+    //0. prepare the fxSurface
+    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
+    fxSurface = arena.allocate(bufferSize);
+//      fxSurface = MemorySegment.ofAddress(imagePair.imageMemory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
+//      System.out.println(fxSurface);
 
+    //1.
     var pInstance = createVkInstance(arena, DEBUG);
     //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
     //following two lines of code are equivalent
@@ -61,6 +68,7 @@ public class HelloApplication extends HelloApplication1 {
       setupDebugMessagesCallback(arena, instance);
     }
 
+    //2.
     var physicalDevice = getPhysicalDevices(arena, instance).getFirst();
 
     var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
@@ -71,16 +79,15 @@ public class HelloApplication extends HelloApplication1 {
     //or
 //      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
 
+    //3.
     int depthFormat = findSupportedFormat(List.of(vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()), physicalDevice, vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
       vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
     System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
 
     var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat, vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+    var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(),imagePair.image().get(C_POINTER, 0));
 
-    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-    fxSurface = arena.allocate(bufferSize);
-//      fxSurface = MemorySegment.ofAddress(imagePair.imageMemory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
-//      System.out.println(fxSurface);
+
 
     var image = new Image("texture.jpg");
     var pixels = getRGBAIntArrayFromImage(image);

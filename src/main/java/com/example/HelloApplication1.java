@@ -283,11 +283,11 @@ public abstract class HelloApplication1 extends Application {
     return addr;
   }
 
-  protected static MemorySegment createImageView(Arena arena, MemorySegment vkDevice, int imageFormat, int aspectMask, MemorySegment pImage) {
+  protected static MemorySegment createImageView(Arena arena, MemorySegment vkDevice, int imageFormat, int aspectMask, MemorySegment image) {
     var pImageView = arena.allocate(C_POINTER);
     var imageViewCreateInfo = VkImageViewCreateInfo.allocate(arena);
     VkImageViewCreateInfo.sType(imageViewCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO());
-    VkImageViewCreateInfo.image(imageViewCreateInfo, pImage);
+    VkImageViewCreateInfo.image(imageViewCreateInfo, image);
     VkImageViewCreateInfo.viewType(imageViewCreateInfo, vulkan_h.VK_IMAGE_VIEW_TYPE_2D());
     VkImageViewCreateInfo.format(imageViewCreateInfo, imageFormat);
     VkComponentMapping.r(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
