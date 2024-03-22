@@ -102,6 +102,9 @@ public class HelloApplication extends HelloApplication1 {
     transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
     freeBuffer(device, textureStagingBufferPair);
 
+    var pSemaphores = createSemaphores(arena, device);
+    var pFence = createFence(arena, device);
+
     WritableImage writableImage;
 
 //    var vkMemorySegment = ARENA.allocate(bufferSize);
@@ -117,11 +120,24 @@ public class HelloApplication extends HelloApplication1 {
     new AnimationTimer() {
       @Override
       public void handle(long now) {
-        for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-          fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+
+        var result = vulkan_h.vkWaitForFences(device, 1, pFence, VK_TRUE(), 0L);
+        switch (vkResult(result)){
+          case VK_SUCCESS -> {
+            //doing render loop work here
+            vulkan_h.vkResetFences(device, 1, pFence);
+
+          }
+          case VK_TIMEOUT -> {
+            //meaning GPU still working so go the next loop
+            for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
+              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+            }
+          }
+          default -> this.stop();
         }
       }
 
