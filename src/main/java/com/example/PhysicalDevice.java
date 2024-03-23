@@ -85,9 +85,9 @@ public class PhysicalDevice {
   }
 
   public int findMemoryType(int typeFilter, int memoryPropertyFlags) {
-    // System.out.println("findMemoryType: typeFilter = " + typeFilter + ", memoryPropertyFlags = " + memoryPropertyFlags);
+     System.out.println("findMemoryType: typeFilter = " + typeFilter + ", memoryPropertyFlags = " + memoryPropertyFlags);
     int memoryTypeCount = VkPhysicalDeviceMemoryProperties.memoryTypeCount(physicalDeviceMemoryProperties);
-    // System.out.println("memoryTypeCount: " + memoryTypeCount);
+     System.out.println("memoryTypeCount: " + memoryTypeCount);
     for (int i = 0; i < VkPhysicalDeviceMemoryProperties.memoryTypeCount(physicalDeviceMemoryProperties); i++) {
       MemorySegment memoryTypesArr = VkPhysicalDeviceMemoryProperties.memoryTypes(physicalDeviceMemoryProperties);
       if ((typeFilter & (1 << i)) != 0 && (memoryTypesArr.getAtIndex(C_INT, i) & memoryPropertyFlags) == memoryPropertyFlags) {

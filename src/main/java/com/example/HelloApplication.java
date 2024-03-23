@@ -8,6 +8,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vulkan.*;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -97,7 +99,7 @@ public class HelloApplication extends HelloApplication1 {
     var pVkGraphicsQueue = arena.allocate(C_POINTER);
     vulkan_h.vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
 
-//    var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
+//    var commandBuffer = createCommandBuffers(arena, device, commondPool, );
 
     //6. frame buffer
     var depthImageMemoryPair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat,
@@ -121,8 +123,27 @@ public class HelloApplication extends HelloApplication1 {
 //    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
 //    freeBuffer(device, textureStagingBufferPair);
 //
+
+    //7. pipeline
+    //load shader, make sure compile shader to spv first.
+    /**
+     * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
+     * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.frag -o frag.spv
+     */
+    byte[] vertShaderBytes = null;
+    byte[] fragShaderBytes = null;
+    try {
+      vertShaderBytes = getFileFromResourceAsStream("shader/vert.spv").readAllBytes();
+      fragShaderBytes = getFileFromResourceAsStream("shader/frag.spv").readAllBytes();
+    } catch (IOException _) {
+      System.out.println("could not read shader file(s)");
+      System.exit(-1);
+    }
+
     var pSemaphores = createSemaphores(arena, device);
     var pFence = createFence(arena, device);
+
+
 
     WritableImage writableImage;
 
@@ -315,5 +336,22 @@ public class HelloApplication extends HelloApplication1 {
       System.out.println("vkCreateGraphicsPipelines succeeded");
     }
     return new PipelineLayoutPair(pipeline, pipelineLayout);
+  }
+
+  // get a file from the resources folder
+  // works everywhere, IDEA, unit test and JAR file.
+  private InputStream getFileFromResourceAsStream(String fileName) {
+
+    // The class loader that loaded the class
+    ClassLoader classLoader = getClass().getClassLoader();
+    InputStream inputStream = classLoader.getResourceAsStream(fileName);
+
+    // the stream holding the file content
+    if (inputStream == null) {
+      throw new IllegalArgumentException("file not found! " + fileName);
+    } else {
+      return inputStream;
+    }
+
   }
 }

@@ -26,7 +26,10 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
  ~/JDK/jextract-22/bin/jextract -I "./include" -D "VK_USE_PLATFORM_MACOS_MVK" -D "VK_USE_PLATFORM_METAL_EXT" -D "_MACOS" -t org.vulkan ./include/vulkan/vulkan.h
 ```
 * Make sure the path of the lib folder in Vulkan SDK is included in java.library.path, otherwise it won't be able to find it.
-* Also files in the share fold is required, make sure the path includes VK_ICD_FILENAMES and VK_LAYER_PATH.
+* Also files in the share fold is required, make sure the environment path includes VK_ICD_FILENAMES and VK_LAYER_PATH.
+* Compile the shader files, which included in the src/main/resources/shader folder. Using command like:
+  * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
+  * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.frag -o frag.spv
 * Run the main class: com.example.HelloApplication
 
 # Distribution / Releasing on Steam etc.
