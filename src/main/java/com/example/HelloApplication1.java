@@ -314,7 +314,7 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static MemorySegment createRenderPass(Arena arena, MemorySegment device) {
-    int imageFormat = vulkan_h.VK_FORMAT_R8G8B8A8_SRGB();//standard argb
+rg    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
     int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
 
     var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
@@ -517,18 +517,18 @@ public abstract class HelloApplication1 extends Application {
     vulkan_h.vkFreeMemory(device, bufferPair.bufferMemory().get(C_POINTER, 0), MemorySegment.NULL);
   }
 
-  protected static int[] getRGBAIntArrayFromImage(Image image) {
+  protected static int[] getBGRAIntArrayFromImage(Image image) {
     var width = (int) image.getWidth();
     var height = (int) image.getHeight();
 
-    int[] rgbaPixels = new int[width * height];
+    int[] bgraPixels = new int[width * height];
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
         var pixel = image.getPixelReader().getArgb(i, j);
-        rgbaPixels[i + j * width] = ((pixel & 0x00ffffff) << 8) | ((pixel & 0xff000000) >>> 24); //argb -> rgba
+        bgraPixels[i + j * width] = (((pixel & 0x000000ff) << 24) | ((pixel & 0x0000ff00) << 8) | ((pixel & 0x00ff0000) >>> 8) | (pixel & 0xff000000) >>> 24); //argb -> bgra
       }
     }
-    return rgbaPixels;
+    return bgraPixels;
   }
 
   protected static BufferMemoryPair createStagingBuffer(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, Object stagingDataArr) {
@@ -1092,6 +1092,24 @@ public abstract class HelloApplication1 extends Application {
       throw new IllegalArgumentException("file not found! " + fileName);
     } else {
       return inputStream;
+    }
+  }
+
+  protected static void submitQueue(Arena arena, MemorySegment pVkGraphicsQueue, MemorySegment pCommandBuffer, MemorySegment pSemaphores, MemorySegment fence) {
+    var pSubmitInfo = VkSubmitInfo.allocate(arena);
+    VkSubmitInfo.sType(pSubmitInfo, vulkan_h.VK_STRUCTURE_TYPE_SUBMIT_INFO());
+    VkSubmitInfo.waitSemaphoreCount(pSubmitInfo, 1);
+    VkSubmitInfo.pWaitSemaphores(pSubmitInfo, pSemaphores);
+    VkSubmitInfo.pWaitDstStageMask(pSubmitInfo, arena.allocateFrom(C_INT, new int[]{vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT()}));
+    VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
+    VkSubmitInfo.pCommandBuffers(pSubmitInfo, pCommandBuffer);
+    VkSubmitInfo.signalSemaphoreCount(pSubmitInfo, 1);
+    VkSubmitInfo.pSignalSemaphores(pSubmitInfo, pSemaphores);
+
+    var result = VKResult.vkResult(vulkan_h.vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, fence));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkQueueSubmit failed: " + result);
+      System.exit(-1);
     }
   }
 }

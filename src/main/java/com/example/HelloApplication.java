@@ -8,11 +8,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vulkan.*;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static com.example.VKResult.*;
@@ -86,13 +83,13 @@ public class HelloApplication extends HelloApplication1 {
       vulkan_h.VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
     System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
 
-    var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
+    var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(),
       vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
       vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT() | vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT(),
       vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-    var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(), imagePair.image());
+    var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(), imagePair.image());
 
-    //4.
+    //4. render pass
     var renderPass = createRenderPass(arena, device);
 
     //5. command pool
@@ -101,7 +98,7 @@ public class HelloApplication extends HelloApplication1 {
     var pVkGraphicsQueue = arena.allocate(C_POINTER);
     vulkan_h.vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
 
-    var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
+    var commandBuffers = createCommandBuffers(arena, device, commondPool, 1);
 
     //6. frame buffer
     var depthImageMemoryPair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat,
@@ -111,19 +108,6 @@ public class HelloApplication extends HelloApplication1 {
     transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, depthImageMemoryPair.image(), depthFormat, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
 
     var framebuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageview, renderPass, pDepthImageView);
-
-//    var image = new Image("texture.jpg");
-//    var pixels = getRGBAIntArrayFromImage(image);
-//
-//    BufferMemoryPair textureStagingBufferPair = createStagingBuffer(arena, physicalDevice, device, pixels);
-//
-//    var textureImageMemoryPair = createImage(arena, physicalDevice, device, (int)image.getWidth(), (int)image.getHeight(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
-//      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-//
-//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
-//    copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBufferPair, textureImageMemoryPair, (int)image.getWidth(), (int)image.getHeight());
-//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
-//    freeBuffer(device, textureStagingBufferPair);
 
     //7. pipeline
     var pipelineLayoutPair = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
@@ -138,6 +122,19 @@ public class HelloApplication extends HelloApplication1 {
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       fxSurface.asByteBuffer(), PixelFormat.getByteBgraPreInstance());
     writableImage = new WritableImage(pixelBuffer);
+
+    var image = new Image("texture.jpg");
+    var pixels = getBGRAIntArrayFromImage(image);
+
+    BufferMemoryPair textureStagingBufferPair = createStagingBuffer(arena, physicalDevice, device, pixels);
+
+//    var textureImageMemoryPair = createImage(arena, physicalDevice, device, (int)image.getWidth(), (int)image.getHeight(), vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(),
+//      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+//
+//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
+//    copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBufferPair, textureImageMemoryPair, (int)image.getWidth(), (int)image.getHeight());
+//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
+//    freeBuffer(device, textureStagingBufferPair);
 
     Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
     stage.setTitle("Vulkan Demo");
@@ -154,7 +151,7 @@ public class HelloApplication extends HelloApplication1 {
           case VK_SUCCESS -> {
             //doing render loop work here
             vulkan_h.vkResetFences(device, 1, pFence);
-
+//            submitQueue(arena, pVkGraphicsQueue,commandBuffers.asSlice(0 * C_POINTER.byteSize()), pSemaphores,pFence.get(C_POINTER, 0));
           }
           case VK_TIMEOUT -> {
             //meaning GPU still working so go the next loop
