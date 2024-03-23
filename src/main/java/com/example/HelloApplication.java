@@ -87,7 +87,9 @@ public class HelloApplication extends HelloApplication1 {
     System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
 
     var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
-      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT() | vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+      vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
+      vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT() | vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT(),
+      vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
     var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(), imagePair.image());
 
     //4.
@@ -122,7 +124,6 @@ public class HelloApplication extends HelloApplication1 {
 //    copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBufferPair, textureImageMemoryPair, (int)image.getWidth(), (int)image.getHeight());
 //    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemoryPair.image(), vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
 //    freeBuffer(device, textureStagingBufferPair);
-//
 
     //7. pipeline
     var pipelineLayoutPair = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
@@ -174,7 +175,7 @@ public class HelloApplication extends HelloApplication1 {
       }
     }.start();
 
-    //    vulkan_h.vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
+//    vulkan_h.vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
 //    vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
 //    vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
   }
