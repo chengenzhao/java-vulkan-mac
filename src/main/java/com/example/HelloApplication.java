@@ -64,7 +64,7 @@ public class HelloApplication extends HelloApplication1 {
 //      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
     var instance = pInstance.get(C_POINTER, 0);//or vkInstance
 
-//      List<String> extensions = getAvailableExtensions(arena);
+    List<String> extensions = getAvailableExtensions(arena);
 
     if (DEBUG) {
       setupDebugMessagesCallback(arena, instance);
@@ -101,7 +101,7 @@ public class HelloApplication extends HelloApplication1 {
     var pVkGraphicsQueue = arena.allocate(C_POINTER);
     vulkan_h.vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
 
-//    var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
+    var commandBuffer = createCommandBuffers(arena, device, commondPool, 1);
 
     //6. frame buffer
     var depthImageMemoryPair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat,

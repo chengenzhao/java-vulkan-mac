@@ -941,9 +941,7 @@ public abstract class HelloApplication1 extends Application {
 
     var pDescriptorSetLayout = createDescriptorSetLayout(arena, vkDevice);
 
-    var pipelineLayoutPair = createGraphicsPipeline(arena, windowWidth, windowHeight, vkDevice, pVertShaderModule, pFragShaderModule, pVertexInputStateInfo, renderPass, pDescriptorSetLayout);
-
-    return pipelineLayoutPair;
+    return createGraphicsPipeline(arena, windowWidth, windowHeight, vkDevice, pVertShaderModule, pFragShaderModule, pVertexInputStateInfo, renderPass, pDescriptorSetLayout);
   }
 
   protected static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
