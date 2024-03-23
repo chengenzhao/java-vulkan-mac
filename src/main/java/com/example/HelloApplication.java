@@ -248,10 +248,9 @@ public class HelloApplication extends HelloApplication1 {
 
     var pipelineLayoutPair = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pVertShaderModule, pFragShaderModule, pVertexInputStateInfo, renderPass, pDescriptorSetLayout);
 
+    //8. semaphore and fence
     var pSemaphores = createSemaphores(arena, device);
     var pFence = createFence(arena, device);
-
-
 
     WritableImage writableImage;
 
@@ -265,6 +264,7 @@ public class HelloApplication extends HelloApplication1 {
     stage.setScene(scene);
     stage.show();
 
+    //9. render loop
     new AnimationTimer() {
       @Override
       public void handle(long now) {
