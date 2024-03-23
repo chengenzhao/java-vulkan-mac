@@ -140,6 +140,9 @@ public class HelloApplication extends HelloApplication1 {
       System.exit(-1);
     }
 
+    var pVertShaderModule = getShaderModule(device, vertShaderBytes, arena);
+    var pFragShaderModule = getShaderModule(device, fragShaderBytes, arena);
+
     var pSemaphores = createSemaphores(arena, device);
     var pFence = createFence(arena, device);
 
@@ -352,6 +355,24 @@ public class HelloApplication extends HelloApplication1 {
     } else {
       return inputStream;
     }
+  }
 
+  protected static MemorySegment getShaderModule(MemorySegment vkDevice, byte[] shaderSpv, Arena arena) {
+    var pShaderModuleCreateInfo = VkShaderModuleCreateInfo.allocate(arena);
+    VkShaderModuleCreateInfo.sType(pShaderModuleCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO());
+    VkShaderModuleCreateInfo.codeSize(pShaderModuleCreateInfo, shaderSpv.length);
+    System.out.println("shaderSpv num bytes: " + shaderSpv.length);
+    VkShaderModuleCreateInfo.pCode(pShaderModuleCreateInfo, arena.allocateFrom(C_CHAR, shaderSpv));
+
+    var pShaderModule = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateShaderModule(vkDevice, pShaderModuleCreateInfo, MemorySegment.NULL, pShaderModule));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateShaderModule failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateShaderModule succeeded");
+    }
+
+    return pShaderModule;
   }
 }
