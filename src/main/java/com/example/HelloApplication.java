@@ -143,6 +143,110 @@ public class HelloApplication extends HelloApplication1 {
     var pVertShaderModule = getShaderModule(device, vertShaderBytes, arena);
     var pFragShaderModule = getShaderModule(device, fragShaderBytes, arena);
 
+    var pVertShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
+    VkPipelineShaderStageCreateInfo.sType(pVertShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(pVertShaderStageInfo, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPipelineShaderStageCreateInfo.module(pVertShaderStageInfo, pVertShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(pVertShaderStageInfo, arena.allocateFrom("main",StandardCharsets.UTF_8));
+
+    var pFragShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
+    VkPipelineShaderStageCreateInfo.sType(pFragShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(pFragShaderStageInfo, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+    VkPipelineShaderStageCreateInfo.module(pFragShaderStageInfo, pFragShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(pFragShaderStageInfo, arena.allocateFrom("main",StandardCharsets.UTF_8));
+
+    var pVertexInputBindingDescription = VkVertexInputBindingDescription.allocate(arena);
+    VkVertexInputBindingDescription.binding(pVertexInputBindingDescription, 0);
+    // Square with colors at the vertices.
+    float[] vertices = new float[]{
+      -0.5f, -0.5f, 0.0f, // Vertex 0, Position
+      1.0f, 0.0f, 0.0f,   // Vertex 0, Color (red)
+      1.0f, 0.0f,         // Vertex 0, texCoord
+      0.5f, -0.5f, 0.0f,  // Vertex 1, Position
+      0.0f, 1.0f, 0.0f,   // Vertex 1, Color (green)
+      0.0f, 0.0f,         // Vertex 1, texCoord
+      0.5f, 0.5f, 0.0f,   // Vertex 2, Position
+      0.0f, 1.0f, 1.0f,   // Vertex 2, Color (cyan)
+      0.0f, 1.0f,         // Vertex 2, texCoord
+      -0.5f, 0.5f, 0.0f,  // Vertex 3, Position
+      1.0f, 1.0f, 1.0f,   // Vertex 3, Color (white)
+      1.0f, 1.0f,         // Vertex 3, texCoord
+    };
+
+    int[] indices = new int[]{
+      0, 1, 2, 2, 3, 0
+    };
+    // Cube
+    vertices = new float[]{
+      -0.5f, -0.5f, -0.5f, // Vertex 0, Position
+      1.0f, 0.0f, 0.0f, // Vertex 0, Color (red)
+      1.0f, 0.0f,         // Vertex 0, texCoord
+      -0.5f, -0.5f, 0.5f, // Vertex 1, Position
+      0.0f, 1.0f, 0.0f, // Vertex 1, Color (green)
+      0.0f, 0.0f,         // Vertex 1, texCoord
+      0.5f, -0.5f, 0.5f, // Vertex 2, Position
+      0.0f, 0.0f, 1.0f, // Vertex 2, Color (blue)
+      0.0f, 1.0f,         // Vertex 2, texCoord
+      0.5f, -0.5f, -0.5f, // Vertex 3, Position
+      1.0f, 1.0f, 1.0f, // Vertex 3, Color (white)
+      1.0f, 1.0f,         // Vertex 3, texCoord
+      -0.5f, 0.5f, -0.5f, // Vertex 4, Position
+      1.0f, 0.0f, 1.0f, // Vertex 4, Color (magenta)
+      1.0f, 0.0f,         // Vertex 4, texCoord
+      -0.5f, 0.5f, 0.5f, // Vertex 5, Position
+      0.5f, 0.5f, 0.5f, // Vertex 5, Color (gray)
+      0.0f, 0.0f,         // Vertex 5, texCoord
+      0.5f, 0.5f, 0.5f, // Vertex 6, Position
+      0.5f, 0.5f, 0.0f, // Vertex 6, Color (olive)
+      0.0f, 1.0f,         // Vertex 6, texCoord
+      0.5f, 0.5f, -0.5f, // Vertex 7, Position
+      0.0f, 0.5f, 0.5f, // Vertex 7, Color (teal)
+      1.0f, 1.0f,         // Vertex 7, texCoord
+    };
+
+    indices = new int[]{
+      0, 2, 3, 0, 1, 2,
+      4, 6, 5, 4, 7, 6,
+      5, 2, 1, 5, 6, 2,
+      0, 7, 4, 0, 3, 7,
+      0, 4, 1, 1, 4, 5,
+      2, 6, 3, 3, 6, 7
+    };
+    VkVertexInputBindingDescription.stride(pVertexInputBindingDescription, 32); // pos + color + texcoord = 12 + 12 + 8 bytes
+    VkVertexInputBindingDescription.inputRate(pVertexInputBindingDescription, vulkan_h.VK_VERTEX_INPUT_RATE_VERTEX());
+
+    var pVertexInputAttributeDescriptions = VkVertexInputAttributeDescription.allocateArray(3, arena);
+
+    // Position description
+    var positionDesc = pVertexInputAttributeDescriptions.asSlice(0, VkVertexInputAttributeDescription.sizeof());
+    VkVertexInputAttributeDescription.binding(positionDesc, 0);
+    VkVertexInputAttributeDescription.location(positionDesc, 0);
+    VkVertexInputAttributeDescription.format(positionDesc, vulkan_h.VK_FORMAT_R32G32B32_SFLOAT());
+    VkVertexInputAttributeDescription.offset(positionDesc, 0);
+    // Color description
+    var colorDesc = pVertexInputAttributeDescriptions.asSlice(VkVertexInputAttributeDescription.sizeof(), VkVertexInputAttributeDescription.sizeof());
+    VkVertexInputAttributeDescription.binding(colorDesc, 0);
+    VkVertexInputAttributeDescription.location(colorDesc, 1);
+    VkVertexInputAttributeDescription.format(colorDesc, vulkan_h.VK_FORMAT_R32G32B32_SFLOAT());
+    VkVertexInputAttributeDescription.offset(colorDesc, 12); // color starts at 12 bytes
+    // Texcoord description
+    var textcoorDesc = pVertexInputAttributeDescriptions.asSlice(VkVertexInputAttributeDescription.sizeof()*2, VkVertexInputAttributeDescription.sizeof());
+    VkVertexInputAttributeDescription.binding(textcoorDesc, 0);
+    VkVertexInputAttributeDescription.location(textcoorDesc, 2);
+    VkVertexInputAttributeDescription.format(textcoorDesc, vulkan_h.VK_FORMAT_R32G32_SFLOAT());
+    VkVertexInputAttributeDescription.offset(textcoorDesc, 24); // texcoord starts at 24 bytes
+
+    var pVertexInputStateInfo = VkPipelineVertexInputStateCreateInfo.allocate(arena);
+    VkPipelineVertexInputStateCreateInfo.sType(pVertexInputStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO());
+    VkPipelineVertexInputStateCreateInfo.vertexBindingDescriptionCount(pVertexInputStateInfo, 1);
+    VkPipelineVertexInputStateCreateInfo.pVertexBindingDescriptions(pVertexInputStateInfo, pVertexInputBindingDescription);
+    VkPipelineVertexInputStateCreateInfo.vertexAttributeDescriptionCount(pVertexInputStateInfo, 3);
+    VkPipelineVertexInputStateCreateInfo.pVertexAttributeDescriptions(pVertexInputStateInfo, pVertexInputAttributeDescriptions);
+
+    var pDescriptorSetLayout = createDescriptorSetLayout(arena, device);
+
+    var pipelineLayoutPair = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pVertShaderModule, pFragShaderModule, pVertexInputStateInfo, renderPass, pDescriptorSetLayout);
+
     var pSemaphores = createSemaphores(arena, device);
     var pFence = createFence(arena, device);
 
@@ -357,22 +461,5 @@ public class HelloApplication extends HelloApplication1 {
     }
   }
 
-  protected static MemorySegment getShaderModule(MemorySegment vkDevice, byte[] shaderSpv, Arena arena) {
-    var pShaderModuleCreateInfo = VkShaderModuleCreateInfo.allocate(arena);
-    VkShaderModuleCreateInfo.sType(pShaderModuleCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO());
-    VkShaderModuleCreateInfo.codeSize(pShaderModuleCreateInfo, shaderSpv.length);
-    System.out.println("shaderSpv num bytes: " + shaderSpv.length);
-    VkShaderModuleCreateInfo.pCode(pShaderModuleCreateInfo, arena.allocateFrom(C_CHAR, shaderSpv));
 
-    var pShaderModule = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateShaderModule(vkDevice, pShaderModuleCreateInfo, MemorySegment.NULL, pShaderModule));
-    if (result != VK_SUCCESS) {
-      System.out.println("vkCreateShaderModule failed: " + result);
-      System.exit(-1);
-    } else {
-      System.out.println("vkCreateShaderModule succeeded");
-    }
-
-    return pShaderModule;
-  }
 }

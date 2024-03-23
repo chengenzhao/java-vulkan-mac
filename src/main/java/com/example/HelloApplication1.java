@@ -784,4 +784,36 @@ public abstract class HelloApplication1 extends Application {
     }
     return pVkFramebuffer;
   }
+
+  protected static MemorySegment createDescriptorSetLayout(Arena arena, MemorySegment vkDevice) {
+    int numBindings = 1;
+    var pBindings = VkDescriptorSetLayoutBinding.allocateArray(numBindings, arena);
+    var pBinding0 = pBindings.asSlice(0,VkDescriptorSetLayoutBinding.sizeof());
+        /*
+        VkDescriptorSetLayoutBinding.binding(pBindings, 0, 0);
+        VkDescriptorSetLayoutBinding.descriptorType(pBindings, 0, vulkan_h.VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER());
+        VkDescriptorSetLayoutBinding.descriptorCount(pBindings, 0, 1);
+        VkDescriptorSetLayoutBinding.stageFlags(pBindings, 0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+         */
+    VkDescriptorSetLayoutBinding.binding(pBinding0, 0);
+    VkDescriptorSetLayoutBinding.descriptorType(pBinding0, vulkan_h.VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER());
+    VkDescriptorSetLayoutBinding.descriptorCount(pBinding0, 1);
+    VkDescriptorSetLayoutBinding.stageFlags(pBinding0, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+
+    var pDescriptorSetLayout = arena.allocate(C_POINTER);
+
+    var pDescriptorSetLayoutCreateInfo = VkDescriptorSetLayoutCreateInfo.allocate(arena);
+    VkDescriptorSetLayoutCreateInfo.sType(pDescriptorSetLayoutCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO());
+    VkDescriptorSetLayoutCreateInfo.bindingCount(pDescriptorSetLayoutCreateInfo, numBindings);
+    VkDescriptorSetLayoutCreateInfo.pBindings(pDescriptorSetLayoutCreateInfo, pBindings);
+
+    var result = VKResult.vkResult(vulkan_h.vkCreateDescriptorSetLayout(vkDevice,
+      pDescriptorSetLayoutCreateInfo, MemorySegment.NULL, pDescriptorSetLayout));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateDescriptorSetLayout failed: " + result);
+      System.exit(-1);
+    }
+
+    return pDescriptorSetLayout;
+  }
 }
