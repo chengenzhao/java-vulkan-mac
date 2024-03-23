@@ -87,8 +87,8 @@ public class HelloApplication extends HelloApplication1 {
     System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
 
     var imagePair = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),
-      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT()|vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-    var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(),vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(),imagePair.image());
+      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT() | vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
+    var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(), imagePair.image());
 
     //4.
     var renderPass = createRenderPass(arena, device);
@@ -125,7 +125,7 @@ public class HelloApplication extends HelloApplication1 {
 //
 
     //7. pipeline
-    var pipelineLayoutPair = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device,renderPass);
+    var pipelineLayoutPair = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
 
     //8. semaphore and fence
     var pSemaphores = createSemaphores(arena, device);
@@ -149,7 +149,7 @@ public class HelloApplication extends HelloApplication1 {
       public void handle(long now) {
 
         var result = vulkan_h.vkWaitForFences(device, 1, pFence, VK_TRUE(), 0L);
-        switch (vkResult(result)){
+        switch (vkResult(result)) {
           case VK_SUCCESS -> {
             //doing render loop work here
             vulkan_h.vkResetFences(device, 1, pFence);
