@@ -314,7 +314,7 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static MemorySegment createRenderPass(Arena arena, MemorySegment device) {
-rg    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
+    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
     int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
 
     var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
