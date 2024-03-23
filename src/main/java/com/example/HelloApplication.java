@@ -216,21 +216,22 @@ public class HelloApplication extends HelloApplication1 {
     VkVertexInputBindingDescription.inputRate(pVertexInputBindingDescription, vulkan_h.VK_VERTEX_INPUT_RATE_VERTEX());
 
     var pVertexInputAttributeDescriptions = VkVertexInputAttributeDescription.allocateArray(3, arena);
+    var descriptionSize = VkVertexInputAttributeDescription.sizeof();
 
     // Position description
-    var positionDesc = pVertexInputAttributeDescriptions.asSlice(0, VkVertexInputAttributeDescription.sizeof());
+    var positionDesc = pVertexInputAttributeDescriptions.asSlice(0, descriptionSize);
     VkVertexInputAttributeDescription.binding(positionDesc, 0);
     VkVertexInputAttributeDescription.location(positionDesc, 0);
     VkVertexInputAttributeDescription.format(positionDesc, vulkan_h.VK_FORMAT_R32G32B32_SFLOAT());
     VkVertexInputAttributeDescription.offset(positionDesc, 0);
     // Color description
-    var colorDesc = pVertexInputAttributeDescriptions.asSlice(VkVertexInputAttributeDescription.sizeof(), VkVertexInputAttributeDescription.sizeof());
+    var colorDesc = pVertexInputAttributeDescriptions.asSlice(descriptionSize, descriptionSize);
     VkVertexInputAttributeDescription.binding(colorDesc, 0);
     VkVertexInputAttributeDescription.location(colorDesc, 1);
     VkVertexInputAttributeDescription.format(colorDesc, vulkan_h.VK_FORMAT_R32G32B32_SFLOAT());
     VkVertexInputAttributeDescription.offset(colorDesc, 12); // color starts at 12 bytes
     // Texcoord description
-    var textcoorDesc = pVertexInputAttributeDescriptions.asSlice(VkVertexInputAttributeDescription.sizeof()*2, VkVertexInputAttributeDescription.sizeof());
+    var textcoorDesc = pVertexInputAttributeDescriptions.asSlice(descriptionSize*2, descriptionSize);
     VkVertexInputAttributeDescription.binding(textcoorDesc, 0);
     VkVertexInputAttributeDescription.location(textcoorDesc, 2);
     VkVertexInputAttributeDescription.format(textcoorDesc, vulkan_h.VK_FORMAT_R32G32_SFLOAT());
