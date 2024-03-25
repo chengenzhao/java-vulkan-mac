@@ -145,9 +145,13 @@ public class HelloApplication extends HelloApplication1 {
     System.out.println("The transfer buffer is filled");
 
     //copy buffer value to the pixel buffer of writable image of JavaFX
-    for(int i=0;i<fxSurface.byteSize();i++){
-      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
-    }
+    fxSurface.copyFrom(
+      MemorySegment.ofAddress(pData.get(ValueLayout.JAVA_LONG,0))
+        .reinterpret(fxSurface.byteSize()));
+    //or copy byte by byte
+//    for(int i=0;i<fxSurface.byteSize();i++){
+//      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
+//    }
 
     var picture = new Image("texture.jpg");
     var pixels = getBGRAIntArrayFromImage(picture);
