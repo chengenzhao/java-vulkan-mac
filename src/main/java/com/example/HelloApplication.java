@@ -124,6 +124,31 @@ public class HelloApplication extends HelloApplication1 {
       fxSurface.asByteBuffer(), PixelFormat.getByteBgraPreInstance());
     writableImage = new WritableImage(pixelBuffer);
 
+    var transferBuffer = createBuffer(arena,device, physicalDevice,bufferSize,vulkan_h.VK_BUFFER_USAGE_TRANSFER_DST_BIT()|vulkan_h.VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
+    var pData = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkMapMemory(device, transferBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkMapMemory failed for staging buffer: " + result);
+      System.exit(-1);
+    }else{
+      System.out.println("vkTransferBuffer is ready, buffer:"+transferBuffer);
+    }
+
+    //set color to the buffer
+    for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+    }
+
+    System.out.println("The transfer buffer is filled");
+
+    //copy buffer value to the pixel buffer of writable image of JavaFX
+    for(int i=0;i<fxSurface.byteSize();i++){
+      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
+    }
+
     var picture = new Image("texture.jpg");
     var pixels = getBGRAIntArrayFromImage(picture);
 
