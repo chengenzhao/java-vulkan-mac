@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.storage.BufferMemory;
+import com.example.storage.ImageMemory;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import org.vulkan.*;
@@ -419,7 +421,7 @@ public abstract class HelloApplication1 extends Application {
     return pCommandBuffers;
   }
 
-  protected static ImageMemoryPair createImage(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, int imageWidth, int imageHeight, int format, int tiling, int usage, int memoryProperties) {
+  protected static ImageMemory createImage(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, int imageWidth, int imageHeight, int format, int tiling, int usage, int memoryProperties) {
     var pImageCreateInfo = VkImageCreateInfo.allocate(arena);
     VkImageCreateInfo.sType(pImageCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO());
     VkImageCreateInfo.imageType(pImageCreateInfo, vulkan_h.VK_IMAGE_TYPE_2D());
@@ -456,7 +458,7 @@ public abstract class HelloApplication1 extends Application {
       System.exit(-1);
     }
     vulkan_h.vkBindImageMemory(vkDevice, pImage.get(C_POINTER, 0), pImageMemory.get(C_POINTER, 0), 0);
-    return new ImageMemoryPair(pImage, pImageMemory);
+    return new ImageMemory(pImage, pImageMemory);
   }
 
   protected static int findSupportedFormat(List<Integer> candidates, PhysicalDevice physicalDevice, int tiling, int features) {
@@ -474,7 +476,7 @@ public abstract class HelloApplication1 extends Application {
     throw new RuntimeException("Could not find supported format from candidates: " + candidates);
   }
 
-  protected static BufferMemoryPair createBuffer(Arena arena, MemorySegment vkDevice, PhysicalDevice physicalDevice, long bufferSize, int usage, int memoryPropertyFlags) {
+  protected static BufferMemory createBuffer(Arena arena, MemorySegment vkDevice, PhysicalDevice physicalDevice, long bufferSize, int usage, int memoryPropertyFlags) {
     var pBufferCreateInfo = VkBufferCreateInfo.allocate(arena);
     VkBufferCreateInfo.sType(pBufferCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO());
     VkBufferCreateInfo.size(pBufferCreateInfo, bufferSize);
@@ -509,12 +511,12 @@ public abstract class HelloApplication1 extends Application {
       System.exit(-1);
     }
 
-    return new BufferMemoryPair(pBuffer, pBufferMemory);
+    return new BufferMemory(pBuffer, pBufferMemory);
   }
 
-  protected static void freeBuffer(MemorySegment device, BufferMemoryPair bufferPair) {
+  protected static void freeBuffer(MemorySegment device, BufferMemory bufferPair) {
     vulkan_h.vkDestroyBuffer(device, bufferPair.buffer().get(C_POINTER, 0), MemorySegment.NULL);
-    vulkan_h.vkFreeMemory(device, bufferPair.bufferMemory().get(C_POINTER, 0), MemorySegment.NULL);
+    vulkan_h.vkFreeMemory(device, bufferPair.memory().get(C_POINTER, 0), MemorySegment.NULL);
   }
 
   protected static int[] getBGRAIntArrayFromImage(Image image) {
@@ -531,7 +533,7 @@ public abstract class HelloApplication1 extends Application {
     return bgraPixels;
   }
 
-  protected static BufferMemoryPair createStagingBuffer(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, Object stagingDataArr) {
+  protected static BufferMemory createStagingBuffer(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, Object stagingDataArr) {
     var pData = arena.allocate(C_POINTER);
     long bufferSize = -1;
     switch (stagingDataArr) {
@@ -544,10 +546,10 @@ public abstract class HelloApplication1 extends Application {
       }
     }
     System.out.println("Staging buffer size: " + bufferSize);
-    BufferMemoryPair stagingBuffer = createBuffer(arena, vkDevice, physicalDevice, bufferSize,
+    BufferMemory stagingBuffer = createBuffer(arena, vkDevice, physicalDevice, bufferSize,
       vulkan_h.VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT() | vulkan_h.VK_MEMORY_PROPERTY_HOST_COHERENT_BIT());
 
-    var result = VKResult.vkResult(vulkan_h.vkMapMemory(vkDevice, stagingBuffer.bufferMemory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
+    var result = VKResult.vkResult(vulkan_h.vkMapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
     if (result != VK_SUCCESS) {
       System.out.println("vkMapMemory failed for staging buffer: " + result);
       System.exit(-1);
@@ -555,7 +557,7 @@ public abstract class HelloApplication1 extends Application {
 
     setDataArrayPtr(pData, stagingDataArr);
 
-    vulkan_h.vkUnmapMemory(vkDevice, stagingBuffer.bufferMemory().get(C_POINTER, 0));
+    vulkan_h.vkUnmapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0));
     return stagingBuffer;
   }
 
@@ -700,8 +702,8 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static void copyBufferToImage(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
-                                          MemorySegment pVkGraphicsQueue, BufferMemoryPair stagingBufferPair,
-                                          ImageMemoryPair imageMemoryPair, int width, int height) {
+                                          MemorySegment pVkGraphicsQueue, BufferMemory stagingBufferPair,
+                                          ImageMemory imageMemoryPair, int width, int height) {
     var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
 
     var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
