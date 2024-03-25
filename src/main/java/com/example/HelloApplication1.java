@@ -1,7 +1,7 @@
 package com.example;
 
-import com.example.storage.BufferMemory;
-import com.example.storage.ImageMemory;
+import com.example.resourcetype.BufferMemory;
+import com.example.resourcetype.ImageMemory;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import org.vulkan.*;

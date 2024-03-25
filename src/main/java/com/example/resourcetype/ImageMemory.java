@@ -1,4 +1,4 @@
-package com.example.storage;
+package com.example.resourcetype;
 
 import java.lang.foreign.MemorySegment;
 

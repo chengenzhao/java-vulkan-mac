@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.storage.BufferMemory;
+import com.example.resourcetype.BufferMemory;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
