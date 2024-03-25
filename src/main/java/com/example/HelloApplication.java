@@ -35,7 +35,6 @@ public class HelloApplication extends HelloApplication1 {
   public static final int SCREEN_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() * 3 / 4);
   public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
   public Arena arena;
-  public MemorySegment fxSurface;
 
   @Override
   public void init() throws Exception {
@@ -49,11 +48,6 @@ public class HelloApplication extends HelloApplication1 {
 //    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
 
     arena = Arena.ofShared();
-    //0. prepare the fxSurface
-    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-//    fxSurface = arena.allocate(bufferSize);
-//      fxSurface = MemorySegment.ofAddress(image.memory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
-//      System.out.println(fxSurface);
 
     //1. vk instance
     var pInstance = createVkInstance(arena, DEBUG);
@@ -117,11 +111,7 @@ public class HelloApplication extends HelloApplication1 {
     var pSemaphores = createSemaphores(arena, device);
     var pFence = createFence(arena, device);
 
-    WritableImage writableImage;
-
-//    var vkMemorySegment = ARENA.allocate(bufferSize);
-
-
+    var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
     var transferBuffer = createBuffer(arena,device, physicalDevice,bufferSize,vulkan_h.VK_BUFFER_USAGE_TRANSFER_DST_BIT()|vulkan_h.VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
     var pData = arena.allocate(C_POINTER);
     var result = VKResult.vkResult(vulkan_h.vkMapMemory(device, transferBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
@@ -136,7 +126,7 @@ public class HelloApplication extends HelloApplication1 {
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       pData.get(C_POINTER,0).asSlice(0,bufferSize).asByteBuffer(),
       PixelFormat.getByteBgraPreInstance());
-    writableImage = new WritableImage(pixelBuffer);
+    WritableImage writableImage = new WritableImage(pixelBuffer);
 
     //set color to the buffer
     for (int i = 0; i < bufferSize / 4; i++) {
