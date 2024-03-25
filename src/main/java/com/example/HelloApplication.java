@@ -51,7 +51,7 @@ public class HelloApplication extends HelloApplication1 {
     arena = Arena.ofShared();
     //0. prepare the fxSurface
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-    fxSurface = arena.allocate(bufferSize);
+//    fxSurface = arena.allocate(bufferSize);
 //      fxSurface = MemorySegment.ofAddress(image.memory().get(ValueLayout.JAVA_LONG,0)).reinterpret(bufferSize);
 //      System.out.println(fxSurface);
 
@@ -120,9 +120,7 @@ public class HelloApplication extends HelloApplication1 {
     WritableImage writableImage;
 
 //    var vkMemorySegment = ARENA.allocate(bufferSize);
-    PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
-      fxSurface.asByteBuffer(), PixelFormat.getByteBgraPreInstance());
-    writableImage = new WritableImage(pixelBuffer);
+
 
     var transferBuffer = createBuffer(arena,device, physicalDevice,bufferSize,vulkan_h.VK_BUFFER_USAGE_TRANSFER_DST_BIT()|vulkan_h.VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
     var pData = arena.allocate(C_POINTER);
@@ -134,20 +132,23 @@ public class HelloApplication extends HelloApplication1 {
       System.out.println("vkTransferBuffer is ready, buffer:"+transferBuffer);
     }
 
+    //show the buffer data to the writable image of JavaFX
+    PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
+      pData.get(C_POINTER,0).asSlice(0,bufferSize).asByteBuffer(),
+      PixelFormat.getByteBgraPreInstance());
+    writableImage = new WritableImage(pixelBuffer);
+
     //set color to the buffer
-    for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
+    for (int i = 0; i < bufferSize / 4; i++) {
       pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
       pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
       pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
       pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
     }
 
-    System.out.println("The transfer buffer is filled");
-
+    //get
     //copy buffer value to the pixel buffer of writable image of JavaFX
-    fxSurface.copyFrom(
-      MemorySegment.ofAddress(pData.get(ValueLayout.JAVA_LONG,0))
-        .reinterpret(fxSurface.byteSize()));
+//    fxSurface.copyFrom(pData.get(C_POINTER,0).asSlice(0,fxSurface.byteSize()));
     //or copy byte by byte
 //    for(int i=0;i<fxSurface.byteSize();i++){
 //      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
@@ -188,11 +189,11 @@ public class HelloApplication extends HelloApplication1 {
           }
           case VK_TIMEOUT -> {
             //meaning GPU still working so go the next loop
-            for (int i = 0; i < fxSurface.byteSize() / 4; i++) {
-              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-              fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+            for (int i = 0; i < bufferSize / 4; i++) {
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
             }
           }
           default -> this.stop();
