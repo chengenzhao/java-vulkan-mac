@@ -1,6 +1,5 @@
 package com.example;
 
-import com.example.resourcetype.BufferMemory;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -80,7 +79,7 @@ public class HelloApplication extends HelloApplication1 {
 
     var image = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(),
       vulkan_h.VK_IMAGE_TILING_OPTIMAL(),
-      vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT() | vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT(),
+      vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT() | vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT() | vulkan_h.VK_IMAGE_USAGE_TRANSFER_SRC_BIT(),
       vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
     var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
 
@@ -122,12 +121,16 @@ public class HelloApplication extends HelloApplication1 {
       System.out.println("vkTransferBuffer is ready, buffer:"+transferBuffer);
     }
 
+    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, image.image(),
+      vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_GENERAL());
+    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
+
     //show the buffer data to the writable image of JavaFX
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       pData.get(C_POINTER,0).asSlice(0,bufferSize).asByteBuffer(),
       PixelFormat.getByteBgraPreInstance());
     WritableImage writableImage = new WritableImage(pixelBuffer);
-
+/**
     //set color to the buffer
     for (int i = 0; i < bufferSize / 4; i++) {
       pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
@@ -143,17 +146,14 @@ public class HelloApplication extends HelloApplication1 {
 //    for(int i=0;i<fxSurface.byteSize();i++){
 //      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
 //    }
+ */
 
-    var picture = new Image("texture.jpg");
-    var pixels = getBGRAIntArrayFromImage(picture);
-
-    BufferMemory textureStagingBuffer = createStagingBuffer(arena, physicalDevice, device, pixels);
-
-    var texture = createImage(arena, physicalDevice, device, (int)picture.getWidth(), (int)picture.getHeight(), vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(),
-      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT()|vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
-
-    System.out.println(texture.image() + " "+Long.toHexString(texture.image().get(ValueLayout.JAVA_LONG,0)));
-    System.out.println(texture.memory()+ " "+Long.toHexString(texture.memory().get(ValueLayout.JAVA_LONG,0)));
+//    var picture = new Image("texture.jpg");
+//    var pixels = getBGRAIntArrayFromImage(picture);
+//    BufferMemory textureStagingBuffer = createStagingBuffer(arena, physicalDevice, device, pixels);
+//
+//    var texture = createImage(arena, physicalDevice, device, (int)picture.getWidth(), (int)picture.getHeight(), vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(),
+//      vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_TRANSFER_DST_BIT() | vulkan_h.VK_IMAGE_USAGE_SAMPLED_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT()|vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
 //
 //    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemory.image(), vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
 //    copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBuffer, textureImageMemory, (int)image.getWidth(), (int)image.getHeight());
@@ -178,7 +178,7 @@ public class HelloApplication extends HelloApplication1 {
 //            submitQueue(arena, pVkGraphicsQueue,commandBuffers.asSlice(0 * C_POINTER.byteSize()), pSemaphores,pFence.get(C_POINTER, 0));
           }
           case VK_TIMEOUT -> {
-            //meaning GPU still working so go the next loop
+            //meaning GPU still working so go to the next loop
             for (int i = 0; i < bufferSize / 4; i++) {
               pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
               pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green

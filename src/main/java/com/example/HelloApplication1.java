@@ -316,7 +316,7 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static MemorySegment createRenderPass(Arena arena, MemorySegment device) {
-    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();//standard argb
+    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();
     int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
 
     var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
@@ -624,9 +624,13 @@ public abstract class HelloApplication1 extends Application {
 
     int sourceStage = 0;
     int destinationStage = 0;
-
-    if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL()) {
-      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, 0);
+    if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_GENERAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_GENERAL());
+      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
+      destinationStage = vulkan_h.VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT();
+    }else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
       VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_TRANSFER_WRITE_BIT());
       sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
       destinationStage = vulkan_h.VK_PIPELINE_STAGE_TRANSFER_BIT();
@@ -636,13 +640,14 @@ public abstract class HelloApplication1 extends Application {
       sourceStage = vulkan_h.VK_PIPELINE_STAGE_TRANSFER_BIT();
       destinationStage = vulkan_h.VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT();
     } else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
-      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, 0);
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
       VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
       sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
       destinationStage = vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT();
     } else {
       System.out.println("Unsupported layout transition: " + oldLayout + ", " + newLayout);
-      System.exit(-1);
+      throw new RuntimeException("Unrecognised transition");
+//      System.exit(-1);
     }
     vulkan_h.vkCmdPipelineBarrier(pCommandBuffer.get(C_POINTER, 0), sourceStage, destinationStage, 0, 0,
       MemorySegment.NULL, 0, MemorySegment.NULL, 1, pImageMemoryBarrier);
@@ -702,8 +707,8 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static void copyBufferToImage(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
-                                          MemorySegment pVkGraphicsQueue, BufferMemory stagingBufferPair,
-                                          ImageMemory imageMemoryPair, int width, int height) {
+                                          MemorySegment pVkGraphicsQueue, BufferMemory bufferMemory,
+                                          ImageMemory imageMemory, int width, int height) {
     var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
 
     var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
@@ -721,10 +726,36 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vulkan_h.vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), stagingBufferPair.buffer().get(C_POINTER, 0),
-      imageMemoryPair.image().get(C_POINTER, 0), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
+    vulkan_h.vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer().get(C_POINTER, 0),
+      imageMemory.image().get(C_POINTER, 0), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
+  }
+
+  protected static void copyImageToBuffer(Arena arena, MemorySegment pCommandPool, MemorySegment device,
+                                          MemorySegment pVkGraphicsQueue, ImageMemory imageMemory,
+                                          BufferMemory bufferMemory, int width, int height) {
+    var pCommandBuffer = beginSingleTimeCommands(arena, pCommandPool, device);
+
+    var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
+    VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
+    VkBufferImageCopy.bufferRowLength(pBufferImageCopyRegion, 0);
+    VkBufferImageCopy.bufferImageHeight(pBufferImageCopyRegion, 0);
+    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceLayers.mipLevel(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
+    VkImageSubresourceLayers.baseArrayLayer(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
+    VkImageSubresourceLayers.layerCount(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 1);
+    VkExtent3D.width(VkBufferImageCopy.imageExtent(pBufferImageCopyRegion), width); // Number of texels
+    VkExtent3D.height(VkBufferImageCopy.imageExtent(pBufferImageCopyRegion), height); // Number of texels
+    VkExtent3D.depth(VkBufferImageCopy.imageExtent(pBufferImageCopyRegion), 1);
+    VkOffset3D.x(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
+    VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
+    VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
+
+    vulkan_h.vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
+      vulkan_h.VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
+
+    endSingleTimeCommands(arena, pCommandPool, device, pVkGraphicsQueue, pCommandBuffer);
   }
 
   protected static MemorySegment createSemaphores(Arena arena, MemorySegment vkDevice) {
