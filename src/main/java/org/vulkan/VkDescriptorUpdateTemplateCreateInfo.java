@@ -23,7 +23,7 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  *     VkDescriptorUpdateTemplateType templateType;
  *     VkDescriptorSetLayout descriptorSetLayout;
  *     VkPipelineBindPoint pipelineBindPoint;
- *     VkPipelineLayout pipelineLayout;
+ *     VkPipelineLayout layout;
  *     uint32_t set;
  * }
  * }
@@ -46,7 +46,7 @@ public class VkDescriptorUpdateTemplateCreateInfo {
         vulkan_h.C_POINTER.withName("descriptorSetLayout"),
         vulkan_h.C_INT.withName("pipelineBindPoint"),
         MemoryLayout.paddingLayout(4),
-        vulkan_h.C_POINTER.withName("pipelineLayout"),
+        vulkan_h.C_POINTER.withName("layout"),
         vulkan_h.C_INT.withName("set"),
         MemoryLayout.paddingLayout(4)
     ).withName("VkDescriptorUpdateTemplateCreateInfo");
@@ -410,12 +410,12 @@ public class VkDescriptorUpdateTemplateCreateInfo {
         struct.set(pipelineBindPoint$LAYOUT, pipelineBindPoint$OFFSET, fieldValue);
     }
 
-    private static final AddressLayout pipelineLayout$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pipelineLayout"));
+    private static final AddressLayout pipelineLayout$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("layout"));
 
     /**
      * Layout for field:
      * {@snippet lang=c :
-     * VkPipelineLayout pipelineLayout
+     * VkPipelineLayout layout
      * }
      */
     public static final AddressLayout pipelineLayout$layout() {
@@ -427,7 +427,7 @@ public class VkDescriptorUpdateTemplateCreateInfo {
     /**
      * Offset for field:
      * {@snippet lang=c :
-     * VkPipelineLayout pipelineLayout
+     * VkPipelineLayout layout
      * }
      */
     public static final long pipelineLayout$offset() {
@@ -437,7 +437,7 @@ public class VkDescriptorUpdateTemplateCreateInfo {
     /**
      * Getter for field:
      * {@snippet lang=c :
-     * VkPipelineLayout pipelineLayout
+     * VkPipelineLayout layout
      * }
      */
     public static MemorySegment pipelineLayout(MemorySegment struct) {
@@ -447,7 +447,7 @@ public class VkDescriptorUpdateTemplateCreateInfo {
     /**
      * Setter for field:
      * {@snippet lang=c :
-     * VkPipelineLayout pipelineLayout
+     * VkPipelineLayout layout
      * }
      */
     public static void pipelineLayout(MemorySegment struct, MemorySegment fieldValue) {

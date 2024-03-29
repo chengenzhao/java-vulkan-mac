@@ -849,7 +849,7 @@ public abstract class HelloApplication1 extends Application {
     return pDescriptorSetLayout;
   }
 
-  protected static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,MemorySegment renderPass){
+  protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice, MemorySegment renderPass){
     //load shader, make sure compile shader to spv first.
     /**
      * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
@@ -974,10 +974,10 @@ public abstract class HelloApplication1 extends Application {
     return createGraphicsPipeline(arena, windowWidth, windowHeight, vkDevice, pVertShaderModule, pFragShaderModule, pVertexInputStateInfo, renderPass, pDescriptorSetLayout);
   }
 
-  protected static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
-                                                             MemorySegment vertShaderModule, MemorySegment fragShaderModule,
-                                                             MemorySegment vertexInputStateInfo, MemorySegment renderPass,
-                                                             MemorySegment descriptorSetLayout) {
+  protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,
+                                                         MemorySegment vertShaderModule, MemorySegment fragShaderModule,
+                                                         MemorySegment vertexInputStateInfo, MemorySegment renderPass,
+                                                         MemorySegment descriptorSetLayout) {
     var pViewport = VkViewport.allocate(arena);
     VkViewport.x(pViewport, 0.0f);
     VkViewport.y(pViewport, 0.0f);
@@ -1106,7 +1106,7 @@ public abstract class HelloApplication1 extends Application {
     } else {
       System.out.println("vkCreateGraphicsPipelines succeeded");
     }
-    return new PipelineLayoutPair(pipeline, pipelineLayout);
+    return new PipelineLayout(pipeline, pipelineLayout);
   }
 
   // get a file from the resources folder
@@ -1193,8 +1193,8 @@ public abstract class HelloApplication1 extends Application {
     pOffsets.setAtIndex(C_LONG, 0, 0);
     vulkan_h.vkCmdBindVertexBuffers(commandBuffer, 0, 1, pVertexBuffer, pOffsets);
 
-    setPushConstants(arena, pipelineLayoutPair.pipelineLayout(), commandBuffer, windowWidth, windowHeight, frameIndex);
-    vulkan_h.vkCmdBindDescriptorSets(commandBuffer, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pipelineLayout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
+    setPushConstants(arena, pipelineLayoutPair.layout(), commandBuffer, windowWidth, windowHeight, frameIndex);
+    vulkan_h.vkCmdBindDescriptorSets(commandBuffer, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.layout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
 
     if (indices instanceof int[] intIndices) {
       vulkan_h.vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, vulkan_h.VK_INDEX_TYPE_UINT32());

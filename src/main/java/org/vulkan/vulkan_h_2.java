@@ -5320,7 +5320,7 @@ public class vulkan_h_2 extends vulkan_h_3 {
     /**
      * Function descriptor for:
      * {@snippet lang=c :
-     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks *pAllocator)
+     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout layout, const VkAllocationCallbacks *pAllocator)
      * }
      */
     public static FunctionDescriptor vkDestroyPipelineLayout$descriptor() {
@@ -5330,7 +5330,7 @@ public class vulkan_h_2 extends vulkan_h_3 {
     /**
      * Downcall method handle for:
      * {@snippet lang=c :
-     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks *pAllocator)
+     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout layout, const VkAllocationCallbacks *pAllocator)
      * }
      */
     public static MethodHandle vkDestroyPipelineLayout$handle() {
@@ -5338,7 +5338,7 @@ public class vulkan_h_2 extends vulkan_h_3 {
     }
     /**
      * {@snippet lang=c :
-     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks *pAllocator)
+     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout layout, const VkAllocationCallbacks *pAllocator)
      * }
      */
     public static void vkDestroyPipelineLayout(MemorySegment device, MemorySegment pipelineLayout, MemorySegment pAllocator) {
