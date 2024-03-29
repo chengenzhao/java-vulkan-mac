@@ -8,8 +8,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vulkan.*;
 
+import java.io.IOException;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static com.example.VKResult.*;
@@ -22,8 +24,8 @@ import static org.vulkan.vulkan_h.*;
  * 3. create image and imageview
  * 4. create render pass
  * 5. create command pool and buffer
- * 6. create frame buffer
- * 7. create pipeline
+ * 6. create pipeline
+ * 7. create frame buffer
  * 8. semaphore fence
  * 9. render loop
  */
@@ -84,7 +86,7 @@ public class HelloApplication extends HelloApplication1 {
     var imageview = createImageView(arena, device, vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
 
     //4. render pass
-    var renderPass = createRenderPass(arena, device);
+    var renderPass = createRenderPass(arena, device, vulkan_h.VK_FORMAT_B8G8R8A8_SRGB(),vulkan_h.VK_FORMAT_D32_SFLOAT());
 
     //5. command pool
     var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
@@ -94,7 +96,10 @@ public class HelloApplication extends HelloApplication1 {
 
     var commandBuffers = createCommandBuffers(arena, device, commondPool, 1);
 
-    //6. frame buffer
+    //6. pipeline
+    var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
+
+    //7. frame buffer
     var depthImageMemory = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat,
       vulkan_h.VK_IMAGE_TILING_OPTIMAL(), vulkan_h.VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), vulkan_h.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
     var pDepthImageView = createImageView(arena, device, depthFormat, vulkan_h.VK_IMAGE_ASPECT_DEPTH_BIT(), depthImageMemory.image());
@@ -102,9 +107,6 @@ public class HelloApplication extends HelloApplication1 {
     transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, depthImageMemory.image(), depthFormat, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
 
     var framebuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageview, renderPass, pDepthImageView);
-
-    //7. pipeline
-    var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
 
     //8. semaphore and fence
     var pSemaphores = createSemaphores(arena, device);
@@ -124,6 +126,8 @@ public class HelloApplication extends HelloApplication1 {
     transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, image.image(),
       vulkan_h.VK_FORMAT_R8G8B8A8_SRGB(), vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED(), vulkan_h.VK_IMAGE_LAYOUT_GENERAL());
     copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
 
     //show the buffer data to the writable image of JavaFX
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
@@ -210,5 +214,183 @@ public class HelloApplication extends HelloApplication1 {
 
   public static void main(String[] args) {
     launch();
+  }
+
+  protected static PipelineLayoutPair createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice,MemorySegment renderPass){
+    //load shader, make sure compile shader to spv first.
+    /**
+     * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
+     * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.frag -o frag.spv
+     */
+    byte[] vertShaderBytes = null;
+    byte[] fragShaderBytes = null;
+    try {
+      vertShaderBytes = getFileFromResourceAsStream("shader/vert.spv").readAllBytes();
+      fragShaderBytes = getFileFromResourceAsStream("shader/frag.spv").readAllBytes();
+    } catch (IOException _) {
+      System.out.println("could not read shader file(s)");
+      System.exit(-1);
+    }
+
+    var pVertShaderModule = createShaderModule(vkDevice, vertShaderBytes, arena);
+    var pFragShaderModule = createShaderModule(vkDevice, fragShaderBytes, arena);
+
+    var pVertShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
+    VkPipelineShaderStageCreateInfo.sType(pVertShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(pVertShaderStageInfo, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPipelineShaderStageCreateInfo.module(pVertShaderStageInfo, pVertShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(pVertShaderStageInfo, arena.allocateFrom("main", StandardCharsets.UTF_8));
+
+    var pFragShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
+    VkPipelineShaderStageCreateInfo.sType(pFragShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(pFragShaderStageInfo, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+    VkPipelineShaderStageCreateInfo.module(pFragShaderStageInfo, pFragShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(pFragShaderStageInfo, arena.allocateFrom("main",StandardCharsets.UTF_8));
+
+    //fixed functions
+    var dynamicStates = arena.allocate(C_INT, 2);
+    dynamicStates.setAtIndex(C_INT, 0, vulkan_h.VK_DYNAMIC_STATE_VIEWPORT());
+    dynamicStates.setAtIndex(C_INT, 1, vulkan_h.VK_DYNAMIC_STATE_SCISSOR());
+
+    var dynamicState = VkPipelineDynamicStateCreateInfo.allocate(arena);
+    VkPipelineDynamicStateCreateInfo.sType(dynamicState, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO());
+    VkPipelineDynamicStateCreateInfo.dynamicStateCount(dynamicState, (int)(dynamicStates.byteSize()/C_INT.byteSize()));
+    VkPipelineDynamicStateCreateInfo.pDynamicStates(dynamicState, dynamicStates);
+
+    var pVertexInputStateInfo = VkPipelineVertexInputStateCreateInfo.allocate(arena);
+    VkPipelineVertexInputStateCreateInfo.sType(pVertexInputStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO());
+    VkPipelineVertexInputStateCreateInfo.vertexBindingDescriptionCount(pVertexInputStateInfo, 0);
+    VkPipelineVertexInputStateCreateInfo.pVertexBindingDescriptions(pVertexInputStateInfo, MemorySegment.NULL);
+    VkPipelineVertexInputStateCreateInfo.vertexAttributeDescriptionCount(pVertexInputStateInfo, 0);
+    VkPipelineVertexInputStateCreateInfo.pVertexAttributeDescriptions(pVertexInputStateInfo, MemorySegment.NULL);
+
+    var inputAssemblyStateInfo = VkPipelineInputAssemblyStateCreateInfo.allocate(arena);
+    VkPipelineInputAssemblyStateCreateInfo.sType(inputAssemblyStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO());
+    VkPipelineInputAssemblyStateCreateInfo.topology(inputAssemblyStateInfo, vulkan_h.VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST());
+    VkPipelineInputAssemblyStateCreateInfo.primitiveRestartEnable(inputAssemblyStateInfo, vulkan_h.VK_FALSE());
+
+    var pViewport = VkViewport.allocate(arena);
+    VkViewport.x(pViewport, 0.0f);
+    VkViewport.y(pViewport, 0.0f);
+    VkViewport.width(pViewport, windowWidth);
+    VkViewport.height(pViewport, windowHeight);
+    VkViewport.minDepth(pViewport, 0f);
+    VkViewport.maxDepth(pViewport, 1f);
+
+    var scissor = VkRect2D.allocate(arena);
+    var scissorOffset = VkRect2D.offset(scissor);
+    var scissorExtent = VkRect2D.extent(scissor);
+    VkOffset2D.x(scissorOffset, 0);
+    VkOffset2D.y(scissorOffset, 0);
+    VkExtent2D.width(scissorExtent, windowWidth);
+    VkExtent2D.height(scissorExtent, windowHeight);
+
+    var viewportState = VkPipelineViewportStateCreateInfo.allocate(arena);
+    VkPipelineViewportStateCreateInfo.sType(viewportState, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO());
+    VkPipelineViewportStateCreateInfo.viewportCount(viewportState, 1);
+    VkPipelineViewportStateCreateInfo.pViewports(viewportState, pViewport);
+    VkPipelineViewportStateCreateInfo.scissorCount(viewportState, 1);
+    VkPipelineViewportStateCreateInfo.pScissors(viewportState, scissor);
+
+    var rasterizer = VkPipelineRasterizationStateCreateInfo.allocate(arena);
+    VkPipelineRasterizationStateCreateInfo.sType(rasterizer, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO());
+    VkPipelineRasterizationStateCreateInfo.depthClampEnable(rasterizer, vulkan_h.VK_FALSE());
+    VkPipelineRasterizationStateCreateInfo.rasterizerDiscardEnable(rasterizer, vulkan_h.VK_FALSE());
+    VkPipelineRasterizationStateCreateInfo.polygonMode(rasterizer, vulkan_h.VK_POLYGON_MODE_FILL());
+    VkPipelineRasterizationStateCreateInfo.lineWidth(rasterizer, 1.0f);
+    VkPipelineRasterizationStateCreateInfo.cullMode(rasterizer, vulkan_h.VK_CULL_MODE_BACK_BIT());
+    VkPipelineRasterizationStateCreateInfo.frontFace(rasterizer, vulkan_h.VK_FRONT_FACE_CLOCKWISE());
+    VkPipelineRasterizationStateCreateInfo.depthBiasEnable(rasterizer, vulkan_h.VK_FALSE());
+
+    var multisampling = VkPipelineMultisampleStateCreateInfo.allocate(arena);
+    VkPipelineMultisampleStateCreateInfo.sType(multisampling, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO());
+    VkPipelineMultisampleStateCreateInfo.sampleShadingEnable(multisampling, vulkan_h.VK_FALSE());
+    VkPipelineMultisampleStateCreateInfo.rasterizationSamples(multisampling, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+    VkPipelineMultisampleStateCreateInfo.minSampleShading(multisampling, 1.0f);
+    VkPipelineMultisampleStateCreateInfo.pSampleMask(multisampling, MemorySegment.NULL);
+    VkPipelineMultisampleStateCreateInfo.alphaToCoverageEnable(multisampling, vulkan_h.VK_FALSE());
+    VkPipelineMultisampleStateCreateInfo.alphaToOneEnable(multisampling, vulkan_h.VK_FALSE());
+
+    var depthStencilState = MemorySegment.NULL;
+
+    var pipelineColorBlendAttachmentState = VkPipelineColorBlendAttachmentState.allocate(arena);
+    VkPipelineColorBlendAttachmentState.colorWriteMask(pipelineColorBlendAttachmentState, vulkan_h.VK_COLOR_COMPONENT_R_BIT() | vulkan_h.VK_COLOR_COMPONENT_G_BIT() | vulkan_h.VK_COLOR_COMPONENT_B_BIT() | vulkan_h.VK_COLOR_COMPONENT_A_BIT());
+    VkPipelineColorBlendAttachmentState.blendEnable(pipelineColorBlendAttachmentState, vulkan_h.VK_FALSE());
+    VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ONE());
+    VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ZERO());
+    VkPipelineColorBlendAttachmentState.colorBlendOp(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_OP_ADD());
+    VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ONE());
+    VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ZERO());
+    VkPipelineColorBlendAttachmentState.alphaBlendOp(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_OP_ADD());
+
+    var colorBlending = VkPipelineColorBlendStateCreateInfo.allocate(arena);
+    VkPipelineColorBlendStateCreateInfo.sType(colorBlending, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO());
+    VkPipelineColorBlendStateCreateInfo.logicOpEnable(colorBlending, vulkan_h.VK_FALSE());
+    VkPipelineColorBlendStateCreateInfo.logicOp(colorBlending, vulkan_h.VK_LOGIC_OP_COPY());
+    VkPipelineColorBlendStateCreateInfo.attachmentCount(colorBlending, 1);
+    VkPipelineColorBlendStateCreateInfo.pAttachments(colorBlending, pipelineColorBlendAttachmentState);
+    var blendConstants = arena.allocate(C_FLOAT, 4);
+    blendConstants.setAtIndex(C_FLOAT, 0, 0f);
+    blendConstants.setAtIndex(C_FLOAT, 1, 0f);
+    blendConstants.setAtIndex(C_FLOAT, 2, 0f);
+    blendConstants.setAtIndex(C_FLOAT, 3, 0f);
+    VkPipelineColorBlendStateCreateInfo.blendConstants(colorBlending, blendConstants);
+
+    var pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo.allocate(arena);
+    VkPipelineLayoutCreateInfo.sType(pipelineLayoutCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO());
+    VkPipelineLayoutCreateInfo.setLayoutCount(pipelineLayoutCreateInfo, 0);
+    VkPipelineLayoutCreateInfo.pSetLayouts(pipelineLayoutCreateInfo, MemorySegment.NULL);
+    VkPipelineLayoutCreateInfo.pushConstantRangeCount(pipelineLayoutCreateInfo, 0);
+    VkPipelineLayoutCreateInfo.pPushConstantRanges(pipelineLayoutCreateInfo, MemorySegment.NULL);
+
+    var pipelineLayout = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreatePipelineLayout(vkDevice, pipelineLayoutCreateInfo, MemorySegment.NULL, pipelineLayout));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreatePipelineLayout failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreatePipelineLayout succeeded");
+    }
+
+    var pipelineCreateInfo = VkGraphicsPipelineCreateInfo.allocate(arena);
+    VkGraphicsPipelineCreateInfo.sType(pipelineCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
+    MemorySegment stages = VkPipelineShaderStageCreateInfo.allocateArray(2, arena);
+    assert (stages.byteSize() / 2 == VkPipelineShaderStageCreateInfo.sizeof());
+    MemorySegment stage0 = stages.asSlice(0, VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
+    VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPipelineShaderStageCreateInfo.module(stage0, pVertShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(stage0, arena.allocateFrom("main", StandardCharsets.UTF_8));
+    MemorySegment stage1 = stages.asSlice(VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
+    VkPipelineShaderStageCreateInfo.sType(stage1, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(stage1, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+    VkPipelineShaderStageCreateInfo.module(stage1, pFragShaderModule.get(C_POINTER, 0));
+    VkPipelineShaderStageCreateInfo.pName(stage1, arena.allocateFrom("main", StandardCharsets.UTF_8));
+    VkGraphicsPipelineCreateInfo.stageCount(pipelineCreateInfo, 2);
+    VkGraphicsPipelineCreateInfo.pStages(pipelineCreateInfo, stages);
+
+    VkGraphicsPipelineCreateInfo.pVertexInputState(pipelineCreateInfo, pVertexInputStateInfo);
+    VkGraphicsPipelineCreateInfo.pInputAssemblyState(pipelineCreateInfo, inputAssemblyStateInfo);
+    VkGraphicsPipelineCreateInfo.pViewportState(pipelineCreateInfo, viewportState);
+    VkGraphicsPipelineCreateInfo.pRasterizationState(pipelineCreateInfo, rasterizer);
+    VkGraphicsPipelineCreateInfo.pMultisampleState(pipelineCreateInfo, multisampling);
+    VkGraphicsPipelineCreateInfo.pDepthStencilState(pipelineCreateInfo, depthStencilState);
+    VkGraphicsPipelineCreateInfo.pColorBlendState(pipelineCreateInfo, colorBlending);
+    VkGraphicsPipelineCreateInfo.pDynamicState(pipelineCreateInfo, dynamicState);
+    VkGraphicsPipelineCreateInfo.layout(pipelineCreateInfo, pipelineLayout.get(C_POINTER, 0));
+    VkGraphicsPipelineCreateInfo.renderPass(pipelineCreateInfo, renderPass.get(C_POINTER, 0));
+    VkGraphicsPipelineCreateInfo.subpass(pipelineCreateInfo, 0);
+    VkGraphicsPipelineCreateInfo.basePipelineHandle(pipelineCreateInfo, vulkan_h.VK_NULL_HANDLE());
+    VkGraphicsPipelineCreateInfo.basePipelineIndex(pipelineCreateInfo, -1);
+    var pipeline = arena.allocate(C_POINTER, 1);
+    result = VKResult.vkResult(vulkan_h.vkCreateGraphicsPipelines(vkDevice,
+      vulkan_h.VK_NULL_HANDLE(), 1, pipelineCreateInfo, MemorySegment.NULL, pipeline));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateGraphicsPipelines failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateGraphicsPipelines succeeded");
+    }
+    return new PipelineLayoutPair(pipeline, pipelineLayout);
   }
 }

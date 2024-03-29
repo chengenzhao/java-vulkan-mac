@@ -262,7 +262,7 @@ public abstract class HelloApplication1 extends Application {
     return pVkInstance;
   }
 
-  protected static MemorySegment getShaderModule(MemorySegment vkDevice, byte[] shaderSpv, Arena arena) {
+  protected static MemorySegment createShaderModule(MemorySegment vkDevice, byte[] shaderSpv, Arena arena) {
     var pShaderModuleCreateInfo = VkShaderModuleCreateInfo.allocate(arena);
     VkShaderModuleCreateInfo.sType(pShaderModuleCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO());
     VkShaderModuleCreateInfo.codeSize(pShaderModuleCreateInfo, shaderSpv.length);
@@ -315,65 +315,62 @@ public abstract class HelloApplication1 extends Application {
     return pImageView;
   }
 
-  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device) {
-    int imageFormat = vulkan_h.VK_FORMAT_B8G8R8A8_SRGB();
-    int depthFormat = vulkan_h.VK_FORMAT_D32_SFLOAT();
+  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device, int imageFormat, int depthFormat) {
+//    var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
 
-    var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
+    var pAttachment = VkAttachmentDescription.allocate(arena);//pAttachments.asSlice(0, VkAttachmentDescription.sizeof());
+//    assert (VkAttachmentDescription.sizeof() == pAttachments.byteSize() / 2);
 
-    var attachment0 = pAttachments.asSlice(0, VkAttachmentDescription.sizeof());
-    assert (VkAttachmentDescription.sizeof() == pAttachments.byteSize() / 2);
-
-    VkAttachmentDescription.format(attachment0, imageFormat);
-    VkAttachmentDescription.samples(attachment0, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
-    VkAttachmentDescription.loadOp(attachment0, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
-    VkAttachmentDescription.storeOp(attachment0, vulkan_h.VK_ATTACHMENT_STORE_OP_STORE());
-    VkAttachmentDescription.stencilLoadOp(attachment0, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
-    VkAttachmentDescription.stencilStoreOp(attachment0, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
-    VkAttachmentDescription.initialLayout(attachment0, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-    VkAttachmentDescription.finalLayout(attachment0, vulkan_h.VK_IMAGE_LAYOUT_PRESENT_SRC_KHR());
+    VkAttachmentDescription.format(pAttachment, imageFormat);
+    VkAttachmentDescription.samples(pAttachment, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+    VkAttachmentDescription.loadOp(pAttachment, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
+    VkAttachmentDescription.storeOp(pAttachment, vulkan_h.VK_ATTACHMENT_STORE_OP_STORE());
+    VkAttachmentDescription.stencilLoadOp(pAttachment, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
+    VkAttachmentDescription.stencilStoreOp(pAttachment, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
+    VkAttachmentDescription.initialLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+    VkAttachmentDescription.finalLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
 
     var pColorAttachmentReference = VkAttachmentReference.allocate(arena);
     VkAttachmentReference.attachment(pColorAttachmentReference, 0);
     VkAttachmentReference.layout(pColorAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL());
 
-    var attachment1 = pAttachments.asSlice(VkAttachmentDescription.sizeof(), VkAttachmentDescription.sizeof());
-    VkAttachmentDescription.format(attachment1, depthFormat);
-    VkAttachmentDescription.samples(attachment1, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
-    VkAttachmentDescription.loadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
-    VkAttachmentDescription.storeOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
-    VkAttachmentDescription.stencilLoadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
-    VkAttachmentDescription.stencilStoreOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
-    VkAttachmentDescription.initialLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-    VkAttachmentDescription.finalLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
-
-    var pDepthAttachmentReference = VkAttachmentReference.allocate(arena);
-    VkAttachmentReference.attachment(pDepthAttachmentReference, 1);
-    VkAttachmentReference.layout(pDepthAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+//    var attachment1 = pAttachments.asSlice(VkAttachmentDescription.sizeof(), VkAttachmentDescription.sizeof());
+//    VkAttachmentDescription.format(attachment1, depthFormat);
+//    VkAttachmentDescription.samples(attachment1, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+//    VkAttachmentDescription.loadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
+//    VkAttachmentDescription.storeOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
+//    VkAttachmentDescription.stencilLoadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
+//    VkAttachmentDescription.stencilStoreOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
+//    VkAttachmentDescription.initialLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+//    VkAttachmentDescription.finalLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+//
+//    var pDepthAttachmentReference = VkAttachmentReference.allocate(arena);
+//    VkAttachmentReference.attachment(pDepthAttachmentReference, 1);
+//    VkAttachmentReference.layout(pDepthAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
 
     var pSubpassDescription = VkSubpassDescription.allocate(arena);
     VkSubpassDescription.pipelineBindPoint(pSubpassDescription, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS());
     VkSubpassDescription.colorAttachmentCount(pSubpassDescription, 1);
     VkSubpassDescription.pColorAttachments(pSubpassDescription, pColorAttachmentReference);
-    VkSubpassDescription.pDepthStencilAttachment(pSubpassDescription, pDepthAttachmentReference);
+//    VkSubpassDescription.pDepthStencilAttachment(pSubpassDescription, pDepthAttachmentReference);
 
-    var pSubpassDependency = VkSubpassDependency.allocate(arena);
-    VkSubpassDependency.srcSubpass(pSubpassDependency, vulkan_h.VK_SUBPASS_EXTERNAL());
-    VkSubpassDependency.dstSubpass(pSubpassDependency, 0);
-    VkSubpassDependency.srcStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
-    VkSubpassDependency.srcAccessMask(pSubpassDependency, 0);
-    VkSubpassDependency.dstStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
-    VkSubpassDependency.dstAccessMask(pSubpassDependency, vulkan_h.VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
+//    var pSubpassDependency = VkSubpassDependency.allocate(arena);
+//    VkSubpassDependency.srcSubpass(pSubpassDependency, vulkan_h.VK_SUBPASS_EXTERNAL());
+//    VkSubpassDependency.dstSubpass(pSubpassDependency, 0);
+//    VkSubpassDependency.srcStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
+//    VkSubpassDependency.srcAccessMask(pSubpassDependency, 0);
+//    VkSubpassDependency.dstStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
+//    VkSubpassDependency.dstAccessMask(pSubpassDependency, vulkan_h.VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
 
     var pRenderPass = arena.allocate(C_POINTER);
     var pRenderPassCreateInfo = VkRenderPassCreateInfo.allocate(arena);
     VkRenderPassCreateInfo.sType(pRenderPassCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO());
-    VkRenderPassCreateInfo.attachmentCount(pRenderPassCreateInfo, 2);
-    VkRenderPassCreateInfo.pAttachments(pRenderPassCreateInfo, pAttachments);
+    VkRenderPassCreateInfo.attachmentCount(pRenderPassCreateInfo, 1);
+    VkRenderPassCreateInfo.pAttachments(pRenderPassCreateInfo, pAttachment);
     VkRenderPassCreateInfo.subpassCount(pRenderPassCreateInfo, 1);
     VkRenderPassCreateInfo.pSubpasses(pRenderPassCreateInfo, pSubpassDescription);
-    VkRenderPassCreateInfo.dependencyCount(pRenderPassCreateInfo, 1);
-    VkRenderPassCreateInfo.pDependencies(pRenderPassCreateInfo, pSubpassDependency);
+//    VkRenderPassCreateInfo.dependencyCount(pRenderPassCreateInfo, 1);
+//    VkRenderPassCreateInfo.pDependencies(pRenderPassCreateInfo, pSubpassDependency);
 
     var result = VKResult.vkResult(vulkan_h.vkCreateRenderPass(device, pRenderPassCreateInfo, MemorySegment.NULL, pRenderPass));
     if (result != VK_SUCCESS) {
@@ -622,8 +619,8 @@ public abstract class HelloApplication1 extends Application {
       VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
     }
 
-    int sourceStage = 0;
-    int destinationStage = 0;
+    int sourceStage;
+    int destinationStage;
     if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_GENERAL()) {
       VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
       VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_GENERAL());
@@ -868,8 +865,8 @@ public abstract class HelloApplication1 extends Application {
       System.exit(-1);
     }
 
-    var pVertShaderModule = getShaderModule(vkDevice, vertShaderBytes, arena);
-    var pFragShaderModule = getShaderModule(vkDevice, fragShaderBytes, arena);
+    var pVertShaderModule = createShaderModule(vkDevice, vertShaderBytes, arena);
+    var pFragShaderModule = createShaderModule(vkDevice, fragShaderBytes, arena);
 
     var pVertShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
     VkPipelineShaderStageCreateInfo.sType(pVertShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
@@ -1145,4 +1142,151 @@ public abstract class HelloApplication1 extends Application {
       System.exit(-1);
     }
   }
+/**
+  protected static void createRenderPassesForSwapchain(Arena arena, int windowWidth, int windowHeight,
+                                             MemorySegment pRenderPass, PipelineLayoutPair pipelineLayoutPair,
+                                             MemorySegment frameBuffer, MemorySegment commandBuffer,
+                                             MemorySegment pVertexBuffer, MemorySegment pIndexBuffer, Object indices,
+                                             int frameIndex, MemorySegment pDescriptorSets) {
+    var pCommandBufferBeginInfo = VkCommandBufferBeginInfo.allocate(arena);
+    VkCommandBufferBeginInfo.sType(pCommandBufferBeginInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
+
+    var result = VKResult.vkResult(vulkan_h.vkBeginCommandBuffer(commandBuffer, pCommandBufferBeginInfo));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkBeginCommandBuffer failed: " + result);
+      System.exit(-1);
+    }
+
+    var pRenderPassBeginInfo = VkRenderPassBeginInfo.allocate(arena);
+    VkRenderPassBeginInfo.sType(pRenderPassBeginInfo, vulkan_h.VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO());
+    VkRenderPassBeginInfo.renderPass(pRenderPassBeginInfo, pRenderPass.get(C_POINTER, 0));
+    VkRenderPassBeginInfo.framebuffer(pRenderPassBeginInfo, frameBuffer.get(C_POINTER, 0));
+    VkOffset2D.x(VkRect2D.offset(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), 0);
+    VkOffset2D.y(VkRect2D.offset(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), 0);
+    VkExtent2D.width(VkRect2D.extent(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), windowWidth);
+    VkExtent2D.height(VkRect2D.extent(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), windowHeight);
+    VkRenderPassBeginInfo.clearValueCount(pRenderPassBeginInfo, 2);
+    // VkClearValue* pClearValues = malloc(sizeof(VkClearValue) * 2);
+    var pClearValues = arena.allocate(VkClearValue.layout(), 2);
+    // like doing: '&pClearValues[i]' in C
+    IntFunction<MemorySegment> slicer = i -> pClearValues.asSlice(i * VkClearValue.sizeof(), VkClearValue.sizeof());
+
+    // VkClearValue* pClearValue = &pClearValues[0];
+    var pClearValue = slicer.apply(0); // reference to the first VkClearValue in the array
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 0, 0.0f);
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 1, 0.0f);
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 2, 0.0f);
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 3, 1.0f);
+
+    // VkClearValue* pDepthClearValue = &pClearValues[1];
+    var pDepthClearValue = slicer.apply(1); // reference to the second VkClearValue in the array
+    VkClearDepthStencilValue.depth(VkClearValue.depthStencil(pDepthClearValue), 1f);
+    VkClearDepthStencilValue.stencil(VkClearValue.depthStencil(pDepthClearValue), 0);
+
+    VkRenderPassBeginInfo.pClearValues(pRenderPassBeginInfo, pClearValues);
+
+    vulkan_h.vkCmdBeginRenderPass(commandBuffer, pRenderPassBeginInfo, vulkan_h.VK_SUBPASS_CONTENTS_INLINE());
+    vulkan_h.vkCmdBindPipeline(commandBuffer,
+      vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pipeline().get(C_POINTER, 0));
+
+    var pOffsets = arena.allocate(C_POINTER, 1);
+    pOffsets.setAtIndex(C_LONG, 0, 0);
+    vulkan_h.vkCmdBindVertexBuffers(commandBuffer, 0, 1, pVertexBuffer, pOffsets);
+
+    setPushConstants(arena, pipelineLayoutPair.pipelineLayout(), commandBuffer, windowWidth, windowHeight, frameIndex);
+    vulkan_h.vkCmdBindDescriptorSets(commandBuffer, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pipelineLayout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
+
+    if (indices instanceof int[] intIndices) {
+      vulkan_h.vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, vulkan_h.VK_INDEX_TYPE_UINT32());
+      vulkan_h.vkCmdDrawIndexed(commandBuffer, intIndices.length, 1, 0, 0, 0);
+    } else if (indices instanceof char[] charIndices) {
+      vulkan_h.vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, vulkan_h.VK_INDEX_TYPE_UINT16());
+      vulkan_h.vkCmdDrawIndexed(commandBuffer, charIndices.length, 1, 0, 0, 0);
+    }
+    vulkan_h.vkCmdEndRenderPass(commandBuffer);
+
+    result = VKResult.vkResult(vulkan_h.vkEndCommandBuffer(commandBuffer));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkEndCommandBuffer failed: " + result);
+      System.exit(-1);
+    }
+  }
+
+  static void setPushConstants(Arena arena, MemorySegment pPipelineLayout, MemorySegment pCommandBuffer, int windowWidth, int windowHeight, int frameBufferIndex) {
+    // View matrix (camera).
+    // We use a simple translation matrix to put the camera at camPos.
+    // TODO: Use a lookAt matrix to do something similar to: glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    float[] camPos = new float[]{ 0.f, 0.f, 2f };
+    float[] view = new float[] {
+      1f, 0f, 0f, camPos[0],
+      0f, 1f, 0f, camPos[1],
+      0f, 0f, 1f, camPos[2],
+      0f, 0f, 0f, 1f
+    };
+
+    // Projection matrix.
+    // glm::mat4 projection = glm::perspective(glm::radians(70.f), 1700.f / 900.f, 0.1f,  200.0f);
+    //                                        (fovy,               aspect,         zNear, zFar)
+    // glm::perspective creates a perspective matrix with the arguments (fovy, aspect, zNear, zFar) like so:
+    //
+    //  [ 1 / (aspect * tan(fovy/2))   0 0 0                                ]
+    //  [ 0   1 / (tan(fovy/2))           0 0                               ]
+    //  [ 0   0   zFar / (zNear - zFar)    -(zFar * zNear) / (zFar - zNear) ]
+    //  [ 0   0   1  0                                                      ]
+    //
+    //  projection[1][1] *= -1; ------------- Why?
+    float fieldOfViewY = 1.0472f; // 60 degrees in radians
+    float aspectRatio =  (float) windowWidth / windowHeight;
+    float zNear = 0.1f;
+    float zFar = 10f;
+
+    float tanHalfFov = (float) Math.tan(fieldOfViewY / 2f);
+
+    float[] projection = new float[] {
+      1f / (aspectRatio * tanHalfFov), 0f, 0f, 0f,
+      0f, -1f / tanHalfFov, 0f, 0f,
+      0f, 0f, zFar / (zNear - zFar), -(zFar * zNear) / (zFar - zNear),
+      0f, 0f, 1f, 0f
+    };
+    // Model matrix.
+    // glm::mat4 model = glm::rotate(glm::mat4{ 1.0f }, glm::radians(_frameNumber * 0.4f), glm::vec3(0, 1, 0));
+    //        ( xx(1-c)+c	xy(1-c)-zs  xz(1-c)+ys	 0  )
+    //		  |					    |
+    //		  | yx(1-c)+zs	yy(1-c)+c   yz(1-c)-xs	 0  |
+    //		  | xz(1-c)-ys	yz(1-c)+xs  zz(1-c)+c	 0  |
+    //		  |					    |
+    //		  (	 0	     0		 0	 1  )
+    //
+    // Where c = cos(angle),	s = sine(angle), and ||( x,y,z )|| = 1 (if not, the GL will normalize this vector).
+    // This is rotation by an angle *around* an axis - not rotation *about* an axis as in simple yaw/pitch/roll.
+    float rotationAngle = frameBufferIndex * 0.05f;
+    float[] rotationAxis = new float[] {0f, 0f, 1f};
+    // TODO: Check if needs to be normed.
+    rotationAxis = Matrix.normalizeVec3FastInvSqrt(rotationAxis);
+    float[] model = new float[] {
+      (float) (((rotationAxis[0] * rotationAxis[0]) * (1 - Math.cos(rotationAngle))) + Math.cos(rotationAngle)),                     // xx(1-c) + c
+      (float) (((rotationAxis[0] * rotationAxis[1]) * (1 - Math.cos(rotationAngle))) - (rotationAxis[2] * Math.sin(rotationAngle))), // xy(1-c) - zs
+      (float) (((rotationAxis[0] * rotationAxis[2]) * (1 - Math.cos(rotationAngle))) + (rotationAxis[1] * Math.sin(rotationAngle))), // xz(1-c) + ys
+      0f,
+      (float) (((rotationAxis[1] * rotationAxis[0]) * (1 - Math.cos(rotationAngle))) + (rotationAxis[2] * Math.sin(rotationAngle))), // yx(1-c) + zs
+      (float) (((rotationAxis[1] * rotationAxis[1]) * (1 - Math.cos(rotationAngle))) + Math.cos(rotationAngle)),                     // yy(1-c) + c
+      (float) (((rotationAxis[1] * rotationAxis[2]) * (1 - Math.cos(rotationAngle))) - (rotationAxis[0] * Math.sin(rotationAngle))), // yz(1-c) - xs
+      0f,
+      (float) (((rotationAxis[2] * rotationAxis[0]) * (1 - Math.cos(rotationAngle))) - (rotationAxis[1] * Math.sin(rotationAngle))), // xz(1-c) - ys
+      (float) (((rotationAxis[2] * rotationAxis[1]) * (1 - Math.cos(rotationAngle))) + (rotationAxis[0] * Math.sin(rotationAngle))), // yz(1-c) + xs
+      (float) (((rotationAxis[2] * rotationAxis[2]) * (1 - Math.cos(rotationAngle))) + Math.cos(rotationAngle)),                     // zz(1-c) + c
+      0f,
+      0f, 0f, 0f, 1f
+    };
+
+    float[] vm = Matrix.mul_4x4_256(view, model);
+    float[] pv = Matrix.mul_4x4_256(projection, view);
+    float[] pvm = Matrix.mul_4x4_256(projection, vm);
+    var pValues = arena.allocate(C_FLOAT, pvm.length);
+    for (int i = 0; i < pvm.length; i++) {
+      pValues.setAtIndex(C_FLOAT, i, pvm[i]);
+    }
+    vulkan_h.vkCmdPushConstants(pCommandBuffer, pPipelineLayout.get(C_POINTER, 0), vulkan_h.VK_SHADER_STAGE_VERTEX_BIT(), 0, 64, pValues);
+  }
+ */
 }
