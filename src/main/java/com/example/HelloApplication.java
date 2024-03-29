@@ -393,4 +393,32 @@ public class HelloApplication extends HelloApplication1 {
     }
     return new PipelineLayoutPair(pipeline, pipelineLayout);
   }
+
+  protected static MemorySegment createFramebuffer(Arena arena, int windowWidth, int windowHeight,
+                                                   MemorySegment vkDevice, MemorySegment imageView,
+                                                   MemorySegment pRenderPass, MemorySegment pDepthImageView) {
+
+    var pFramebufferCreateInfo = VkFramebufferCreateInfo.allocate(arena);
+
+    var pAttachments = arena.allocate(C_POINTER);
+    pAttachments.setAtIndex(C_POINTER, 0, imageView.get(C_POINTER, 0));
+
+    VkFramebufferCreateInfo.sType(pFramebufferCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO());
+    VkFramebufferCreateInfo.renderPass(pFramebufferCreateInfo, pRenderPass.get(C_POINTER, 0));
+    VkFramebufferCreateInfo.attachmentCount(pFramebufferCreateInfo, 1);
+    VkFramebufferCreateInfo.pAttachments(pFramebufferCreateInfo, pAttachments);
+    VkFramebufferCreateInfo.width(pFramebufferCreateInfo, windowWidth);
+    VkFramebufferCreateInfo.height(pFramebufferCreateInfo, windowHeight);
+    VkFramebufferCreateInfo.layers(pFramebufferCreateInfo, 1);
+
+    var pVkFramebuffer = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vulkan_h.vkCreateFramebuffer(vkDevice, pFramebufferCreateInfo, MemorySegment.NULL, pVkFramebuffer));
+    if (result != VK_SUCCESS) {
+      System.out.println("vkCreateFramebuffer failed: " + result);
+      System.exit(-1);
+    } else {
+      System.out.println("vkCreateFramebuffer succeeded");
+    }
+    return pVkFramebuffer;
+  }
 }
