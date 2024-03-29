@@ -328,7 +328,7 @@ public abstract class HelloApplication1 extends Application {
     VkAttachmentDescription.stencilLoadOp(pAttachment, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
     VkAttachmentDescription.stencilStoreOp(pAttachment, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
     VkAttachmentDescription.initialLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-    VkAttachmentDescription.finalLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
+    VkAttachmentDescription.finalLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL());
 
     var pColorAttachmentReference = VkAttachmentReference.allocate(arena);
     VkAttachmentReference.attachment(pColorAttachmentReference, 0);
