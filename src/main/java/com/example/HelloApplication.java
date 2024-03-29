@@ -191,17 +191,17 @@ public class HelloApplication extends HelloApplication1 {
 
     vkCmdEndRenderPass(commandBuffer);
 
-    result = VKResult.vkResult(vulkan_h.vkEndCommandBuffer(commandBuffer));
+    result = VKResult.vkResult(vkEndCommandBuffer(commandBuffer));
     if (result != VK_SUCCESS) {
       System.out.println("vkEndCommandBuffer failed: " + result);
       System.exit(-1);
     }
 
-    vulkan_h.vkWaitForFences(device, 1, pFence, vulkan_h.VK_TRUE(), 100000000000L);
-    vulkan_h.vkResetFences(device, 1, pFence);
+    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
+    vkResetFences(device, 1, pFence);
 
     var pSubmitInfo = VkSubmitInfo.allocate(arena);
-    VkSubmitInfo.sType(pSubmitInfo, vulkan_h.VK_STRUCTURE_TYPE_SUBMIT_INFO());
+    VkSubmitInfo.sType(pSubmitInfo, VK_STRUCTURE_TYPE_SUBMIT_INFO());
     VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, commandBuffers);
 
@@ -510,7 +510,7 @@ public class HelloApplication extends HelloApplication1 {
     VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
     VkBufferImageCopy.bufferRowLength(pBufferImageCopyRegion, 0);
     VkBufferImageCopy.bufferImageHeight(pBufferImageCopyRegion, 0);
-    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), VK_IMAGE_ASPECT_COLOR_BIT());
     VkImageSubresourceLayers.mipLevel(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
     VkImageSubresourceLayers.baseArrayLayer(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
     VkImageSubresourceLayers.layerCount(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 1);
@@ -521,8 +521,8 @@ public class HelloApplication extends HelloApplication1 {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vulkan_h.vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
-      vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
+    vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
+      VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pCommandPool, device, pVkGraphicsQueue, pCommandBuffer);
   }

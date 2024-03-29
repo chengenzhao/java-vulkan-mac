@@ -21,7 +21,7 @@ import java.util.List;
 
 import static com.example.VKResult.VK_ERROR_LAYER_NOT_PRESENT;
 import static com.example.VKResult.VK_SUCCESS;
-import static org.vulkan.vulkan_h_5.*;
+import static org.vulkan.vulkan_h.*;
 
 public abstract class HelloApplication1 extends Application {
 
@@ -35,7 +35,7 @@ public abstract class HelloApplication1 extends Application {
 
   protected static List<String> getAvailableExtensions(Arena arena) {
     var pExtensionCount = arena.allocate(C_INT);
-    var result = VKResult.vkResult(vulkan_h.vkEnumerateInstanceExtensionProperties(MemorySegment.NULL, pExtensionCount, MemorySegment.NULL));
+    var result = VKResult.vkResult(vkEnumerateInstanceExtensionProperties(MemorySegment.NULL, pExtensionCount, MemorySegment.NULL));
     if (result != VK_SUCCESS) {
       System.out.println("vkEnumerateInstanceExtensionProperties failed: " + result);
       System.exit(-1);
@@ -43,7 +43,7 @@ public abstract class HelloApplication1 extends Application {
 
     var availableExtensions = VkExtensionProperties.allocateArray(pExtensionCount.get(C_INT, 0), arena);
     List<String> extensions = new ArrayList<>(pExtensionCount.get(C_INT, 0));
-    result = VKResult.vkResult(vulkan_h.vkEnumerateInstanceExtensionProperties(MemorySegment.NULL, pExtensionCount, availableExtensions));
+    result = VKResult.vkResult(vkEnumerateInstanceExtensionProperties(MemorySegment.NULL, pExtensionCount, availableExtensions));
     if (result != VK_SUCCESS) {
       System.out.println("vkEnumerateInstanceExtensionProperties failed: " + result);
       System.exit(-1);
@@ -77,19 +77,19 @@ public abstract class HelloApplication1 extends Application {
 
     var debugUtilsMessengerCreateInfo = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
     VkDebugUtilsMessengerCreateInfoEXT.sType(debugUtilsMessengerCreateInfo,
-      vulkan_h.VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT());
+      VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT());
     VkDebugUtilsMessengerCreateInfoEXT.messageSeverity(debugUtilsMessengerCreateInfo,
-      vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT() |
-        vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT() |
-        vulkan_h.VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT());
+      VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT() |
+        VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT() |
+        VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT());
     VkDebugUtilsMessengerCreateInfoEXT.messageType(debugUtilsMessengerCreateInfo,
-      vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT() |
-        vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT() |
-        vulkan_h.VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT());
+      VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT() |
+        VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT() |
+        VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT());
     VkDebugUtilsMessengerCreateInfoEXT.pfnUserCallback(debugUtilsMessengerCreateInfo, debugCallbackFunc);
     VkDebugUtilsMessengerCreateInfoEXT.pUserData(debugUtilsMessengerCreateInfo, MemorySegment.NULL);
 
-    var vkCreateDebugUtilsMessengerEXTFunc = vulkan_h.vkGetInstanceProcAddr(instance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
+    var vkCreateDebugUtilsMessengerEXTFunc = vkGetInstanceProcAddr(instance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
     var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, VkDebugUtilsMessengerCreateInfoEXT.allocate(arena)));
 
     if (result != VK_SUCCESS) {
@@ -103,13 +103,13 @@ public abstract class HelloApplication1 extends Application {
   protected static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment instance) {
     MemorySegment pPropertyCount = arena.allocate(C_INT);
     pPropertyCount.set(C_INT, 0, -1);
-    vulkan_h.vkEnumerateInstanceLayerProperties(pPropertyCount, MemorySegment.NULL);
+    vkEnumerateInstanceLayerProperties(pPropertyCount, MemorySegment.NULL);
     System.out.println("property count: " + pPropertyCount.get(C_INT, 0));
 
     // See how many physical devices Vulkan knows about, then use that number to enumerate them.
     MemorySegment pPhysicalDeviceCount = arena.allocate(C_INT);
     pPhysicalDeviceCount.set(C_INT, 0, -1);
-    vulkan_h.vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, MemorySegment.NULL);
+    vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, MemorySegment.NULL);
 
     int numPhysicalDevices = pPhysicalDeviceCount.get(C_INT, 0);
     if (numPhysicalDevices == 0) {
@@ -122,7 +122,7 @@ public abstract class HelloApplication1 extends Application {
     // VkPhysicalDevice is an opaque pointer defined by VK_DEFINE_HANDLE macro - so it has C_POINTER byte size
     // (64-bit size on a 64-bit system) - thus an array of them has size = size(C_POINTER) * num devices.
     MemorySegment pPhysicalDevices = arena.allocate(C_POINTER, numPhysicalDevices);
-    var result = VKResult.vkResult(vulkan_h.vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices));
+    var result = VKResult.vkResult(vkEnumeratePhysicalDevices(instance, pPhysicalDeviceCount, pPhysicalDevices));
     if (result != VK_SUCCESS) {
       System.out.println("vkEnumeratePhysicalDevices failed: " + result);
       System.exit(-1);
@@ -136,17 +136,17 @@ public abstract class HelloApplication1 extends Application {
     for (int i = 0; i < numPhysicalDevices; i++) {
       var properties = VkPhysicalDeviceProperties.allocate(arena);
       var physicalDevice = pPhysicalDevices.getAtIndex(C_POINTER, i);
-      vulkan_h.vkGetPhysicalDeviceProperties(physicalDevice, properties);
+      vkGetPhysicalDeviceProperties(physicalDevice, properties);
       var features = VkPhysicalDeviceFeatures.allocate(arena);
-      vulkan_h.vkGetPhysicalDeviceFeatures(physicalDevice, features);
+      vkGetPhysicalDeviceFeatures(physicalDevice, features);
       var pMemoryProperties = VkPhysicalDeviceMemoryProperties.allocate(arena);
-      vulkan_h.vkGetPhysicalDeviceMemoryProperties(physicalDevice, pMemoryProperties);
+      vkGetPhysicalDeviceMemoryProperties(physicalDevice, pMemoryProperties);
 
-      int[] formats = {vulkan_h.VK_FORMAT_D32_SFLOAT(), vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT(), vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT()};
+      int[] formats = {VK_FORMAT_D32_SFLOAT(), VK_FORMAT_D32_SFLOAT_S8_UINT(), VK_FORMAT_D24_UNORM_S8_UINT()};
       List<Format> formatProperties = new ArrayList<>();
       for (int format : formats) {
         var pFormatProperties = VkFormatProperties.allocate(arena);
-        vulkan_h.vkGetPhysicalDeviceFormatProperties(physicalDevice, format, pFormatProperties);
+        vkGetPhysicalDeviceFormatProperties(physicalDevice, format, pFormatProperties);
         formatProperties.add(new Format(format, VkFormatProperties.linearTilingFeatures(pFormatProperties),
           VkFormatProperties.optimalTilingFeatures(pFormatProperties)));
       }
@@ -154,11 +154,11 @@ public abstract class HelloApplication1 extends Application {
       // See how many properties the queue family of the current physical device has, then use that number to get them.
       MemorySegment pQueueFamilyPropertyCount = arena.allocate(C_INT);
       pQueueFamilyPropertyCount.set(C_INT, 0, -1);
-      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueFamilyPropertyCount, MemorySegment.NULL);
+      vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueFamilyPropertyCount, MemorySegment.NULL);
       int familyPropertyCount = pQueueFamilyPropertyCount.get(C_INT, 0);
       System.out.println("familyPropertyCount: " + familyPropertyCount);
       MemorySegment pQueueFamilyProperties = VkQueueFamilyProperties.allocateArray(familyPropertyCount, arena);
-      vulkan_h.vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueFamilyPropertyCount, pQueueFamilyProperties);
+      vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, pQueueFamilyPropertyCount, pQueueFamilyProperties);
 
       physicalDevices.add(new PhysicalDevice(arena, physicalDevice, properties, features, pMemoryProperties, familyPropertyCount, pQueueFamilyProperties, formatProperties));
     }
@@ -172,7 +172,7 @@ public abstract class HelloApplication1 extends Application {
   protected static MemorySegment createVkDevice(Arena arena, QueueFamily graphicsQueueFamily, PhysicalDevice physicalDevice) {
 
     var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
-    VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
+    VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
 
     System.out.println("Using queue family: " + graphicsQueueFamily);
     VkDeviceQueueCreateInfo.queueFamilyIndex(pDeviceQueueCreateInfo, graphicsQueueFamily.queueFamilyIndex());
@@ -183,16 +183,16 @@ public abstract class HelloApplication1 extends Application {
 
     var physicalDeviceFeatures = VkPhysicalDeviceFeatures.allocate(arena);
 
-    VkPhysicalDeviceFeatures.depthClamp(physicalDeviceFeatures, vulkan_h.VK_FALSE());
-    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, vulkan_h.VK_FALSE());//Metal doesn't support depthBounds yet
+    VkPhysicalDeviceFeatures.depthClamp(physicalDeviceFeatures, VK_FALSE());
+    VkPhysicalDeviceFeatures.depthBounds(physicalDeviceFeatures, VK_FALSE());//Metal doesn't support depthBounds yet
     var deviceCreateInfo = VkDeviceCreateInfo.allocate(arena);
-    VkDeviceCreateInfo.sType(deviceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO());
+    VkDeviceCreateInfo.sType(deviceCreateInfo, VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO());
     VkDeviceCreateInfo.pQueueCreateInfos(deviceCreateInfo, pDeviceQueueCreateInfo);
     VkDeviceCreateInfo.queueCreateInfoCount(deviceCreateInfo, 1);
     VkDeviceCreateInfo.pEnabledFeatures(deviceCreateInfo, physicalDeviceFeatures);
     // Newer Vulkan implementations do not distinguish between instance and device specific validation layers, but set it to maintain compact with old implementations.
     var extensions = new MemorySegment[]{
-      vulkan_h.VK_KHR_SWAPCHAIN_EXTENSION_NAME(),
+      VK_KHR_SWAPCHAIN_EXTENSION_NAME(),
       arena.allocateFrom("VK_KHR_portability_subset", StandardCharsets.UTF_8)//couldn't find this typealias or sth. in the headers.file
     };
     VkDeviceCreateInfo.enabledExtensionCount(deviceCreateInfo, extensions.length);
@@ -200,7 +200,7 @@ public abstract class HelloApplication1 extends Application {
     VkDeviceCreateInfo.ppEnabledExtensionNames(deviceCreateInfo, pEnabledDeviceExtensionNames);
 
     var pVkDevice = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateDevice(graphicsQueueFamily.physicalDevicePtr(), deviceCreateInfo,
+    var result = VKResult.vkResult(vkCreateDevice(graphicsQueueFamily.physicalDevicePtr(), deviceCreateInfo,
       MemorySegment.NULL, pVkDevice));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateDevice failed: " + result);
@@ -213,26 +213,26 @@ public abstract class HelloApplication1 extends Application {
 
   protected static MemorySegment createVkInstance(Arena arena, boolean debug) {
     var appInfo = VkApplicationInfo.allocate(arena);
-    VkApplicationInfo.sType(appInfo, vulkan_h.VK_STRUCTURE_TYPE_APPLICATION_INFO());
+    VkApplicationInfo.sType(appInfo, VK_STRUCTURE_TYPE_APPLICATION_INFO());
     VkApplicationInfo.pApplicationName(appInfo, arena.allocateFrom("Java Vulkan App", StandardCharsets.UTF_8));
     VkApplicationInfo.applicationVersion(appInfo, 0x010000);
     VkApplicationInfo.pEngineName(appInfo, arena.allocateFrom("Java Vulkan", StandardCharsets.UTF_8));
     VkApplicationInfo.engineVersion(appInfo, 0x010000);
-    VkApplicationInfo.apiVersion(appInfo, vulkan_h.VK_API_VERSION_1_0());
+    VkApplicationInfo.apiVersion(appInfo, VK_API_VERSION_1_0());
 
     var instanceCreateInfo = VkInstanceCreateInfo.allocate(arena);
-    VkInstanceCreateInfo.sType(instanceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
-    VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | vulkan_h.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
+    VkInstanceCreateInfo.sType(instanceCreateInfo, VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
+    VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
     //we probably don't need surface, using JavaFX to render the end frame
     var enabledExtensionList = new ArrayList<MemorySegment>();
-    enabledExtensionList.add(vulkan_h.VK_KHR_SURFACE_EXTENSION_NAME());
-//    enabledExtensionList.add(vulkan_h.VK_MVK_MACOS_SURFACE_EXTENSION_NAME());
-//    enabledExtensionList.add(vulkan_h.VK_EXT_METAL_SURFACE_EXTENSION_NAME());
-    enabledExtensionList.add(vulkan_h.VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME());
-    enabledExtensionList.add(vulkan_h.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME());
+    enabledExtensionList.add(VK_KHR_SURFACE_EXTENSION_NAME());
+//    enabledExtensionList.add(VK_MVK_MACOS_SURFACE_EXTENSION_NAME());
+//    enabledExtensionList.add(VK_EXT_METAL_SURFACE_EXTENSION_NAME());
+    enabledExtensionList.add(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME());
+    enabledExtensionList.add(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME());
     if (debug) {
-      enabledExtensionList.add(vulkan_h.VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
+      enabledExtensionList.add(VK_EXT_DEBUG_UTILS_EXTENSION_NAME());
     }
 
     VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, enabledExtensionList.size());
@@ -247,7 +247,7 @@ public abstract class HelloApplication1 extends Application {
     // VKInstance is an opaque pointer defined by VK_DEFINE_HANDLE macro.
     var pVkInstance = arena.allocate(C_POINTER);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreateInstance(instanceCreateInfo, MemorySegment.NULL, pVkInstance));
+    var result = VKResult.vkResult(vkCreateInstance(instanceCreateInfo, MemorySegment.NULL, pVkInstance));
     if (result != VK_SUCCESS) {
       if (debug && result == VK_ERROR_LAYER_NOT_PRESENT) {
         System.out.println("Could not enable debug validation layer - make sure Vulkan SDK is installed.");
@@ -264,13 +264,13 @@ public abstract class HelloApplication1 extends Application {
 
   protected static MemorySegment createShaderModule(MemorySegment vkDevice, byte[] shaderSpv, Arena arena) {
     var pShaderModuleCreateInfo = VkShaderModuleCreateInfo.allocate(arena);
-    VkShaderModuleCreateInfo.sType(pShaderModuleCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO());
+    VkShaderModuleCreateInfo.sType(pShaderModuleCreateInfo, VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO());
     VkShaderModuleCreateInfo.codeSize(pShaderModuleCreateInfo, shaderSpv.length);
     System.out.println("shaderSpv num bytes: " + shaderSpv.length);
     VkShaderModuleCreateInfo.pCode(pShaderModuleCreateInfo, arena.allocateFrom(C_CHAR, shaderSpv));
 
     var pShaderModule = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateShaderModule(vkDevice, pShaderModuleCreateInfo, MemorySegment.NULL, pShaderModule));
+    var result = VKResult.vkResult(vkCreateShaderModule(vkDevice, pShaderModuleCreateInfo, MemorySegment.NULL, pShaderModule));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateShaderModule failed: " + result);
       System.exit(-1);
@@ -290,21 +290,21 @@ public abstract class HelloApplication1 extends Application {
   protected static MemorySegment createImageView(Arena arena, MemorySegment vkDevice, int imageFormat, int aspectMask, MemorySegment pImage) {
     var pImageView = arena.allocate(C_POINTER);
     var imageViewCreateInfo = VkImageViewCreateInfo.allocate(arena);
-    VkImageViewCreateInfo.sType(imageViewCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO());
+    VkImageViewCreateInfo.sType(imageViewCreateInfo, VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO());
     VkImageViewCreateInfo.image(imageViewCreateInfo, pImage.get(C_POINTER, 0));
-    VkImageViewCreateInfo.viewType(imageViewCreateInfo, vulkan_h.VK_IMAGE_VIEW_TYPE_2D());
+    VkImageViewCreateInfo.viewType(imageViewCreateInfo, VK_IMAGE_VIEW_TYPE_2D());
     VkImageViewCreateInfo.format(imageViewCreateInfo, imageFormat);
-    VkComponentMapping.r(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
-    VkComponentMapping.g(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
-    VkComponentMapping.b(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
-    VkComponentMapping.a(VkImageViewCreateInfo.components(imageViewCreateInfo), vulkan_h.VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.r(VkImageViewCreateInfo.components(imageViewCreateInfo), VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.g(VkImageViewCreateInfo.components(imageViewCreateInfo), VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.b(VkImageViewCreateInfo.components(imageViewCreateInfo), VK_COMPONENT_SWIZZLE_IDENTITY());
+    VkComponentMapping.a(VkImageViewCreateInfo.components(imageViewCreateInfo), VK_COMPONENT_SWIZZLE_IDENTITY());
     VkImageSubresourceRange.aspectMask(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), aspectMask);
     VkImageSubresourceRange.baseMipLevel(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 0);
     VkImageSubresourceRange.levelCount(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 1);
     VkImageSubresourceRange.baseArrayLayer(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 0);
     VkImageSubresourceRange.layerCount(VkImageViewCreateInfo.subresourceRange(imageViewCreateInfo), 1);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreateImageView(vkDevice, imageViewCreateInfo, MemorySegment.NULL, pImageView));
+    var result = VKResult.vkResult(vkCreateImageView(vkDevice, imageViewCreateInfo, MemorySegment.NULL, pImageView));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateImageView failed: " + result);
       System.exit(-1);
@@ -322,49 +322,49 @@ public abstract class HelloApplication1 extends Application {
 //    assert (VkAttachmentDescription.sizeof() == pAttachments.byteSize() / 2);
 
     VkAttachmentDescription.format(pAttachment, imageFormat);
-    VkAttachmentDescription.samples(pAttachment, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
-    VkAttachmentDescription.loadOp(pAttachment, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
-    VkAttachmentDescription.storeOp(pAttachment, vulkan_h.VK_ATTACHMENT_STORE_OP_STORE());
-    VkAttachmentDescription.stencilLoadOp(pAttachment, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
-    VkAttachmentDescription.stencilStoreOp(pAttachment, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
-    VkAttachmentDescription.initialLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-    VkAttachmentDescription.finalLayout(pAttachment, vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL());
+    VkAttachmentDescription.samples(pAttachment, VK_SAMPLE_COUNT_1_BIT());
+    VkAttachmentDescription.loadOp(pAttachment, VK_ATTACHMENT_LOAD_OP_CLEAR());
+    VkAttachmentDescription.storeOp(pAttachment, VK_ATTACHMENT_STORE_OP_STORE());
+    VkAttachmentDescription.stencilLoadOp(pAttachment, VK_ATTACHMENT_LOAD_OP_DONT_CARE());
+    VkAttachmentDescription.stencilStoreOp(pAttachment, VK_ATTACHMENT_STORE_OP_DONT_CARE());
+    VkAttachmentDescription.initialLayout(pAttachment, VK_IMAGE_LAYOUT_UNDEFINED());
+    VkAttachmentDescription.finalLayout(pAttachment, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL());
 
     var pColorAttachmentReference = VkAttachmentReference.allocate(arena);
     VkAttachmentReference.attachment(pColorAttachmentReference, 0);
-    VkAttachmentReference.layout(pColorAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL());
+    VkAttachmentReference.layout(pColorAttachmentReference, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL());
 
 //    var attachment1 = pAttachments.asSlice(VkAttachmentDescription.sizeof(), VkAttachmentDescription.sizeof());
 //    VkAttachmentDescription.format(attachment1, depthFormat);
-//    VkAttachmentDescription.samples(attachment1, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
-//    VkAttachmentDescription.loadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_CLEAR());
-//    VkAttachmentDescription.storeOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
-//    VkAttachmentDescription.stencilLoadOp(attachment1, vulkan_h.VK_ATTACHMENT_LOAD_OP_DONT_CARE());
-//    VkAttachmentDescription.stencilStoreOp(attachment1, vulkan_h.VK_ATTACHMENT_STORE_OP_DONT_CARE());
-//    VkAttachmentDescription.initialLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-//    VkAttachmentDescription.finalLayout(attachment1, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+//    VkAttachmentDescription.samples(attachment1, VK_SAMPLE_COUNT_1_BIT());
+//    VkAttachmentDescription.loadOp(attachment1, VK_ATTACHMENT_LOAD_OP_CLEAR());
+//    VkAttachmentDescription.storeOp(attachment1, VK_ATTACHMENT_STORE_OP_DONT_CARE());
+//    VkAttachmentDescription.stencilLoadOp(attachment1, VK_ATTACHMENT_LOAD_OP_DONT_CARE());
+//    VkAttachmentDescription.stencilStoreOp(attachment1, VK_ATTACHMENT_STORE_OP_DONT_CARE());
+//    VkAttachmentDescription.initialLayout(attachment1, VK_IMAGE_LAYOUT_UNDEFINED());
+//    VkAttachmentDescription.finalLayout(attachment1, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
 //
 //    var pDepthAttachmentReference = VkAttachmentReference.allocate(arena);
 //    VkAttachmentReference.attachment(pDepthAttachmentReference, 1);
-//    VkAttachmentReference.layout(pDepthAttachmentReference, vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+//    VkAttachmentReference.layout(pDepthAttachmentReference, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
 
     var pSubpassDescription = VkSubpassDescription.allocate(arena);
-    VkSubpassDescription.pipelineBindPoint(pSubpassDescription, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS());
+    VkSubpassDescription.pipelineBindPoint(pSubpassDescription, VK_PIPELINE_BIND_POINT_GRAPHICS());
     VkSubpassDescription.colorAttachmentCount(pSubpassDescription, 1);
     VkSubpassDescription.pColorAttachments(pSubpassDescription, pColorAttachmentReference);
 //    VkSubpassDescription.pDepthStencilAttachment(pSubpassDescription, pDepthAttachmentReference);
 
 //    var pSubpassDependency = VkSubpassDependency.allocate(arena);
-//    VkSubpassDependency.srcSubpass(pSubpassDependency, vulkan_h.VK_SUBPASS_EXTERNAL());
+//    VkSubpassDependency.srcSubpass(pSubpassDependency, VK_SUBPASS_EXTERNAL());
 //    VkSubpassDependency.dstSubpass(pSubpassDependency, 0);
-//    VkSubpassDependency.srcStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
+//    VkSubpassDependency.srcStageMask(pSubpassDependency, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
 //    VkSubpassDependency.srcAccessMask(pSubpassDependency, 0);
-//    VkSubpassDependency.dstStageMask(pSubpassDependency, vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
-//    VkSubpassDependency.dstAccessMask(pSubpassDependency, vulkan_h.VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
+//    VkSubpassDependency.dstStageMask(pSubpassDependency, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT() | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT());
+//    VkSubpassDependency.dstAccessMask(pSubpassDependency, VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT() | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
 
     var pRenderPass = arena.allocate(C_POINTER);
     var pRenderPassCreateInfo = VkRenderPassCreateInfo.allocate(arena);
-    VkRenderPassCreateInfo.sType(pRenderPassCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO());
+    VkRenderPassCreateInfo.sType(pRenderPassCreateInfo, VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO());
     VkRenderPassCreateInfo.attachmentCount(pRenderPassCreateInfo, 1);
     VkRenderPassCreateInfo.pAttachments(pRenderPassCreateInfo, pAttachment);
     VkRenderPassCreateInfo.subpassCount(pRenderPassCreateInfo, 1);
@@ -372,7 +372,7 @@ public abstract class HelloApplication1 extends Application {
 //    VkRenderPassCreateInfo.dependencyCount(pRenderPassCreateInfo, 1);
 //    VkRenderPassCreateInfo.pDependencies(pRenderPassCreateInfo, pSubpassDependency);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreateRenderPass(device, pRenderPassCreateInfo, MemorySegment.NULL, pRenderPass));
+    var result = VKResult.vkResult(vkCreateRenderPass(device, pRenderPassCreateInfo, MemorySegment.NULL, pRenderPass));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateRenderPass failed: " + result);
       System.exit(-1);
@@ -384,12 +384,12 @@ public abstract class HelloApplication1 extends Application {
 
   protected static MemorySegment createCommandPool(Arena arena, QueueFamily graphicsQueueFamily, MemorySegment vkDevice) {
     var pCommandPoolCreateInfo = VkCommandPoolCreateInfo.allocate(arena);
-    VkCommandPoolCreateInfo.sType(pCommandPoolCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO());
+    VkCommandPoolCreateInfo.sType(pCommandPoolCreateInfo, VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO());
     VkCommandPoolCreateInfo.queueFamilyIndex(pCommandPoolCreateInfo, graphicsQueueFamily.queueFamilyIndex());
-    VkCommandPoolCreateInfo.flags(pCommandPoolCreateInfo, vulkan_h.VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT());
+    VkCommandPoolCreateInfo.flags(pCommandPoolCreateInfo, VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT());
 
     var pVkCommandPool = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateCommandPool(vkDevice, pCommandPoolCreateInfo, MemorySegment.NULL, pVkCommandPool));
+    var result = VKResult.vkResult(vkCreateCommandPool(vkDevice, pCommandPoolCreateInfo, MemorySegment.NULL, pVkCommandPool));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateCommandPool failed: " + result);
       System.exit(-1);
@@ -403,12 +403,12 @@ public abstract class HelloApplication1 extends Application {
     MemorySegment pCommandBuffers = arena.allocate(C_POINTER, commandBufferCount);
 
     var pCommandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
-    VkCommandBufferAllocateInfo.sType(pCommandBufferAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
+    VkCommandBufferAllocateInfo.sType(pCommandBufferAllocateInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
     VkCommandBufferAllocateInfo.commandPool(pCommandBufferAllocateInfo, pVkCommandPool.get(C_POINTER, 0));
-    VkCommandBufferAllocateInfo.level(pCommandBufferAllocateInfo, vulkan_h.VK_COMMAND_BUFFER_LEVEL_PRIMARY());
+    VkCommandBufferAllocateInfo.level(pCommandBufferAllocateInfo, VK_COMMAND_BUFFER_LEVEL_PRIMARY());
     VkCommandBufferAllocateInfo.commandBufferCount(pCommandBufferAllocateInfo, commandBufferCount);
 
-    var result = VKResult.vkResult(vulkan_h.vkAllocateCommandBuffers(vkDevice, pCommandBufferAllocateInfo, pCommandBuffers));
+    var result = VKResult.vkResult(vkAllocateCommandBuffers(vkDevice, pCommandBufferAllocateInfo, pCommandBuffers));
     if (result != VK_SUCCESS) {
       System.out.println("vkAllocateCommandBuffers failed: " + result);
       System.exit(-1);
@@ -420,8 +420,8 @@ public abstract class HelloApplication1 extends Application {
 
   protected static ImageMemory createImage(Arena arena, PhysicalDevice physicalDevice, MemorySegment vkDevice, int imageWidth, int imageHeight, int format, int tiling, int usage, int memoryProperties) {
     var pImageCreateInfo = VkImageCreateInfo.allocate(arena);
-    VkImageCreateInfo.sType(pImageCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO());
-    VkImageCreateInfo.imageType(pImageCreateInfo, vulkan_h.VK_IMAGE_TYPE_2D());
+    VkImageCreateInfo.sType(pImageCreateInfo, VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO());
+    VkImageCreateInfo.imageType(pImageCreateInfo, VK_IMAGE_TYPE_2D());
     VkExtent3D.width(VkImageCreateInfo.extent(pImageCreateInfo), imageWidth);
     VkExtent3D.height(VkImageCreateInfo.extent(pImageCreateInfo), imageHeight);
     VkExtent3D.depth(VkImageCreateInfo.extent(pImageCreateInfo), 1);
@@ -429,42 +429,42 @@ public abstract class HelloApplication1 extends Application {
     VkImageCreateInfo.arrayLayers(pImageCreateInfo, 1);
     VkImageCreateInfo.format(pImageCreateInfo, format);
     VkImageCreateInfo.tiling(pImageCreateInfo, tiling);
-    VkImageCreateInfo.initialLayout(pImageCreateInfo, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
+    VkImageCreateInfo.initialLayout(pImageCreateInfo, VK_IMAGE_LAYOUT_UNDEFINED());
     VkImageCreateInfo.usage(pImageCreateInfo, usage);
-    VkImageCreateInfo.samples(pImageCreateInfo, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
-    VkImageCreateInfo.sharingMode(pImageCreateInfo, vulkan_h.VK_SHARING_MODE_EXCLUSIVE());
+    VkImageCreateInfo.samples(pImageCreateInfo, VK_SAMPLE_COUNT_1_BIT());
+    VkImageCreateInfo.sharingMode(pImageCreateInfo, VK_SHARING_MODE_EXCLUSIVE());
     var pImage = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateImage(vkDevice, pImageCreateInfo, MemorySegment.NULL, pImage));
+    var result = VKResult.vkResult(vkCreateImage(vkDevice, pImageCreateInfo, MemorySegment.NULL, pImage));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateImage failed: " + result);
       System.exit(-1);
     }
 
     var pImageMemoryRequirements = VkMemoryRequirements.allocate(arena);
-    vulkan_h.vkGetImageMemoryRequirements(vkDevice, pImage.get(C_POINTER, 0), pImageMemoryRequirements);
+    vkGetImageMemoryRequirements(vkDevice, pImage.get(C_POINTER, 0), pImageMemoryRequirements);
 
     var pImageMemoryAllocateInfo = VkMemoryAllocateInfo.allocate(arena);
-    VkMemoryAllocateInfo.sType(pImageMemoryAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
+    VkMemoryAllocateInfo.sType(pImageMemoryAllocateInfo, VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
     VkMemoryAllocateInfo.allocationSize(pImageMemoryAllocateInfo, VkMemoryRequirements.size(pImageMemoryRequirements));
     VkMemoryAllocateInfo.memoryTypeIndex(pImageMemoryAllocateInfo, physicalDevice.findMemoryType(VkMemoryRequirements.memoryTypeBits(pImageMemoryRequirements), memoryProperties));
 
     var pImageMemory = arena.allocate(C_POINTER);
-    result = VKResult.vkResult(vulkan_h.vkAllocateMemory(vkDevice, pImageMemoryAllocateInfo, MemorySegment.NULL, pImageMemory));
+    result = VKResult.vkResult(vkAllocateMemory(vkDevice, pImageMemoryAllocateInfo, MemorySegment.NULL, pImageMemory));
     if (result != VK_SUCCESS) {
       System.out.println("vkAllocateMemory failed for texture: " + result);
       System.exit(-1);
     }
-    vulkan_h.vkBindImageMemory(vkDevice, pImage.get(C_POINTER, 0), pImageMemory.get(C_POINTER, 0), 0);
+    vkBindImageMemory(vkDevice, pImage.get(C_POINTER, 0), pImageMemory.get(C_POINTER, 0), 0);
     return new ImageMemory(pImage, pImageMemory);
   }
 
   protected static int findSupportedFormat(List<Integer> candidates, PhysicalDevice physicalDevice, int tiling, int features) {
     for (Integer candidate : candidates) {
       for (Format format : physicalDevice.getFormatProperties()) {
-        if (tiling == vulkan_h.VK_IMAGE_TILING_LINEAR() && (format.linearTilingFeatures() & features) == features) {
+        if (tiling == VK_IMAGE_TILING_LINEAR() && (format.linearTilingFeatures() & features) == features) {
           System.out.println("Found supported format with linear tiling: " + format);
           return candidate;
-        } else if (tiling == vulkan_h.VK_IMAGE_TILING_OPTIMAL() && (format.optimalTilingFeatures() & features) == features) {
+        } else if (tiling == VK_IMAGE_TILING_OPTIMAL() && (format.optimalTilingFeatures() & features) == features) {
           System.out.println("Found supported format with optimal tiling: " + format);
           return candidate;
         }
@@ -475,34 +475,34 @@ public abstract class HelloApplication1 extends Application {
 
   protected static BufferMemory createBuffer(Arena arena, MemorySegment vkDevice, PhysicalDevice physicalDevice, long bufferSize, int usage, int memoryPropertyFlags) {
     var pBufferCreateInfo = VkBufferCreateInfo.allocate(arena);
-    VkBufferCreateInfo.sType(pBufferCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO());
+    VkBufferCreateInfo.sType(pBufferCreateInfo, VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO());
     VkBufferCreateInfo.size(pBufferCreateInfo, bufferSize);
     VkBufferCreateInfo.usage(pBufferCreateInfo, usage);
-    VkBufferCreateInfo.sharingMode(pBufferCreateInfo, vulkan_h.VK_SHARING_MODE_EXCLUSIVE());
+    VkBufferCreateInfo.sharingMode(pBufferCreateInfo, VK_SHARING_MODE_EXCLUSIVE());
     var pBuffer = arena.allocate(C_POINTER);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreateBuffer(vkDevice, pBufferCreateInfo, MemorySegment.NULL, pBuffer));
+    var result = VKResult.vkResult(vkCreateBuffer(vkDevice, pBufferCreateInfo, MemorySegment.NULL, pBuffer));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateBuffer failed for buffer: " + result);
       System.exit(-1);
     }
 
     var pBufferMemoryRequirements = VkMemoryRequirements.allocate(arena);
-    vulkan_h.vkGetBufferMemoryRequirements(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemoryRequirements);
+    vkGetBufferMemoryRequirements(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemoryRequirements);
 
     var pMemoryAllocateInfo = VkMemoryAllocateInfo.allocate(arena);
-    VkMemoryAllocateInfo.sType(pMemoryAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
+    VkMemoryAllocateInfo.sType(pMemoryAllocateInfo, VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO());
     VkMemoryAllocateInfo.allocationSize(pMemoryAllocateInfo, VkMemoryRequirements.size(pBufferMemoryRequirements));
     VkMemoryAllocateInfo.memoryTypeIndex(pMemoryAllocateInfo, physicalDevice.findMemoryType(VkMemoryRequirements.memoryTypeBits(pBufferMemoryRequirements), memoryPropertyFlags));
 
     var pBufferMemory = arena.allocate(C_POINTER);
-    result = VKResult.vkResult(vulkan_h.vkAllocateMemory(vkDevice, pMemoryAllocateInfo, MemorySegment.NULL, pBufferMemory));
+    result = VKResult.vkResult(vkAllocateMemory(vkDevice, pMemoryAllocateInfo, MemorySegment.NULL, pBufferMemory));
     if (result != VK_SUCCESS) {
       System.out.println("vkAllocateMemory failed for buffer: " + result);
       System.exit(-1);
     }
 
-    result = VKResult.vkResult(vulkan_h.vkBindBufferMemory(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemory.get(C_POINTER, 0), 0));
+    result = VKResult.vkResult(vkBindBufferMemory(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemory.get(C_POINTER, 0), 0));
     if (result != VK_SUCCESS) {
       System.out.println("vkBindBufferMemory failed for buffer: " + result);
       System.exit(-1);
@@ -512,8 +512,8 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static void freeBuffer(MemorySegment device, BufferMemory bufferPair) {
-    vulkan_h.vkDestroyBuffer(device, bufferPair.buffer().get(C_POINTER, 0), MemorySegment.NULL);
-    vulkan_h.vkFreeMemory(device, bufferPair.memory().get(C_POINTER, 0), MemorySegment.NULL);
+    vkDestroyBuffer(device, bufferPair.buffer().get(C_POINTER, 0), MemorySegment.NULL);
+    vkFreeMemory(device, bufferPair.memory().get(C_POINTER, 0), MemorySegment.NULL);
   }
 
   protected static int[] getBGRAIntArrayFromImage(Image image) {
@@ -544,9 +544,9 @@ public abstract class HelloApplication1 extends Application {
     }
     System.out.println("Staging buffer size: " + bufferSize);
     BufferMemory stagingBuffer = createBuffer(arena, vkDevice, physicalDevice, bufferSize,
-      vulkan_h.VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), vulkan_h.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT() | vulkan_h.VK_MEMORY_PROPERTY_HOST_COHERENT_BIT());
+      VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT() | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT());
 
-    var result = VKResult.vkResult(vulkan_h.vkMapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
+    var result = VKResult.vkResult(vkMapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
     if (result != VK_SUCCESS) {
       System.out.println("vkMapMemory failed for staging buffer: " + result);
       System.exit(-1);
@@ -554,7 +554,7 @@ public abstract class HelloApplication1 extends Application {
 
     setDataArrayPtr(pData, stagingDataArr);
 
-    vulkan_h.vkUnmapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0));
+    vkUnmapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0));
     return stagingBuffer;
   }
 
@@ -597,83 +597,83 @@ public abstract class HelloApplication1 extends Application {
     var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
 
     var pImageMemoryBarrier = VkImageMemoryBarrier.allocate(arena);
-    VkImageMemoryBarrier.sType(pImageMemoryBarrier, vulkan_h.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER());
+    VkImageMemoryBarrier.sType(pImageMemoryBarrier, VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER());
     VkImageMemoryBarrier.oldLayout(pImageMemoryBarrier, oldLayout);
     VkImageMemoryBarrier.newLayout(pImageMemoryBarrier, newLayout);
-    VkImageMemoryBarrier.srcQueueFamilyIndex(pImageMemoryBarrier, vulkan_h.VK_QUEUE_FAMILY_IGNORED());
-    VkImageMemoryBarrier.dstQueueFamilyIndex(pImageMemoryBarrier, vulkan_h.VK_QUEUE_FAMILY_IGNORED());
+    VkImageMemoryBarrier.srcQueueFamilyIndex(pImageMemoryBarrier, VK_QUEUE_FAMILY_IGNORED());
+    VkImageMemoryBarrier.dstQueueFamilyIndex(pImageMemoryBarrier, VK_QUEUE_FAMILY_IGNORED());
     VkImageMemoryBarrier.image(pImageMemoryBarrier, pImage.get(C_POINTER, 0));
-    VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), VK_IMAGE_ASPECT_COLOR_BIT());
     VkImageSubresourceRange.baseMipLevel(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 0);
     VkImageSubresourceRange.levelCount(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 1);
     VkImageSubresourceRange.baseArrayLayer(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 0);
     VkImageSubresourceRange.layerCount(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), 1);
 
-    if (newLayout == vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
-      int aspectMask = vulkan_h.VK_IMAGE_ASPECT_DEPTH_BIT();
+    if (newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
+      int aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT();
       VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), aspectMask);
       if (hasStencilComponent(format)) {
-        VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), aspectMask | vulkan_h.VK_IMAGE_ASPECT_STENCIL_BIT());
+        VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), aspectMask | VK_IMAGE_ASPECT_STENCIL_BIT());
       }
     } else {
-      VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+      VkImageSubresourceRange.aspectMask(VkImageMemoryBarrier.subresourceRange(pImageMemoryBarrier), VK_IMAGE_ASPECT_COLOR_BIT());
     }
 
     int sourceStage;
     int destinationStage;
-    if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_GENERAL()) {
-      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_GENERAL());
-      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
-      destinationStage = vulkan_h.VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT();
-    }else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL()) {
-      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_TRANSFER_WRITE_BIT());
-      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
-      destinationStage = vulkan_h.VK_PIPELINE_STAGE_TRANSFER_BIT();
-    } else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL()) {
-      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_TRANSFER_WRITE_BIT());
-      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_SHADER_READ_BIT());
-      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TRANSFER_BIT();
-      destinationStage = vulkan_h.VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT();
-    } else if (oldLayout == vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == vulkan_h.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
-      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, vulkan_h.VK_IMAGE_LAYOUT_UNDEFINED());
-      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT() | vulkan_h.VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
-      sourceStage = vulkan_h.VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
-      destinationStage = vulkan_h.VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT();
+    if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == VK_IMAGE_LAYOUT_GENERAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, VK_IMAGE_LAYOUT_UNDEFINED());
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, VK_IMAGE_LAYOUT_GENERAL());
+      sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
+      destinationStage = VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT();
+    }else if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, VK_IMAGE_LAYOUT_UNDEFINED());
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, VK_ACCESS_TRANSFER_WRITE_BIT());
+      sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
+      destinationStage = VK_PIPELINE_STAGE_TRANSFER_BIT();
+    } else if (oldLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL() && newLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, VK_ACCESS_TRANSFER_WRITE_BIT());
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, VK_ACCESS_SHADER_READ_BIT());
+      sourceStage = VK_PIPELINE_STAGE_TRANSFER_BIT();
+      destinationStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT();
+    } else if (oldLayout == VK_IMAGE_LAYOUT_UNDEFINED() && newLayout == VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL()) {
+      VkImageMemoryBarrier.srcAccessMask(pImageMemoryBarrier, VK_IMAGE_LAYOUT_UNDEFINED());
+      VkImageMemoryBarrier.dstAccessMask(pImageMemoryBarrier, VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT() | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT());
+      sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
+      destinationStage = VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT();
     } else {
       System.out.println("Unsupported layout transition: " + oldLayout + ", " + newLayout);
       throw new RuntimeException("Unrecognised transition");
 //      System.exit(-1);
     }
-    vulkan_h.vkCmdPipelineBarrier(pCommandBuffer.get(C_POINTER, 0), sourceStage, destinationStage, 0, 0,
+    vkCmdPipelineBarrier(pCommandBuffer.get(C_POINTER, 0), sourceStage, destinationStage, 0, 0,
       MemorySegment.NULL, 0, MemorySegment.NULL, 1, pImageMemoryBarrier);
 
     endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
   }
 
   protected static boolean hasStencilComponent(int format) {
-    return format == vulkan_h.VK_FORMAT_D32_SFLOAT_S8_UINT() || format == vulkan_h.VK_FORMAT_D24_UNORM_S8_UINT();
+    return format == VK_FORMAT_D32_SFLOAT_S8_UINT() || format == VK_FORMAT_D24_UNORM_S8_UINT();
   }
 
   protected static MemorySegment beginSingleTimeCommands(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice) {
     var commandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
-    VkCommandBufferAllocateInfo.sType(commandBufferAllocateInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
-    VkCommandBufferAllocateInfo.level(commandBufferAllocateInfo, vulkan_h.VK_COMMAND_BUFFER_LEVEL_PRIMARY());
+    VkCommandBufferAllocateInfo.sType(commandBufferAllocateInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
+    VkCommandBufferAllocateInfo.level(commandBufferAllocateInfo, VK_COMMAND_BUFFER_LEVEL_PRIMARY());
     VkCommandBufferAllocateInfo.commandPool(commandBufferAllocateInfo, pVkCommandPool.get(C_POINTER, 0));
     VkCommandBufferAllocateInfo.commandBufferCount(commandBufferAllocateInfo, 1);
 
     var pCommandBuffer = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkAllocateCommandBuffers(vkDevice, commandBufferAllocateInfo, pCommandBuffer));
+    var result = VKResult.vkResult(vkAllocateCommandBuffers(vkDevice, commandBufferAllocateInfo, pCommandBuffer));
     if (result != VK_SUCCESS) {
       System.out.println("vkAllocateCommandBuffers failed for vertex buffer: " + result);
       System.exit(-1);
     }
 
     var beginInfo = VkCommandBufferBeginInfo.allocate(arena);
-    VkCommandBufferBeginInfo.sType(beginInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
-    VkCommandBufferBeginInfo.flags(beginInfo, vulkan_h.VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT());
-    result = VKResult.vkResult(vulkan_h.vkBeginCommandBuffer(pCommandBuffer.get(C_POINTER, 0), beginInfo));
+    VkCommandBufferBeginInfo.sType(beginInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
+    VkCommandBufferBeginInfo.flags(beginInfo, VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT());
+    result = VKResult.vkResult(vkBeginCommandBuffer(pCommandBuffer.get(C_POINTER, 0), beginInfo));
     if (result != VK_SUCCESS) {
       System.out.println("vkBeginCommandBuffer failed for vertex buffer: " + result);
       System.exit(-1);
@@ -683,24 +683,24 @@ public abstract class HelloApplication1 extends Application {
 
   protected static void endSingleTimeCommands(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
                                               MemorySegment pVkGraphicsQueue, MemorySegment pCommandBuffer) {
-    vulkan_h.vkEndCommandBuffer(pCommandBuffer.get(C_POINTER, 0));
+    vkEndCommandBuffer(pCommandBuffer.get(C_POINTER, 0));
 
     var pSubmitInfo = VkSubmitInfo.allocate(arena);
-    VkSubmitInfo.sType(pSubmitInfo, vulkan_h.VK_STRUCTURE_TYPE_SUBMIT_INFO());
+    VkSubmitInfo.sType(pSubmitInfo, VK_STRUCTURE_TYPE_SUBMIT_INFO());
     VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, pCommandBuffer);
-    var result = VKResult.vkResult(vulkan_h.vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, vulkan_h.VK_NULL_HANDLE()));
+    var result = VKResult.vkResult(vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, VK_NULL_HANDLE()));
     if (result != VK_SUCCESS) {
       System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
       System.exit(-1);
     }
 
-    result = VKResult.vkResult(vulkan_h.vkQueueWaitIdle(pVkGraphicsQueue.get(C_POINTER, 0)));
+    result = VKResult.vkResult(vkQueueWaitIdle(pVkGraphicsQueue.get(C_POINTER, 0)));
     if (result != VK_SUCCESS) {
       System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
       System.exit(-1);
     }
-    vulkan_h.vkFreeCommandBuffers(vkDevice, pVkCommandPool.get(C_POINTER, 0), 1, pCommandBuffer);
+    vkFreeCommandBuffers(vkDevice, pVkCommandPool.get(C_POINTER, 0), 1, pCommandBuffer);
   }
 
   protected static void copyBufferToImage(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
@@ -712,7 +712,7 @@ public abstract class HelloApplication1 extends Application {
     VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
     VkBufferImageCopy.bufferRowLength(pBufferImageCopyRegion, 0);
     VkBufferImageCopy.bufferImageHeight(pBufferImageCopyRegion, 0);
-    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), VK_IMAGE_ASPECT_COLOR_BIT());
     VkImageSubresourceLayers.mipLevel(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
     VkImageSubresourceLayers.baseArrayLayer(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
     VkImageSubresourceLayers.layerCount(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 1);
@@ -723,8 +723,8 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vulkan_h.vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer().get(C_POINTER, 0),
-      imageMemory.image().get(C_POINTER, 0), vulkan_h.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
+    vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer().get(C_POINTER, 0),
+      imageMemory.image().get(C_POINTER, 0), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
   }
@@ -738,7 +738,7 @@ public abstract class HelloApplication1 extends Application {
     VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
     VkBufferImageCopy.bufferRowLength(pBufferImageCopyRegion, 0);
     VkBufferImageCopy.bufferImageHeight(pBufferImageCopyRegion, 0);
-    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), vulkan_h.VK_IMAGE_ASPECT_COLOR_BIT());
+    VkImageSubresourceLayers.aspectMask(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), VK_IMAGE_ASPECT_COLOR_BIT());
     VkImageSubresourceLayers.mipLevel(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
     VkImageSubresourceLayers.baseArrayLayer(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 0);
     VkImageSubresourceLayers.layerCount(VkBufferImageCopy.imageSubresource(pBufferImageCopyRegion), 1);
@@ -749,20 +749,20 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vulkan_h.vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
-      vulkan_h.VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
+    vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
+      VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pCommandPool, device, pVkGraphicsQueue, pCommandBuffer);
   }
 
   protected static MemorySegment createSemaphores(Arena arena, MemorySegment vkDevice) {
     var pSemaphoreCreateInfo = VkSemaphoreCreateInfo.allocate(arena);
-    VkSemaphoreCreateInfo.sType(pSemaphoreCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO());
+    VkSemaphoreCreateInfo.sType(pSemaphoreCreateInfo, VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO());
 
     MemorySegment pSemaphores = arena.allocate(C_POINTER, 2);
 
     for (int i = 0; i < 2; i++) {
-      var result = VKResult.vkResult(vulkan_h.vkCreateSemaphore(vkDevice, pSemaphoreCreateInfo, MemorySegment.NULL, pSemaphores.asSlice(C_POINTER.byteSize() * i)));
+      var result = VKResult.vkResult(vkCreateSemaphore(vkDevice, pSemaphoreCreateInfo, MemorySegment.NULL, pSemaphores.asSlice(C_POINTER.byteSize() * i)));
       if (result != VK_SUCCESS) {
         System.out.println("vkCreateSemaphore failed: " + result);
         System.exit(-1);
@@ -775,10 +775,10 @@ public abstract class HelloApplication1 extends Application {
 
   protected static MemorySegment createFence(Arena arena, MemorySegment vkDevice) {
     var pFenceCreateInfo = VkFenceCreateInfo.allocate(arena);
-    VkFenceCreateInfo.sType(pFenceCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_FENCE_CREATE_INFO());
-    VkFenceCreateInfo.flags(pFenceCreateInfo, vulkan_h.VK_FENCE_CREATE_SIGNALED_BIT());
+    VkFenceCreateInfo.sType(pFenceCreateInfo, VK_STRUCTURE_TYPE_FENCE_CREATE_INFO());
+    VkFenceCreateInfo.flags(pFenceCreateInfo, VK_FENCE_CREATE_SIGNALED_BIT());
     var pFence = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateFence(vkDevice, pFenceCreateInfo, MemorySegment.NULL, pFence));
+    var result = VKResult.vkResult(vkCreateFence(vkDevice, pFenceCreateInfo, MemorySegment.NULL, pFence));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateFence failed: " + result);
       System.exit(-1);
@@ -798,7 +798,7 @@ public abstract class HelloApplication1 extends Application {
     pAttachments.setAtIndex(C_POINTER, 0, imageView.get(C_POINTER, 0));
     pAttachments.setAtIndex(C_POINTER, 1, pDepthImageView.get(C_POINTER, 0));
 
-    VkFramebufferCreateInfo.sType(pFramebufferCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO());
+    VkFramebufferCreateInfo.sType(pFramebufferCreateInfo, VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO());
     VkFramebufferCreateInfo.renderPass(pFramebufferCreateInfo, pRenderPass.get(C_POINTER, 0));
     VkFramebufferCreateInfo.attachmentCount(pFramebufferCreateInfo, 2);
     VkFramebufferCreateInfo.pAttachments(pFramebufferCreateInfo, pAttachments);
@@ -807,7 +807,7 @@ public abstract class HelloApplication1 extends Application {
     VkFramebufferCreateInfo.layers(pFramebufferCreateInfo, 1);
 
     var pVkFramebuffer = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vulkan_h.vkCreateFramebuffer(vkDevice, pFramebufferCreateInfo, MemorySegment.NULL, pVkFramebuffer));
+    var result = VKResult.vkResult(vkCreateFramebuffer(vkDevice, pFramebufferCreateInfo, MemorySegment.NULL, pVkFramebuffer));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateFramebuffer failed: " + result);
       System.exit(-1);
@@ -823,23 +823,23 @@ public abstract class HelloApplication1 extends Application {
     var pBinding0 = pBindings.asSlice(0,VkDescriptorSetLayoutBinding.sizeof());
         /*
         VkDescriptorSetLayoutBinding.binding(pBindings, 0, 0);
-        VkDescriptorSetLayoutBinding.descriptorType(pBindings, 0, vulkan_h.VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER());
+        VkDescriptorSetLayoutBinding.descriptorType(pBindings, 0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER());
         VkDescriptorSetLayoutBinding.descriptorCount(pBindings, 0, 1);
-        VkDescriptorSetLayoutBinding.stageFlags(pBindings, 0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+        VkDescriptorSetLayoutBinding.stageFlags(pBindings, 0, VK_SHADER_STAGE_VERTEX_BIT());
          */
     VkDescriptorSetLayoutBinding.binding(pBinding0, 0);
-    VkDescriptorSetLayoutBinding.descriptorType(pBinding0, vulkan_h.VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER());
+    VkDescriptorSetLayoutBinding.descriptorType(pBinding0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER());
     VkDescriptorSetLayoutBinding.descriptorCount(pBinding0, 1);
-    VkDescriptorSetLayoutBinding.stageFlags(pBinding0, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+    VkDescriptorSetLayoutBinding.stageFlags(pBinding0, VK_SHADER_STAGE_FRAGMENT_BIT());
 
     var pDescriptorSetLayout = arena.allocate(C_POINTER);
 
     var pDescriptorSetLayoutCreateInfo = VkDescriptorSetLayoutCreateInfo.allocate(arena);
-    VkDescriptorSetLayoutCreateInfo.sType(pDescriptorSetLayoutCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO());
+    VkDescriptorSetLayoutCreateInfo.sType(pDescriptorSetLayoutCreateInfo, VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO());
     VkDescriptorSetLayoutCreateInfo.bindingCount(pDescriptorSetLayoutCreateInfo, numBindings);
     VkDescriptorSetLayoutCreateInfo.pBindings(pDescriptorSetLayoutCreateInfo, pBindings);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreateDescriptorSetLayout(vkDevice,
+    var result = VKResult.vkResult(vkCreateDescriptorSetLayout(vkDevice,
       pDescriptorSetLayoutCreateInfo, MemorySegment.NULL, pDescriptorSetLayout));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateDescriptorSetLayout failed: " + result);
@@ -869,14 +869,14 @@ public abstract class HelloApplication1 extends Application {
     var pFragShaderModule = createShaderModule(vkDevice, fragShaderBytes, arena);
 
     var pVertShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
-    VkPipelineShaderStageCreateInfo.sType(pVertShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
-    VkPipelineShaderStageCreateInfo.stage(pVertShaderStageInfo, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPipelineShaderStageCreateInfo.sType(pVertShaderStageInfo, VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(pVertShaderStageInfo, VK_SHADER_STAGE_VERTEX_BIT());
     VkPipelineShaderStageCreateInfo.module(pVertShaderStageInfo, pVertShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(pVertShaderStageInfo, arena.allocateFrom("main",StandardCharsets.UTF_8));
 
     var pFragShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
-    VkPipelineShaderStageCreateInfo.sType(pFragShaderStageInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
-    VkPipelineShaderStageCreateInfo.stage(pFragShaderStageInfo, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+    VkPipelineShaderStageCreateInfo.sType(pFragShaderStageInfo, VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(pFragShaderStageInfo, VK_SHADER_STAGE_FRAGMENT_BIT());
     VkPipelineShaderStageCreateInfo.module(pFragShaderStageInfo, pFragShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(pFragShaderStageInfo, arena.allocateFrom("main",StandardCharsets.UTF_8));
 
@@ -938,7 +938,7 @@ public abstract class HelloApplication1 extends Application {
       2, 6, 3, 3, 6, 7
     };
     VkVertexInputBindingDescription.stride(pVertexInputBindingDescription, 32); // pos + color + texcoord = 12 + 12 + 8 bytes
-    VkVertexInputBindingDescription.inputRate(pVertexInputBindingDescription, vulkan_h.VK_VERTEX_INPUT_RATE_VERTEX());
+    VkVertexInputBindingDescription.inputRate(pVertexInputBindingDescription, VK_VERTEX_INPUT_RATE_VERTEX());
 
     var pVertexInputAttributeDescriptions = VkVertexInputAttributeDescription.allocateArray(3, arena);
     var descriptionSize = VkVertexInputAttributeDescription.sizeof();
@@ -947,23 +947,23 @@ public abstract class HelloApplication1 extends Application {
     var positionDesc = pVertexInputAttributeDescriptions.asSlice(0, descriptionSize);
     VkVertexInputAttributeDescription.binding(positionDesc, 0);
     VkVertexInputAttributeDescription.location(positionDesc, 0);
-    VkVertexInputAttributeDescription.format(positionDesc, vulkan_h.VK_FORMAT_R32G32B32_SFLOAT());
+    VkVertexInputAttributeDescription.format(positionDesc, VK_FORMAT_R32G32B32_SFLOAT());
     VkVertexInputAttributeDescription.offset(positionDesc, 0);
     // Color description
     var colorDesc = pVertexInputAttributeDescriptions.asSlice(descriptionSize, descriptionSize);
     VkVertexInputAttributeDescription.binding(colorDesc, 0);
     VkVertexInputAttributeDescription.location(colorDesc, 1);
-    VkVertexInputAttributeDescription.format(colorDesc, vulkan_h.VK_FORMAT_R32G32B32_SFLOAT());
+    VkVertexInputAttributeDescription.format(colorDesc, VK_FORMAT_R32G32B32_SFLOAT());
     VkVertexInputAttributeDescription.offset(colorDesc, 12); // color starts at 12 bytes
     // Texcoord description
     var textcoorDesc = pVertexInputAttributeDescriptions.asSlice(descriptionSize*2, descriptionSize);
     VkVertexInputAttributeDescription.binding(textcoorDesc, 0);
     VkVertexInputAttributeDescription.location(textcoorDesc, 2);
-    VkVertexInputAttributeDescription.format(textcoorDesc, vulkan_h.VK_FORMAT_R32G32_SFLOAT());
+    VkVertexInputAttributeDescription.format(textcoorDesc, VK_FORMAT_R32G32_SFLOAT());
     VkVertexInputAttributeDescription.offset(textcoorDesc, 24); // texcoord starts at 24 bytes
 
     var pVertexInputStateInfo = VkPipelineVertexInputStateCreateInfo.allocate(arena);
-    VkPipelineVertexInputStateCreateInfo.sType(pVertexInputStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO());
+    VkPipelineVertexInputStateCreateInfo.sType(pVertexInputStateInfo, VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO());
     VkPipelineVertexInputStateCreateInfo.vertexBindingDescriptionCount(pVertexInputStateInfo, 1);
     VkPipelineVertexInputStateCreateInfo.pVertexBindingDescriptions(pVertexInputStateInfo, pVertexInputBindingDescription);
     VkPipelineVertexInputStateCreateInfo.vertexAttributeDescriptionCount(pVertexInputStateInfo, 3);
@@ -993,74 +993,74 @@ public abstract class HelloApplication1 extends Application {
     VkExtent2D.height(VkRect2D.extent(scissor), windowHeight);
 
     var pipelineViewportStateInfo = VkPipelineViewportStateCreateInfo.allocate(arena);
-    VkPipelineViewportStateCreateInfo.sType(pipelineViewportStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO());
+    VkPipelineViewportStateCreateInfo.sType(pipelineViewportStateInfo, VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO());
     VkPipelineViewportStateCreateInfo.viewportCount(pipelineViewportStateInfo, 1);
     VkPipelineViewportStateCreateInfo.pViewports(pipelineViewportStateInfo, pViewport);
     VkPipelineViewportStateCreateInfo.scissorCount(pipelineViewportStateInfo, 1);
     VkPipelineViewportStateCreateInfo.pScissors(pipelineViewportStateInfo, scissor);
 
     var pipelineRasterizationStateInfo = VkPipelineRasterizationStateCreateInfo.allocate(arena);
-    VkPipelineRasterizationStateCreateInfo.sType(pipelineRasterizationStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO());
-    VkPipelineRasterizationStateCreateInfo.depthClampEnable(pipelineRasterizationStateInfo, vulkan_h.VK_FALSE());
-    VkPipelineRasterizationStateCreateInfo.rasterizerDiscardEnable(pipelineRasterizationStateInfo, vulkan_h.VK_FALSE());
-    VkPipelineRasterizationStateCreateInfo.polygonMode(pipelineRasterizationStateInfo, vulkan_h.VK_POLYGON_MODE_FILL());
+    VkPipelineRasterizationStateCreateInfo.sType(pipelineRasterizationStateInfo, VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO());
+    VkPipelineRasterizationStateCreateInfo.depthClampEnable(pipelineRasterizationStateInfo, VK_FALSE());
+    VkPipelineRasterizationStateCreateInfo.rasterizerDiscardEnable(pipelineRasterizationStateInfo, VK_FALSE());
+    VkPipelineRasterizationStateCreateInfo.polygonMode(pipelineRasterizationStateInfo, VK_POLYGON_MODE_FILL());
     VkPipelineRasterizationStateCreateInfo.lineWidth(pipelineRasterizationStateInfo, 1.0f);
-    VkPipelineRasterizationStateCreateInfo.cullMode(pipelineRasterizationStateInfo, vulkan_h.VK_CULL_MODE_BACK_BIT());
-    VkPipelineRasterizationStateCreateInfo.frontFace(pipelineRasterizationStateInfo, vulkan_h.VK_FRONT_FACE_CLOCKWISE());
+    VkPipelineRasterizationStateCreateInfo.cullMode(pipelineRasterizationStateInfo, VK_CULL_MODE_BACK_BIT());
+    VkPipelineRasterizationStateCreateInfo.frontFace(pipelineRasterizationStateInfo, VK_FRONT_FACE_CLOCKWISE());
 
     var pipelineMultisampleStateInfo = VkPipelineMultisampleStateCreateInfo.allocate(arena);
-    VkPipelineMultisampleStateCreateInfo.sType(pipelineMultisampleStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO());
-    VkPipelineMultisampleStateCreateInfo.sampleShadingEnable(pipelineMultisampleStateInfo, vulkan_h.VK_FALSE());
-    VkPipelineMultisampleStateCreateInfo.rasterizationSamples(pipelineMultisampleStateInfo, vulkan_h.VK_SAMPLE_COUNT_1_BIT());
+    VkPipelineMultisampleStateCreateInfo.sType(pipelineMultisampleStateInfo, VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO());
+    VkPipelineMultisampleStateCreateInfo.sampleShadingEnable(pipelineMultisampleStateInfo, VK_FALSE());
+    VkPipelineMultisampleStateCreateInfo.rasterizationSamples(pipelineMultisampleStateInfo, VK_SAMPLE_COUNT_1_BIT());
     VkPipelineMultisampleStateCreateInfo.minSampleShading(pipelineMultisampleStateInfo, 1.0f);
     VkPipelineMultisampleStateCreateInfo.pSampleMask(pipelineMultisampleStateInfo, MemorySegment.NULL);
-    VkPipelineMultisampleStateCreateInfo.alphaToCoverageEnable(pipelineMultisampleStateInfo, vulkan_h.VK_FALSE());
-    VkPipelineMultisampleStateCreateInfo.alphaToOneEnable(pipelineMultisampleStateInfo, vulkan_h.VK_FALSE());
+    VkPipelineMultisampleStateCreateInfo.alphaToCoverageEnable(pipelineMultisampleStateInfo, VK_FALSE());
+    VkPipelineMultisampleStateCreateInfo.alphaToOneEnable(pipelineMultisampleStateInfo, VK_FALSE());
 
     var pipelineColorBlendAttachmentState = VkPipelineColorBlendAttachmentState.allocate(arena);
-    VkPipelineColorBlendAttachmentState.colorWriteMask(pipelineColorBlendAttachmentState, vulkan_h.VK_COLOR_COMPONENT_R_BIT() | vulkan_h.VK_COLOR_COMPONENT_G_BIT() | vulkan_h.VK_COLOR_COMPONENT_B_BIT() | vulkan_h.VK_COLOR_COMPONENT_A_BIT());
-    VkPipelineColorBlendAttachmentState.blendEnable(pipelineColorBlendAttachmentState, vulkan_h.VK_FALSE());
-    VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ONE());
-    VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ZERO());
-    VkPipelineColorBlendAttachmentState.colorBlendOp(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_OP_ADD());
-    VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ONE());
-    VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_FACTOR_ZERO());
-    VkPipelineColorBlendAttachmentState.alphaBlendOp(pipelineColorBlendAttachmentState, vulkan_h.VK_BLEND_OP_ADD());
+    VkPipelineColorBlendAttachmentState.colorWriteMask(pipelineColorBlendAttachmentState, VK_COLOR_COMPONENT_R_BIT() | VK_COLOR_COMPONENT_G_BIT() | VK_COLOR_COMPONENT_B_BIT() | VK_COLOR_COMPONENT_A_BIT());
+    VkPipelineColorBlendAttachmentState.blendEnable(pipelineColorBlendAttachmentState, VK_FALSE());
+    VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pipelineColorBlendAttachmentState, VK_BLEND_FACTOR_ONE());
+    VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pipelineColorBlendAttachmentState, VK_BLEND_FACTOR_ZERO());
+    VkPipelineColorBlendAttachmentState.colorBlendOp(pipelineColorBlendAttachmentState, VK_BLEND_OP_ADD());
+    VkPipelineColorBlendAttachmentState.srcAlphaBlendFactor(pipelineColorBlendAttachmentState, VK_BLEND_FACTOR_ONE());
+    VkPipelineColorBlendAttachmentState.dstAlphaBlendFactor(pipelineColorBlendAttachmentState, VK_BLEND_FACTOR_ZERO());
+    VkPipelineColorBlendAttachmentState.alphaBlendOp(pipelineColorBlendAttachmentState, VK_BLEND_OP_ADD());
 
     var pipelineColorBlendStateInfo = VkPipelineColorBlendStateCreateInfo.allocate(arena);
-    VkPipelineColorBlendStateCreateInfo.sType(pipelineColorBlendStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO());
-    VkPipelineColorBlendStateCreateInfo.logicOpEnable(pipelineColorBlendStateInfo, vulkan_h.VK_FALSE());
-    VkPipelineColorBlendStateCreateInfo.logicOp(pipelineColorBlendStateInfo, vulkan_h.VK_LOGIC_OP_COPY());
+    VkPipelineColorBlendStateCreateInfo.sType(pipelineColorBlendStateInfo, VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO());
+    VkPipelineColorBlendStateCreateInfo.logicOpEnable(pipelineColorBlendStateInfo, VK_FALSE());
+    VkPipelineColorBlendStateCreateInfo.logicOp(pipelineColorBlendStateInfo, VK_LOGIC_OP_COPY());
     VkPipelineColorBlendStateCreateInfo.attachmentCount(pipelineColorBlendStateInfo, 1);
     VkPipelineColorBlendStateCreateInfo.pAttachments(pipelineColorBlendStateInfo, pipelineColorBlendAttachmentState);
 
     var pipelineInputAssemblyStateInfo = VkPipelineInputAssemblyStateCreateInfo.allocate(arena);
-    VkPipelineInputAssemblyStateCreateInfo.sType(pipelineInputAssemblyStateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO());
-    VkPipelineInputAssemblyStateCreateInfo.topology(pipelineInputAssemblyStateInfo, vulkan_h.VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST());
-    VkPipelineInputAssemblyStateCreateInfo.primitiveRestartEnable(pipelineInputAssemblyStateInfo, vulkan_h.VK_FALSE());
+    VkPipelineInputAssemblyStateCreateInfo.sType(pipelineInputAssemblyStateInfo, VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO());
+    VkPipelineInputAssemblyStateCreateInfo.topology(pipelineInputAssemblyStateInfo, VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST());
+    VkPipelineInputAssemblyStateCreateInfo.primitiveRestartEnable(pipelineInputAssemblyStateInfo, VK_FALSE());
 
     var pipelineDepthStencilStateCreateInfo = VkPipelineDepthStencilStateCreateInfo.allocate(arena);
-    VkPipelineDepthStencilStateCreateInfo.sType(pipelineDepthStencilStateCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO());
-    VkPipelineDepthStencilStateCreateInfo.depthTestEnable(pipelineDepthStencilStateCreateInfo, vulkan_h.VK_TRUE());
-    VkPipelineDepthStencilStateCreateInfo.depthWriteEnable(pipelineDepthStencilStateCreateInfo, vulkan_h.VK_FALSE());
-    VkPipelineDepthStencilStateCreateInfo.depthCompareOp(pipelineDepthStencilStateCreateInfo, vulkan_h.VK_COMPARE_OP_LESS());
-    VkPipelineDepthStencilStateCreateInfo.depthBoundsTestEnable(pipelineDepthStencilStateCreateInfo, vulkan_h.VK_FALSE());
-    VkPipelineDepthStencilStateCreateInfo.stencilTestEnable(pipelineDepthStencilStateCreateInfo, vulkan_h.VK_FALSE());
+    VkPipelineDepthStencilStateCreateInfo.sType(pipelineDepthStencilStateCreateInfo, VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO());
+    VkPipelineDepthStencilStateCreateInfo.depthTestEnable(pipelineDepthStencilStateCreateInfo, VK_TRUE());
+    VkPipelineDepthStencilStateCreateInfo.depthWriteEnable(pipelineDepthStencilStateCreateInfo, VK_FALSE());
+    VkPipelineDepthStencilStateCreateInfo.depthCompareOp(pipelineDepthStencilStateCreateInfo, VK_COMPARE_OP_LESS());
+    VkPipelineDepthStencilStateCreateInfo.depthBoundsTestEnable(pipelineDepthStencilStateCreateInfo, VK_FALSE());
+    VkPipelineDepthStencilStateCreateInfo.stencilTestEnable(pipelineDepthStencilStateCreateInfo, VK_FALSE());
 
     var pipelineLayout = arena.allocate(C_POINTER);
     // Setup push constants.
     var pushConstantRange = VkPushConstantRange.allocate(arena);
     VkPushConstantRange.offset(pushConstantRange, 0);
     VkPushConstantRange.size(pushConstantRange, 64); // 4x4 matrix of floats = 16*4 = 64 bytes
-    VkPushConstantRange.stageFlags(pushConstantRange, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPushConstantRange.stageFlags(pushConstantRange, VK_SHADER_STAGE_VERTEX_BIT());
     var pipelineLayoutCreateInfo = VkPipelineLayoutCreateInfo.allocate(arena);
-    VkPipelineLayoutCreateInfo.sType(pipelineLayoutCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO());
+    VkPipelineLayoutCreateInfo.sType(pipelineLayoutCreateInfo, VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO());
     VkPipelineLayoutCreateInfo.setLayoutCount(pipelineLayoutCreateInfo, 1);
     VkPipelineLayoutCreateInfo.pSetLayouts(pipelineLayoutCreateInfo, descriptorSetLayout);
     VkPipelineLayoutCreateInfo.pPushConstantRanges(pipelineLayoutCreateInfo, pushConstantRange);
     VkPipelineLayoutCreateInfo.pushConstantRangeCount(pipelineLayoutCreateInfo, 1);
 
-    var result = VKResult.vkResult(vulkan_h.vkCreatePipelineLayout(vkDevice, pipelineLayoutCreateInfo, MemorySegment.NULL, pipelineLayout));
+    var result = VKResult.vkResult(vkCreatePipelineLayout(vkDevice, pipelineLayoutCreateInfo, MemorySegment.NULL, pipelineLayout));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreatePipelineLayout failed: " + result);
       System.exit(-1);
@@ -1069,17 +1069,17 @@ public abstract class HelloApplication1 extends Application {
     }
 
     var pipelineCreateInfo = VkGraphicsPipelineCreateInfo.allocate(arena);
-    VkGraphicsPipelineCreateInfo.sType(pipelineCreateInfo, vulkan_h.VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
+    VkGraphicsPipelineCreateInfo.sType(pipelineCreateInfo, VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO());
     MemorySegment stages = VkPipelineShaderStageCreateInfo.allocateArray(2, arena);
     assert (stages.byteSize() / 2 == VkPipelineShaderStageCreateInfo.sizeof());
     MemorySegment stage0 = stages.asSlice(0, VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
-    VkPipelineShaderStageCreateInfo.sType(stage0, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
-    VkPipelineShaderStageCreateInfo.stage(stage0, vulkan_h.VK_SHADER_STAGE_VERTEX_BIT());
+    VkPipelineShaderStageCreateInfo.sType(stage0, VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(stage0, VK_SHADER_STAGE_VERTEX_BIT());
     VkPipelineShaderStageCreateInfo.module(stage0, vertShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(stage0, arena.allocateFrom("main", StandardCharsets.UTF_8));
     MemorySegment stage1 = stages.asSlice(VkPipelineShaderStageCreateInfo.sizeof());//stages.byteSize()/2
-    VkPipelineShaderStageCreateInfo.sType(stage1, vulkan_h.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
-    VkPipelineShaderStageCreateInfo.stage(stage1, vulkan_h.VK_SHADER_STAGE_FRAGMENT_BIT());
+    VkPipelineShaderStageCreateInfo.sType(stage1, VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
+    VkPipelineShaderStageCreateInfo.stage(stage1, VK_SHADER_STAGE_FRAGMENT_BIT());
     VkPipelineShaderStageCreateInfo.module(stage1, fragShaderModule.get(C_POINTER, 0));
     VkPipelineShaderStageCreateInfo.pName(stage1, arena.allocateFrom("main", StandardCharsets.UTF_8));
     VkGraphicsPipelineCreateInfo.stageCount(pipelineCreateInfo, 2);
@@ -1094,12 +1094,12 @@ public abstract class HelloApplication1 extends Application {
     VkGraphicsPipelineCreateInfo.layout(pipelineCreateInfo, pipelineLayout.get(C_POINTER, 0));
     VkGraphicsPipelineCreateInfo.renderPass(pipelineCreateInfo, renderPass.get(C_POINTER, 0));
     VkGraphicsPipelineCreateInfo.subpass(pipelineCreateInfo, 0);
-    VkGraphicsPipelineCreateInfo.basePipelineHandle(pipelineCreateInfo, vulkan_h.VK_NULL_HANDLE());
+    VkGraphicsPipelineCreateInfo.basePipelineHandle(pipelineCreateInfo, VK_NULL_HANDLE());
     VkGraphicsPipelineCreateInfo.basePipelineIndex(pipelineCreateInfo, -1);
     VkGraphicsPipelineCreateInfo.pDepthStencilState(pipelineCreateInfo, pipelineDepthStencilStateCreateInfo);
     var pipeline = arena.allocate(C_POINTER, 1);
-    result = VKResult.vkResult(vulkan_h.vkCreateGraphicsPipelines(vkDevice,
-      vulkan_h.VK_NULL_HANDLE(), 1, pipelineCreateInfo, MemorySegment.NULL, pipeline));
+    result = VKResult.vkResult(vkCreateGraphicsPipelines(vkDevice,
+      VK_NULL_HANDLE(), 1, pipelineCreateInfo, MemorySegment.NULL, pipeline));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateGraphicsPipelines failed: " + result);
       System.exit(-1);
@@ -1127,16 +1127,16 @@ public abstract class HelloApplication1 extends Application {
 
   protected static void submitQueue(Arena arena, MemorySegment pVkGraphicsQueue, MemorySegment pCommandBuffer, MemorySegment pSemaphores, MemorySegment fence) {
     var pSubmitInfo = VkSubmitInfo.allocate(arena);
-    VkSubmitInfo.sType(pSubmitInfo, vulkan_h.VK_STRUCTURE_TYPE_SUBMIT_INFO());
+    VkSubmitInfo.sType(pSubmitInfo, VK_STRUCTURE_TYPE_SUBMIT_INFO());
     VkSubmitInfo.waitSemaphoreCount(pSubmitInfo, 1);
     VkSubmitInfo.pWaitSemaphores(pSubmitInfo, pSemaphores);
-    VkSubmitInfo.pWaitDstStageMask(pSubmitInfo, arena.allocateFrom(C_INT, new int[]{vulkan_h.VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT()}));
+    VkSubmitInfo.pWaitDstStageMask(pSubmitInfo, arena.allocateFrom(C_INT, new int[]{VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT()}));
     VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, pCommandBuffer);
     VkSubmitInfo.signalSemaphoreCount(pSubmitInfo, 1);
     VkSubmitInfo.pSignalSemaphores(pSubmitInfo, pSemaphores);
 
-    var result = VKResult.vkResult(vulkan_h.vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, fence));
+    var result = VKResult.vkResult(vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, fence));
     if (result != VK_SUCCESS) {
       System.out.println("vkQueueSubmit failed: " + result);
       System.exit(-1);
@@ -1149,16 +1149,16 @@ public abstract class HelloApplication1 extends Application {
                                              MemorySegment pVertexBuffer, MemorySegment pIndexBuffer, Object indices,
                                              int frameIndex, MemorySegment pDescriptorSets) {
     var pCommandBufferBeginInfo = VkCommandBufferBeginInfo.allocate(arena);
-    VkCommandBufferBeginInfo.sType(pCommandBufferBeginInfo, vulkan_h.VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
+    VkCommandBufferBeginInfo.sType(pCommandBufferBeginInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
 
-    var result = VKResult.vkResult(vulkan_h.vkBeginCommandBuffer(commandBuffer, pCommandBufferBeginInfo));
+    var result = VKResult.vkResult(vkBeginCommandBuffer(commandBuffer, pCommandBufferBeginInfo));
     if (result != VK_SUCCESS) {
       System.out.println("vkBeginCommandBuffer failed: " + result);
       System.exit(-1);
     }
 
     var pRenderPassBeginInfo = VkRenderPassBeginInfo.allocate(arena);
-    VkRenderPassBeginInfo.sType(pRenderPassBeginInfo, vulkan_h.VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO());
+    VkRenderPassBeginInfo.sType(pRenderPassBeginInfo, VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO());
     VkRenderPassBeginInfo.renderPass(pRenderPassBeginInfo, pRenderPass.get(C_POINTER, 0));
     VkRenderPassBeginInfo.framebuffer(pRenderPassBeginInfo, frameBuffer.get(C_POINTER, 0));
     VkOffset2D.x(VkRect2D.offset(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), 0);
@@ -1185,27 +1185,27 @@ public abstract class HelloApplication1 extends Application {
 
     VkRenderPassBeginInfo.pClearValues(pRenderPassBeginInfo, pClearValues);
 
-    vulkan_h.vkCmdBeginRenderPass(commandBuffer, pRenderPassBeginInfo, vulkan_h.VK_SUBPASS_CONTENTS_INLINE());
-    vulkan_h.vkCmdBindPipeline(commandBuffer,
-      vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pipeline().get(C_POINTER, 0));
+    vkCmdBeginRenderPass(commandBuffer, pRenderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE());
+    vkCmdBindPipeline(commandBuffer,
+      VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pipeline().get(C_POINTER, 0));
 
     var pOffsets = arena.allocate(C_POINTER, 1);
     pOffsets.setAtIndex(C_LONG, 0, 0);
-    vulkan_h.vkCmdBindVertexBuffers(commandBuffer, 0, 1, pVertexBuffer, pOffsets);
+    vkCmdBindVertexBuffers(commandBuffer, 0, 1, pVertexBuffer, pOffsets);
 
     setPushConstants(arena, pipelineLayoutPair.layout(), commandBuffer, windowWidth, windowHeight, frameIndex);
-    vulkan_h.vkCmdBindDescriptorSets(commandBuffer, vulkan_h.VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.layout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
+    vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.layout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
 
     if (indices instanceof int[] intIndices) {
-      vulkan_h.vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, vulkan_h.VK_INDEX_TYPE_UINT32());
-      vulkan_h.vkCmdDrawIndexed(commandBuffer, intIndices.length, 1, 0, 0, 0);
+      vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, VK_INDEX_TYPE_UINT32());
+      vkCmdDrawIndexed(commandBuffer, intIndices.length, 1, 0, 0, 0);
     } else if (indices instanceof char[] charIndices) {
-      vulkan_h.vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, vulkan_h.VK_INDEX_TYPE_UINT16());
-      vulkan_h.vkCmdDrawIndexed(commandBuffer, charIndices.length, 1, 0, 0, 0);
+      vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, VK_INDEX_TYPE_UINT16());
+      vkCmdDrawIndexed(commandBuffer, charIndices.length, 1, 0, 0, 0);
     }
-    vulkan_h.vkCmdEndRenderPass(commandBuffer);
+    vkCmdEndRenderPass(commandBuffer);
 
-    result = VKResult.vkResult(vulkan_h.vkEndCommandBuffer(commandBuffer));
+    result = VKResult.vkResult(vkEndCommandBuffer(commandBuffer));
     if (result != VK_SUCCESS) {
       System.out.println("vkEndCommandBuffer failed: " + result);
       System.exit(-1);
@@ -1286,7 +1286,7 @@ public abstract class HelloApplication1 extends Application {
     for (int i = 0; i < pvm.length; i++) {
       pValues.setAtIndex(C_FLOAT, i, pvm[i]);
     }
-    vulkan_h.vkCmdPushConstants(pCommandBuffer, pPipelineLayout.get(C_POINTER, 0), vulkan_h.VK_SHADER_STAGE_VERTEX_BIT(), 0, 64, pValues);
+    vkCmdPushConstants(pCommandBuffer, pPipelineLayout.get(C_POINTER, 0), VK_SHADER_STAGE_VERTEX_BIT(), 0, 64, pValues);
   }
  */
 }
