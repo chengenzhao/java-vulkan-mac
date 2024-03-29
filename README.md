@@ -1,5 +1,7 @@
 # Java Vulkan Example  
 
+![Screenshot](https://github.com/chengenzhao/java-vulkan-mac/assets/5525436/8b8e50ab-ebc3-4d68-8164-985bdb3ab177)
+
 # Requirement:  
 
 * Java 22
@@ -28,8 +30,8 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 * Make sure the path of the lib folder in Vulkan SDK is included in java.library.path, otherwise it won't be able to find it.
 * Also files in the share fold is required, make sure the environment path includes VK_ICD_FILENAMES and VK_LAYER_PATH.
 * Compile the shader files, which included in the src/main/resources/shader folder. Using command like:
-  * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
-  * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.frag -o frag.spv
+  * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/shader.vert -o src/main/resources/shader/vert.spv
+  * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/shader.frag -o src/main/resources/shader/frag.spv
 * Run the main class: com.example.HelloApplication
 
 # Distribution / Releasing on Steam etc.
