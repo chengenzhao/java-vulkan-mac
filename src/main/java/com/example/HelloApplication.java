@@ -77,18 +77,15 @@ public class HelloApplication extends HelloApplication1 {
 //      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
 
     //3. image and image view
-    int depthFormat = findSupportedFormat(List.of(VK_FORMAT_D32_SFLOAT(), VK_FORMAT_D32_SFLOAT_S8_UINT(), VK_FORMAT_D24_UNORM_S8_UINT()), physicalDevice, VK_IMAGE_TILING_OPTIMAL(),
-      VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT());
-    System.out.println("Found supported format: " + depthFormat); // 126 -> VK_FORMAT_D32_SFLOAT
-
-    var image = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, VK_FORMAT_B8G8R8A8_SRGB(),
+    var format = VK_FORMAT_B8G8R8A8_SRGB();
+    var image = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, format,
       VK_IMAGE_TILING_OPTIMAL(),
       VK_IMAGE_USAGE_SAMPLED_BIT() | VK_IMAGE_USAGE_TRANSFER_DST_BIT() | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT() | VK_IMAGE_USAGE_TRANSFER_SRC_BIT(),
       VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-    var imageview = createImageView(arena, device, VK_FORMAT_B8G8R8A8_SRGB(), VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
+    var imageview = createImageView(arena, device, format, VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
 
     //4. render pass
-    var renderPass = createRenderPass(arena, device, VK_FORMAT_B8G8R8A8_SRGB(),VK_FORMAT_D32_SFLOAT());
+    var renderPass = createRenderPass(arena, device, format);
 
     //5. command pool
     var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
@@ -105,7 +102,7 @@ public class HelloApplication extends HelloApplication1 {
     var framebuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageview, renderPass);
 
     //8. semaphore and fence
-//    var pSemaphores = createSemaphores(arena, device);
+//    var pSemaphores = createSemaphores(arena, device);//optional
     var pFence = createFence(arena, device);
 
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
@@ -125,12 +122,11 @@ public class HelloApplication extends HelloApplication1 {
       PixelFormat.getByteBgraPreInstance());
     WritableImage writableImage = new WritableImage(pixelBuffer);
 
-    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
-    vkResetFences(device, 1, pFence);
-    //testing draw once
-    drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
-
-    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
+//    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
+//    vkResetFences(device, 1, pFence);
+//    //testing draw once
+//    drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
+//    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
 /**
     //set color to the buffer
     for (int i = 0; i < bufferSize / 4; i++) {
@@ -165,6 +161,7 @@ public class HelloApplication extends HelloApplication1 {
             //doing render loop work here
             vkResetFences(device, 1, pFence);
             drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
+            copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
           }
           case VK_TIMEOUT -> {
             //meaning GPU still working so go to the next loop

@@ -315,7 +315,7 @@ public abstract class HelloApplication1 extends Application {
     return pImageView;
   }
 
-  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device, int imageFormat, int depthFormat) {
+  protected static MemorySegment createRenderPass(Arena arena, MemorySegment device, int imageFormat) {
 //    var pAttachments = VkAttachmentDescription.allocateArray(2, arena);
 
     var pAttachment = VkAttachmentDescription.allocate(arena);//pAttachments.asSlice(0, VkAttachmentDescription.sizeof());
