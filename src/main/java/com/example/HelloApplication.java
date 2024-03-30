@@ -102,16 +102,10 @@ public class HelloApplication extends HelloApplication1 {
     var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
 
     //7. frame buffer
-    var depthImageMemory = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, depthFormat,
-      VK_IMAGE_TILING_OPTIMAL(), VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT(), VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-    var pDepthImageView = createImageView(arena, device, depthFormat, VK_IMAGE_ASPECT_DEPTH_BIT(), depthImageMemory.image());
-
-    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, depthImageMemory.image(), depthFormat, VK_IMAGE_LAYOUT_UNDEFINED(), VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
-
     var framebuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageview, renderPass);
 
     //8. semaphore and fence
-    var pSemaphores = createSemaphores(arena, device);
+//    var pSemaphores = createSemaphores(arena, device);
     var pFence = createFence(arena, device);
 
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
@@ -125,23 +119,96 @@ public class HelloApplication extends HelloApplication1 {
       System.out.println("vkTransferBuffer is ready, buffer:"+transferBuffer);
     }
 
-//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, image.image(),
-//      VK_FORMAT_R8G8B8A8_SRGB(), VK_IMAGE_LAYOUT_UNDEFINED(), VK_IMAGE_LAYOUT_GENERAL());
-
     //show the buffer data to the writable image of JavaFX
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       pData.get(C_POINTER,0).asSlice(0,bufferSize).asByteBuffer(),
       PixelFormat.getByteBgraPreInstance());
     WritableImage writableImage = new WritableImage(pixelBuffer);
 
+    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
+    vkResetFences(device, 1, pFence);
+    //testing draw once
+    drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
+
+    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
+/**
+    //set color to the buffer
+    for (int i = 0; i < bufferSize / 4; i++) {
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0xff);//green
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0x00);//red
+      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+    }
+
+    //get
+    //copy buffer value to the pixel buffer of writable image of JavaFX
+//    fxSurface.copyFrom(pData.get(C_POINTER,0).asSlice(0,fxSurface.byteSize()));
+    //or copy byte by byte
+//    for(int i=0;i<fxSurface.byteSize();i++){
+//      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
+//    }
+ */
+
+    Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
+    stage.setTitle("Vulkan Demo");
+    stage.setScene(scene);
+    stage.show();
+
+    //9. render loop
+    new AnimationTimer() {
+      @Override
+      public void handle(long now) {
+
+        var result = vkWaitForFences(device, 1, pFence, VK_TRUE(), 0L);
+        switch (vkResult(result)) {
+          case VK_SUCCESS -> {
+            //doing render loop work here
+            vkResetFences(device, 1, pFence);
+            drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
+          }
+          case VK_TIMEOUT -> {
+            //meaning GPU still working so go to the next loop
+            for (int i = 0; i < bufferSize / 4; i++) {
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+            }
+          }
+          default -> this.stop();
+        }
+      }
+
+      @Override
+      public void stop() {
+        super.stop();
+      }
+    }.start();
+
+//    vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
+//    vkDestroyDevice(device, MemorySegment.NULL);
+//    vkDestroyInstance(instance, MemorySegment.NULL);
+  }
+
+  @Override
+  public void stop() throws Exception {
+    super.stop();
+
+    arena.close();
+  }
+
+  public static void main(String[] args) {
+    launch();
+  }
+
+  private void drawFrame(MemorySegment pVkGraphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment pFence, PipelineLayout pipelineLayout){
     var commandBuffer = commandBuffers.get(C_POINTER, 0);
     var beginInfo = VkCommandBufferBeginInfo.allocate(arena);
     VkCommandBufferBeginInfo.sType(beginInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
     VkCommandBufferBeginInfo.flags(beginInfo, 0);
     VkCommandBufferBeginInfo.pInheritanceInfo(beginInfo, MemorySegment.NULL);
-    result = VKResult.vkResult(vkBeginCommandBuffer(commandBuffer, beginInfo));
-    if (result != VK_SUCCESS) {
-      System.out.println("failed to begin recording command buffer!" + result);
+    if (VKResult.vkResult(vkBeginCommandBuffer(commandBuffer, beginInfo)) != VK_SUCCESS) {
+      System.out.println("failed to begin recording command buffer!");
       System.exit(-1);
     }
 
@@ -191,108 +258,21 @@ public class HelloApplication extends HelloApplication1 {
 
     vkCmdEndRenderPass(commandBuffer);
 
-    result = VKResult.vkResult(vkEndCommandBuffer(commandBuffer));
-    if (result != VK_SUCCESS) {
-      System.out.println("vkEndCommandBuffer failed: " + result);
+    if (VKResult.vkResult(vkEndCommandBuffer(commandBuffer)) != VK_SUCCESS) {
+      System.out.println("vkEndCommandBuffer failed!");
       System.exit(-1);
     }
-
-    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
-    vkResetFences(device, 1, pFence);
 
     var pSubmitInfo = VkSubmitInfo.allocate(arena);
     VkSubmitInfo.sType(pSubmitInfo, VK_STRUCTURE_TYPE_SUBMIT_INFO());
     VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, commandBuffers);
 
-    result = VKResult.vkResult(vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, pFence.get(C_POINTER, 0)));
-    if (result != VK_SUCCESS) {
-      System.out.println("vkQueueSubmit failed: " + result);
+    if (VKResult.vkResult(vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, pFence.get(C_POINTER, 0))) != VK_SUCCESS) {
+      System.out.println("vkQueueSubmit failed!");
       System.exit(-1);
     }
-    System.out.println("draw completed");
-
-    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
-/**
-    //set color to the buffer
-    for (int i = 0; i < bufferSize / 4; i++) {
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0xff);//green
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0x00);//red
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
-    }
-
-    //get
-    //copy buffer value to the pixel buffer of writable image of JavaFX
-//    fxSurface.copyFrom(pData.get(C_POINTER,0).asSlice(0,fxSurface.byteSize()));
-    //or copy byte by byte
-//    for(int i=0;i<fxSurface.byteSize();i++){
-//      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
-//    }
- */
-
-//    var picture = new Image("texture.jpg");
-//    var pixels = getBGRAIntArrayFromImage(picture);
-//    BufferMemory textureStagingBuffer = createStagingBuffer(arena, physicalDevice, device, pixels);
-//
-//    var texture = createImage(arena, physicalDevice, device, (int)picture.getWidth(), (int)picture.getHeight(), VK_FORMAT_B8G8R8A8_SRGB(),
-//      VK_IMAGE_TILING_OPTIMAL(), VK_IMAGE_USAGE_TRANSFER_DST_BIT() | VK_IMAGE_USAGE_SAMPLED_BIT(), VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT()|VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
-//
-//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemory.image(), VK_FORMAT_B8G8R8A8_SRGB(), VK_IMAGE_LAYOUT_UNDEFINED(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL());
-//    copyBufferToImage(arena, commondPool, device, pVkGraphicsQueue, textureStagingBuffer, textureImageMemory, (int)image.getWidth(), (int)image.getHeight());
-//    transitionImageLayout(arena, commondPool, device, pVkGraphicsQueue, textureImageMemory.image(), VK_FORMAT_B8G8R8A8_SRGB(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL());
-//    freeBuffer(device, textureStagingBuffer);
-
-    Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
-    stage.setTitle("Vulkan Demo");
-    stage.setScene(scene);
-    stage.show();
-
-    //9. render loop
-    new AnimationTimer() {
-      @Override
-      public void handle(long now) {
-
-        var result = vkWaitForFences(device, 1, pFence, VK_TRUE(), 0L);
-        switch (vkResult(result)) {
-          case VK_SUCCESS -> {
-            //doing render loop work here
-            vkResetFences(device, 1, pFence);
-//            submitQueue(arena, pVkGraphicsQueue,commandBuffers.asSlice(0 * C_POINTER.byteSize()), pSemaphores,pFence.get(C_POINTER, 0));
-          }
-          case VK_TIMEOUT -> {
-            //meaning GPU still working so go to the next loop
-            for (int i = 0; i < bufferSize / 4; i++) {
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
-            }
-          }
-          default -> this.stop();
-        }
-      }
-
-      @Override
-      public void stop() {
-        super.stop();
-      }
-    }.start();
-
-//    vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
-//    vkDestroyDevice(device, MemorySegment.NULL);
-//    vkDestroyInstance(instance, MemorySegment.NULL);
-  }
-
-  @Override
-  public void stop() throws Exception {
-    super.stop();
-
-    arena.close();
-  }
-
-  public static void main(String[] args) {
-    launch();
+//    System.out.println("draw completed");
   }
 
   protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice, MemorySegment renderPass){
