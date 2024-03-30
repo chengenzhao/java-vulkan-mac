@@ -28,7 +28,7 @@ import static org.vulkan.vulkan_h.*;
  * 5. create command pool and buffer
  * 6. create pipeline
  * 7. create frame buffer
- * 8. semaphore fence
+ * 8. create fence
  * 9. integrate to JavaFX
  * 10. render loop
  */
@@ -70,7 +70,7 @@ public class HelloApplication extends HelloApplication1 {
     var physicalDevice = getPhysicalDevices(arena, instance).getFirst();
 
     var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
-    var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findFirst().orElseThrow();
+    var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findAny().orElseThrow();
 
     var pDevice = createVkDevice(arena, graphicsQueueFamily, physicalDevice);
     var device = pDevice.get(C_POINTER, 0);
