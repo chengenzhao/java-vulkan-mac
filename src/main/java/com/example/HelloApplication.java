@@ -124,13 +124,7 @@ public class HelloApplication extends HelloApplication1 {
       PixelFormat.getByteBgraPreInstance());
     WritableImage writableImage = new WritableImage(pixelBuffer);
 
-    //for testing purpose, draw 1 frame without render loop
-//    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
-//    vkResetFences(device, 1, pFence);
-//    //testing draw once
-//    drawFrame(arena, pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
-//    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
-
+    //the rest of JavaFX
     Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
     stage.setTitle("Vulkan Demo");
     stage.setScene(scene);
@@ -164,13 +158,20 @@ public class HelloApplication extends HelloApplication1 {
 
       @Override
       public void stop() {
-        super.stop();
+        vulkan_h.vkDestroyFence(device, pFence.get(C_POINTER, 0), MemorySegment.NULL);
+//        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkFreeCommandBuffers(device, commondPool.get(C_POINTER, 0), 1, commandBuffers);
+        vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer().get(C_POINTER, 0), MemorySegment.NULL);
+//        vulkan_h.vkFreeMemory(device, vertexBuffer.bufferMemory.get(C_POINTER, 0), MemorySegment.NULL);
+//        vulkan_h.vkDestroyDescriptorPool(device, pDescriptorPool.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyImageView(device, imageview.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyImage(device, image.image().get(C_POINTER, 0), MemorySegment.NULL);
+//        vulkan_h.vkDestroyDescriptorSetLayout(device, pDescriptorSetLayout.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyPipelineLayout(device, pipelineLayout.layout().get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
+        vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
       }
     }.start();
-
-//    vkDestroyRenderPass(device, renderPass, MemorySegment.NULL);
-//    vkDestroyDevice(device, MemorySegment.NULL);
-//    vkDestroyInstance(instance, MemorySegment.NULL);
   }
 
   @Override
@@ -258,7 +259,7 @@ public class HelloApplication extends HelloApplication1 {
 //    System.out.println("draw completed");
   }
 
-  protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice, MemorySegment renderPass) {
+  protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment device, MemorySegment renderPass) {
     //load shader, make sure compile shader to spv first.
     /**
      * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
@@ -274,8 +275,8 @@ public class HelloApplication extends HelloApplication1 {
       System.exit(-1);
     }
 
-    var pVertShaderModule = createShaderModule(vkDevice, vertShaderBytes, arena);
-    var pFragShaderModule = createShaderModule(vkDevice, fragShaderBytes, arena);
+    var pVertShaderModule = createShaderModule(device, vertShaderBytes, arena);
+    var pFragShaderModule = createShaderModule(device, fragShaderBytes, arena);
 
     var pVertShaderStageInfo = VkPipelineShaderStageCreateInfo.allocate(arena);
     VkPipelineShaderStageCreateInfo.sType(pVertShaderStageInfo, VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
@@ -386,7 +387,7 @@ public class HelloApplication extends HelloApplication1 {
     VkPipelineLayoutCreateInfo.pPushConstantRanges(pipelineLayoutCreateInfo, MemorySegment.NULL);
 
     var pipelineLayout = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vkCreatePipelineLayout(vkDevice, pipelineLayoutCreateInfo, MemorySegment.NULL, pipelineLayout));
+    var result = VKResult.vkResult(vkCreatePipelineLayout(device, pipelineLayoutCreateInfo, MemorySegment.NULL, pipelineLayout));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreatePipelineLayout failed: " + result);
       System.exit(-1);
@@ -425,7 +426,7 @@ public class HelloApplication extends HelloApplication1 {
     VkGraphicsPipelineCreateInfo.basePipelineHandle(pipelineCreateInfo, VK_NULL_HANDLE());
     VkGraphicsPipelineCreateInfo.basePipelineIndex(pipelineCreateInfo, -1);
     var pipeline = arena.allocate(C_POINTER, 1);
-    result = VKResult.vkResult(vkCreateGraphicsPipelines(vkDevice,
+    result = VKResult.vkResult(vkCreateGraphicsPipelines(device,
       VK_NULL_HANDLE(), 1, pipelineCreateInfo, MemorySegment.NULL, pipeline));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateGraphicsPipelines failed: " + result);
@@ -437,7 +438,7 @@ public class HelloApplication extends HelloApplication1 {
   }
 
   protected static MemorySegment createFramebuffer(Arena arena, int windowWidth, int windowHeight,
-                                                   MemorySegment vkDevice, MemorySegment imageView,
+                                                   MemorySegment device, MemorySegment imageView,
                                                    MemorySegment pRenderPass) {
 
     var pFramebufferCreateInfo = VkFramebufferCreateInfo.allocate(arena);
@@ -454,7 +455,7 @@ public class HelloApplication extends HelloApplication1 {
     VkFramebufferCreateInfo.layers(pFramebufferCreateInfo, 1);
 
     var pVkFramebuffer = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vkCreateFramebuffer(vkDevice, pFramebufferCreateInfo, MemorySegment.NULL, pVkFramebuffer));
+    var result = VKResult.vkResult(vkCreateFramebuffer(device, pFramebufferCreateInfo, MemorySegment.NULL, pVkFramebuffer));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateFramebuffer failed: " + result);
       System.exit(-1);
