@@ -163,7 +163,7 @@ public class HelloApplication extends HelloApplication1 {
 //        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeCommandBuffers(device, commondPool.get(C_POINTER, 0), 1, commandBuffers);
         vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer().get(C_POINTER, 0), MemorySegment.NULL);
-//        vulkan_h.vkFreeMemory(device, vertexBuffer.bufferMemory.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkFreeMemory(device, transferBuffer.memory().get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorPool(device, pDescriptorPool.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyImageView(device, imageview.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyImage(device, image.image().get(C_POINTER, 0), MemorySegment.NULL);
