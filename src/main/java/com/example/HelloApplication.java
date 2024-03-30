@@ -29,7 +29,8 @@ import static org.vulkan.vulkan_h.*;
  * 6. create pipeline
  * 7. create frame buffer
  * 8. semaphore fence
- * 9. render loop
+ * 9. integrate to JavaFX
+ * 10. render loop
  */
 public class HelloApplication extends HelloApplication1 {
 
@@ -105,6 +106,7 @@ public class HelloApplication extends HelloApplication1 {
 //    var pSemaphores = createSemaphores(arena, device);//optional
     var pFence = createFence(arena, device);
 
+    //9. integrate to JavaFX ImageView
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
     var transferBuffer = createBuffer(arena, device, physicalDevice, bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT() | VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
     var pData = arena.allocate(C_POINTER);
@@ -134,7 +136,7 @@ public class HelloApplication extends HelloApplication1 {
     stage.setScene(scene);
     stage.show();
 
-    //9. render loop
+    //10. render loop
     new AnimationTimer() {
       @Override
       public void handle(long now) {
