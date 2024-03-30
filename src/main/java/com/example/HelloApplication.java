@@ -158,6 +158,7 @@ public class HelloApplication extends HelloApplication1 {
 
       @Override
       public void stop() {
+        System.out.println("stoping the application");
         vulkan_h.vkDestroyFence(device, pFence.get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeCommandBuffers(device, commondPool.get(C_POINTER, 0), 1, commandBuffers);
@@ -210,10 +211,10 @@ public class HelloApplication extends HelloApplication1 {
 
     // VkClearValue* pClearValue = &pClearValues[0];
     var pClearValue = pClearValues.asSlice(0, VkClearValue.sizeof()); // reference to the first VkClearValue in the array
-    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 0, 0.0f);
-    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 1, 0.0f);
-    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 2, 0.0f);
-    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 3, 1.0f);
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 0, 0.0f);//red
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 1, 0.0f);//green
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 2, 0.0f);//blue
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 3, 0.0f);//alpha
 
     VkRenderPassBeginInfo.pClearValues(pRenderPassBeginInfo, pClearValues);
 
