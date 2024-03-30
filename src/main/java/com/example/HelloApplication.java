@@ -126,7 +126,7 @@ public class HelloApplication extends HelloApplication1 {
 //    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
 //    vkResetFences(device, 1, pFence);
 //    //testing draw once
-//    drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
+//    drawFrame(arena, pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
 //    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
 
     Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -144,7 +144,7 @@ public class HelloApplication extends HelloApplication1 {
           case VK_SUCCESS -> {
             //doing render loop work here
             vkResetFences(device, 1, pFence);
-            drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
+            drawFrame(arena, pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
             copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
           }
           case VK_TIMEOUT -> {
@@ -182,7 +182,7 @@ public class HelloApplication extends HelloApplication1 {
     launch();
   }
 
-  private void drawFrame(MemorySegment pVkGraphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment pFence, PipelineLayout pipelineLayout) {
+  private static void drawFrame(Arena arena, MemorySegment pVkGraphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment pFence, PipelineLayout pipelineLayout) {
     var commandBuffer = commandBuffers.get(C_POINTER, 0);
     var beginInfo = VkCommandBufferBeginInfo.allocate(arena);
     VkCommandBufferBeginInfo.sType(beginInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
