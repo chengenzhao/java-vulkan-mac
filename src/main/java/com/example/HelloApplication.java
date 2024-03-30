@@ -106,44 +106,28 @@ public class HelloApplication extends HelloApplication1 {
     var pFence = createFence(arena, device);
 
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
-    var transferBuffer = createBuffer(arena,device, physicalDevice,bufferSize,VK_BUFFER_USAGE_TRANSFER_DST_BIT()|VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
+    var transferBuffer = createBuffer(arena, device, physicalDevice, bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT() | VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
     var pData = arena.allocate(C_POINTER);
     var result = VKResult.vkResult(vkMapMemory(device, transferBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
     if (result != VK_SUCCESS) {
       System.out.println("vkMapMemory failed for staging buffer: " + result);
       System.exit(-1);
-    }else{
-      System.out.println("vkTransferBuffer is ready, buffer:"+transferBuffer);
+    } else {
+      System.out.println("vkTransferBuffer is ready, buffer:" + transferBuffer);
     }
 
     //show the buffer data to the writable image of JavaFX
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
-      pData.get(C_POINTER,0).asSlice(0,bufferSize).asByteBuffer(),
+      pData.get(C_POINTER, 0).asSlice(0, bufferSize).asByteBuffer(),
       PixelFormat.getByteBgraPreInstance());
     WritableImage writableImage = new WritableImage(pixelBuffer);
 
+    //for testing purpose, draw 1 frame without render loop
 //    vkWaitForFences(device, 1, pFence, VK_TRUE(), 100000000000L);
 //    vkResetFences(device, 1, pFence);
 //    //testing draw once
 //    drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
 //    copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
-/**
-    //set color to the buffer
-    for (int i = 0; i < bufferSize / 4; i++) {
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0xff);//green
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0x00);//red
-      pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
-    }
-
-    //get
-    //copy buffer value to the pixel buffer of writable image of JavaFX
-//    fxSurface.copyFrom(pData.get(C_POINTER,0).asSlice(0,fxSurface.byteSize()));
-    //or copy byte by byte
-//    for(int i=0;i<fxSurface.byteSize();i++){
-//      fxSurface.setAtIndex(ValueLayout.JAVA_BYTE, i, pData.get(C_POINTER,0).getAtIndex(ValueLayout.JAVA_BYTE, i));
-//    }
- */
 
     Scene scene = new Scene(new Group(new ImageView(writableImage)), SCREEN_WIDTH, SCREEN_HEIGHT);
     stage.setTitle("Vulkan Demo");
@@ -161,15 +145,15 @@ public class HelloApplication extends HelloApplication1 {
             //doing render loop work here
             vkResetFences(device, 1, pFence);
             drawFrame(pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
-            copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer,SCREEN_WIDTH, SCREEN_HEIGHT);
+            copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
           }
           case VK_TIMEOUT -> {
             //meaning GPU still working so go to the next loop
             for (int i = 0; i < bufferSize / 4; i++) {
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
-              pData.get(C_POINTER,0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
+              pData.get(C_POINTER, 0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L, (byte) 0x00);//blue
+              pData.get(C_POINTER, 0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 1, (byte) 0x00);//green
+              pData.get(C_POINTER, 0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 2, (byte) 0xff);//red
+              pData.get(C_POINTER, 0).setAtIndex(ValueLayout.JAVA_BYTE, i * 4L + 3, (byte) 0xff);//alpha
             }
           }
           default -> this.stop();
@@ -198,7 +182,7 @@ public class HelloApplication extends HelloApplication1 {
     launch();
   }
 
-  private void drawFrame(MemorySegment pVkGraphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment pFence, PipelineLayout pipelineLayout){
+  private void drawFrame(MemorySegment pVkGraphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment pFence, PipelineLayout pipelineLayout) {
     var commandBuffer = commandBuffers.get(C_POINTER, 0);
     var beginInfo = VkCommandBufferBeginInfo.allocate(arena);
     VkCommandBufferBeginInfo.sType(beginInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
@@ -272,7 +256,7 @@ public class HelloApplication extends HelloApplication1 {
 //    System.out.println("draw completed");
   }
 
-  protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice, MemorySegment renderPass){
+  protected static PipelineLayout createGraphicsPipeline(Arena arena, int windowWidth, int windowHeight, MemorySegment vkDevice, MemorySegment renderPass) {
     //load shader, make sure compile shader to spv first.
     /**
      * ~/VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/triangle.vert -o vert.spv
@@ -301,7 +285,7 @@ public class HelloApplication extends HelloApplication1 {
     VkPipelineShaderStageCreateInfo.sType(pFragShaderStageInfo, VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO());
     VkPipelineShaderStageCreateInfo.stage(pFragShaderStageInfo, VK_SHADER_STAGE_FRAGMENT_BIT());
     VkPipelineShaderStageCreateInfo.module(pFragShaderStageInfo, pFragShaderModule.get(C_POINTER, 0));
-    VkPipelineShaderStageCreateInfo.pName(pFragShaderStageInfo, arena.allocateFrom("main",StandardCharsets.UTF_8));
+    VkPipelineShaderStageCreateInfo.pName(pFragShaderStageInfo, arena.allocateFrom("main", StandardCharsets.UTF_8));
 
     //fixed functions
     var dynamicStates = arena.allocate(C_INT, 2);
@@ -310,7 +294,7 @@ public class HelloApplication extends HelloApplication1 {
 
     var dynamicState = VkPipelineDynamicStateCreateInfo.allocate(arena);
     VkPipelineDynamicStateCreateInfo.sType(dynamicState, VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO());
-    VkPipelineDynamicStateCreateInfo.dynamicStateCount(dynamicState, (int)(dynamicStates.byteSize()/C_INT.byteSize()));
+    VkPipelineDynamicStateCreateInfo.dynamicStateCount(dynamicState, (int) (dynamicStates.byteSize() / C_INT.byteSize()));
     VkPipelineDynamicStateCreateInfo.pDynamicStates(dynamicState, dynamicStates);
 
     var pVertexInputStateInfo = VkPipelineVertexInputStateCreateInfo.allocate(arena);
