@@ -1,6 +1,6 @@
 # Java Vulkan Example  
 
-![Screenshot](https://github.com/chengenzhao/java-vulkan-mac/assets/5525436/8b8e50ab-ebc3-4d68-8164-985bdb3ab177)
+![Screenshot2024-03-31 18 19 12](https://github.com/chengenzhao/java-vulkan-mac/assets/5525436/7ff3454b-cde6-468c-9e27-72900bd08667)
 
 # Requirement:  
 
