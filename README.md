@@ -7,7 +7,7 @@
 * Java 22
 * Vulkan macOS version should be installed, you may get Vulkan SDK here: https://vulkan.lunarg.com/sdk/home
 * Make sure set up the environment after installation, typically in your .zshrc you may need following variables:
-```text
+```shell
 export JAVA_HOME=~/JDK/jdk-22.jdk/Contents/Home
 export VULKAN_SDK=~/VulkanSDK/1.3.275.0/macOS
 export PATH=$JAVA_HOME/bin:$VULKAN_SDK/bin:$PATH
@@ -52,7 +52,11 @@ For using Vulkan in Java program there are two requirements:
 * (Recommended) Manually copy above 4 files to $JAVA_HOME/lib directory.     
 
 or
-* Using Java program option-Djava.library.path=$Vulkan_SDK/macOS/lib to add files in it to the java.library.path. Program starting options and arguments could be set by using following Swift code.
+* Using option: 
+```shell
+-Djava.library.path=$Vulkan_SDK/macOS/lib
+```
+check following Swift code.
 
 ## 2) Setting environment variables is also required
 Manually typing in export environment variables for development is OK, but could be difficult for production environment e.g. releasing on Steam.  
