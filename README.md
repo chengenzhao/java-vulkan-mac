@@ -29,12 +29,12 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 There are some generated source code and compiled shaders in the src directory, here is the way I made them:
 * Using jextract to generate corresponding java files of vulkan.h, jextract command(in your $VulkanSDK directory): 
 ```text
- ~/jextract-22/bin/jextract -I "./include" -D "VK_USE_PLATFORM_MACOS_MVK" -D "VK_USE_PLATFORM_METAL_EXT" -D "_MACOS" -t org.vulkan ./include/vulkan/vulkan.h
+$jextract/bin/jextract -I "./include" -D "VK_USE_PLATFORM_MACOS_MVK" -D "VK_USE_PLATFORM_METAL_EXT" -D "_MACOS" -t org.vulkan $VulkanSDK/1.3.275.0/macOS/include/vulkan/vulkan.h
 ```
 * Compile the shader files, which included in the src/main/resources/shader folder. Using command like:
 ```shell
-~/$VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/shader.vert -o src/main/resources/shader/vert.spv
-~/$VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/shader.frag -o src/main/resources/shader/frag.spv
+$VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/shader.vert -o src/main/resources/shader/vert.spv
+$VulkanSDK/1.3.275.0/macOS/bin/glslc src/main/resources/shader/shader.frag -o src/main/resources/shader/frag.spv
 ```
 
 # Distribution / Releasing on Steam etc.
