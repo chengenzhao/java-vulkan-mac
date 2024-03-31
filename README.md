@@ -54,7 +54,7 @@ For using Vulkan in Java program there are two requirements:
 or
 * Using option: 
 ```shell
--Djava.library.path=$Vulkan_SDK/macOS/lib
+-Djava.library.path=$VULKAN_SDK/macOS/lib
 ```
 check following Swift code.
 
