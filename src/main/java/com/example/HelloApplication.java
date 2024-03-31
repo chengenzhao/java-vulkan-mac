@@ -214,7 +214,7 @@ public class HelloApplication extends HelloApplication1 {
     VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 0, 0.0f);//red
     VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 1, 0.0f);//green
     VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 2, 0.0f);//blue
-    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 3, 0.0f);//alpha
+    VkClearValue.color(pClearValue).setAtIndex(C_FLOAT, 3, 1.0f);//alpha
 
     VkRenderPassBeginInfo.pClearValues(pRenderPassBeginInfo, pClearValues);
 
