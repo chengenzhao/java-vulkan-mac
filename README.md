@@ -70,7 +70,7 @@ let task = Process()
 
 let currentPath = FileManager.default.currentDirectoryPath
 
-//envorinment varaibles
+//environment variables, make sure copy the share directory in $VULKAN_SDK to the root directory of distribution 
 task.environment = [
     "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
     "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d"
@@ -89,7 +89,8 @@ task.launch()
 
 task.waitUntilExit()
 ```
-compile it, then you will get a starting binary executable file which could be used in Steam launch options.
+Compile it, then you will get a starting binary executable file which could be used in Steam launch options.  
+Don't forget copy the share directory in $VULKAN_SDK to the root directory of distribution. 
 
 ## 3) Custom Java runtime may also be required.
 JavaFX is native dependency thus for distribution, developers need generate custom runtime for it.    
