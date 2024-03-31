@@ -61,7 +61,7 @@ check following Swift code.
 ## 2) Setting environment variables is also required
 Manually typing in export environment variables for development is OK, but could be difficult for production environment e.g. releasing on Steam.  
 Traditionally we could write a script like zsh script or shell script to set the environment variables first then start the Java program using java command.  
-However with tools provided by Apple, we could use Swift to do the similar job.
+However with tools provided by Apple, we could use Swift to do the similar job.     
 A typical Swift wrapper code like:
 ```swift
 import Foundation
