@@ -388,15 +388,15 @@ public abstract class HelloApplication1 extends Application {
     VkCommandPoolCreateInfo.queueFamilyIndex(pCommandPoolCreateInfo, graphicsQueueFamily.queueFamilyIndex());
     VkCommandPoolCreateInfo.flags(pCommandPoolCreateInfo, VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT());
 
-    var pVkCommandPool = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vkCreateCommandPool(vkDevice, pCommandPoolCreateInfo, MemorySegment.NULL, pVkCommandPool));
+    var pCommandPool = arena.allocate(C_POINTER);
+    var result = VKResult.vkResult(vkCreateCommandPool(vkDevice, pCommandPoolCreateInfo, MemorySegment.NULL, pCommandPool));
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateCommandPool failed: " + result);
       System.exit(-1);
     } else {
       System.out.println("vkCreateCommandPool succeeded");
     }
-    return pVkCommandPool;
+    return pCommandPool;
   }
 
   protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment vkDevice, MemorySegment pVkCommandPool, int commandBufferCount) {

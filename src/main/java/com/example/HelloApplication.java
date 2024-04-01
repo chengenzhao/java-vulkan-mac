@@ -83,24 +83,24 @@ public class HelloApplication extends HelloApplication1 {
       VK_IMAGE_TILING_OPTIMAL(),
       VK_IMAGE_USAGE_SAMPLED_BIT() | VK_IMAGE_USAGE_TRANSFER_DST_BIT() | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT() | VK_IMAGE_USAGE_TRANSFER_SRC_BIT(),
       VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-    var imageview = createImageView(arena, device, format, VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
+    var pImageView = createImageView(arena, device, format, VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
 
     //4. render pass
-    var renderPass = createRenderPass(arena, device, format);
+    var pRenderPass = createRenderPass(arena, device, format);
 
     //5. command pool
-    var commondPool = createCommandPool(arena, graphicsQueueFamily, device);
+    var pCommandPool = createCommandPool(arena, graphicsQueueFamily, device);
 
-    var pVkGraphicsQueue = arena.allocate(C_POINTER);
-    vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pVkGraphicsQueue);
+    var pGraphicsQueue = arena.allocate(C_POINTER);
+    vkGetDeviceQueue(device, graphicsQueueFamily.queueFamilyIndex(), 0, pGraphicsQueue);
 
-    var commandBuffers = createCommandBuffers(arena, device, commondPool, 1);
+    var pCommandBuffers = createCommandBuffers(arena, device, pCommandPool, 1);
 
     //6. pipeline
-    var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
+    var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pRenderPass);
 
     //7. frame buffer
-    var framebuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageview, renderPass);
+    var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pImageView, pRenderPass);
 
     //8. semaphore and fence
 //    var pSemaphores = createSemaphores(arena, device);//optional
@@ -140,8 +140,8 @@ public class HelloApplication extends HelloApplication1 {
           case VK_SUCCESS -> {
             //doing render loop work here
             vkResetFences(device, 1, pFence);
-            drawFrame(arena, pVkGraphicsQueue, commandBuffers, renderPass, framebuffer, pFence, pipelineLayout);
-            copyImageToBuffer(arena, commondPool, device, pVkGraphicsQueue, image, transferBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
+            drawFrame(arena, pGraphicsQueue, pCommandBuffers, pRenderPass, pFrameBuffer, pFence, pipelineLayout);
+            copyImageToBuffer(arena, pCommandPool, device, pGraphicsQueue, image, transferBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
           }
           case VK_TIMEOUT -> {
             //meaning GPU still working so go to the next loop
@@ -161,11 +161,11 @@ public class HelloApplication extends HelloApplication1 {
         System.out.println("stoping the application");
         vulkan_h.vkDestroyFence(device, pFence.get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
-        vulkan_h.vkFreeCommandBuffers(device, commondPool.get(C_POINTER, 0), 1, commandBuffers);
+        vulkan_h.vkFreeCommandBuffers(device, pCommandPool.get(C_POINTER, 0), 1, pCommandBuffers);
         vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer().get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeMemory(device, transferBuffer.memory().get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorPool(device, pDescriptorPool.get(C_POINTER, 0), MemorySegment.NULL);
-        vulkan_h.vkDestroyImageView(device, imageview.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyImageView(device, pImageView.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyImage(device, image.image().get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorSetLayout(device, pDescriptorSetLayout.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyPipelineLayout(device, pipelineLayout.layout().get(C_POINTER, 0), MemorySegment.NULL);
