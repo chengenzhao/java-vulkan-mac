@@ -47,7 +47,6 @@ public class HelloApplication extends HelloApplication1 {
   @Override
   public void init() throws Exception {
     super.init();
-    System.loadLibrary("osx");
     System.loadLibrary("vulkan.1");
   }
 
