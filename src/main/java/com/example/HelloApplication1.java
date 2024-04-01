@@ -399,12 +399,12 @@ public abstract class HelloApplication1 extends Application {
     return pCommandPool;
   }
 
-  protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment device, MemorySegment pCommandPool, int commandBufferCount) {
+  protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment device, MemorySegment commandPool, int commandBufferCount) {
     MemorySegment pCommandBuffers = arena.allocate(C_POINTER, commandBufferCount);
 
     var pCommandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
     VkCommandBufferAllocateInfo.sType(pCommandBufferAllocateInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
-    VkCommandBufferAllocateInfo.commandPool(pCommandBufferAllocateInfo, pCommandPool.get(C_POINTER, 0));
+    VkCommandBufferAllocateInfo.commandPool(pCommandBufferAllocateInfo, commandPool);
     VkCommandBufferAllocateInfo.level(pCommandBufferAllocateInfo, VK_COMMAND_BUFFER_LEVEL_PRIMARY());
     VkCommandBufferAllocateInfo.commandBufferCount(pCommandBufferAllocateInfo, commandBufferCount);
 
@@ -656,11 +656,11 @@ public abstract class HelloApplication1 extends Application {
     return format == VK_FORMAT_D32_SFLOAT_S8_UINT() || format == VK_FORMAT_D24_UNORM_S8_UINT();
   }
 
-  protected static MemorySegment beginSingleTimeCommands(Arena arena, MemorySegment pCommandPool, MemorySegment vkDevice) {
+  protected static MemorySegment beginSingleTimeCommands(Arena arena, MemorySegment commandPool, MemorySegment vkDevice) {
     var commandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
     VkCommandBufferAllocateInfo.sType(commandBufferAllocateInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
     VkCommandBufferAllocateInfo.level(commandBufferAllocateInfo, VK_COMMAND_BUFFER_LEVEL_PRIMARY());
-    VkCommandBufferAllocateInfo.commandPool(commandBufferAllocateInfo, pCommandPool.get(C_POINTER, 0));
+    VkCommandBufferAllocateInfo.commandPool(commandBufferAllocateInfo, commandPool);
     VkCommandBufferAllocateInfo.commandBufferCount(commandBufferAllocateInfo, 1);
 
     var pCommandBuffer = arena.allocate(C_POINTER);
@@ -681,26 +681,26 @@ public abstract class HelloApplication1 extends Application {
     return pCommandBuffer;
   }
 
-  protected static void endSingleTimeCommands(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
-                                              MemorySegment pVkGraphicsQueue, MemorySegment pCommandBuffer) {
+  protected static void endSingleTimeCommands(Arena arena, MemorySegment commandPool, MemorySegment vkDevice,
+                                              MemorySegment graphicsQueue, MemorySegment pCommandBuffer) {
     vkEndCommandBuffer(pCommandBuffer.get(C_POINTER, 0));
 
     var pSubmitInfo = VkSubmitInfo.allocate(arena);
     VkSubmitInfo.sType(pSubmitInfo, VK_STRUCTURE_TYPE_SUBMIT_INFO());
     VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, pCommandBuffer);
-    var result = VKResult.vkResult(vkQueueSubmit(pVkGraphicsQueue.get(C_POINTER, 0), 1, pSubmitInfo, VK_NULL_HANDLE()));
+    var result = VKResult.vkResult(vkQueueSubmit(graphicsQueue, 1, pSubmitInfo, VK_NULL_HANDLE()));
     if (result != VK_SUCCESS) {
       System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
       System.exit(-1);
     }
 
-    result = VKResult.vkResult(vkQueueWaitIdle(pVkGraphicsQueue.get(C_POINTER, 0)));
+    result = VKResult.vkResult(vkQueueWaitIdle(graphicsQueue));
     if (result != VK_SUCCESS) {
       System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
       System.exit(-1);
     }
-    vkFreeCommandBuffers(vkDevice, pVkCommandPool.get(C_POINTER, 0), 1, pCommandBuffer);
+    vkFreeCommandBuffers(vkDevice, commandPool, 1, pCommandBuffer);
   }
 
   protected static void copyBufferToImage(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
