@@ -724,7 +724,7 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
     vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer(),
-      imageMemory.image().get(C_POINTER, 0), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
+      imageMemory.image(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
   }
@@ -749,7 +749,7 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
+    vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image(),
       VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pCommandPool, device, pVkGraphicsQueue, pCommandBuffer);

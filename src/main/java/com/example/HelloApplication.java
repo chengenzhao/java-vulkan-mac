@@ -23,7 +23,7 @@ import static org.vulkan.vulkan_h.*;
  * Steps of using Vulkan(off-screen/off-surface rendering)
  * 1. create vk instance
  * 2. create physical device(GPU) and vk device
- * 3. create image and imageview
+ * 3. create pImage and imageview
  * 4. create render pass
  * 5. create command pool and pBuffer
  * 6. create pipeline
@@ -77,13 +77,13 @@ public class HelloApplication extends HelloApplication1 {
     //or
 //      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
 
-    //3. image and image view
+    //3. pImage and pImage view
     var format = VK_FORMAT_B8G8R8A8_SRGB();
     var image = createImage(arena, physicalDevice, device, SCREEN_WIDTH, SCREEN_HEIGHT, format,
       VK_IMAGE_TILING_OPTIMAL(),
       VK_IMAGE_USAGE_SAMPLED_BIT() | VK_IMAGE_USAGE_TRANSFER_DST_BIT() | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT() | VK_IMAGE_USAGE_TRANSFER_SRC_BIT(),
       VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
-    var pImageView = createImageView(arena, device, format, VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
+    var pImageView = createImageView(arena, device, format, VK_IMAGE_ASPECT_COLOR_BIT(), image.pImage());
     var imageView = pImageView.get(C_POINTER, 0);
 
     //4. render pass
@@ -124,7 +124,7 @@ public class HelloApplication extends HelloApplication1 {
       System.out.println("vkTransferBuffer is ready, pBuffer:" + transferBuffer);
     }
 
-    //show the pBuffer data to the writable image of JavaFX
+    //show the pBuffer data to the writable pImage of JavaFX
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       pData.get(C_POINTER, 0).asSlice(0, bufferSize).asByteBuffer(),
       PixelFormat.getByteBgraPreInstance());
@@ -172,7 +172,7 @@ public class HelloApplication extends HelloApplication1 {
         vulkan_h.vkFreeMemory(device, transferBuffer.memory(), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorPool(device, pDescriptorPool.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyImageView(device, imageView, MemorySegment.NULL);
-        vulkan_h.vkDestroyImage(device, image.image().get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyImage(device, image.image(), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorSetLayout(device, pDescriptorSetLayout.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyPipelineLayout(device, pipelineLayout.layout().get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
@@ -492,7 +492,7 @@ public class HelloApplication extends HelloApplication1 {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
+    vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image(),
       VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL(), bufferMemory.buffer(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, commandPool, device, graphicsQueue, pCommandBuffer);
