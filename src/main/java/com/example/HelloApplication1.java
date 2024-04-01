@@ -169,7 +169,7 @@ public abstract class HelloApplication1 extends Application {
     return physicalDevices;
   }
 
-  protected static MemorySegment createDevice(Arena arena, QueueFamily graphicsQueueFamily, PhysicalDevice physicalDevice) {
+  protected static MemorySegment createDevice(Arena arena, QueueFamily graphicsQueueFamily) {
 
     var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
     VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());

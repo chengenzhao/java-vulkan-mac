@@ -72,7 +72,7 @@ public class HelloApplication extends HelloApplication1 {
     var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
     var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findAny().orElseThrow();
 
-    var pDevice = createDevice(arena, graphicsQueueFamily, physicalDevice);
+    var pDevice = createDevice(arena, graphicsQueueFamily);
     var device = pDevice.get(C_POINTER, 0);
     //or
 //      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
