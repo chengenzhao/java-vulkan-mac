@@ -130,7 +130,7 @@ public class HelloApplication extends HelloApplication1 {
       System.out.println("vkMapMemory failed for staging pBuffer: " + result);
       System.exit(-1);
     } else {
-      System.out.println("vkTransferBuffer is ready, pBuffer:" + transferBuffer);
+      System.out.println("vkTransferBuffer is ready, Buffer:" + transferBuffer);
     }
 
     //show the pBuffer data to the writable pImage of JavaFX
