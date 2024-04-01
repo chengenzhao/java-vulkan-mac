@@ -84,6 +84,7 @@ public class HelloApplication extends HelloApplication1 {
       VK_IMAGE_USAGE_SAMPLED_BIT() | VK_IMAGE_USAGE_TRANSFER_DST_BIT() | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT() | VK_IMAGE_USAGE_TRANSFER_SRC_BIT(),
       VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT());
     var pImageView = createImageView(arena, device, format, VK_IMAGE_ASPECT_COLOR_BIT(), image.image());
+    var imageView = pImageView.get(C_POINTER, 0);
 
     //4. render pass
     var pRenderPass = createRenderPass(arena, device, format);
@@ -103,11 +104,13 @@ public class HelloApplication extends HelloApplication1 {
     var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
 
     //7. frame buffer
-    var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pImageView, renderPass);
+    var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageView, renderPass);
+    var frameBuffer = pFrameBuffer.get(C_POINTER,0);
 
     //8. semaphore and fence
 //    var pSemaphores = createSemaphores(arena, device);//optional
     var pFence = createFence(arena, device);
+    var fence = pFence.get(C_POINTER, 0);
 
     //9. integrate to JavaFX ImageView
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
@@ -143,7 +146,7 @@ public class HelloApplication extends HelloApplication1 {
           case VK_SUCCESS -> {
             //doing render loop work here
             vkResetFences(device, 1, pFence);
-            drawFrame(arena, graphicsQueue, pCommandBuffers, renderPass, pFrameBuffer, pFence, pipelineLayout);
+            drawFrame(arena, graphicsQueue, pCommandBuffers, renderPass, frameBuffer, fence, pipelineLayout);
             copyImageToBuffer(arena, commandPool, device, graphicsQueue, image, transferBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
           }
           case VK_TIMEOUT -> {
@@ -162,13 +165,13 @@ public class HelloApplication extends HelloApplication1 {
       @Override
       public void stop() {
         System.out.println("stoping the application");
-        vulkan_h.vkDestroyFence(device, pFence.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyFence(device, fence, MemorySegment.NULL);
 //        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeCommandBuffers(device, commandPool, 1, pCommandBuffers);
         vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer().get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeMemory(device, transferBuffer.memory().get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorPool(device, pDescriptorPool.get(C_POINTER, 0), MemorySegment.NULL);
-        vulkan_h.vkDestroyImageView(device, pImageView.get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyImageView(device, imageView, MemorySegment.NULL);
         vulkan_h.vkDestroyImage(device, image.image().get(C_POINTER, 0), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorSetLayout(device, pDescriptorSetLayout.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyPipelineLayout(device, pipelineLayout.layout().get(C_POINTER, 0), MemorySegment.NULL);
@@ -189,7 +192,7 @@ public class HelloApplication extends HelloApplication1 {
     launch();
   }
 
-  private static void drawFrame(Arena arena, MemorySegment graphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment pFence, PipelineLayout pipelineLayout) {
+  private static void drawFrame(Arena arena, MemorySegment graphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment fence, PipelineLayout pipelineLayout) {
     var commandBuffer = commandBuffers.get(C_POINTER, 0);
     var beginInfo = VkCommandBufferBeginInfo.allocate(arena);
     VkCommandBufferBeginInfo.sType(beginInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO());
@@ -203,7 +206,7 @@ public class HelloApplication extends HelloApplication1 {
     var pRenderPassBeginInfo = VkRenderPassBeginInfo.allocate(arena);
     VkRenderPassBeginInfo.sType(pRenderPassBeginInfo, VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO());
     VkRenderPassBeginInfo.renderPass(pRenderPassBeginInfo, renderPass);
-    VkRenderPassBeginInfo.framebuffer(pRenderPassBeginInfo, framebuffer.get(C_POINTER, 0));
+    VkRenderPassBeginInfo.framebuffer(pRenderPassBeginInfo, framebuffer);
     VkOffset2D.x(VkRect2D.offset(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), 0);
     VkOffset2D.y(VkRect2D.offset(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), 0);
     VkExtent2D.width(VkRect2D.extent(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), SCREEN_WIDTH);
@@ -256,7 +259,7 @@ public class HelloApplication extends HelloApplication1 {
     VkSubmitInfo.commandBufferCount(pSubmitInfo, 1);
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, commandBuffers);
 
-    if (VKResult.vkResult(vkQueueSubmit(graphicsQueue, 1, pSubmitInfo, pFence.get(C_POINTER, 0))) != VK_SUCCESS) {
+    if (VKResult.vkResult(vkQueueSubmit(graphicsQueue, 1, pSubmitInfo, fence)) != VK_SUCCESS) {
       System.out.println("vkQueueSubmit failed!");
       System.exit(-1);
     }
@@ -448,7 +451,7 @@ public class HelloApplication extends HelloApplication1 {
     var pFramebufferCreateInfo = VkFramebufferCreateInfo.allocate(arena);
 
     var pAttachments = arena.allocate(C_POINTER);
-    pAttachments.setAtIndex(C_POINTER, 0, imageView.get(C_POINTER, 0));
+    pAttachments.setAtIndex(C_POINTER, 0, imageView);
 
     VkFramebufferCreateInfo.sType(pFramebufferCreateInfo, VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO());
     VkFramebufferCreateInfo.renderPass(pFramebufferCreateInfo, renderPass);
