@@ -483,7 +483,7 @@ public abstract class HelloApplication1 extends Application {
 
     var result = VKResult.vkResult(vkCreateBuffer(vkDevice, pBufferCreateInfo, MemorySegment.NULL, pBuffer));
     if (result != VK_SUCCESS) {
-      System.out.println("vkCreateBuffer failed for buffer: " + result);
+      System.out.println("vkCreateBuffer failed for pBuffer: " + result);
       System.exit(-1);
     }
 
@@ -498,13 +498,13 @@ public abstract class HelloApplication1 extends Application {
     var pBufferMemory = arena.allocate(C_POINTER);
     result = VKResult.vkResult(vkAllocateMemory(vkDevice, pMemoryAllocateInfo, MemorySegment.NULL, pBufferMemory));
     if (result != VK_SUCCESS) {
-      System.out.println("vkAllocateMemory failed for buffer: " + result);
+      System.out.println("vkAllocateMemory failed for pBuffer: " + result);
       System.exit(-1);
     }
 
     result = VKResult.vkResult(vkBindBufferMemory(vkDevice, pBuffer.get(C_POINTER, 0), pBufferMemory.get(C_POINTER, 0), 0));
     if (result != VK_SUCCESS) {
-      System.out.println("vkBindBufferMemory failed for buffer: " + result);
+      System.out.println("vkBindBufferMemory failed for pBuffer: " + result);
       System.exit(-1);
     }
 
@@ -512,8 +512,8 @@ public abstract class HelloApplication1 extends Application {
   }
 
   protected static void freeBuffer(MemorySegment device, BufferMemory bufferPair) {
-    vkDestroyBuffer(device, bufferPair.buffer().get(C_POINTER, 0), MemorySegment.NULL);
-    vkFreeMemory(device, bufferPair.memory().get(C_POINTER, 0), MemorySegment.NULL);
+    vkDestroyBuffer(device, bufferPair.buffer(), MemorySegment.NULL);
+    vkFreeMemory(device, bufferPair.memory(), MemorySegment.NULL);
   }
 
   protected static int[] getBGRAIntArrayFromImage(Image image) {
@@ -542,19 +542,19 @@ public abstract class HelloApplication1 extends Application {
       default -> {
       }
     }
-    System.out.println("Staging buffer size: " + bufferSize);
+    System.out.println("Staging pBuffer size: " + bufferSize);
     BufferMemory stagingBuffer = createBuffer(arena, vkDevice, physicalDevice, bufferSize,
       VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT() | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT());
 
-    var result = VKResult.vkResult(vkMapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
+    var result = VKResult.vkResult(vkMapMemory(vkDevice, stagingBuffer.memory(), 0, bufferSize, 0, pData));
     if (result != VK_SUCCESS) {
-      System.out.println("vkMapMemory failed for staging buffer: " + result);
+      System.out.println("vkMapMemory failed for staging pBuffer: " + result);
       System.exit(-1);
     }
 
     setDataArrayPtr(pData, stagingDataArr);
 
-    vkUnmapMemory(vkDevice, stagingBuffer.memory().get(C_POINTER, 0));
+    vkUnmapMemory(vkDevice, stagingBuffer.memory());
     return stagingBuffer;
   }
 
@@ -666,7 +666,7 @@ public abstract class HelloApplication1 extends Application {
     var pCommandBuffer = arena.allocate(C_POINTER);
     var result = VKResult.vkResult(vkAllocateCommandBuffers(vkDevice, commandBufferAllocateInfo, pCommandBuffer));
     if (result != VK_SUCCESS) {
-      System.out.println("vkAllocateCommandBuffers failed for vertex buffer: " + result);
+      System.out.println("vkAllocateCommandBuffers failed for vertex pBuffer: " + result);
       System.exit(-1);
     }
 
@@ -675,7 +675,7 @@ public abstract class HelloApplication1 extends Application {
     VkCommandBufferBeginInfo.flags(beginInfo, VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT());
     result = VKResult.vkResult(vkBeginCommandBuffer(pCommandBuffer.get(C_POINTER, 0), beginInfo));
     if (result != VK_SUCCESS) {
-      System.out.println("vkBeginCommandBuffer failed for vertex buffer: " + result);
+      System.out.println("vkBeginCommandBuffer failed for vertex pBuffer: " + result);
       System.exit(-1);
     }
     return pCommandBuffer;
@@ -691,13 +691,13 @@ public abstract class HelloApplication1 extends Application {
     VkSubmitInfo.pCommandBuffers(pSubmitInfo, pCommandBuffer);
     var result = VKResult.vkResult(vkQueueSubmit(graphicsQueue, 1, pSubmitInfo, VK_NULL_HANDLE()));
     if (result != VK_SUCCESS) {
-      System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
+      System.out.println("vkQueueSubmit failed for vertex pBuffer: " + result);
       System.exit(-1);
     }
 
     result = VKResult.vkResult(vkQueueWaitIdle(graphicsQueue));
     if (result != VK_SUCCESS) {
-      System.out.println("vkQueueSubmit failed for vertex buffer: " + result);
+      System.out.println("vkQueueSubmit failed for vertex pBuffer: " + result);
       System.exit(-1);
     }
     vkFreeCommandBuffers(vkDevice, commandPool, 1, pCommandBuffer);
@@ -723,7 +723,7 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.y(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
-    vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer().get(C_POINTER, 0),
+    vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer(),
       imageMemory.image().get(C_POINTER, 0), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
@@ -750,7 +750,7 @@ public abstract class HelloApplication1 extends Application {
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
     vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
-      VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
+      VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, pCommandPool, device, pVkGraphicsQueue, pCommandBuffer);
   }

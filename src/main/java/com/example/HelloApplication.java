@@ -25,9 +25,9 @@ import static org.vulkan.vulkan_h.*;
  * 2. create physical device(GPU) and vk device
  * 3. create image and imageview
  * 4. create render pass
- * 5. create command pool and buffer
+ * 5. create command pool and pBuffer
  * 6. create pipeline
- * 7. create frame buffer
+ * 7. create frame pBuffer
  * 8. create fence
  * 9. integrate to JavaFX
  * 10. render loop
@@ -103,7 +103,7 @@ public class HelloApplication extends HelloApplication1 {
     //6. pipeline
     var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
 
-    //7. frame buffer
+    //7. frame pBuffer
     var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageView, renderPass);
     var frameBuffer = pFrameBuffer.get(C_POINTER,0);
 
@@ -116,15 +116,15 @@ public class HelloApplication extends HelloApplication1 {
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
     var transferBuffer = createBuffer(arena, device, physicalDevice, bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT() | VK_BUFFER_USAGE_TRANSFER_SRC_BIT(), VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT());
     var pData = arena.allocate(C_POINTER);
-    var result = VKResult.vkResult(vkMapMemory(device, transferBuffer.memory().get(C_POINTER, 0), 0, bufferSize, 0, pData));
+    var result = VKResult.vkResult(vkMapMemory(device, transferBuffer.memory(), 0, bufferSize, 0, pData));
     if (result != VK_SUCCESS) {
-      System.out.println("vkMapMemory failed for staging buffer: " + result);
+      System.out.println("vkMapMemory failed for staging pBuffer: " + result);
       System.exit(-1);
     } else {
-      System.out.println("vkTransferBuffer is ready, buffer:" + transferBuffer);
+      System.out.println("vkTransferBuffer is ready, pBuffer:" + transferBuffer);
     }
 
-    //show the buffer data to the writable image of JavaFX
+    //show the pBuffer data to the writable image of JavaFX
     PixelBuffer<ByteBuffer> pixelBuffer = new PixelBuffer<>(SCREEN_WIDTH, SCREEN_HEIGHT,
       pData.get(C_POINTER, 0).asSlice(0, bufferSize).asByteBuffer(),
       PixelFormat.getByteBgraPreInstance());
@@ -168,8 +168,8 @@ public class HelloApplication extends HelloApplication1 {
         vulkan_h.vkDestroyFence(device, fence, MemorySegment.NULL);
 //        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeCommandBuffers(device, commandPool, 1, pCommandBuffers);
-        vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer().get(C_POINTER, 0), MemorySegment.NULL);
-        vulkan_h.vkFreeMemory(device, transferBuffer.memory().get(C_POINTER, 0), MemorySegment.NULL);
+        vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer(), MemorySegment.NULL);
+        vulkan_h.vkFreeMemory(device, transferBuffer.memory(), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorPool(device, pDescriptorPool.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyImageView(device, imageView, MemorySegment.NULL);
         vulkan_h.vkDestroyImage(device, image.image().get(C_POINTER, 0), MemorySegment.NULL);
@@ -199,7 +199,7 @@ public class HelloApplication extends HelloApplication1 {
     VkCommandBufferBeginInfo.flags(beginInfo, 0);
     VkCommandBufferBeginInfo.pInheritanceInfo(beginInfo, MemorySegment.NULL);
     if (VKResult.vkResult(vkBeginCommandBuffer(commandBuffer, beginInfo)) != VK_SUCCESS) {
-      System.out.println("failed to begin recording command buffer!");
+      System.out.println("failed to begin recording command pBuffer!");
       System.exit(-1);
     }
 
@@ -493,7 +493,7 @@ public class HelloApplication extends HelloApplication1 {
     VkOffset3D.z(VkBufferImageCopy.imageOffset(pBufferImageCopyRegion), 0);
 
     vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image().get(C_POINTER, 0),
-      VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL(), bufferMemory.buffer().get(C_POINTER, 0), 1, pBufferImageCopyRegion);
+      VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL(), bufferMemory.buffer(), 1, pBufferImageCopyRegion);
 
     endSingleTimeCommands(arena, commandPool, device, graphicsQueue, pCommandBuffer);
   }

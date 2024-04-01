@@ -91,11 +91,11 @@ public class PhysicalDevice {
     for (int i = 0; i < VkPhysicalDeviceMemoryProperties.memoryTypeCount(physicalDeviceMemoryProperties); i++) {
       MemorySegment memoryTypesArr = VkPhysicalDeviceMemoryProperties.memoryTypes(physicalDeviceMemoryProperties);
       if ((typeFilter & (1 << i)) != 0 && (memoryTypesArr.getAtIndex(C_INT, i) & memoryPropertyFlags) == memoryPropertyFlags) {
-        System.out.println("Found memory type: " + i);
+        System.out.println("Found pMemory type: " + i);
         return i;
       }
     }
-    System.out.println("failed to find suitable memory type!");
+    System.out.println("failed to find suitable pMemory type!");
     return -1;
   }
 
