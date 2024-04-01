@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
@@ -40,6 +42,8 @@ public class HelloApplication extends HelloApplication1 {
   public static final int SCREEN_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() * 3 / 4);
   public Arena arena;
 
+  private static final Map<String, MemorySegment> vkResourcesMap = new HashMap<>();
+
   @Override
   public void init() throws Exception {
     super.init();
@@ -60,10 +64,16 @@ public class HelloApplication extends HelloApplication1 {
 //      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
     var instance = pInstance.get(C_POINTER, 0);//or vkInstance
 
+    vkResourcesMap.put("pInstance", pInstance);
+    vkResourcesMap.put("instance", instance);
+
     List<String> extensions = getAvailableExtensions(arena);
 
     if (DEBUG) {
-      setupDebugMessagesCallback(arena, instance);
+      var pMessenger = setupDebugMessagesCallback(arena, instance);
+      var messenger = pMessenger.get(C_POINTER, 0);
+      vkResourcesMap.put("pMessenger", pMessenger);
+      vkResourcesMap.put("messenger", messenger);
     }
 
     //2. device
@@ -76,6 +86,7 @@ public class HelloApplication extends HelloApplication1 {
     var device = pDevice.get(C_POINTER, 0);
     //or
 //      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
+    vkResourcesMap.put("device", device);
 
     //3. pImage and pImage view
     var format = VK_FORMAT_B8G8R8A8_SRGB();
@@ -106,11 +117,13 @@ public class HelloApplication extends HelloApplication1 {
     //7. frame pBuffer
     var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, imageView, renderPass);
     var frameBuffer = pFrameBuffer.get(C_POINTER,0);
+    vkResourcesMap.put("frameBuffer", frameBuffer);
 
     //8. semaphore and fence
 //    var pSemaphores = createSemaphores(arena, device);//optional
     var pFence = createFence(arena, device);
     var fence = pFence.get(C_POINTER, 0);
+    vkResourcesMap.put("fence", fence);
 
     //9. integrate to JavaFX ImageView
     var bufferSize = SCREEN_WIDTH * SCREEN_HEIGHT * 4;
@@ -165,7 +178,6 @@ public class HelloApplication extends HelloApplication1 {
       @Override
       public void stop() {
         System.out.println("stoping the application");
-        vulkan_h.vkDestroyFence(device, fence, MemorySegment.NULL);
 //        vulkan_h.vkDestroySemaphore(device, pSemaphores.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkFreeCommandBuffers(device, commandPool, 1, pCommandBuffers);
         vulkan_h.vkDestroyBuffer(device, transferBuffer.buffer(), MemorySegment.NULL);
@@ -175,8 +187,6 @@ public class HelloApplication extends HelloApplication1 {
         vulkan_h.vkDestroyImage(device, image.image(), MemorySegment.NULL);
 //        vulkan_h.vkDestroyDescriptorSetLayout(device, pDescriptorSetLayout.get(C_POINTER, 0), MemorySegment.NULL);
         vulkan_h.vkDestroyPipelineLayout(device, pipelineLayout.layout().get(C_POINTER, 0), MemorySegment.NULL);
-        vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
-        vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
       }
     }.start();
   }
@@ -184,6 +194,24 @@ public class HelloApplication extends HelloApplication1 {
   @Override
   public void stop() throws Exception {
     super.stop();
+
+    var instance = vkResourcesMap.get("instance");
+    var device = vkResourcesMap.get("device");
+    var fence = vkResourcesMap.get("fence");
+    var frameBuffer = vkResourcesMap.get("frameBuffer");
+
+    vulkan_h.vkDestroyFence(device, fence, MemorySegment.NULL);
+    vulkan_h.vkDestroyFramebuffer(device, frameBuffer, MemorySegment.NULL);
+
+    System.out.println("-----------------------------");
+
+    vulkan_h.vkDestroyDevice(device, MemorySegment.NULL);
+
+    if (DEBUG) {
+      destroyDebugMessagesCallback(arena, instance,vkResourcesMap.get("messenger"));
+    }
+
+    vulkan_h.vkDestroyInstance(instance, MemorySegment.NULL);
 
     arena.close();
   }

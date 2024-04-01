@@ -59,7 +59,7 @@ public abstract class HelloApplication1 extends Application {
     return extensions;
   }
 
-  protected static void setupDebugMessagesCallback(Arena arena, MemorySegment instance) {
+  protected static MemorySegment setupDebugMessagesCallback(Arena arena, MemorySegment instance) {
     MethodHandle debugCallbackHandle = null;
     try {
       debugCallbackHandle = MethodHandles.lookup().findStatic(VulkanDebug.class, "debugCallbackFunc",
@@ -89,8 +89,11 @@ public abstract class HelloApplication1 extends Application {
     VkDebugUtilsMessengerCreateInfoEXT.pfnUserCallback(debugUtilsMessengerCreateInfo, debugCallbackFunc);
     VkDebugUtilsMessengerCreateInfoEXT.pUserData(debugUtilsMessengerCreateInfo, MemorySegment.NULL);
 
+    var pMessenger = VkDebugUtilsMessengerCreateInfoEXT.allocate(arena);
     var vkCreateDebugUtilsMessengerEXTFunc = vkGetInstanceProcAddr(instance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
-    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, VkDebugUtilsMessengerCreateInfoEXT.allocate(arena)));
+    var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, pMessenger));
+
+//    var result = VKResult.vkResult(vkCreateDebugUtilsMessengerEXT(instance, debugUtilsMessengerCreateInfo,MemorySegment.NULL, pMessenger));
 
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateDebugUtilsMessengerEXT failed: " + result);
@@ -98,6 +101,13 @@ public abstract class HelloApplication1 extends Application {
     } else {
       System.out.println("vkCreateDebugUtilsMessengerEXT succeeded");
     }
+
+    return pMessenger;
+  }
+
+  protected static void destroyDebugMessagesCallback(Arena arena, MemorySegment instance, MemorySegment messenger) {
+    var vkDestroyDebugUtilsMessengerEXTFunc = vkGetInstanceProcAddr(instance, arena.allocateFrom("vkDestroyDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
+    PFN_vkDestroyDebugUtilsMessengerEXT.invoke(vkDestroyDebugUtilsMessengerEXTFunc, instance, messenger, MemorySegment.NULL);
   }
 
   protected static List<PhysicalDevice> getPhysicalDevices(Arena arena, MemorySegment instance) {
