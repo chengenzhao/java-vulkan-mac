@@ -54,7 +54,7 @@ public class HelloApplication extends HelloApplication1 {
     arena = Arena.ofShared();
 
     //1. vk instance
-    var pInstance = createVkInstance(arena, DEBUG);
+    var pInstance = createInstance(arena, DEBUG);
     //get the value from pIntance pointer, which is the instance address, and then make a MemorySegment base on that address
     //following two lines of code are equivalent
 //      var instance = MemorySegment.ofAddress(pInstance.get(ValueLayout.JAVA_LONG,0));
@@ -72,7 +72,7 @@ public class HelloApplication extends HelloApplication1 {
     var graphicsQueueFamilies = physicalDevice.getQueueFamilies();
     var graphicsQueueFamily = graphicsQueueFamilies.stream().filter(QueueFamily::supportsGraphicsOperations).findAny().orElseThrow();
 
-    var pDevice = createVkDevice(arena, graphicsQueueFamily, physicalDevice);
+    var pDevice = createDevice(arena, graphicsQueueFamily, physicalDevice);
     var device = pDevice.get(C_POINTER, 0);
     //or
 //      var device = MemorySegment.ofAddress(pDevice.get(ValueLayout.JAVA_LONG, 0));
@@ -87,6 +87,7 @@ public class HelloApplication extends HelloApplication1 {
 
     //4. render pass
     var pRenderPass = createRenderPass(arena, device, format);
+    var renderPass = pRenderPass.get(C_POINTER, 0);
 
     //5. command pool
     var pCommandPool = createCommandPool(arena, graphicsQueueFamily, device);
@@ -97,10 +98,10 @@ public class HelloApplication extends HelloApplication1 {
     var pCommandBuffers = createCommandBuffers(arena, device, pCommandPool, 1);
 
     //6. pipeline
-    var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pRenderPass);
+    var pipelineLayout = createGraphicsPipeline(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, renderPass);
 
     //7. frame buffer
-    var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pImageView, pRenderPass);
+    var pFrameBuffer = createFramebuffer(arena, SCREEN_WIDTH, SCREEN_HEIGHT, device, pImageView, renderPass);
 
     //8. semaphore and fence
 //    var pSemaphores = createSemaphores(arena, device);//optional
@@ -422,7 +423,7 @@ public class HelloApplication extends HelloApplication1 {
     VkGraphicsPipelineCreateInfo.pColorBlendState(pipelineCreateInfo, colorBlending);
     VkGraphicsPipelineCreateInfo.pDynamicState(pipelineCreateInfo, dynamicState);
     VkGraphicsPipelineCreateInfo.layout(pipelineCreateInfo, pipelineLayout.get(C_POINTER, 0));
-    VkGraphicsPipelineCreateInfo.renderPass(pipelineCreateInfo, renderPass.get(C_POINTER, 0));
+    VkGraphicsPipelineCreateInfo.renderPass(pipelineCreateInfo, renderPass);
     VkGraphicsPipelineCreateInfo.subpass(pipelineCreateInfo, 0);
     VkGraphicsPipelineCreateInfo.basePipelineHandle(pipelineCreateInfo, VK_NULL_HANDLE());
     VkGraphicsPipelineCreateInfo.basePipelineIndex(pipelineCreateInfo, -1);
@@ -440,7 +441,7 @@ public class HelloApplication extends HelloApplication1 {
 
   protected static MemorySegment createFramebuffer(Arena arena, int windowWidth, int windowHeight,
                                                    MemorySegment device, MemorySegment imageView,
-                                                   MemorySegment pRenderPass) {
+                                                   MemorySegment renderPass) {
 
     var pFramebufferCreateInfo = VkFramebufferCreateInfo.allocate(arena);
 
@@ -448,7 +449,7 @@ public class HelloApplication extends HelloApplication1 {
     pAttachments.setAtIndex(C_POINTER, 0, imageView.get(C_POINTER, 0));
 
     VkFramebufferCreateInfo.sType(pFramebufferCreateInfo, VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO());
-    VkFramebufferCreateInfo.renderPass(pFramebufferCreateInfo, pRenderPass.get(C_POINTER, 0));
+    VkFramebufferCreateInfo.renderPass(pFramebufferCreateInfo, renderPass);
     VkFramebufferCreateInfo.attachmentCount(pFramebufferCreateInfo, 1);
     VkFramebufferCreateInfo.pAttachments(pFramebufferCreateInfo, pAttachments);
     VkFramebufferCreateInfo.width(pFramebufferCreateInfo, windowWidth);

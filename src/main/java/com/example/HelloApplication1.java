@@ -169,7 +169,7 @@ public abstract class HelloApplication1 extends Application {
     return physicalDevices;
   }
 
-  protected static MemorySegment createVkDevice(Arena arena, QueueFamily graphicsQueueFamily, PhysicalDevice physicalDevice) {
+  protected static MemorySegment createDevice(Arena arena, QueueFamily graphicsQueueFamily, PhysicalDevice physicalDevice) {
 
     var pDeviceQueueCreateInfo = VkDeviceQueueCreateInfo.allocate(arena);
     VkDeviceQueueCreateInfo.sType(pDeviceQueueCreateInfo, VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO());
@@ -211,7 +211,7 @@ public abstract class HelloApplication1 extends Application {
     return pVkDevice;
   }
 
-  protected static MemorySegment createVkInstance(Arena arena, boolean debug) {
+  protected static MemorySegment createInstance(Arena arena, boolean debug) {
     var appInfo = VkApplicationInfo.allocate(arena);
     VkApplicationInfo.sType(appInfo, VK_STRUCTURE_TYPE_APPLICATION_INFO());
     VkApplicationInfo.pApplicationName(appInfo, arena.allocateFrom("Java Vulkan App", StandardCharsets.UTF_8));
@@ -399,16 +399,16 @@ public abstract class HelloApplication1 extends Application {
     return pCommandPool;
   }
 
-  protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment vkDevice, MemorySegment pVkCommandPool, int commandBufferCount) {
+  protected static MemorySegment createCommandBuffers(Arena arena, MemorySegment device, MemorySegment pCommandPool, int commandBufferCount) {
     MemorySegment pCommandBuffers = arena.allocate(C_POINTER, commandBufferCount);
 
     var pCommandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
     VkCommandBufferAllocateInfo.sType(pCommandBufferAllocateInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
-    VkCommandBufferAllocateInfo.commandPool(pCommandBufferAllocateInfo, pVkCommandPool.get(C_POINTER, 0));
+    VkCommandBufferAllocateInfo.commandPool(pCommandBufferAllocateInfo, pCommandPool.get(C_POINTER, 0));
     VkCommandBufferAllocateInfo.level(pCommandBufferAllocateInfo, VK_COMMAND_BUFFER_LEVEL_PRIMARY());
     VkCommandBufferAllocateInfo.commandBufferCount(pCommandBufferAllocateInfo, commandBufferCount);
 
-    var result = VKResult.vkResult(vkAllocateCommandBuffers(vkDevice, pCommandBufferAllocateInfo, pCommandBuffers));
+    var result = VKResult.vkResult(vkAllocateCommandBuffers(device, pCommandBufferAllocateInfo, pCommandBuffers));
     if (result != VK_SUCCESS) {
       System.out.println("vkAllocateCommandBuffers failed: " + result);
       System.exit(-1);
@@ -656,11 +656,11 @@ public abstract class HelloApplication1 extends Application {
     return format == VK_FORMAT_D32_SFLOAT_S8_UINT() || format == VK_FORMAT_D24_UNORM_S8_UINT();
   }
 
-  protected static MemorySegment beginSingleTimeCommands(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice) {
+  protected static MemorySegment beginSingleTimeCommands(Arena arena, MemorySegment pCommandPool, MemorySegment vkDevice) {
     var commandBufferAllocateInfo = VkCommandBufferAllocateInfo.allocate(arena);
     VkCommandBufferAllocateInfo.sType(commandBufferAllocateInfo, VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO());
     VkCommandBufferAllocateInfo.level(commandBufferAllocateInfo, VK_COMMAND_BUFFER_LEVEL_PRIMARY());
-    VkCommandBufferAllocateInfo.commandPool(commandBufferAllocateInfo, pVkCommandPool.get(C_POINTER, 0));
+    VkCommandBufferAllocateInfo.commandPool(commandBufferAllocateInfo, pCommandPool.get(C_POINTER, 0));
     VkCommandBufferAllocateInfo.commandBufferCount(commandBufferAllocateInfo, 1);
 
     var pCommandBuffer = arena.allocate(C_POINTER);
