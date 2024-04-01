@@ -592,9 +592,9 @@ public abstract class HelloApplication1 extends Application {
     return pData;
   }
 
-  protected static void transitionImageLayout(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice, MemorySegment pVkGraphicsQueue,
+  protected static void transitionImageLayout(Arena arena, MemorySegment commandPool, MemorySegment device, MemorySegment graphicsQueue,
                                               MemorySegment pImage, int format, int oldLayout, int newLayout) {
-    var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
+    var pCommandBuffer = beginSingleTimeCommands(arena, commandPool, device);
 
     var pImageMemoryBarrier = VkImageMemoryBarrier.allocate(arena);
     VkImageMemoryBarrier.sType(pImageMemoryBarrier, VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER());
@@ -649,7 +649,7 @@ public abstract class HelloApplication1 extends Application {
     vkCmdPipelineBarrier(pCommandBuffer.get(C_POINTER, 0), sourceStage, destinationStage, 0, 0,
       MemorySegment.NULL, 0, MemorySegment.NULL, 1, pImageMemoryBarrier);
 
-    endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
+    endSingleTimeCommands(arena, commandPool, device, graphicsQueue, pCommandBuffer);
   }
 
   protected static boolean hasStencilComponent(int format) {
@@ -703,10 +703,9 @@ public abstract class HelloApplication1 extends Application {
     vkFreeCommandBuffers(vkDevice, commandPool, 1, pCommandBuffer);
   }
 
-  protected static void copyBufferToImage(Arena arena, MemorySegment pVkCommandPool, MemorySegment vkDevice,
-                                          MemorySegment pVkGraphicsQueue, BufferMemory bufferMemory,
-                                          ImageMemory imageMemory, int width, int height) {
-    var pCommandBuffer = beginSingleTimeCommands(arena, pVkCommandPool, vkDevice);
+  protected static void copyBufferToImage(Arena arena, MemorySegment commandPool, MemorySegment device, MemorySegment graphicsQueue,
+                                          BufferMemory bufferMemory, ImageMemory imageMemory, int width, int height) {
+    var pCommandBuffer = beginSingleTimeCommands(arena, commandPool, device);
 
     var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
     VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
@@ -726,13 +725,13 @@ public abstract class HelloApplication1 extends Application {
     vkCmdCopyBufferToImage(pCommandBuffer.get(C_POINTER, 0), bufferMemory.buffer(),
       imageMemory.image(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL(), 1, pBufferImageCopyRegion);
 
-    endSingleTimeCommands(arena, pVkCommandPool, vkDevice, pVkGraphicsQueue, pCommandBuffer);
+    endSingleTimeCommands(arena, commandPool, device, graphicsQueue, pCommandBuffer);
   }
 
-  protected static void copyImageToBuffer(Arena arena, MemorySegment pCommandPool, MemorySegment device,
+  protected static void copyImageToBuffer(Arena arena, MemorySegment commandPool, MemorySegment device,
                                           MemorySegment pVkGraphicsQueue, ImageMemory imageMemory,
                                           BufferMemory bufferMemory, int width, int height) {
-    var pCommandBuffer = beginSingleTimeCommands(arena, pCommandPool, device);
+    var pCommandBuffer = beginSingleTimeCommands(arena, commandPool, device);
 
     var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
     VkBufferImageCopy.bufferOffset(pBufferImageCopyRegion, 0);
@@ -752,7 +751,7 @@ public abstract class HelloApplication1 extends Application {
     vkCmdCopyImageToBuffer(pCommandBuffer.get(C_POINTER, 0), imageMemory.image(),
       VK_IMAGE_LAYOUT_GENERAL(), bufferMemory.buffer(), 1, pBufferImageCopyRegion);
 
-    endSingleTimeCommands(arena, pCommandPool, device, pVkGraphicsQueue, pCommandBuffer);
+    endSingleTimeCommands(arena, commandPool, device, pVkGraphicsQueue, pCommandBuffer);
   }
 
   protected static MemorySegment createSemaphores(Arena arena, MemorySegment vkDevice) {

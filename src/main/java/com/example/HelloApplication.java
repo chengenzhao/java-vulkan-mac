@@ -472,9 +472,8 @@ public class HelloApplication extends HelloApplication1 {
     return pVkFramebuffer;
   }
 
-  protected static void copyImageToBuffer(Arena arena, MemorySegment commandPool, MemorySegment device,
-                                          MemorySegment graphicsQueue, ImageMemory imageMemory,
-                                          BufferMemory bufferMemory, int width, int height) {
+  protected static void copyImageToBuffer(Arena arena, MemorySegment commandPool, MemorySegment device, MemorySegment graphicsQueue,
+                                          ImageMemory imageMemory, BufferMemory bufferMemory, int width, int height) {
     var pCommandBuffer = beginSingleTimeCommands(arena, commandPool, device);
 
     var pBufferImageCopyRegion = VkBufferImageCopy.allocate(arena);
