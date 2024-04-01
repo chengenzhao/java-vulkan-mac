@@ -93,8 +93,6 @@ public abstract class HelloApplication1 extends Application {
     var vkCreateDebugUtilsMessengerEXTFunc = vkGetInstanceProcAddr(instance, arena.allocateFrom("vkCreateDebugUtilsMessengerEXT", StandardCharsets.UTF_8));
     var result = VKResult.vkResult(PFN_vkCreateDebugUtilsMessengerEXT.invoke(vkCreateDebugUtilsMessengerEXTFunc, instance, debugUtilsMessengerCreateInfo, MemorySegment.NULL, pMessenger));
 
-//    var result = VKResult.vkResult(vkCreateDebugUtilsMessengerEXT(instance, debugUtilsMessengerCreateInfo,MemorySegment.NULL, pMessenger));
-
     if (result != VK_SUCCESS) {
       System.out.println("vkCreateDebugUtilsMessengerEXT failed: " + result);
       System.exit(-1);
@@ -356,7 +354,7 @@ public abstract class HelloApplication1 extends Application {
 //
 //    var pDepthAttachmentReference = VkAttachmentReference.allocate(arena);
 //    VkAttachmentReference.attachment(pDepthAttachmentReference, 1);
-//    VkAttachmentReference.layout(pDepthAttachmentReference, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
+//    VkAttachmentReference.pLayout(pDepthAttachmentReference, VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL());
 
     var pSubpassDescription = VkSubpassDescription.allocate(arena);
     VkSubpassDescription.pipelineBindPoint(pSubpassDescription, VK_PIPELINE_BIND_POINT_GRAPHICS());
@@ -652,7 +650,7 @@ public abstract class HelloApplication1 extends Application {
       sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT();
       destinationStage = VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT();
     } else {
-      System.out.println("Unsupported layout transition: " + oldLayout + ", " + newLayout);
+      System.out.println("Unsupported pLayout transition: " + oldLayout + ", " + newLayout);
       throw new RuntimeException("Unrecognised transition");
 //      System.exit(-1);
     }
@@ -1176,7 +1174,7 @@ public abstract class HelloApplication1 extends Application {
     VkExtent2D.height(VkRect2D.extent(VkRenderPassBeginInfo.renderArea(pRenderPassBeginInfo)), windowHeight);
     VkRenderPassBeginInfo.clearValueCount(pRenderPassBeginInfo, 2);
     // VkClearValue* pClearValues = malloc(sizeof(VkClearValue) * 2);
-    var pClearValues = arena.allocate(VkClearValue.layout(), 2);
+    var pClearValues = arena.allocate(VkClearValue.pLayout(), 2);
     // like doing: '&pClearValues[i]' in C
     IntFunction<MemorySegment> slicer = i -> pClearValues.asSlice(i * VkClearValue.sizeof(), VkClearValue.sizeof());
 
@@ -1196,14 +1194,14 @@ public abstract class HelloApplication1 extends Application {
 
     vkCmdBeginRenderPass(commandBuffer, pRenderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE());
     vkCmdBindPipeline(commandBuffer,
-      VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pipeline().get(C_POINTER, 0));
+      VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pPipeline().get(C_POINTER, 0));
 
     var pOffsets = arena.allocate(C_POINTER, 1);
     pOffsets.setAtIndex(C_LONG, 0, 0);
     vkCmdBindVertexBuffers(commandBuffer, 0, 1, pVertexBuffer, pOffsets);
 
-    setPushConstants(arena, pipelineLayoutPair.layout(), commandBuffer, windowWidth, windowHeight, frameIndex);
-    vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.layout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
+    setPushConstants(arena, pipelineLayoutPair.pLayout(), commandBuffer, windowWidth, windowHeight, frameIndex);
+    vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS(), pipelineLayoutPair.pLayout().get(C_POINTER, 0), 0, 1, pDescriptorSets, 0, MemorySegment.NULL);
 
     if (indices instanceof int[] intIndices) {
       vkCmdBindIndexBuffer(commandBuffer, pIndexBuffer.get(C_POINTER, 0), 0, VK_INDEX_TYPE_UINT32());
