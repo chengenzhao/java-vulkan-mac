@@ -311,7 +311,7 @@ public class HelloApplication extends HelloApplication1 {
                                                          MemorySegment device, MemorySegment renderPass) {
     //load shader, make sure compile shader to spv first.
     var pVertShaderModule = shaders.getFirst();//createShaderModule(arena, device, "shader/vert.spv");
-    var pFragShaderModule = shaders.get(1);//createShaderModule(arena, device, "shader/frag.spv");
+    var pFragShaderModule = shaders.getLast();//createShaderModule(arena, device, "shader/frag.spv");
 
     //fixed functions
     var dynamicStates = arena.allocate(C_INT, 2);
