@@ -24,6 +24,7 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 # How to run it?
 * Install Vulkan SDK, make sure the environment variables are set.
 * Run the main class: com.example.HelloApplication.
+![Screenshot2024-04-02 17 11 26](https://github.com/chengenzhao/java-vulkan-mac/assets/5525436/dafef8ea-421f-4408-a7d4-32013a1e2435)
 
 # How to generate vulkan_h.java and compile the shaders? 
 There are some generated source code and compiled shaders in the src directory, here is the way I made them:
