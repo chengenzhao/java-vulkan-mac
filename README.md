@@ -9,7 +9,7 @@
 * Make sure set up the environment after installation, typically in your .zshrc you may need following variables:
 ```shell
 export JAVA_HOME=~/JDK/jdk-22.jdk/Contents/Home
-export VULKAN_SDK=~/VulkanSDK/1.3.275.0/macOS
+export VULKAN_SDK=~/VulkanSDK/1.3.280.1/macOS
 export PATH=$JAVA_HOME/bin:$VULKAN_SDK/bin:$PATH
 export DYLD_LIBRARY_PATH=$VULKAN_SDK/lib:$DYLD_LIBRARY_PATH
 export VK_ICD_FILENAMES=$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json
@@ -19,7 +19,7 @@ export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 # SDK Versions 
 
 * Java SDK(JDK) 22
-* VulkanSDK 1.3.275.0
+* VulkanSDK 1.3.280.1
 
 # How to run it?
 * Install Vulkan SDK, make sure the environment variables are set.
@@ -44,7 +44,7 @@ For using Vulkan in Java program there are two requirements:
 ## 1) Following files in the $Vulkan_SDK/macOS/lib should be included in the Java Library Path
 
 1) libMoltenVK.dylib
-2) libvulkan.${vk_version}.dylib e.g. libvulkan.1.3.275.dylib
+2) libvulkan.1.3.280.dylib
 3) libvulkan.1.dylib
 4) libvulkan.dylib
 
@@ -54,7 +54,7 @@ For using Vulkan in Java program there are two requirements:
 or
 * Using option: 
 ```shell
--Djava.library.path=$VULKAN_SDK/macOS/lib
+-Djava.library.path=$VULKAN_SDK/lib
 ```
 check following Swift code.
 
@@ -81,7 +81,7 @@ task.launchPath = "\(currentPath)/bin/java"
 let moduleName = "demo"
 let mainClass = "com.example.HelloApplication"
 let jarName = "demo.jar"
-//-Djava.library.path also goes here e.g. ["-Djava.library.path=\(vulkanSDKLibPath)",...
+//-Djava.library.path also goes here e.g. ["-Djava.library.path=\(vulkanSDKLibPath)/lib",...
 task.arguments = ["--enable-native-access=\(moduleName)","-p","\(jarName)","-m","\(moduleName)/\(mainClass)"]
 
 task.standardInput = nil

@@ -47,13 +47,13 @@ public class PFN_vkMapMemory {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = vulkan_h.upcallHandle(Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = vulkan_h.upcallHandle(PFN_vkMapMemory.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(Function fi, Arena arena) {
+    public static MemorySegment allocate(PFN_vkMapMemory.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 

@@ -17,6 +17,717 @@ public class vulkan_h_3 extends vulkan_h_4 {
     vulkan_h_3() {
         // Should not be called directly
     }
+    private static final int VK_STRUCTURE_TYPE_DEPENDENCY_INFO_KHR = (int)1000314003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_DEPENDENCY_INFO_KHR = 1000314003
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_DEPENDENCY_INFO_KHR() {
+        return VK_STRUCTURE_TYPE_DEPENDENCY_INFO_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR = (int)1000314004L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR = 1000314004
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR = (int)1000314005L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR = 1000314005
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR() {
+        return VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR = (int)1000314006L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR = 1000314006
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR() {
+        return VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR = (int)1000314007L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR = 1000314007
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR = (int)1000325000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR = 1000325000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT = (int)1000335000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT = 1000335000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR = (int)1000337000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR = 1000337000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR = (int)1000337001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR = 1000337001
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR = (int)1000337002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR = 1000337002
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR = (int)1000337003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR = 1000337003
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR = (int)1000337004L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR = 1000337004
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR = (int)1000337005L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR = 1000337005
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR() {
+        return VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_BUFFER_COPY_2_KHR = (int)1000337006L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_BUFFER_COPY_2_KHR = 1000337006
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_BUFFER_COPY_2_KHR() {
+        return VK_STRUCTURE_TYPE_BUFFER_COPY_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_IMAGE_COPY_2_KHR = (int)1000337007L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_IMAGE_COPY_2_KHR = 1000337007
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_IMAGE_COPY_2_KHR() {
+        return VK_STRUCTURE_TYPE_IMAGE_COPY_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_IMAGE_BLIT_2_KHR = (int)1000337008L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_IMAGE_BLIT_2_KHR = 1000337008
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_IMAGE_BLIT_2_KHR() {
+        return VK_STRUCTURE_TYPE_IMAGE_BLIT_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR = (int)1000337009L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR = 1000337009
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR() {
+        return VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR = (int)1000337010L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR = 1000337010
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR() {
+        return VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_SUBRESOURCE_LAYOUT_2_EXT = (int)1000338002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_SUBRESOURCE_LAYOUT_2_EXT = 1000338002
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_SUBRESOURCE_LAYOUT_2_EXT() {
+        return VK_STRUCTURE_TYPE_SUBRESOURCE_LAYOUT_2_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_IMAGE_SUBRESOURCE_2_EXT = (int)1000338003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_IMAGE_SUBRESOURCE_2_EXT = 1000338003
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_IMAGE_SUBRESOURCE_2_EXT() {
+        return VK_STRUCTURE_TYPE_IMAGE_SUBRESOURCE_2_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM = (int)1000342000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM = 1000342000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE = (int)1000351000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE = 1000351000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE;
+    }
+    private static final int VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE = (int)1000351002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE = 1000351002
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE() {
+        return VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE;
+    }
+    private static final int VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR = (int)1000360000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR = 1000360000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR() {
+        return VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_PIPELINE_INFO_EXT = (int)1000269001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PIPELINE_INFO_EXT = 1000269001
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PIPELINE_INFO_EXT() {
+        return VK_STRUCTURE_TYPE_PIPELINE_INFO_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT = (int)1000388000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT = 1000388000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT = (int)1000388001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT = 1000388001
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT() {
+        return VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR = (int)1000413000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR = 1000413000
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR = (int)1000413001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR = 1000413001
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR() {
+        return VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR = (int)1000413002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR = 1000413002
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR() {
+        return VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR = (int)1000413003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR = 1000413003
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR() {
+        return VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR;
+    }
+    private static final int VK_STRUCTURE_TYPE_SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT = (int)1000225001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT = 1000225001
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT() {
+        return VK_STRUCTURE_TYPE_SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT;
+    }
+    private static final int VK_STRUCTURE_TYPE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkStructureType.VK_STRUCTURE_TYPE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_STRUCTURE_TYPE_MAX_ENUM() {
+        return VK_STRUCTURE_TYPE_MAX_ENUM;
+    }
+    private static final int VK_PIPELINE_CACHE_HEADER_VERSION_ONE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineCacheHeaderVersion.VK_PIPELINE_CACHE_HEADER_VERSION_ONE = 1
+     * }
+     */
+    public static int VK_PIPELINE_CACHE_HEADER_VERSION_ONE() {
+        return VK_PIPELINE_CACHE_HEADER_VERSION_ONE;
+    }
+    private static final int VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineCacheHeaderVersion.VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM() {
+        return VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM;
+    }
+    private static final int VK_IMAGE_LAYOUT_UNDEFINED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_UNDEFINED = 0
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_UNDEFINED() {
+        return VK_IMAGE_LAYOUT_UNDEFINED;
+    }
+    private static final int VK_IMAGE_LAYOUT_GENERAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_GENERAL = 1
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_GENERAL() {
+        return VK_IMAGE_LAYOUT_GENERAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL = 2
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL = 3
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL = 4
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL = 5
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL = 6
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL = 7
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_PREINITIALIZED = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_PREINITIALIZED = 8
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_PREINITIALIZED() {
+        return VK_IMAGE_LAYOUT_PREINITIALIZED;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL = (int)1000117000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL = 1000117000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL = (int)1000117001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL = 1000117001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL = (int)1000241000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL = 1000241000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL = (int)1000241001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL = 1000241001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL = (int)1000241002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL = 1000241002
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL = (int)1000241003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL = 1000241003
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL = (int)1000314000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL = 1000314000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL = (int)1000314001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL = 1000314001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL() {
+        return VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL;
+    }
+    private static final int VK_IMAGE_LAYOUT_PRESENT_SRC_KHR = (int)1000001002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_PRESENT_SRC_KHR = 1000001002
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_PRESENT_SRC_KHR() {
+        return VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR = (int)1000024000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR = 1000024000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR() {
+        return VK_IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR = (int)1000024001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR = 1000024001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR() {
+        return VK_IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR = (int)1000024002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR = 1000024002
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR() {
+        return VK_IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR = (int)1000111000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR = 1000111000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR() {
+        return VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT = (int)1000218000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT = 1000218000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT() {
+        return VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT;
+    }
+    private static final int VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR = (int)1000164003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR = 1000164003
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_RENDERING_LOCAL_READ_KHR = (int)1000232000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_RENDERING_LOCAL_READ_KHR = 1000232000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_RENDERING_LOCAL_READ_KHR() {
+        return VK_IMAGE_LAYOUT_RENDERING_LOCAL_READ_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR = (int)1000299000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR = 1000299000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR() {
+        return VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR = (int)1000299001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR = 1000299001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR() {
+        return VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR = (int)1000299002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR = 1000299002
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR() {
+        return VK_IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT = (int)1000339000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT = 1000339000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT() {
+        return VK_IMAGE_LAYOUT_ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR = (int)1000117000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR = 1000117000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR = (int)1000117001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR = 1000117001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV = (int)1000164003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV = 1000164003
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV() {
+        return VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR = (int)1000241000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR = 1000241000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR = (int)1000241001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR = 1000241001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR = (int)1000241002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR = 1000241002
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR = (int)1000241003L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR = 1000241003
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR = (int)1000314000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR = 1000314000
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR = (int)1000314001L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR = 1000314001
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR() {
+        return VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR;
+    }
+    private static final int VK_IMAGE_LAYOUT_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkImageLayout.VK_IMAGE_LAYOUT_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_IMAGE_LAYOUT_MAX_ENUM() {
+        return VK_IMAGE_LAYOUT_MAX_ENUM;
+    }
+    private static final int VK_OBJECT_TYPE_UNKNOWN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum VkObjectType.VK_OBJECT_TYPE_UNKNOWN = 0
+     * }
+     */
+    public static int VK_OBJECT_TYPE_UNKNOWN() {
+        return VK_OBJECT_TYPE_UNKNOWN;
+    }
+    private static final int VK_OBJECT_TYPE_INSTANCE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkObjectType.VK_OBJECT_TYPE_INSTANCE = 1
+     * }
+     */
+    public static int VK_OBJECT_TYPE_INSTANCE() {
+        return VK_OBJECT_TYPE_INSTANCE;
+    }
+    private static final int VK_OBJECT_TYPE_PHYSICAL_DEVICE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkObjectType.VK_OBJECT_TYPE_PHYSICAL_DEVICE = 2
+     * }
+     */
+    public static int VK_OBJECT_TYPE_PHYSICAL_DEVICE() {
+        return VK_OBJECT_TYPE_PHYSICAL_DEVICE;
+    }
+    private static final int VK_OBJECT_TYPE_DEVICE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum VkObjectType.VK_OBJECT_TYPE_DEVICE = 3
+     * }
+     */
+    public static int VK_OBJECT_TYPE_DEVICE() {
+        return VK_OBJECT_TYPE_DEVICE;
+    }
+    private static final int VK_OBJECT_TYPE_QUEUE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkObjectType.VK_OBJECT_TYPE_QUEUE = 4
+     * }
+     */
+    public static int VK_OBJECT_TYPE_QUEUE() {
+        return VK_OBJECT_TYPE_QUEUE;
+    }
     private static final int VK_OBJECT_TYPE_SEMAPHORE = (int)5L;
     /**
      * {@snippet lang=c :
@@ -4859,15 +5570,6 @@ public class vulkan_h_3 extends vulkan_h_4 {
     public static int VK_DYNAMIC_STATE_FRAGMENT_SHADING_RATE_KHR() {
         return VK_DYNAMIC_STATE_FRAGMENT_SHADING_RATE_KHR;
     }
-    private static final int VK_DYNAMIC_STATE_LINE_STIPPLE_EXT = (int)1000259000L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDynamicState.VK_DYNAMIC_STATE_LINE_STIPPLE_EXT = 1000259000
-     * }
-     */
-    public static int VK_DYNAMIC_STATE_LINE_STIPPLE_EXT() {
-        return VK_DYNAMIC_STATE_LINE_STIPPLE_EXT;
-    }
     private static final int VK_DYNAMIC_STATE_VERTEX_INPUT_EXT = (int)1000352000L;
     /**
      * {@snippet lang=c :
@@ -4903,15 +5605,6 @@ public class vulkan_h_3 extends vulkan_h_4 {
      */
     public static int VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT() {
         return VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT;
-    }
-    private static final int VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT = (int)1000455002L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDynamicState.VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT = 1000455002
-     * }
-     */
-    public static int VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT() {
-        return VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT;
     }
     private static final int VK_DYNAMIC_STATE_DEPTH_CLAMP_ENABLE_EXT = (int)1000455003L;
     /**
@@ -5002,6 +5695,15 @@ public class vulkan_h_3 extends vulkan_h_4 {
      */
     public static int VK_DYNAMIC_STATE_COLOR_WRITE_MASK_EXT() {
         return VK_DYNAMIC_STATE_COLOR_WRITE_MASK_EXT;
+    }
+    private static final int VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT = (int)1000455002L;
+    /**
+     * {@snippet lang=c :
+     * enum VkDynamicState.VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT = 1000455002
+     * }
+     */
+    public static int VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT() {
+        return VK_DYNAMIC_STATE_TESSELLATION_DOMAIN_ORIGIN_EXT;
     }
     private static final int VK_DYNAMIC_STATE_RASTERIZATION_STREAM_EXT = (int)1000455013L;
     /**
@@ -5191,6 +5893,24 @@ public class vulkan_h_3 extends vulkan_h_4 {
      */
     public static int VK_DYNAMIC_STATE_ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT() {
         return VK_DYNAMIC_STATE_ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT;
+    }
+    private static final int VK_DYNAMIC_STATE_LINE_STIPPLE_KHR = (int)1000259000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkDynamicState.VK_DYNAMIC_STATE_LINE_STIPPLE_KHR = 1000259000
+     * }
+     */
+    public static int VK_DYNAMIC_STATE_LINE_STIPPLE_KHR() {
+        return VK_DYNAMIC_STATE_LINE_STIPPLE_KHR;
+    }
+    private static final int VK_DYNAMIC_STATE_LINE_STIPPLE_EXT = (int)1000259000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkDynamicState.VK_DYNAMIC_STATE_LINE_STIPPLE_EXT = 1000259000
+     * }
+     */
+    public static int VK_DYNAMIC_STATE_LINE_STIPPLE_EXT() {
+        return VK_DYNAMIC_STATE_LINE_STIPPLE_EXT;
     }
     private static final int VK_DYNAMIC_STATE_CULL_MODE_EXT = (int)1000267000L;
     /**
@@ -6200,6 +6920,15 @@ public class vulkan_h_3 extends vulkan_h_4 {
     public static int VK_ATTACHMENT_LOAD_OP_DONT_CARE() {
         return VK_ATTACHMENT_LOAD_OP_DONT_CARE;
     }
+    private static final int VK_ATTACHMENT_LOAD_OP_NONE_KHR = (int)1000400000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkAttachmentLoadOp.VK_ATTACHMENT_LOAD_OP_NONE_KHR = 1000400000
+     * }
+     */
+    public static int VK_ATTACHMENT_LOAD_OP_NONE_KHR() {
+        return VK_ATTACHMENT_LOAD_OP_NONE_KHR;
+    }
     private static final int VK_ATTACHMENT_LOAD_OP_NONE_EXT = (int)1000400000L;
     /**
      * {@snippet lang=c :
@@ -6389,14 +7118,14 @@ public class vulkan_h_3 extends vulkan_h_4 {
     public static int VK_INDEX_TYPE_NONE_KHR() {
         return VK_INDEX_TYPE_NONE_KHR;
     }
-    private static final int VK_INDEX_TYPE_UINT8_EXT = (int)1000265000L;
+    private static final int VK_INDEX_TYPE_UINT8_KHR = (int)1000265000L;
     /**
      * {@snippet lang=c :
-     * enum VkIndexType.VK_INDEX_TYPE_UINT8_EXT = 1000265000
+     * enum VkIndexType.VK_INDEX_TYPE_UINT8_KHR = 1000265000
      * }
      */
-    public static int VK_INDEX_TYPE_UINT8_EXT() {
-        return VK_INDEX_TYPE_UINT8_EXT;
+    public static int VK_INDEX_TYPE_UINT8_KHR() {
+        return VK_INDEX_TYPE_UINT8_KHR;
     }
     private static final int VK_INDEX_TYPE_NONE_NV = (int)1000165000L;
     /**
@@ -6406,6 +7135,15 @@ public class vulkan_h_3 extends vulkan_h_4 {
      */
     public static int VK_INDEX_TYPE_NONE_NV() {
         return VK_INDEX_TYPE_NONE_NV;
+    }
+    private static final int VK_INDEX_TYPE_UINT8_EXT = (int)1000265000L;
+    /**
+     * {@snippet lang=c :
+     * enum VkIndexType.VK_INDEX_TYPE_UINT8_EXT = 1000265000
+     * }
+     */
+    public static int VK_INDEX_TYPE_UINT8_EXT() {
+        return VK_INDEX_TYPE_UINT8_EXT;
     }
     private static final int VK_INDEX_TYPE_MAX_ENUM = (int)2147483647L;
     /**
@@ -8242,711 +8980,6 @@ public class vulkan_h_3 extends vulkan_h_4 {
      */
     public static int VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT() {
         return VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
-    }
-    private static final int VK_PIPELINE_STAGE_TRANSFER_BIT = (int)4096L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TRANSFER_BIT = 4096
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_TRANSFER_BIT() {
-        return VK_PIPELINE_STAGE_TRANSFER_BIT;
-    }
-    private static final int VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = (int)8192L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = 8192
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT() {
-        return VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT;
-    }
-    private static final int VK_PIPELINE_STAGE_HOST_BIT = (int)16384L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_HOST_BIT = 16384
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_HOST_BIT() {
-        return VK_PIPELINE_STAGE_HOST_BIT;
-    }
-    private static final int VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT = (int)32768L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT = 32768
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT() {
-        return VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT;
-    }
-    private static final int VK_PIPELINE_STAGE_ALL_COMMANDS_BIT = (int)65536L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ALL_COMMANDS_BIT = 65536
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_ALL_COMMANDS_BIT() {
-        return VK_PIPELINE_STAGE_ALL_COMMANDS_BIT;
-    }
-    private static final int VK_PIPELINE_STAGE_NONE = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_NONE = 0
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_NONE() {
-        return VK_PIPELINE_STAGE_NONE;
-    }
-    private static final int VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = (int)16777216L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = 16777216
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT() {
-        return VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT;
-    }
-    private static final int VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = (int)262144L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = 262144
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT() {
-        return VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT;
-    }
-    private static final int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = (int)33554432L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = 33554432
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR() {
-        return VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR;
-    }
-    private static final int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = (int)2097152L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = 2097152
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR() {
-        return VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR;
-    }
-    private static final int VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = (int)8388608L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = 8388608
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT() {
-        return VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT;
-    }
-    private static final int VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = (int)4194304L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = 4194304
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR() {
-        return VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR;
-    }
-    private static final int VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV = (int)131072L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV = 131072
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV() {
-        return VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV;
-    }
-    private static final int VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT = (int)524288L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT = 524288
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT() {
-        return VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT;
-    }
-    private static final int VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT = (int)1048576L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT = 1048576
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT() {
-        return VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT;
-    }
-    private static final int VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = (int)4194304L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = 4194304
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV() {
-        return VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV;
-    }
-    private static final int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = (int)2097152L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = 2097152
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV() {
-        return VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV;
-    }
-    private static final int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = (int)33554432L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = 33554432
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV() {
-        return VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV;
-    }
-    private static final int VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV = (int)524288L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV = 524288
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV() {
-        return VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV;
-    }
-    private static final int VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV = (int)1048576L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV = 1048576
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV() {
-        return VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV;
-    }
-    private static final int VK_PIPELINE_STAGE_NONE_KHR = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_NONE_KHR = 0
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_NONE_KHR() {
-        return VK_PIPELINE_STAGE_NONE_KHR;
-    }
-    private static final int VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM() {
-        return VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkPipelineStageFlags
-     * }
-     */
-    public static final OfInt VkPipelineStageFlags = vulkan_h.C_INT;
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkMemoryMapFlags
-     * }
-     */
-    public static final OfInt VkMemoryMapFlags = vulkan_h.C_INT;
-    private static final int VK_SPARSE_MEMORY_BIND_METADATA_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkSparseMemoryBindFlagBits.VK_SPARSE_MEMORY_BIND_METADATA_BIT = 1
-     * }
-     */
-    public static int VK_SPARSE_MEMORY_BIND_METADATA_BIT() {
-        return VK_SPARSE_MEMORY_BIND_METADATA_BIT;
-    }
-    private static final int VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkSparseMemoryBindFlagBits.VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM() {
-        return VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkSparseMemoryBindFlags
-     * }
-     */
-    public static final OfInt VkSparseMemoryBindFlags = vulkan_h.C_INT;
-    private static final int VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = 1
-     * }
-     */
-    public static int VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT() {
-        return VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT;
-    }
-    private static final int VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = 2
-     * }
-     */
-    public static int VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT() {
-        return VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT;
-    }
-    private static final int VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = 4
-     * }
-     */
-    public static int VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT() {
-        return VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT;
-    }
-    private static final int VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM() {
-        return VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkSparseImageFormatFlags
-     * }
-     */
-    public static final OfInt VkSparseImageFormatFlags = vulkan_h.C_INT;
-    private static final int VK_FENCE_CREATE_SIGNALED_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFenceCreateFlagBits.VK_FENCE_CREATE_SIGNALED_BIT = 1
-     * }
-     */
-    public static int VK_FENCE_CREATE_SIGNALED_BIT() {
-        return VK_FENCE_CREATE_SIGNALED_BIT;
-    }
-    private static final int VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFenceCreateFlagBits.VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM() {
-        return VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkFenceCreateFlags
-     * }
-     */
-    public static final OfInt VkFenceCreateFlags = vulkan_h.C_INT;
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkSemaphoreCreateFlags
-     * }
-     */
-    public static final OfInt VkSemaphoreCreateFlags = vulkan_h.C_INT;
-    private static final int VK_EVENT_CREATE_DEVICE_ONLY_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkEventCreateFlagBits.VK_EVENT_CREATE_DEVICE_ONLY_BIT = 1
-     * }
-     */
-    public static int VK_EVENT_CREATE_DEVICE_ONLY_BIT() {
-        return VK_EVENT_CREATE_DEVICE_ONLY_BIT;
-    }
-    private static final int VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkEventCreateFlagBits.VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR = 1
-     * }
-     */
-    public static int VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR() {
-        return VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR;
-    }
-    private static final int VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkEventCreateFlagBits.VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM() {
-        return VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkEventCreateFlags
-     * }
-     */
-    public static final OfInt VkEventCreateFlags = vulkan_h.C_INT;
-    private static final int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 4
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = 8
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = 16
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = (int)32L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = 32
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = (int)64L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = 64
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = (int)128L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = 128
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = (int)256L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = 256
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = (int)512L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = 512
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = (int)1024L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 1024
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT() {
-        return VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT = (int)2048L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT = 2048
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT() {
-        return VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT = (int)4096L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT = 4096
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT() {
-        return VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI = (int)8192L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI = 8192
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI() {
-        return VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI;
-    }
-    private static final int VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM() {
-        return VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkQueryPipelineStatisticFlags
-     * }
-     */
-    public static final OfInt VkQueryPipelineStatisticFlags = vulkan_h.C_INT;
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkQueryPoolCreateFlags
-     * }
-     */
-    public static final OfInt VkQueryPoolCreateFlags = vulkan_h.C_INT;
-    private static final int VK_QUERY_RESULT_64_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_64_BIT = 1
-     * }
-     */
-    public static int VK_QUERY_RESULT_64_BIT() {
-        return VK_QUERY_RESULT_64_BIT;
-    }
-    private static final int VK_QUERY_RESULT_WAIT_BIT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_WAIT_BIT = 2
-     * }
-     */
-    public static int VK_QUERY_RESULT_WAIT_BIT() {
-        return VK_QUERY_RESULT_WAIT_BIT;
-    }
-    private static final int VK_QUERY_RESULT_WITH_AVAILABILITY_BIT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_WITH_AVAILABILITY_BIT = 4
-     * }
-     */
-    public static int VK_QUERY_RESULT_WITH_AVAILABILITY_BIT() {
-        return VK_QUERY_RESULT_WITH_AVAILABILITY_BIT;
-    }
-    private static final int VK_QUERY_RESULT_PARTIAL_BIT = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_PARTIAL_BIT = 8
-     * }
-     */
-    public static int VK_QUERY_RESULT_PARTIAL_BIT() {
-        return VK_QUERY_RESULT_PARTIAL_BIT;
-    }
-    private static final int VK_QUERY_RESULT_WITH_STATUS_BIT_KHR = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_WITH_STATUS_BIT_KHR = 16
-     * }
-     */
-    public static int VK_QUERY_RESULT_WITH_STATUS_BIT_KHR() {
-        return VK_QUERY_RESULT_WITH_STATUS_BIT_KHR;
-    }
-    private static final int VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM() {
-        return VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkQueryResultFlags
-     * }
-     */
-    public static final OfInt VkQueryResultFlags = vulkan_h.C_INT;
-    private static final int VK_BUFFER_CREATE_SPARSE_BINDING_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_SPARSE_BINDING_BIT = 1
-     * }
-     */
-    public static int VK_BUFFER_CREATE_SPARSE_BINDING_BIT() {
-        return VK_BUFFER_CREATE_SPARSE_BINDING_BIT;
-    }
-    private static final int VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT = 2
-     * }
-     */
-    public static int VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT() {
-        return VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT;
-    }
-    private static final int VK_BUFFER_CREATE_SPARSE_ALIASED_BIT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_SPARSE_ALIASED_BIT = 4
-     * }
-     */
-    public static int VK_BUFFER_CREATE_SPARSE_ALIASED_BIT() {
-        return VK_BUFFER_CREATE_SPARSE_ALIASED_BIT;
-    }
-    private static final int VK_BUFFER_CREATE_PROTECTED_BIT = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_PROTECTED_BIT = 8
-     * }
-     */
-    public static int VK_BUFFER_CREATE_PROTECTED_BIT() {
-        return VK_BUFFER_CREATE_PROTECTED_BIT;
-    }
-    private static final int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 16
-     * }
-     */
-    public static int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT() {
-        return VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT;
-    }
-    private static final int VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT = (int)32L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT = 32
-     * }
-     */
-    public static int VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT() {
-        return VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT;
-    }
-    private static final int VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR = (int)64L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR = 64
-     * }
-     */
-    public static int VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR() {
-        return VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR;
-    }
-    private static final int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = 16
-     * }
-     */
-    public static int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT() {
-        return VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT;
-    }
-    private static final int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = 16
-     * }
-     */
-    public static int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR() {
-        return VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR;
-    }
-    private static final int VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM() {
-        return VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkBufferCreateFlags
-     * }
-     */
-    public static final OfInt VkBufferCreateFlags = vulkan_h.C_INT;
-    private static final int VK_BUFFER_USAGE_TRANSFER_SRC_BIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_TRANSFER_SRC_BIT = 1
-     * }
-     */
-    public static int VK_BUFFER_USAGE_TRANSFER_SRC_BIT() {
-        return VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    }
-    private static final int VK_BUFFER_USAGE_TRANSFER_DST_BIT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_TRANSFER_DST_BIT = 2
-     * }
-     */
-    public static int VK_BUFFER_USAGE_TRANSFER_DST_BIT() {
-        return VK_BUFFER_USAGE_TRANSFER_DST_BIT;
-    }
-    private static final int VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = 4
-     * }
-     */
-    public static int VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT() {
-        return VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT;
-    }
-    private static final int VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = 8
-     * }
-     */
-    public static int VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT() {
-        return VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT;
-    }
-    private static final int VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT = 16
-     * }
-     */
-    public static int VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT() {
-        return VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
-    }
-    private static final int VK_BUFFER_USAGE_STORAGE_BUFFER_BIT = (int)32L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_STORAGE_BUFFER_BIT = 32
-     * }
-     */
-    public static int VK_BUFFER_USAGE_STORAGE_BUFFER_BIT() {
-        return VK_BUFFER_USAGE_STORAGE_BUFFER_BIT;
-    }
-    private static final int VK_BUFFER_USAGE_INDEX_BUFFER_BIT = (int)64L;
-    /**
-     * {@snippet lang=c :
-     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_INDEX_BUFFER_BIT = 64
-     * }
-     */
-    public static int VK_BUFFER_USAGE_INDEX_BUFFER_BIT() {
-        return VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
     }
 }
 

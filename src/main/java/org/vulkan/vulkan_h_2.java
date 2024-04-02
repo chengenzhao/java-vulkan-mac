@@ -17,6 +17,729 @@ public class vulkan_h_2 extends vulkan_h_3 {
     vulkan_h_2() {
         // Should not be called directly
     }
+    private static final int VK_PIPELINE_STAGE_TRANSFER_BIT = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TRANSFER_BIT = 4096
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_TRANSFER_BIT() {
+        return VK_PIPELINE_STAGE_TRANSFER_BIT;
+    }
+    private static final int VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = 8192
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT() {
+        return VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT;
+    }
+    private static final int VK_PIPELINE_STAGE_HOST_BIT = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_HOST_BIT = 16384
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_HOST_BIT() {
+        return VK_PIPELINE_STAGE_HOST_BIT;
+    }
+    private static final int VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT = 32768
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT() {
+        return VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT;
+    }
+    private static final int VK_PIPELINE_STAGE_ALL_COMMANDS_BIT = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ALL_COMMANDS_BIT = 65536
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_ALL_COMMANDS_BIT() {
+        return VK_PIPELINE_STAGE_ALL_COMMANDS_BIT;
+    }
+    private static final int VK_PIPELINE_STAGE_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_NONE = 0
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_NONE() {
+        return VK_PIPELINE_STAGE_NONE;
+    }
+    private static final int VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = (int)16777216L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT = 16777216
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT() {
+        return VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT;
+    }
+    private static final int VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT = 262144
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT() {
+        return VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT;
+    }
+    private static final int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = (int)33554432L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR = 33554432
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR() {
+        return VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR;
+    }
+    private static final int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = (int)2097152L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR = 2097152
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR() {
+        return VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR;
+    }
+    private static final int VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = (int)8388608L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT = 8388608
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT() {
+        return VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT;
+    }
+    private static final int VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = (int)4194304L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR = 4194304
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR() {
+        return VK_PIPELINE_STAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR;
+    }
+    private static final int VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV = 131072
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV() {
+        return VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV;
+    }
+    private static final int VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT = 524288
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT() {
+        return VK_PIPELINE_STAGE_TASK_SHADER_BIT_EXT;
+    }
+    private static final int VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT = (int)1048576L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT = 1048576
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT() {
+        return VK_PIPELINE_STAGE_MESH_SHADER_BIT_EXT;
+    }
+    private static final int VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = (int)4194304L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV = 4194304
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV() {
+        return VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV;
+    }
+    private static final int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = (int)2097152L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV = 2097152
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV() {
+        return VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV;
+    }
+    private static final int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = (int)33554432L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV = 33554432
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV() {
+        return VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV;
+    }
+    private static final int VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV = 524288
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV() {
+        return VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV;
+    }
+    private static final int VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV = (int)1048576L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV = 1048576
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV() {
+        return VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV;
+    }
+    private static final int VK_PIPELINE_STAGE_NONE_KHR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_NONE_KHR = 0
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_NONE_KHR() {
+        return VK_PIPELINE_STAGE_NONE_KHR;
+    }
+    private static final int VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkPipelineStageFlagBits.VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM() {
+        return VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkPipelineStageFlags
+     * }
+     */
+    public static final OfInt VkPipelineStageFlags = vulkan_h.C_INT;
+    private static final int VK_MEMORY_MAP_PLACED_BIT_EXT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkMemoryMapFlagBits.VK_MEMORY_MAP_PLACED_BIT_EXT = 1
+     * }
+     */
+    public static int VK_MEMORY_MAP_PLACED_BIT_EXT() {
+        return VK_MEMORY_MAP_PLACED_BIT_EXT;
+    }
+    private static final int VK_MEMORY_MAP_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkMemoryMapFlagBits.VK_MEMORY_MAP_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_MEMORY_MAP_FLAG_BITS_MAX_ENUM() {
+        return VK_MEMORY_MAP_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkMemoryMapFlags
+     * }
+     */
+    public static final OfInt VkMemoryMapFlags = vulkan_h.C_INT;
+    private static final int VK_SPARSE_MEMORY_BIND_METADATA_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSparseMemoryBindFlagBits.VK_SPARSE_MEMORY_BIND_METADATA_BIT = 1
+     * }
+     */
+    public static int VK_SPARSE_MEMORY_BIND_METADATA_BIT() {
+        return VK_SPARSE_MEMORY_BIND_METADATA_BIT;
+    }
+    private static final int VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSparseMemoryBindFlagBits.VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM() {
+        return VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkSparseMemoryBindFlags
+     * }
+     */
+    public static final OfInt VkSparseMemoryBindFlags = vulkan_h.C_INT;
+    private static final int VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = 1
+     * }
+     */
+    public static int VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT() {
+        return VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT;
+    }
+    private static final int VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = 2
+     * }
+     */
+    public static int VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT() {
+        return VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT;
+    }
+    private static final int VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = 4
+     * }
+     */
+    public static int VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT() {
+        return VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT;
+    }
+    private static final int VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSparseImageFormatFlagBits.VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM() {
+        return VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkSparseImageFormatFlags
+     * }
+     */
+    public static final OfInt VkSparseImageFormatFlags = vulkan_h.C_INT;
+    private static final int VK_FENCE_CREATE_SIGNALED_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkFenceCreateFlagBits.VK_FENCE_CREATE_SIGNALED_BIT = 1
+     * }
+     */
+    public static int VK_FENCE_CREATE_SIGNALED_BIT() {
+        return VK_FENCE_CREATE_SIGNALED_BIT;
+    }
+    private static final int VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkFenceCreateFlagBits.VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM() {
+        return VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkFenceCreateFlags
+     * }
+     */
+    public static final OfInt VkFenceCreateFlags = vulkan_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkSemaphoreCreateFlags
+     * }
+     */
+    public static final OfInt VkSemaphoreCreateFlags = vulkan_h.C_INT;
+    private static final int VK_EVENT_CREATE_DEVICE_ONLY_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkEventCreateFlagBits.VK_EVENT_CREATE_DEVICE_ONLY_BIT = 1
+     * }
+     */
+    public static int VK_EVENT_CREATE_DEVICE_ONLY_BIT() {
+        return VK_EVENT_CREATE_DEVICE_ONLY_BIT;
+    }
+    private static final int VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkEventCreateFlagBits.VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR = 1
+     * }
+     */
+    public static int VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR() {
+        return VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR;
+    }
+    private static final int VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkEventCreateFlagBits.VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM() {
+        return VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkEventCreateFlags
+     * }
+     */
+    public static final OfInt VkEventCreateFlags = vulkan_h.C_INT;
+    private static final int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 1
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 2
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 4
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = 8
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = 16
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = 32
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = 64
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = 128
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = 256
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = 512
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 1024
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT() {
+        return VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT = 2048
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT() {
+        return VK_QUERY_PIPELINE_STATISTIC_TASK_SHADER_INVOCATIONS_BIT_EXT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT = 4096
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT() {
+        return VK_QUERY_PIPELINE_STATISTIC_MESH_SHADER_INVOCATIONS_BIT_EXT;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI = 8192
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI() {
+        return VK_QUERY_PIPELINE_STATISTIC_CLUSTER_CULLING_SHADER_INVOCATIONS_BIT_HUAWEI;
+    }
+    private static final int VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryPipelineStatisticFlagBits.VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM() {
+        return VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkQueryPipelineStatisticFlags
+     * }
+     */
+    public static final OfInt VkQueryPipelineStatisticFlags = vulkan_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkQueryPoolCreateFlags
+     * }
+     */
+    public static final OfInt VkQueryPoolCreateFlags = vulkan_h.C_INT;
+    private static final int VK_QUERY_RESULT_64_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_64_BIT = 1
+     * }
+     */
+    public static int VK_QUERY_RESULT_64_BIT() {
+        return VK_QUERY_RESULT_64_BIT;
+    }
+    private static final int VK_QUERY_RESULT_WAIT_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_WAIT_BIT = 2
+     * }
+     */
+    public static int VK_QUERY_RESULT_WAIT_BIT() {
+        return VK_QUERY_RESULT_WAIT_BIT;
+    }
+    private static final int VK_QUERY_RESULT_WITH_AVAILABILITY_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_WITH_AVAILABILITY_BIT = 4
+     * }
+     */
+    public static int VK_QUERY_RESULT_WITH_AVAILABILITY_BIT() {
+        return VK_QUERY_RESULT_WITH_AVAILABILITY_BIT;
+    }
+    private static final int VK_QUERY_RESULT_PARTIAL_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_PARTIAL_BIT = 8
+     * }
+     */
+    public static int VK_QUERY_RESULT_PARTIAL_BIT() {
+        return VK_QUERY_RESULT_PARTIAL_BIT;
+    }
+    private static final int VK_QUERY_RESULT_WITH_STATUS_BIT_KHR = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_WITH_STATUS_BIT_KHR = 16
+     * }
+     */
+    public static int VK_QUERY_RESULT_WITH_STATUS_BIT_KHR() {
+        return VK_QUERY_RESULT_WITH_STATUS_BIT_KHR;
+    }
+    private static final int VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkQueryResultFlagBits.VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM() {
+        return VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkQueryResultFlags
+     * }
+     */
+    public static final OfInt VkQueryResultFlags = vulkan_h.C_INT;
+    private static final int VK_BUFFER_CREATE_SPARSE_BINDING_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_SPARSE_BINDING_BIT = 1
+     * }
+     */
+    public static int VK_BUFFER_CREATE_SPARSE_BINDING_BIT() {
+        return VK_BUFFER_CREATE_SPARSE_BINDING_BIT;
+    }
+    private static final int VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT = 2
+     * }
+     */
+    public static int VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT() {
+        return VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT;
+    }
+    private static final int VK_BUFFER_CREATE_SPARSE_ALIASED_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_SPARSE_ALIASED_BIT = 4
+     * }
+     */
+    public static int VK_BUFFER_CREATE_SPARSE_ALIASED_BIT() {
+        return VK_BUFFER_CREATE_SPARSE_ALIASED_BIT;
+    }
+    private static final int VK_BUFFER_CREATE_PROTECTED_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_PROTECTED_BIT = 8
+     * }
+     */
+    public static int VK_BUFFER_CREATE_PROTECTED_BIT() {
+        return VK_BUFFER_CREATE_PROTECTED_BIT;
+    }
+    private static final int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 16
+     * }
+     */
+    public static int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT() {
+        return VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT;
+    }
+    private static final int VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT = 32
+     * }
+     */
+    public static int VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT() {
+        return VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT;
+    }
+    private static final int VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR = 64
+     * }
+     */
+    public static int VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR() {
+        return VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR;
+    }
+    private static final int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = 16
+     * }
+     */
+    public static int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT() {
+        return VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT;
+    }
+    private static final int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = 16
+     * }
+     */
+    public static int VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR() {
+        return VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR;
+    }
+    private static final int VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferCreateFlagBits.VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM() {
+        return VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkBufferCreateFlags
+     * }
+     */
+    public static final OfInt VkBufferCreateFlags = vulkan_h.C_INT;
+    private static final int VK_BUFFER_USAGE_TRANSFER_SRC_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_TRANSFER_SRC_BIT = 1
+     * }
+     */
+    public static int VK_BUFFER_USAGE_TRANSFER_SRC_BIT() {
+        return VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+    }
+    private static final int VK_BUFFER_USAGE_TRANSFER_DST_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_TRANSFER_DST_BIT = 2
+     * }
+     */
+    public static int VK_BUFFER_USAGE_TRANSFER_DST_BIT() {
+        return VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+    }
+    private static final int VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = 4
+     * }
+     */
+    public static int VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT() {
+        return VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT;
+    }
+    private static final int VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = 8
+     * }
+     */
+    public static int VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT() {
+        return VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT;
+    }
+    private static final int VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT = 16
+     * }
+     */
+    public static int VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT() {
+        return VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
+    }
+    private static final int VK_BUFFER_USAGE_STORAGE_BUFFER_BIT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_STORAGE_BUFFER_BIT = 32
+     * }
+     */
+    public static int VK_BUFFER_USAGE_STORAGE_BUFFER_BIT() {
+        return VK_BUFFER_USAGE_STORAGE_BUFFER_BIT;
+    }
+    private static final int VK_BUFFER_USAGE_INDEX_BUFFER_BIT = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * enum VkBufferUsageFlagBits.VK_BUFFER_USAGE_INDEX_BUFFER_BIT = 64
+     * }
+     */
+    public static int VK_BUFFER_USAGE_INDEX_BUFFER_BIT() {
+        return VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
+    }
     private static final int VK_BUFFER_USAGE_VERTEX_BUFFER_BIT = (int)128L;
     /**
      * {@snippet lang=c :
@@ -5320,7 +6043,7 @@ public class vulkan_h_2 extends vulkan_h_3 {
     /**
      * Function descriptor for:
      * {@snippet lang=c :
-     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout layout, const VkAllocationCallbacks *pAllocator)
+     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks *pAllocator)
      * }
      */
     public static FunctionDescriptor vkDestroyPipelineLayout$descriptor() {
@@ -5330,7 +6053,7 @@ public class vulkan_h_2 extends vulkan_h_3 {
     /**
      * Downcall method handle for:
      * {@snippet lang=c :
-     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout layout, const VkAllocationCallbacks *pAllocator)
+     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks *pAllocator)
      * }
      */
     public static MethodHandle vkDestroyPipelineLayout$handle() {
@@ -5338,7 +6061,7 @@ public class vulkan_h_2 extends vulkan_h_3 {
     }
     /**
      * {@snippet lang=c :
-     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout layout, const VkAllocationCallbacks *pAllocator)
+     * void vkDestroyPipelineLayout(VkDevice device, VkPipelineLayout pipelineLayout, const VkAllocationCallbacks *pAllocator)
      * }
      */
     public static void vkDestroyPipelineLayout(MemorySegment device, MemorySegment pipelineLayout, MemorySegment pAllocator) {
@@ -9070,6 +9793,24 @@ public class vulkan_h_2 extends vulkan_h_3 {
      */
     public static int VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV() {
         return VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV;
+    }
+    private static final int VK_SUBGROUP_FEATURE_ROTATE_BIT_KHR = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSubgroupFeatureFlagBits.VK_SUBGROUP_FEATURE_ROTATE_BIT_KHR = 512
+     * }
+     */
+    public static int VK_SUBGROUP_FEATURE_ROTATE_BIT_KHR() {
+        return VK_SUBGROUP_FEATURE_ROTATE_BIT_KHR;
+    }
+    private static final int VK_SUBGROUP_FEATURE_ROTATE_CLUSTERED_BIT_KHR = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * enum VkSubgroupFeatureFlagBits.VK_SUBGROUP_FEATURE_ROTATE_CLUSTERED_BIT_KHR = 1024
+     * }
+     */
+    public static int VK_SUBGROUP_FEATURE_ROTATE_CLUSTERED_BIT_KHR() {
+        return VK_SUBGROUP_FEATURE_ROTATE_CLUSTERED_BIT_KHR;
     }
     private static final int VK_SUBGROUP_FEATURE_FLAG_BITS_MAX_ENUM = (int)2147483647L;
     /**
@@ -16566,6 +17307,15 @@ public class vulkan_h_2 extends vulkan_h_3 {
     public static int VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR() {
         return VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR;
     }
+    private static final int VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoCodecOperationFlagBitsKHR.VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR = 4
+     * }
+     */
+    public static int VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR() {
+        return VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
+    }
     private static final int VK_VIDEO_CODEC_OPERATION_FLAG_BITS_MAX_ENUM_KHR = (int)2147483647L;
     /**
      * {@snippet lang=c :
@@ -17944,786 +18694,6 @@ public class vulkan_h_2 extends vulkan_h_3 {
      */
     public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_40_33() {
         return STD_VIDEO_H264_ASPECT_RATIO_IDC_40_33;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11 = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11 = 6
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11 = (int)7L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11 = 7
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11 = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11 = 8
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33 = (int)9L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33 = 9
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11 = (int)10L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11 = 10
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11 = (int)11L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11 = 11
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33 = (int)12L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33 = 12
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99 = (int)13L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99 = 13
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3 = (int)14L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3 = 14
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2 = (int)15L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2 = 15
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1 = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1 = 16
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR = (int)255L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR = 255
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID;
-    }
-    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM() {
-        return STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT() {
-        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT;
-    }
-    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT() {
-        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT;
-    }
-    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT() {
-        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT;
-    }
-    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID() {
-        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID;
-    }
-    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM() {
-        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT() {
-        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT;
-    }
-    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD() {
-        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD;
-    }
-    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM() {
-        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM;
-    }
-    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END = 3
-     * }
-     */
-    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END() {
-        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END;
-    }
-    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID() {
-        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID;
-    }
-    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM() {
-        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM = 3
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX = 4
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL = 5
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM = 6
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID;
-    }
-    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM() {
-        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_0 = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_0 = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_CABAC_INIT_IDC_0() {
-        return STD_VIDEO_H264_CABAC_INIT_IDC_0;
-    }
-    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_1 = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_1 = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_CABAC_INIT_IDC_1() {
-        return STD_VIDEO_H264_CABAC_INIT_IDC_1;
-    }
-    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_2 = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_2 = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_CABAC_INIT_IDC_2() {
-        return STD_VIDEO_H264_CABAC_INIT_IDC_2;
-    }
-    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_CABAC_INIT_IDC_INVALID() {
-        return STD_VIDEO_H264_CABAC_INIT_IDC_INVALID;
-    }
-    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM() {
-        return STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED() {
-        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED;
-    }
-    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED() {
-        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED;
-    }
-    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL() {
-        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL;
-    }
-    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID() {
-        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID;
-    }
-    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM() {
-        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_SLICE_TYPE_P = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_P = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_SLICE_TYPE_P() {
-        return STD_VIDEO_H264_SLICE_TYPE_P;
-    }
-    private static final int STD_VIDEO_H264_SLICE_TYPE_B = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_B = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_SLICE_TYPE_B() {
-        return STD_VIDEO_H264_SLICE_TYPE_B;
-    }
-    private static final int STD_VIDEO_H264_SLICE_TYPE_I = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_I = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_SLICE_TYPE_I() {
-        return STD_VIDEO_H264_SLICE_TYPE_I;
-    }
-    private static final int STD_VIDEO_H264_SLICE_TYPE_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_SLICE_TYPE_INVALID() {
-        return STD_VIDEO_H264_SLICE_TYPE_INVALID;
-    }
-    private static final int STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM() {
-        return STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_PICTURE_TYPE_P = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_P = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_PICTURE_TYPE_P() {
-        return STD_VIDEO_H264_PICTURE_TYPE_P;
-    }
-    private static final int STD_VIDEO_H264_PICTURE_TYPE_B = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_B = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_PICTURE_TYPE_B() {
-        return STD_VIDEO_H264_PICTURE_TYPE_B;
-    }
-    private static final int STD_VIDEO_H264_PICTURE_TYPE_I = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_I = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_PICTURE_TYPE_I() {
-        return STD_VIDEO_H264_PICTURE_TYPE_I;
-    }
-    private static final int STD_VIDEO_H264_PICTURE_TYPE_IDR = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_IDR = 5
-     * }
-     */
-    public static int STD_VIDEO_H264_PICTURE_TYPE_IDR() {
-        return STD_VIDEO_H264_PICTURE_TYPE_IDR;
-    }
-    private static final int STD_VIDEO_H264_PICTURE_TYPE_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_PICTURE_TYPE_INVALID() {
-        return STD_VIDEO_H264_PICTURE_TYPE_INVALID;
-    }
-    private static final int STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM() {
-        return STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS = 0
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS = 1
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD = 2
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX = 3
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE = 4
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM = 5
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED = 6
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID;
-    }
-    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM = 2147483647
-     * }
-     */
-    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM() {
-        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR = 1
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR = 2
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR = 4
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR = 8
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR = 16
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR = (int)32L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR = 32
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR = (int)64L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR = 64
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR = (int)128L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR = 128
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR = (int)256L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR = 256
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR = 2147483647
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR() {
-        return VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkVideoEncodeH264CapabilityFlagsKHR
-     * }
-     */
-    public static final OfInt VkVideoEncodeH264CapabilityFlagsKHR = vulkan_h.C_INT;
-    private static final int VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR = 1
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR = 2
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR = 4
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR = 8
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR = 16
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR = (int)32L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR = 32
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR = (int)64L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR = 64
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR = (int)128L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR = 128
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR = (int)256L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR = 256
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR = (int)512L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR = 512
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR = (int)1024L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR = 1024
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR;
-    }
-    private static final int VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR = (int)2048L;
-    /**
-     * {@snippet lang=c :
-     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR = 2048
-     * }
-     */
-    public static int VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR() {
-        return VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR;
     }
 }
 

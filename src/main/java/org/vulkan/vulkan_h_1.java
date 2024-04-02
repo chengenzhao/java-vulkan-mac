@@ -17,6 +17,786 @@ public class vulkan_h_1 extends vulkan_h_2 {
     vulkan_h_1() {
         // Should not be called directly
     }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11 = 6
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_24_11;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11 = 7
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_20_11;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11 = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11 = 8
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_32_11;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33 = 9
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_80_33;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11 = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11 = 10
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_18_11;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11 = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11 = 11
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_15_11;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33 = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33 = 12
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_64_33;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99 = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99 = 13
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_160_99;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3 = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3 = 14
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_4_3;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2 = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2 = 15
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_3_2;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1 = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1 = 16
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_2_1;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR = 255
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_EXTENDED_SAR;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_INVALID;
+    }
+    private static final int STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264AspectRatioIdc.STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM() {
+        return STD_VIDEO_H264_ASPECT_RATIO_IDC_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT() {
+        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_DEFAULT;
+    }
+    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT() {
+        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_EXPLICIT;
+    }
+    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT() {
+        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_IMPLICIT;
+    }
+    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID() {
+        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_INVALID;
+    }
+    private static final int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264WeightedBipredIdc.STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM() {
+        return STD_VIDEO_H264_WEIGHTED_BIPRED_IDC_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT() {
+        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_SUBTRACT;
+    }
+    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD() {
+        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_SHORT_TERM_ADD;
+    }
+    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM() {
+        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_LONG_TERM;
+    }
+    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END = 3
+     * }
+     */
+    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END() {
+        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_END;
+    }
+    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID() {
+        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_INVALID;
+    }
+    private static final int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264ModificationOfPicNumsIdc.STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM() {
+        return STD_VIDEO_H264_MODIFICATION_OF_PIC_NUMS_IDC_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_END;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_SHORT_TERM;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_LONG_TERM;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM = 3
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_LONG_TERM;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX = 4
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_SET_MAX_LONG_TERM_INDEX;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL = 5
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_UNMARK_ALL;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM = 6
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MARK_CURRENT_AS_LONG_TERM;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_INVALID;
+    }
+    private static final int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264MemMgmtControlOp.STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM() {
+        return STD_VIDEO_H264_MEM_MGMT_CONTROL_OP_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_0 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_0 = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_CABAC_INIT_IDC_0() {
+        return STD_VIDEO_H264_CABAC_INIT_IDC_0;
+    }
+    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_1 = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_CABAC_INIT_IDC_1() {
+        return STD_VIDEO_H264_CABAC_INIT_IDC_1;
+    }
+    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_2 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_2 = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_CABAC_INIT_IDC_2() {
+        return STD_VIDEO_H264_CABAC_INIT_IDC_2;
+    }
+    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_CABAC_INIT_IDC_INVALID() {
+        return STD_VIDEO_H264_CABAC_INIT_IDC_INVALID;
+    }
+    private static final int STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264CabacInitIdc.STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM() {
+        return STD_VIDEO_H264_CABAC_INIT_IDC_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED() {
+        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_DISABLED;
+    }
+    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED() {
+        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_ENABLED;
+    }
+    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL() {
+        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_PARTIAL;
+    }
+    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID() {
+        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_INVALID;
+    }
+    private static final int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264DisableDeblockingFilterIdc.STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM() {
+        return STD_VIDEO_H264_DISABLE_DEBLOCKING_FILTER_IDC_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_SLICE_TYPE_P = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_P = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_SLICE_TYPE_P() {
+        return STD_VIDEO_H264_SLICE_TYPE_P;
+    }
+    private static final int STD_VIDEO_H264_SLICE_TYPE_B = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_B = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_SLICE_TYPE_B() {
+        return STD_VIDEO_H264_SLICE_TYPE_B;
+    }
+    private static final int STD_VIDEO_H264_SLICE_TYPE_I = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_I = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_SLICE_TYPE_I() {
+        return STD_VIDEO_H264_SLICE_TYPE_I;
+    }
+    private static final int STD_VIDEO_H264_SLICE_TYPE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_SLICE_TYPE_INVALID() {
+        return STD_VIDEO_H264_SLICE_TYPE_INVALID;
+    }
+    private static final int STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264SliceType.STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM() {
+        return STD_VIDEO_H264_SLICE_TYPE_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_PICTURE_TYPE_P = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_P = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_PICTURE_TYPE_P() {
+        return STD_VIDEO_H264_PICTURE_TYPE_P;
+    }
+    private static final int STD_VIDEO_H264_PICTURE_TYPE_B = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_B = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_PICTURE_TYPE_B() {
+        return STD_VIDEO_H264_PICTURE_TYPE_B;
+    }
+    private static final int STD_VIDEO_H264_PICTURE_TYPE_I = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_I = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_PICTURE_TYPE_I() {
+        return STD_VIDEO_H264_PICTURE_TYPE_I;
+    }
+    private static final int STD_VIDEO_H264_PICTURE_TYPE_IDR = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_IDR = 5
+     * }
+     */
+    public static int STD_VIDEO_H264_PICTURE_TYPE_IDR() {
+        return STD_VIDEO_H264_PICTURE_TYPE_IDR;
+    }
+    private static final int STD_VIDEO_H264_PICTURE_TYPE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_PICTURE_TYPE_INVALID() {
+        return STD_VIDEO_H264_PICTURE_TYPE_INVALID;
+    }
+    private static final int STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264PictureType.STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM() {
+        return STD_VIDEO_H264_PICTURE_TYPE_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS = 0
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_SPS;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS = 1
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_PPS;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD = 2
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_AUD;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX = 3
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_PREFIX;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE = 4
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_SEQUENCE;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM = 5
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_END_OF_STREAM;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED = 6
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_PRECODED;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_INVALID;
+    }
+    private static final int STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoH264NonVclNaluType.STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM() {
+        return STD_VIDEO_H264_NON_VCL_NALU_TYPE_MAX_ENUM;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR = 1
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR = 2
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR = 4
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR = 8
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR = 16
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR = 32
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR = 64
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR = 128
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR = 256
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264CapabilityFlagBitsKHR.VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR = 2147483647
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR() {
+        return VK_VIDEO_ENCODE_H264_CAPABILITY_FLAG_BITS_MAX_ENUM_KHR;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef VkFlags VkVideoEncodeH264CapabilityFlagsKHR
+     * }
+     */
+    public static final OfInt VkVideoEncodeH264CapabilityFlagsKHR = vulkan_h.C_INT;
+    private static final int VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR = 1
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR = 2
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR = 4
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR = 8
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR = 16
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR = 32
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR = 64
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR = 128
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR = 256
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR = 512
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR = 1024
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeH264StdFlagBitsKHR.VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR = 2048
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR() {
+        return VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_KHR;
+    }
     private static final int VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_SET_BIT_KHR = (int)4096L;
     /**
      * {@snippet lang=c :
@@ -4598,6 +5378,100 @@ public class vulkan_h_1 extends vulkan_h_2 {
         }
     }
 
+    private static class vkCmdSetRenderingAttachmentLocationsKHR {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            vulkan_h.C_POINTER,
+            vulkan_h.C_POINTER
+        );
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
+                    vulkan_h.findOrThrow("vkCmdSetRenderingAttachmentLocationsKHR"),
+                    DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void vkCmdSetRenderingAttachmentLocationsKHR(VkCommandBuffer commandBuffer, const VkRenderingAttachmentLocationInfoKHR *pLocationInfo)
+     * }
+     */
+    public static FunctionDescriptor vkCmdSetRenderingAttachmentLocationsKHR$descriptor() {
+        return vkCmdSetRenderingAttachmentLocationsKHR.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void vkCmdSetRenderingAttachmentLocationsKHR(VkCommandBuffer commandBuffer, const VkRenderingAttachmentLocationInfoKHR *pLocationInfo)
+     * }
+     */
+    public static MethodHandle vkCmdSetRenderingAttachmentLocationsKHR$handle() {
+        return vkCmdSetRenderingAttachmentLocationsKHR.HANDLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * void vkCmdSetRenderingAttachmentLocationsKHR(VkCommandBuffer commandBuffer, const VkRenderingAttachmentLocationInfoKHR *pLocationInfo)
+     * }
+     */
+    public static void vkCmdSetRenderingAttachmentLocationsKHR(MemorySegment commandBuffer, MemorySegment pLocationInfo) {
+        var mh$ = vkCmdSetRenderingAttachmentLocationsKHR.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("vkCmdSetRenderingAttachmentLocationsKHR", commandBuffer, pLocationInfo);
+            }
+            mh$.invokeExact(commandBuffer, pLocationInfo);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class vkCmdSetRenderingInputAttachmentIndicesKHR {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            vulkan_h.C_POINTER,
+            vulkan_h.C_POINTER
+        );
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
+                    vulkan_h.findOrThrow("vkCmdSetRenderingInputAttachmentIndicesKHR"),
+                    DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void vkCmdSetRenderingInputAttachmentIndicesKHR(VkCommandBuffer commandBuffer, const VkRenderingInputAttachmentIndexInfoKHR *pLocationInfo)
+     * }
+     */
+    public static FunctionDescriptor vkCmdSetRenderingInputAttachmentIndicesKHR$descriptor() {
+        return vkCmdSetRenderingInputAttachmentIndicesKHR.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void vkCmdSetRenderingInputAttachmentIndicesKHR(VkCommandBuffer commandBuffer, const VkRenderingInputAttachmentIndexInfoKHR *pLocationInfo)
+     * }
+     */
+    public static MethodHandle vkCmdSetRenderingInputAttachmentIndicesKHR$handle() {
+        return vkCmdSetRenderingInputAttachmentIndicesKHR.HANDLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * void vkCmdSetRenderingInputAttachmentIndicesKHR(VkCommandBuffer commandBuffer, const VkRenderingInputAttachmentIndexInfoKHR *pLocationInfo)
+     * }
+     */
+    public static void vkCmdSetRenderingInputAttachmentIndicesKHR(MemorySegment commandBuffer, MemorySegment pLocationInfo) {
+        var mh$ = vkCmdSetRenderingInputAttachmentIndicesKHR.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("vkCmdSetRenderingInputAttachmentIndicesKHR", commandBuffer, pLocationInfo);
+            }
+            mh$.invokeExact(commandBuffer, pLocationInfo);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
     private static class vkWaitForPresentKHR {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
             vulkan_h.C_INT,
@@ -5233,6 +6107,24 @@ public class vulkan_h_1 extends vulkan_h_2 {
            throw new AssertionError("should not reach here", ex$);
         }
     }
+    private static final int VK_MEMORY_UNMAP_RESERVE_BIT_EXT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkMemoryUnmapFlagBitsKHR.VK_MEMORY_UNMAP_RESERVE_BIT_EXT = 1
+     * }
+     */
+    public static int VK_MEMORY_UNMAP_RESERVE_BIT_EXT() {
+        return VK_MEMORY_UNMAP_RESERVE_BIT_EXT;
+    }
+    private static final int VK_MEMORY_UNMAP_FLAG_BITS_MAX_ENUM_KHR = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkMemoryUnmapFlagBitsKHR.VK_MEMORY_UNMAP_FLAG_BITS_MAX_ENUM_KHR = 2147483647
+     * }
+     */
+    public static int VK_MEMORY_UNMAP_FLAG_BITS_MAX_ENUM_KHR() {
+        return VK_MEMORY_UNMAP_FLAG_BITS_MAX_ENUM_KHR;
+    }
     /**
      * {@snippet lang=c :
      * typedef VkFlags VkMemoryUnmapFlagsKHR
@@ -5389,6 +6281,15 @@ public class vulkan_h_1 extends vulkan_h_2 {
      */
     public static int VK_VIDEO_ENCODE_TUNING_MODE_MAX_ENUM_KHR() {
         return VK_VIDEO_ENCODE_TUNING_MODE_MAX_ENUM_KHR;
+    }
+    private static final int VK_VIDEO_ENCODE_FLAG_BITS_MAX_ENUM_KHR = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkVideoEncodeFlagBitsKHR.VK_VIDEO_ENCODE_FLAG_BITS_MAX_ENUM_KHR = 2147483647
+     * }
+     */
+    public static int VK_VIDEO_ENCODE_FLAG_BITS_MAX_ENUM_KHR() {
+        return VK_VIDEO_ENCODE_FLAG_BITS_MAX_ENUM_KHR;
     }
     /**
      * {@snippet lang=c :
@@ -7243,6 +8144,1242 @@ public class vulkan_h_1 extends vulkan_h_2 {
                 traceDowncall("vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR", physicalDevice, pPropertyCount, pProperties);
             }
             return (int)mh$.invokeExact(physicalDevice, pPropertyCount, pProperties);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    private static final int STD_VIDEO_AV1_PROFILE_MAIN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Profile.STD_VIDEO_AV1_PROFILE_MAIN = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_PROFILE_MAIN() {
+        return STD_VIDEO_AV1_PROFILE_MAIN;
+    }
+    private static final int STD_VIDEO_AV1_PROFILE_HIGH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Profile.STD_VIDEO_AV1_PROFILE_HIGH = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_PROFILE_HIGH() {
+        return STD_VIDEO_AV1_PROFILE_HIGH;
+    }
+    private static final int STD_VIDEO_AV1_PROFILE_PROFESSIONAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Profile.STD_VIDEO_AV1_PROFILE_PROFESSIONAL = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_PROFILE_PROFESSIONAL() {
+        return STD_VIDEO_AV1_PROFILE_PROFESSIONAL;
+    }
+    private static final int STD_VIDEO_AV1_PROFILE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Profile.STD_VIDEO_AV1_PROFILE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_PROFILE_INVALID() {
+        return STD_VIDEO_AV1_PROFILE_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_PROFILE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Profile.STD_VIDEO_AV1_PROFILE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_PROFILE_MAX_ENUM() {
+        return STD_VIDEO_AV1_PROFILE_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_2_0 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_2_0 = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_2_0() {
+        return STD_VIDEO_AV1_LEVEL_2_0;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_2_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_2_1 = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_2_1() {
+        return STD_VIDEO_AV1_LEVEL_2_1;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_2_2 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_2_2 = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_2_2() {
+        return STD_VIDEO_AV1_LEVEL_2_2;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_2_3 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_2_3 = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_2_3() {
+        return STD_VIDEO_AV1_LEVEL_2_3;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_3_0 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_3_0 = 4
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_3_0() {
+        return STD_VIDEO_AV1_LEVEL_3_0;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_3_1 = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_3_1 = 5
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_3_1() {
+        return STD_VIDEO_AV1_LEVEL_3_1;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_3_2 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_3_2 = 6
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_3_2() {
+        return STD_VIDEO_AV1_LEVEL_3_2;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_3_3 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_3_3 = 7
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_3_3() {
+        return STD_VIDEO_AV1_LEVEL_3_3;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_4_0 = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_4_0 = 8
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_4_0() {
+        return STD_VIDEO_AV1_LEVEL_4_0;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_4_1 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_4_1 = 9
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_4_1() {
+        return STD_VIDEO_AV1_LEVEL_4_1;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_4_2 = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_4_2 = 10
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_4_2() {
+        return STD_VIDEO_AV1_LEVEL_4_2;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_4_3 = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_4_3 = 11
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_4_3() {
+        return STD_VIDEO_AV1_LEVEL_4_3;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_5_0 = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_5_0 = 12
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_5_0() {
+        return STD_VIDEO_AV1_LEVEL_5_0;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_5_1 = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_5_1 = 13
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_5_1() {
+        return STD_VIDEO_AV1_LEVEL_5_1;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_5_2 = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_5_2 = 14
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_5_2() {
+        return STD_VIDEO_AV1_LEVEL_5_2;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_5_3 = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_5_3 = 15
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_5_3() {
+        return STD_VIDEO_AV1_LEVEL_5_3;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_6_0 = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_6_0 = 16
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_6_0() {
+        return STD_VIDEO_AV1_LEVEL_6_0;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_6_1 = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_6_1 = 17
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_6_1() {
+        return STD_VIDEO_AV1_LEVEL_6_1;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_6_2 = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_6_2 = 18
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_6_2() {
+        return STD_VIDEO_AV1_LEVEL_6_2;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_6_3 = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_6_3 = 19
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_6_3() {
+        return STD_VIDEO_AV1_LEVEL_6_3;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_7_0 = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_7_0 = 20
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_7_0() {
+        return STD_VIDEO_AV1_LEVEL_7_0;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_7_1 = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_7_1 = 21
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_7_1() {
+        return STD_VIDEO_AV1_LEVEL_7_1;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_7_2 = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_7_2 = 22
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_7_2() {
+        return STD_VIDEO_AV1_LEVEL_7_2;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_7_3 = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_7_3 = 23
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_7_3() {
+        return STD_VIDEO_AV1_LEVEL_7_3;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_INVALID() {
+        return STD_VIDEO_AV1_LEVEL_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_LEVEL_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1Level.STD_VIDEO_AV1_LEVEL_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_LEVEL_MAX_ENUM() {
+        return STD_VIDEO_AV1_LEVEL_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_TYPE_KEY = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameType.STD_VIDEO_AV1_FRAME_TYPE_KEY = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_TYPE_KEY() {
+        return STD_VIDEO_AV1_FRAME_TYPE_KEY;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_TYPE_INTER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameType.STD_VIDEO_AV1_FRAME_TYPE_INTER = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_TYPE_INTER() {
+        return STD_VIDEO_AV1_FRAME_TYPE_INTER;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_TYPE_INTRA_ONLY = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameType.STD_VIDEO_AV1_FRAME_TYPE_INTRA_ONLY = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_TYPE_INTRA_ONLY() {
+        return STD_VIDEO_AV1_FRAME_TYPE_INTRA_ONLY;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_TYPE_SWITCH = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameType.STD_VIDEO_AV1_FRAME_TYPE_SWITCH = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_TYPE_SWITCH() {
+        return STD_VIDEO_AV1_FRAME_TYPE_SWITCH;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_TYPE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameType.STD_VIDEO_AV1_FRAME_TYPE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_TYPE_INVALID() {
+        return STD_VIDEO_AV1_FRAME_TYPE_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_TYPE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameType.STD_VIDEO_AV1_FRAME_TYPE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_TYPE_MAX_ENUM() {
+        return STD_VIDEO_AV1_FRAME_TYPE_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_INTRA_FRAME = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_INTRA_FRAME = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_INTRA_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_INTRA_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_LAST_FRAME = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_LAST_FRAME = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_LAST_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_LAST_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_LAST2_FRAME = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_LAST2_FRAME = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_LAST2_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_LAST2_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_LAST3_FRAME = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_LAST3_FRAME = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_LAST3_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_LAST3_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_GOLDEN_FRAME = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_GOLDEN_FRAME = 4
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_GOLDEN_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_GOLDEN_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_BWDREF_FRAME = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_BWDREF_FRAME = 5
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_BWDREF_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_BWDREF_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_ALTREF2_FRAME = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_ALTREF2_FRAME = 6
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_ALTREF2_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_ALTREF2_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_ALTREF_FRAME = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_ALTREF_FRAME = 7
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_ALTREF_FRAME() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_ALTREF_FRAME;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_INVALID() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_REFERENCE_NAME_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ReferenceName.STD_VIDEO_AV1_REFERENCE_NAME_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_REFERENCE_NAME_MAX_ENUM() {
+        return STD_VIDEO_AV1_REFERENCE_NAME_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SMOOTH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SMOOTH = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SMOOTH() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SMOOTH;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SHARP = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SHARP = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SHARP() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_EIGHTTAP_SHARP;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_BILINEAR = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_BILINEAR = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_BILINEAR() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_BILINEAR;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_SWITCHABLE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_SWITCHABLE = 4
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_SWITCHABLE() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_SWITCHABLE;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_INVALID() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_INTERPOLATION_FILTER_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1InterpolationFilter.STD_VIDEO_AV1_INTERPOLATION_FILTER_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_INTERPOLATION_FILTER_MAX_ENUM() {
+        return STD_VIDEO_AV1_INTERPOLATION_FILTER_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_TX_MODE_ONLY_4X4 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TxMode.STD_VIDEO_AV1_TX_MODE_ONLY_4X4 = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_TX_MODE_ONLY_4X4() {
+        return STD_VIDEO_AV1_TX_MODE_ONLY_4X4;
+    }
+    private static final int STD_VIDEO_AV1_TX_MODE_LARGEST = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TxMode.STD_VIDEO_AV1_TX_MODE_LARGEST = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_TX_MODE_LARGEST() {
+        return STD_VIDEO_AV1_TX_MODE_LARGEST;
+    }
+    private static final int STD_VIDEO_AV1_TX_MODE_SELECT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TxMode.STD_VIDEO_AV1_TX_MODE_SELECT = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_TX_MODE_SELECT() {
+        return STD_VIDEO_AV1_TX_MODE_SELECT;
+    }
+    private static final int STD_VIDEO_AV1_TX_MODE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TxMode.STD_VIDEO_AV1_TX_MODE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_TX_MODE_INVALID() {
+        return STD_VIDEO_AV1_TX_MODE_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_TX_MODE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TxMode.STD_VIDEO_AV1_TX_MODE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_TX_MODE_MAX_ENUM() {
+        return STD_VIDEO_AV1_TX_MODE_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameRestorationType.STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_NONE = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_NONE() {
+        return STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_NONE;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_WIENER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameRestorationType.STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_WIENER = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_WIENER() {
+        return STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_WIENER;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SGRPROJ = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameRestorationType.STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SGRPROJ = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SGRPROJ() {
+        return STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SGRPROJ;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SWITCHABLE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameRestorationType.STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SWITCHABLE = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SWITCHABLE() {
+        return STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_SWITCHABLE;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameRestorationType.STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_INVALID() {
+        return STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1FrameRestorationType.STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_MAX_ENUM() {
+        return STD_VIDEO_AV1_FRAME_RESTORATION_TYPE_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_709 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_BT_709 = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_709() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_BT_709;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_UNSPECIFIED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_BT_UNSPECIFIED = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_UNSPECIFIED() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_BT_UNSPECIFIED;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_M = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_M = 4
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_M() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_M;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_B_G = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_B_G = 5
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_B_G() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_BT_470_B_G;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_601 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_BT_601 = 6
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_601() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_BT_601;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_240 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_240 = 7
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_240() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_240;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_GENERIC_FILM = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_GENERIC_FILM = 8
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_GENERIC_FILM() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_GENERIC_FILM;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_2020 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_BT_2020 = 9
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_BT_2020() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_BT_2020;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_XYZ = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_XYZ = 10
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_XYZ() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_XYZ;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_431 = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_431 = 11
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_431() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_431;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_432 = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_432 = 12
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_432() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_SMPTE_432;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_EBU_3213 = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_EBU_3213 = 22
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_EBU_3213() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_EBU_3213;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_INVALID() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_COLOR_PRIMARIES_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ColorPrimaries.STD_VIDEO_AV1_COLOR_PRIMARIES_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_COLOR_PRIMARIES_MAX_ENUM() {
+        return STD_VIDEO_AV1_COLOR_PRIMARIES_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_0 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_0 = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_0() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_0;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_709 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_709 = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_709() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_709;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_UNSPECIFIED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_UNSPECIFIED = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_UNSPECIFIED() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_UNSPECIFIED;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_3 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_3 = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_3() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_RESERVED_3;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_M = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_M = 4
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_M() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_M;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_B_G = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_B_G = 5
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_B_G() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_470_B_G;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_601 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_601 = 6
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_601() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_601;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_240 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_240 = 7
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_240() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_240;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LINEAR = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LINEAR = 8
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LINEAR() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LINEAR;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100 = 9
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100_SQRT10 = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100_SQRT10 = 10
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100_SQRT10() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_LOG_100_SQRT10;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_IEC_61966 = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_IEC_61966 = 11
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_IEC_61966() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_IEC_61966;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_1361 = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_1361 = 12
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_1361() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_1361;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SRGB = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SRGB = 13
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SRGB() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SRGB;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_10_BIT = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_10_BIT = 14
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_10_BIT() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_10_BIT;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_12_BIT = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_12_BIT = 15
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_12_BIT() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_BT_2020_12_BIT;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_2084 = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_2084 = 16
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_2084() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_2084;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_428 = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_428 = 17
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_428() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_SMPTE_428;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_HLG = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_HLG = 18
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_HLG() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_HLG;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_INVALID() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1TransferCharacteristics.STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_MAX_ENUM() {
+        return STD_VIDEO_AV1_TRANSFER_CHARACTERISTICS_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_IDENTITY = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_IDENTITY = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_IDENTITY() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_IDENTITY;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_709 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_709 = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_709() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_709;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_UNSPECIFIED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_UNSPECIFIED = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_UNSPECIFIED() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_UNSPECIFIED;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_RESERVED_3 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_RESERVED_3 = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_RESERVED_3() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_RESERVED_3;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_FCC = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_FCC = 4
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_FCC() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_FCC;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_470_B_G = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_470_B_G = 5
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_470_B_G() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_470_B_G;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_601 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_601 = 6
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_601() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_601;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_240 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_240 = 7
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_240() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_240;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_YCGCO = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_YCGCO = 8
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_YCGCO() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_YCGCO;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_NCL = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_NCL = 9
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_NCL() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_NCL;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_CL = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_CL = 10
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_CL() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_BT_2020_CL;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_2085 = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_2085 = 11
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_2085() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_SMPTE_2085;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_NCL = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_NCL = 12
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_NCL() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_NCL;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_CL = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_CL = 13
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_CL() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_CHROMAT_CL;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_ICTCP = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_ICTCP = 14
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_ICTCP() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_ICTCP;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_INVALID() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1MatrixCoefficients.STD_VIDEO_AV1_MATRIX_COEFFICIENTS_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_MATRIX_COEFFICIENTS_MAX_ENUM() {
+        return STD_VIDEO_AV1_MATRIX_COEFFICIENTS_MAX_ENUM;
+    }
+    private static final int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_UNKNOWN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ChromaSamplePosition.STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_UNKNOWN = 0
+     * }
+     */
+    public static int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_UNKNOWN() {
+        return STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_UNKNOWN;
+    }
+    private static final int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_VERTICAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ChromaSamplePosition.STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_VERTICAL = 1
+     * }
+     */
+    public static int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_VERTICAL() {
+        return STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_VERTICAL;
+    }
+    private static final int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_COLOCATED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ChromaSamplePosition.STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_COLOCATED = 2
+     * }
+     */
+    public static int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_COLOCATED() {
+        return STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_COLOCATED;
+    }
+    private static final int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_RESERVED = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ChromaSamplePosition.STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_RESERVED = 3
+     * }
+     */
+    public static int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_RESERVED() {
+        return STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_RESERVED;
+    }
+    private static final int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_INVALID = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ChromaSamplePosition.STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_INVALID = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_INVALID() {
+        return STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_INVALID;
+    }
+    private static final int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_MAX_ENUM = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum StdVideoAV1ChromaSamplePosition.STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_MAX_ENUM = 2147483647
+     * }
+     */
+    public static int STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_MAX_ENUM() {
+        return STD_VIDEO_AV1_CHROMA_SAMPLE_POSITION_MAX_ENUM;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_DEFAULT_KHR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_DEFAULT_KHR = 0
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_DEFAULT_KHR() {
+        return VK_LINE_RASTERIZATION_MODE_DEFAULT_KHR;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_KHR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_RECTANGULAR_KHR = 1
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_KHR() {
+        return VK_LINE_RASTERIZATION_MODE_RECTANGULAR_KHR;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_BRESENHAM_KHR = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_BRESENHAM_KHR = 2
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_BRESENHAM_KHR() {
+        return VK_LINE_RASTERIZATION_MODE_BRESENHAM_KHR;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_KHR = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_KHR = 3
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_KHR() {
+        return VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_KHR;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT = 0
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT() {
+        return VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT = 1
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT() {
+        return VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT = 2
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT() {
+        return VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT = 3
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT() {
+        return VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT;
+    }
+    private static final int VK_LINE_RASTERIZATION_MODE_MAX_ENUM_KHR = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * enum VkLineRasterizationModeKHR.VK_LINE_RASTERIZATION_MODE_MAX_ENUM_KHR = 2147483647
+     * }
+     */
+    public static int VK_LINE_RASTERIZATION_MODE_MAX_ENUM_KHR() {
+        return VK_LINE_RASTERIZATION_MODE_MAX_ENUM_KHR;
+    }
+
+    private static class vkCmdSetLineStippleKHR {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            vulkan_h.C_POINTER,
+            vulkan_h.C_INT,
+            vulkan_h.C_SHORT
+        );
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
+                    vulkan_h.findOrThrow("vkCmdSetLineStippleKHR"),
+                    DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void vkCmdSetLineStippleKHR(VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern)
+     * }
+     */
+    public static FunctionDescriptor vkCmdSetLineStippleKHR$descriptor() {
+        return vkCmdSetLineStippleKHR.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void vkCmdSetLineStippleKHR(VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern)
+     * }
+     */
+    public static MethodHandle vkCmdSetLineStippleKHR$handle() {
+        return vkCmdSetLineStippleKHR.HANDLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * void vkCmdSetLineStippleKHR(VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern)
+     * }
+     */
+    public static void vkCmdSetLineStippleKHR(MemorySegment commandBuffer, int lineStippleFactor, short lineStipplePattern) {
+        var mh$ = vkCmdSetLineStippleKHR.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("vkCmdSetLineStippleKHR", commandBuffer, lineStippleFactor, lineStipplePattern);
+            }
+            mh$.invokeExact(commandBuffer, lineStippleFactor, lineStipplePattern);
         } catch (Throwable ex$) {
            throw new AssertionError("should not reach here", ex$);
         }
@@ -14825,4493 +16962,6 @@ public class vulkan_h_1 extends vulkan_h_2 {
      */
     public static int VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT() {
         return VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureEnableEXT.VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT = 4
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT() {
-        return VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_ENABLE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureEnableEXT.VK_VALIDATION_FEATURE_ENABLE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_ENABLE_MAX_ENUM_EXT() {
-        return VK_VALIDATION_FEATURE_ENABLE_MAX_ENUM_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_ALL_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_ALL_EXT = 0
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_ALL_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_ALL_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_SHADERS_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_SHADERS_EXT = 1
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_SHADERS_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_SHADERS_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT = 2
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT = 3
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT = 4
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT = 5
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT = 6
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT = (int)7L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT = 7
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT;
-    }
-    private static final int VK_VALIDATION_FEATURE_DISABLE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkValidationFeatureDisableEXT.VK_VALIDATION_FEATURE_DISABLE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_VALIDATION_FEATURE_DISABLE_MAX_ENUM_EXT() {
-        return VK_VALIDATION_FEATURE_DISABLE_MAX_ENUM_EXT;
-    }
-
-    private static class vkGetPhysicalDeviceCooperativeMatrixPropertiesNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetPhysicalDeviceCooperativeMatrixPropertiesNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(VkPhysicalDevice physicalDevice, uint32_t *pPropertyCount, VkCooperativeMatrixPropertiesNV *pProperties)
-     * }
-     */
-    public static FunctionDescriptor vkGetPhysicalDeviceCooperativeMatrixPropertiesNV$descriptor() {
-        return vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(VkPhysicalDevice physicalDevice, uint32_t *pPropertyCount, VkCooperativeMatrixPropertiesNV *pProperties)
-     * }
-     */
-    public static MethodHandle vkGetPhysicalDeviceCooperativeMatrixPropertiesNV$handle() {
-        return vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(VkPhysicalDevice physicalDevice, uint32_t *pPropertyCount, VkCooperativeMatrixPropertiesNV *pProperties)
-     * }
-     */
-    public static int vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(MemorySegment physicalDevice, MemorySegment pPropertyCount, MemorySegment pProperties) {
-        var mh$ = vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetPhysicalDeviceCooperativeMatrixPropertiesNV", physicalDevice, pPropertyCount, pProperties);
-            }
-            return (int)mh$.invokeExact(physicalDevice, pPropertyCount, pProperties);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_COVERAGE_REDUCTION_MODE_MERGE_NV = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkCoverageReductionModeNV.VK_COVERAGE_REDUCTION_MODE_MERGE_NV = 0
-     * }
-     */
-    public static int VK_COVERAGE_REDUCTION_MODE_MERGE_NV() {
-        return VK_COVERAGE_REDUCTION_MODE_MERGE_NV;
-    }
-    private static final int VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkCoverageReductionModeNV.VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV = 1
-     * }
-     */
-    public static int VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV() {
-        return VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV;
-    }
-    private static final int VK_COVERAGE_REDUCTION_MODE_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkCoverageReductionModeNV.VK_COVERAGE_REDUCTION_MODE_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_COVERAGE_REDUCTION_MODE_MAX_ENUM_NV() {
-        return VK_COVERAGE_REDUCTION_MODE_MAX_ENUM_NV;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkPipelineCoverageReductionStateCreateFlagsNV
-     * }
-     */
-    public static final OfInt VkPipelineCoverageReductionStateCreateFlagsNV = vulkan_h.C_INT;
-
-    private static class vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(VkPhysicalDevice physicalDevice, uint32_t *pCombinationCount, VkFramebufferMixedSamplesCombinationNV *pCombinations)
-     * }
-     */
-    public static FunctionDescriptor vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV$descriptor() {
-        return vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(VkPhysicalDevice physicalDevice, uint32_t *pCombinationCount, VkFramebufferMixedSamplesCombinationNV *pCombinations)
-     * }
-     */
-    public static MethodHandle vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV$handle() {
-        return vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(VkPhysicalDevice physicalDevice, uint32_t *pCombinationCount, VkFramebufferMixedSamplesCombinationNV *pCombinations)
-     * }
-     */
-    public static int vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(MemorySegment physicalDevice, MemorySegment pCombinationCount, MemorySegment pCombinations) {
-        var mh$ = vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV", physicalDevice, pCombinationCount, pCombinations);
-            }
-            return (int)mh$.invokeExact(physicalDevice, pCombinationCount, pCombinations);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkProvokingVertexModeEXT.VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT = 0
-     * }
-     */
-    public static int VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT() {
-        return VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT;
-    }
-    private static final int VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkProvokingVertexModeEXT.VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT = 1
-     * }
-     */
-    public static int VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT() {
-        return VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT;
-    }
-    private static final int VK_PROVOKING_VERTEX_MODE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkProvokingVertexModeEXT.VK_PROVOKING_VERTEX_MODE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_PROVOKING_VERTEX_MODE_MAX_ENUM_EXT() {
-        return VK_PROVOKING_VERTEX_MODE_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkHeadlessSurfaceCreateFlagsEXT
-     * }
-     */
-    public static final OfInt VkHeadlessSurfaceCreateFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkCreateHeadlessSurfaceEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCreateHeadlessSurfaceEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCreateHeadlessSurfaceEXT(VkInstance instance, const VkHeadlessSurfaceCreateInfoEXT *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkSurfaceKHR *pSurface)
-     * }
-     */
-    public static FunctionDescriptor vkCreateHeadlessSurfaceEXT$descriptor() {
-        return vkCreateHeadlessSurfaceEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCreateHeadlessSurfaceEXT(VkInstance instance, const VkHeadlessSurfaceCreateInfoEXT *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkSurfaceKHR *pSurface)
-     * }
-     */
-    public static MethodHandle vkCreateHeadlessSurfaceEXT$handle() {
-        return vkCreateHeadlessSurfaceEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCreateHeadlessSurfaceEXT(VkInstance instance, const VkHeadlessSurfaceCreateInfoEXT *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkSurfaceKHR *pSurface)
-     * }
-     */
-    public static int vkCreateHeadlessSurfaceEXT(MemorySegment instance, MemorySegment pCreateInfo, MemorySegment pAllocator, MemorySegment pSurface) {
-        var mh$ = vkCreateHeadlessSurfaceEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCreateHeadlessSurfaceEXT", instance, pCreateInfo, pAllocator, pSurface);
-            }
-            return (int)mh$.invokeExact(instance, pCreateInfo, pAllocator, pSurface);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkLineRasterizationModeEXT.VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT = 0
-     * }
-     */
-    public static int VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT() {
-        return VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT;
-    }
-    private static final int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkLineRasterizationModeEXT.VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT = 1
-     * }
-     */
-    public static int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT() {
-        return VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT;
-    }
-    private static final int VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkLineRasterizationModeEXT.VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT = 2
-     * }
-     */
-    public static int VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT() {
-        return VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT;
-    }
-    private static final int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum VkLineRasterizationModeEXT.VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT = 3
-     * }
-     */
-    public static int VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT() {
-        return VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT;
-    }
-    private static final int VK_LINE_RASTERIZATION_MODE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkLineRasterizationModeEXT.VK_LINE_RASTERIZATION_MODE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_LINE_RASTERIZATION_MODE_MAX_ENUM_EXT() {
-        return VK_LINE_RASTERIZATION_MODE_MAX_ENUM_EXT;
-    }
-
-    private static class vkCmdSetLineStippleEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_SHORT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetLineStippleEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetLineStippleEXT(VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetLineStippleEXT$descriptor() {
-        return vkCmdSetLineStippleEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetLineStippleEXT(VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern)
-     * }
-     */
-    public static MethodHandle vkCmdSetLineStippleEXT$handle() {
-        return vkCmdSetLineStippleEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetLineStippleEXT(VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern)
-     * }
-     */
-    public static void vkCmdSetLineStippleEXT(MemorySegment commandBuffer, int lineStippleFactor, short lineStipplePattern) {
-        var mh$ = vkCmdSetLineStippleEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetLineStippleEXT", commandBuffer, lineStippleFactor, lineStipplePattern);
-            }
-            mh$.invokeExact(commandBuffer, lineStippleFactor, lineStipplePattern);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkResetQueryPoolEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkResetQueryPoolEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkResetQueryPoolEXT(VkDevice device, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount)
-     * }
-     */
-    public static FunctionDescriptor vkResetQueryPoolEXT$descriptor() {
-        return vkResetQueryPoolEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkResetQueryPoolEXT(VkDevice device, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount)
-     * }
-     */
-    public static MethodHandle vkResetQueryPoolEXT$handle() {
-        return vkResetQueryPoolEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkResetQueryPoolEXT(VkDevice device, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount)
-     * }
-     */
-    public static void vkResetQueryPoolEXT(MemorySegment device, MemorySegment queryPool, int firstQuery, int queryCount) {
-        var mh$ = vkResetQueryPoolEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkResetQueryPoolEXT", device, queryPool, firstQuery, queryCount);
-            }
-            mh$.invokeExact(device, queryPool, firstQuery, queryCount);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetCullModeEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetCullModeEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetCullModeEXT(VkCommandBuffer commandBuffer, VkCullModeFlags cullMode)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetCullModeEXT$descriptor() {
-        return vkCmdSetCullModeEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetCullModeEXT(VkCommandBuffer commandBuffer, VkCullModeFlags cullMode)
-     * }
-     */
-    public static MethodHandle vkCmdSetCullModeEXT$handle() {
-        return vkCmdSetCullModeEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetCullModeEXT(VkCommandBuffer commandBuffer, VkCullModeFlags cullMode)
-     * }
-     */
-    public static void vkCmdSetCullModeEXT(MemorySegment commandBuffer, int cullMode) {
-        var mh$ = vkCmdSetCullModeEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetCullModeEXT", commandBuffer, cullMode);
-            }
-            mh$.invokeExact(commandBuffer, cullMode);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetFrontFaceEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetFrontFaceEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetFrontFaceEXT(VkCommandBuffer commandBuffer, VkFrontFace frontFace)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetFrontFaceEXT$descriptor() {
-        return vkCmdSetFrontFaceEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetFrontFaceEXT(VkCommandBuffer commandBuffer, VkFrontFace frontFace)
-     * }
-     */
-    public static MethodHandle vkCmdSetFrontFaceEXT$handle() {
-        return vkCmdSetFrontFaceEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetFrontFaceEXT(VkCommandBuffer commandBuffer, VkFrontFace frontFace)
-     * }
-     */
-    public static void vkCmdSetFrontFaceEXT(MemorySegment commandBuffer, int frontFace) {
-        var mh$ = vkCmdSetFrontFaceEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetFrontFaceEXT", commandBuffer, frontFace);
-            }
-            mh$.invokeExact(commandBuffer, frontFace);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetPrimitiveTopologyEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetPrimitiveTopologyEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetPrimitiveTopologyEXT(VkCommandBuffer commandBuffer, VkPrimitiveTopology primitiveTopology)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetPrimitiveTopologyEXT$descriptor() {
-        return vkCmdSetPrimitiveTopologyEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetPrimitiveTopologyEXT(VkCommandBuffer commandBuffer, VkPrimitiveTopology primitiveTopology)
-     * }
-     */
-    public static MethodHandle vkCmdSetPrimitiveTopologyEXT$handle() {
-        return vkCmdSetPrimitiveTopologyEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetPrimitiveTopologyEXT(VkCommandBuffer commandBuffer, VkPrimitiveTopology primitiveTopology)
-     * }
-     */
-    public static void vkCmdSetPrimitiveTopologyEXT(MemorySegment commandBuffer, int primitiveTopology) {
-        var mh$ = vkCmdSetPrimitiveTopologyEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetPrimitiveTopologyEXT", commandBuffer, primitiveTopology);
-            }
-            mh$.invokeExact(commandBuffer, primitiveTopology);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetViewportWithCountEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetViewportWithCountEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetViewportWithCountEXT(VkCommandBuffer commandBuffer, uint32_t viewportCount, const VkViewport *pViewports)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetViewportWithCountEXT$descriptor() {
-        return vkCmdSetViewportWithCountEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetViewportWithCountEXT(VkCommandBuffer commandBuffer, uint32_t viewportCount, const VkViewport *pViewports)
-     * }
-     */
-    public static MethodHandle vkCmdSetViewportWithCountEXT$handle() {
-        return vkCmdSetViewportWithCountEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetViewportWithCountEXT(VkCommandBuffer commandBuffer, uint32_t viewportCount, const VkViewport *pViewports)
-     * }
-     */
-    public static void vkCmdSetViewportWithCountEXT(MemorySegment commandBuffer, int viewportCount, MemorySegment pViewports) {
-        var mh$ = vkCmdSetViewportWithCountEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetViewportWithCountEXT", commandBuffer, viewportCount, pViewports);
-            }
-            mh$.invokeExact(commandBuffer, viewportCount, pViewports);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetScissorWithCountEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetScissorWithCountEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetScissorWithCountEXT(VkCommandBuffer commandBuffer, uint32_t scissorCount, const VkRect2D *pScissors)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetScissorWithCountEXT$descriptor() {
-        return vkCmdSetScissorWithCountEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetScissorWithCountEXT(VkCommandBuffer commandBuffer, uint32_t scissorCount, const VkRect2D *pScissors)
-     * }
-     */
-    public static MethodHandle vkCmdSetScissorWithCountEXT$handle() {
-        return vkCmdSetScissorWithCountEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetScissorWithCountEXT(VkCommandBuffer commandBuffer, uint32_t scissorCount, const VkRect2D *pScissors)
-     * }
-     */
-    public static void vkCmdSetScissorWithCountEXT(MemorySegment commandBuffer, int scissorCount, MemorySegment pScissors) {
-        var mh$ = vkCmdSetScissorWithCountEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetScissorWithCountEXT", commandBuffer, scissorCount, pScissors);
-            }
-            mh$.invokeExact(commandBuffer, scissorCount, pScissors);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdBindVertexBuffers2EXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdBindVertexBuffers2EXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdBindVertexBuffers2EXT(VkCommandBuffer commandBuffer, uint32_t firstBinding, uint32_t bindingCount, const VkBuffer *pBuffers, const VkDeviceSize *pOffsets, const VkDeviceSize *pSizes, const VkDeviceSize *pStrides)
-     * }
-     */
-    public static FunctionDescriptor vkCmdBindVertexBuffers2EXT$descriptor() {
-        return vkCmdBindVertexBuffers2EXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdBindVertexBuffers2EXT(VkCommandBuffer commandBuffer, uint32_t firstBinding, uint32_t bindingCount, const VkBuffer *pBuffers, const VkDeviceSize *pOffsets, const VkDeviceSize *pSizes, const VkDeviceSize *pStrides)
-     * }
-     */
-    public static MethodHandle vkCmdBindVertexBuffers2EXT$handle() {
-        return vkCmdBindVertexBuffers2EXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdBindVertexBuffers2EXT(VkCommandBuffer commandBuffer, uint32_t firstBinding, uint32_t bindingCount, const VkBuffer *pBuffers, const VkDeviceSize *pOffsets, const VkDeviceSize *pSizes, const VkDeviceSize *pStrides)
-     * }
-     */
-    public static void vkCmdBindVertexBuffers2EXT(MemorySegment commandBuffer, int firstBinding, int bindingCount, MemorySegment pBuffers, MemorySegment pOffsets, MemorySegment pSizes, MemorySegment pStrides) {
-        var mh$ = vkCmdBindVertexBuffers2EXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdBindVertexBuffers2EXT", commandBuffer, firstBinding, bindingCount, pBuffers, pOffsets, pSizes, pStrides);
-            }
-            mh$.invokeExact(commandBuffer, firstBinding, bindingCount, pBuffers, pOffsets, pSizes, pStrides);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetDepthTestEnableEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDepthTestEnableEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthTestEnable)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDepthTestEnableEXT$descriptor() {
-        return vkCmdSetDepthTestEnableEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthTestEnable)
-     * }
-     */
-    public static MethodHandle vkCmdSetDepthTestEnableEXT$handle() {
-        return vkCmdSetDepthTestEnableEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDepthTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthTestEnable)
-     * }
-     */
-    public static void vkCmdSetDepthTestEnableEXT(MemorySegment commandBuffer, int depthTestEnable) {
-        var mh$ = vkCmdSetDepthTestEnableEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDepthTestEnableEXT", commandBuffer, depthTestEnable);
-            }
-            mh$.invokeExact(commandBuffer, depthTestEnable);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetDepthWriteEnableEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDepthWriteEnableEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthWriteEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthWriteEnable)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDepthWriteEnableEXT$descriptor() {
-        return vkCmdSetDepthWriteEnableEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthWriteEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthWriteEnable)
-     * }
-     */
-    public static MethodHandle vkCmdSetDepthWriteEnableEXT$handle() {
-        return vkCmdSetDepthWriteEnableEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDepthWriteEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthWriteEnable)
-     * }
-     */
-    public static void vkCmdSetDepthWriteEnableEXT(MemorySegment commandBuffer, int depthWriteEnable) {
-        var mh$ = vkCmdSetDepthWriteEnableEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDepthWriteEnableEXT", commandBuffer, depthWriteEnable);
-            }
-            mh$.invokeExact(commandBuffer, depthWriteEnable);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetDepthCompareOpEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDepthCompareOpEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthCompareOpEXT(VkCommandBuffer commandBuffer, VkCompareOp depthCompareOp)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDepthCompareOpEXT$descriptor() {
-        return vkCmdSetDepthCompareOpEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthCompareOpEXT(VkCommandBuffer commandBuffer, VkCompareOp depthCompareOp)
-     * }
-     */
-    public static MethodHandle vkCmdSetDepthCompareOpEXT$handle() {
-        return vkCmdSetDepthCompareOpEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDepthCompareOpEXT(VkCommandBuffer commandBuffer, VkCompareOp depthCompareOp)
-     * }
-     */
-    public static void vkCmdSetDepthCompareOpEXT(MemorySegment commandBuffer, int depthCompareOp) {
-        var mh$ = vkCmdSetDepthCompareOpEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDepthCompareOpEXT", commandBuffer, depthCompareOp);
-            }
-            mh$.invokeExact(commandBuffer, depthCompareOp);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetDepthBoundsTestEnableEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDepthBoundsTestEnableEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBoundsTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthBoundsTestEnable)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDepthBoundsTestEnableEXT$descriptor() {
-        return vkCmdSetDepthBoundsTestEnableEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBoundsTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthBoundsTestEnable)
-     * }
-     */
-    public static MethodHandle vkCmdSetDepthBoundsTestEnableEXT$handle() {
-        return vkCmdSetDepthBoundsTestEnableEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBoundsTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthBoundsTestEnable)
-     * }
-     */
-    public static void vkCmdSetDepthBoundsTestEnableEXT(MemorySegment commandBuffer, int depthBoundsTestEnable) {
-        var mh$ = vkCmdSetDepthBoundsTestEnableEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDepthBoundsTestEnableEXT", commandBuffer, depthBoundsTestEnable);
-            }
-            mh$.invokeExact(commandBuffer, depthBoundsTestEnable);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetStencilTestEnableEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetStencilTestEnableEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetStencilTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 stencilTestEnable)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetStencilTestEnableEXT$descriptor() {
-        return vkCmdSetStencilTestEnableEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetStencilTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 stencilTestEnable)
-     * }
-     */
-    public static MethodHandle vkCmdSetStencilTestEnableEXT$handle() {
-        return vkCmdSetStencilTestEnableEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetStencilTestEnableEXT(VkCommandBuffer commandBuffer, VkBool32 stencilTestEnable)
-     * }
-     */
-    public static void vkCmdSetStencilTestEnableEXT(MemorySegment commandBuffer, int stencilTestEnable) {
-        var mh$ = vkCmdSetStencilTestEnableEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetStencilTestEnableEXT", commandBuffer, stencilTestEnable);
-            }
-            mh$.invokeExact(commandBuffer, stencilTestEnable);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetStencilOpEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetStencilOpEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetStencilOpEXT(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, VkStencilOp failOp, VkStencilOp passOp, VkStencilOp depthFailOp, VkCompareOp compareOp)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetStencilOpEXT$descriptor() {
-        return vkCmdSetStencilOpEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetStencilOpEXT(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, VkStencilOp failOp, VkStencilOp passOp, VkStencilOp depthFailOp, VkCompareOp compareOp)
-     * }
-     */
-    public static MethodHandle vkCmdSetStencilOpEXT$handle() {
-        return vkCmdSetStencilOpEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetStencilOpEXT(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, VkStencilOp failOp, VkStencilOp passOp, VkStencilOp depthFailOp, VkCompareOp compareOp)
-     * }
-     */
-    public static void vkCmdSetStencilOpEXT(MemorySegment commandBuffer, int faceMask, int failOp, int passOp, int depthFailOp, int compareOp) {
-        var mh$ = vkCmdSetStencilOpEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetStencilOpEXT", commandBuffer, faceMask, failOp, passOp, depthFailOp, compareOp);
-            }
-            mh$.invokeExact(commandBuffer, faceMask, failOp, passOp, depthFailOp, compareOp);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_HOST_IMAGE_COPY_MEMCPY_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkHostImageCopyFlagBitsEXT.VK_HOST_IMAGE_COPY_MEMCPY_EXT = 1
-     * }
-     */
-    public static int VK_HOST_IMAGE_COPY_MEMCPY_EXT() {
-        return VK_HOST_IMAGE_COPY_MEMCPY_EXT;
-    }
-    private static final int VK_HOST_IMAGE_COPY_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkHostImageCopyFlagBitsEXT.VK_HOST_IMAGE_COPY_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_HOST_IMAGE_COPY_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_HOST_IMAGE_COPY_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkHostImageCopyFlagsEXT
-     * }
-     */
-    public static final OfInt VkHostImageCopyFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkCopyMemoryToImageEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCopyMemoryToImageEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfoEXT *pCopyMemoryToImageInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCopyMemoryToImageEXT$descriptor() {
-        return vkCopyMemoryToImageEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfoEXT *pCopyMemoryToImageInfo)
-     * }
-     */
-    public static MethodHandle vkCopyMemoryToImageEXT$handle() {
-        return vkCopyMemoryToImageEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCopyMemoryToImageEXT(VkDevice device, const VkCopyMemoryToImageInfoEXT *pCopyMemoryToImageInfo)
-     * }
-     */
-    public static int vkCopyMemoryToImageEXT(MemorySegment device, MemorySegment pCopyMemoryToImageInfo) {
-        var mh$ = vkCopyMemoryToImageEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCopyMemoryToImageEXT", device, pCopyMemoryToImageInfo);
-            }
-            return (int)mh$.invokeExact(device, pCopyMemoryToImageInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCopyImageToMemoryEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCopyImageToMemoryEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfoEXT *pCopyImageToMemoryInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCopyImageToMemoryEXT$descriptor() {
-        return vkCopyImageToMemoryEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfoEXT *pCopyImageToMemoryInfo)
-     * }
-     */
-    public static MethodHandle vkCopyImageToMemoryEXT$handle() {
-        return vkCopyImageToMemoryEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCopyImageToMemoryEXT(VkDevice device, const VkCopyImageToMemoryInfoEXT *pCopyImageToMemoryInfo)
-     * }
-     */
-    public static int vkCopyImageToMemoryEXT(MemorySegment device, MemorySegment pCopyImageToMemoryInfo) {
-        var mh$ = vkCopyImageToMemoryEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCopyImageToMemoryEXT", device, pCopyImageToMemoryInfo);
-            }
-            return (int)mh$.invokeExact(device, pCopyImageToMemoryInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCopyImageToImageEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCopyImageToImageEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfoEXT *pCopyImageToImageInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCopyImageToImageEXT$descriptor() {
-        return vkCopyImageToImageEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfoEXT *pCopyImageToImageInfo)
-     * }
-     */
-    public static MethodHandle vkCopyImageToImageEXT$handle() {
-        return vkCopyImageToImageEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCopyImageToImageEXT(VkDevice device, const VkCopyImageToImageInfoEXT *pCopyImageToImageInfo)
-     * }
-     */
-    public static int vkCopyImageToImageEXT(MemorySegment device, MemorySegment pCopyImageToImageInfo) {
-        var mh$ = vkCopyImageToImageEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCopyImageToImageEXT", device, pCopyImageToImageInfo);
-            }
-            return (int)mh$.invokeExact(device, pCopyImageToImageInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkTransitionImageLayoutEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkTransitionImageLayoutEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfoEXT *pTransitions)
-     * }
-     */
-    public static FunctionDescriptor vkTransitionImageLayoutEXT$descriptor() {
-        return vkTransitionImageLayoutEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfoEXT *pTransitions)
-     * }
-     */
-    public static MethodHandle vkTransitionImageLayoutEXT$handle() {
-        return vkTransitionImageLayoutEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkTransitionImageLayoutEXT(VkDevice device, uint32_t transitionCount, const VkHostImageLayoutTransitionInfoEXT *pTransitions)
-     * }
-     */
-    public static int vkTransitionImageLayoutEXT(MemorySegment device, int transitionCount, MemorySegment pTransitions) {
-        var mh$ = vkTransitionImageLayoutEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkTransitionImageLayoutEXT", device, transitionCount, pTransitions);
-            }
-            return (int)mh$.invokeExact(device, transitionCount, pTransitions);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetImageSubresourceLayout2EXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetImageSubresourceLayout2EXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkGetImageSubresourceLayout2EXT(VkDevice device, VkImage image, const VkImageSubresource2KHR *pSubresource, VkSubresourceLayout2KHR *pLayout)
-     * }
-     */
-    public static FunctionDescriptor vkGetImageSubresourceLayout2EXT$descriptor() {
-        return vkGetImageSubresourceLayout2EXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkGetImageSubresourceLayout2EXT(VkDevice device, VkImage image, const VkImageSubresource2KHR *pSubresource, VkSubresourceLayout2KHR *pLayout)
-     * }
-     */
-    public static MethodHandle vkGetImageSubresourceLayout2EXT$handle() {
-        return vkGetImageSubresourceLayout2EXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkGetImageSubresourceLayout2EXT(VkDevice device, VkImage image, const VkImageSubresource2KHR *pSubresource, VkSubresourceLayout2KHR *pLayout)
-     * }
-     */
-    public static void vkGetImageSubresourceLayout2EXT(MemorySegment device, MemorySegment image, MemorySegment pSubresource, MemorySegment pLayout) {
-        var mh$ = vkGetImageSubresourceLayout2EXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetImageSubresourceLayout2EXT", device, image, pSubresource, pLayout);
-            }
-            mh$.invokeExact(device, image, pSubresource, pLayout);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_PRESENT_SCALING_ONE_TO_ONE_BIT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentScalingFlagBitsEXT.VK_PRESENT_SCALING_ONE_TO_ONE_BIT_EXT = 1
-     * }
-     */
-    public static int VK_PRESENT_SCALING_ONE_TO_ONE_BIT_EXT() {
-        return VK_PRESENT_SCALING_ONE_TO_ONE_BIT_EXT;
-    }
-    private static final int VK_PRESENT_SCALING_ASPECT_RATIO_STRETCH_BIT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentScalingFlagBitsEXT.VK_PRESENT_SCALING_ASPECT_RATIO_STRETCH_BIT_EXT = 2
-     * }
-     */
-    public static int VK_PRESENT_SCALING_ASPECT_RATIO_STRETCH_BIT_EXT() {
-        return VK_PRESENT_SCALING_ASPECT_RATIO_STRETCH_BIT_EXT;
-    }
-    private static final int VK_PRESENT_SCALING_STRETCH_BIT_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentScalingFlagBitsEXT.VK_PRESENT_SCALING_STRETCH_BIT_EXT = 4
-     * }
-     */
-    public static int VK_PRESENT_SCALING_STRETCH_BIT_EXT() {
-        return VK_PRESENT_SCALING_STRETCH_BIT_EXT;
-    }
-    private static final int VK_PRESENT_SCALING_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentScalingFlagBitsEXT.VK_PRESENT_SCALING_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_PRESENT_SCALING_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_PRESENT_SCALING_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkPresentScalingFlagsEXT
-     * }
-     */
-    public static final OfInt VkPresentScalingFlagsEXT = vulkan_h.C_INT;
-    private static final int VK_PRESENT_GRAVITY_MIN_BIT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentGravityFlagBitsEXT.VK_PRESENT_GRAVITY_MIN_BIT_EXT = 1
-     * }
-     */
-    public static int VK_PRESENT_GRAVITY_MIN_BIT_EXT() {
-        return VK_PRESENT_GRAVITY_MIN_BIT_EXT;
-    }
-    private static final int VK_PRESENT_GRAVITY_MAX_BIT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentGravityFlagBitsEXT.VK_PRESENT_GRAVITY_MAX_BIT_EXT = 2
-     * }
-     */
-    public static int VK_PRESENT_GRAVITY_MAX_BIT_EXT() {
-        return VK_PRESENT_GRAVITY_MAX_BIT_EXT;
-    }
-    private static final int VK_PRESENT_GRAVITY_CENTERED_BIT_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentGravityFlagBitsEXT.VK_PRESENT_GRAVITY_CENTERED_BIT_EXT = 4
-     * }
-     */
-    public static int VK_PRESENT_GRAVITY_CENTERED_BIT_EXT() {
-        return VK_PRESENT_GRAVITY_CENTERED_BIT_EXT;
-    }
-    private static final int VK_PRESENT_GRAVITY_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkPresentGravityFlagBitsEXT.VK_PRESENT_GRAVITY_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_PRESENT_GRAVITY_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_PRESENT_GRAVITY_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkPresentGravityFlagsEXT
-     * }
-     */
-    public static final OfInt VkPresentGravityFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkReleaseSwapchainImagesEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkReleaseSwapchainImagesEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkReleaseSwapchainImagesEXT(VkDevice device, const VkReleaseSwapchainImagesInfoEXT *pReleaseInfo)
-     * }
-     */
-    public static FunctionDescriptor vkReleaseSwapchainImagesEXT$descriptor() {
-        return vkReleaseSwapchainImagesEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkReleaseSwapchainImagesEXT(VkDevice device, const VkReleaseSwapchainImagesInfoEXT *pReleaseInfo)
-     * }
-     */
-    public static MethodHandle vkReleaseSwapchainImagesEXT$handle() {
-        return vkReleaseSwapchainImagesEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkReleaseSwapchainImagesEXT(VkDevice device, const VkReleaseSwapchainImagesInfoEXT *pReleaseInfo)
-     * }
-     */
-    public static int vkReleaseSwapchainImagesEXT(MemorySegment device, MemorySegment pReleaseInfo) {
-        var mh$ = vkReleaseSwapchainImagesEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkReleaseSwapchainImagesEXT", device, pReleaseInfo);
-            }
-            return (int)mh$.invokeExact(device, pReleaseInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef struct VkIndirectCommandsLayoutNV_T *VkIndirectCommandsLayoutNV
-     * }
-     */
-    public static final AddressLayout VkIndirectCommandsLayoutNV = vulkan_h.C_POINTER;
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV = 0
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV = 1
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV = 2
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV = 3
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV = 4
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV = 5
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV = 6
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV = (int)7L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV = 7
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_MESH_TASKS_NV = (int)1000328000L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_MESH_TASKS_NV = 1000328000
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_MESH_TASKS_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_MESH_TASKS_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NV = (int)1000428003L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NV = 1000428003
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NV = (int)1000428004L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NV = 1000428004
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_DISPATCH_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_TOKEN_TYPE_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsTokenTypeNV.VK_INDIRECT_COMMANDS_TOKEN_TYPE_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_TOKEN_TYPE_MAX_ENUM_NV() {
-        return VK_INDIRECT_COMMANDS_TOKEN_TYPE_MAX_ENUM_NV;
-    }
-    private static final int VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectStateFlagBitsNV.VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = 1
-     * }
-     */
-    public static int VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV() {
-        return VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV;
-    }
-    private static final int VK_INDIRECT_STATE_FLAG_BITS_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectStateFlagBitsNV.VK_INDIRECT_STATE_FLAG_BITS_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_INDIRECT_STATE_FLAG_BITS_MAX_ENUM_NV() {
-        return VK_INDIRECT_STATE_FLAG_BITS_MAX_ENUM_NV;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkIndirectStateFlagsNV
-     * }
-     */
-    public static final OfInt VkIndirectStateFlagsNV = vulkan_h.C_INT;
-    private static final int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsLayoutUsageFlagBitsNV.VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV = 1
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV() {
-        return VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsLayoutUsageFlagBitsNV.VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV = 2
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV() {
-        return VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsLayoutUsageFlagBitsNV.VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = 4
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV() {
-        return VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV;
-    }
-    private static final int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkIndirectCommandsLayoutUsageFlagBitsNV.VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_MAX_ENUM_NV() {
-        return VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_MAX_ENUM_NV;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkIndirectCommandsLayoutUsageFlagsNV
-     * }
-     */
-    public static final OfInt VkIndirectCommandsLayoutUsageFlagsNV = vulkan_h.C_INT;
-
-    private static class vkGetGeneratedCommandsMemoryRequirementsNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetGeneratedCommandsMemoryRequirementsNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkGetGeneratedCommandsMemoryRequirementsNV(VkDevice device, const VkGeneratedCommandsMemoryRequirementsInfoNV *pInfo, VkMemoryRequirements2 *pMemoryRequirements)
-     * }
-     */
-    public static FunctionDescriptor vkGetGeneratedCommandsMemoryRequirementsNV$descriptor() {
-        return vkGetGeneratedCommandsMemoryRequirementsNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkGetGeneratedCommandsMemoryRequirementsNV(VkDevice device, const VkGeneratedCommandsMemoryRequirementsInfoNV *pInfo, VkMemoryRequirements2 *pMemoryRequirements)
-     * }
-     */
-    public static MethodHandle vkGetGeneratedCommandsMemoryRequirementsNV$handle() {
-        return vkGetGeneratedCommandsMemoryRequirementsNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkGetGeneratedCommandsMemoryRequirementsNV(VkDevice device, const VkGeneratedCommandsMemoryRequirementsInfoNV *pInfo, VkMemoryRequirements2 *pMemoryRequirements)
-     * }
-     */
-    public static void vkGetGeneratedCommandsMemoryRequirementsNV(MemorySegment device, MemorySegment pInfo, MemorySegment pMemoryRequirements) {
-        var mh$ = vkGetGeneratedCommandsMemoryRequirementsNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetGeneratedCommandsMemoryRequirementsNV", device, pInfo, pMemoryRequirements);
-            }
-            mh$.invokeExact(device, pInfo, pMemoryRequirements);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdPreprocessGeneratedCommandsNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdPreprocessGeneratedCommandsNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdPreprocessGeneratedCommandsNV(VkCommandBuffer commandBuffer, const VkGeneratedCommandsInfoNV *pGeneratedCommandsInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCmdPreprocessGeneratedCommandsNV$descriptor() {
-        return vkCmdPreprocessGeneratedCommandsNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdPreprocessGeneratedCommandsNV(VkCommandBuffer commandBuffer, const VkGeneratedCommandsInfoNV *pGeneratedCommandsInfo)
-     * }
-     */
-    public static MethodHandle vkCmdPreprocessGeneratedCommandsNV$handle() {
-        return vkCmdPreprocessGeneratedCommandsNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdPreprocessGeneratedCommandsNV(VkCommandBuffer commandBuffer, const VkGeneratedCommandsInfoNV *pGeneratedCommandsInfo)
-     * }
-     */
-    public static void vkCmdPreprocessGeneratedCommandsNV(MemorySegment commandBuffer, MemorySegment pGeneratedCommandsInfo) {
-        var mh$ = vkCmdPreprocessGeneratedCommandsNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdPreprocessGeneratedCommandsNV", commandBuffer, pGeneratedCommandsInfo);
-            }
-            mh$.invokeExact(commandBuffer, pGeneratedCommandsInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdExecuteGeneratedCommandsNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdExecuteGeneratedCommandsNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdExecuteGeneratedCommandsNV(VkCommandBuffer commandBuffer, VkBool32 isPreprocessed, const VkGeneratedCommandsInfoNV *pGeneratedCommandsInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCmdExecuteGeneratedCommandsNV$descriptor() {
-        return vkCmdExecuteGeneratedCommandsNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdExecuteGeneratedCommandsNV(VkCommandBuffer commandBuffer, VkBool32 isPreprocessed, const VkGeneratedCommandsInfoNV *pGeneratedCommandsInfo)
-     * }
-     */
-    public static MethodHandle vkCmdExecuteGeneratedCommandsNV$handle() {
-        return vkCmdExecuteGeneratedCommandsNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdExecuteGeneratedCommandsNV(VkCommandBuffer commandBuffer, VkBool32 isPreprocessed, const VkGeneratedCommandsInfoNV *pGeneratedCommandsInfo)
-     * }
-     */
-    public static void vkCmdExecuteGeneratedCommandsNV(MemorySegment commandBuffer, int isPreprocessed, MemorySegment pGeneratedCommandsInfo) {
-        var mh$ = vkCmdExecuteGeneratedCommandsNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdExecuteGeneratedCommandsNV", commandBuffer, isPreprocessed, pGeneratedCommandsInfo);
-            }
-            mh$.invokeExact(commandBuffer, isPreprocessed, pGeneratedCommandsInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdBindPipelineShaderGroupNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdBindPipelineShaderGroupNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdBindPipelineShaderGroupNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline, uint32_t groupIndex)
-     * }
-     */
-    public static FunctionDescriptor vkCmdBindPipelineShaderGroupNV$descriptor() {
-        return vkCmdBindPipelineShaderGroupNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdBindPipelineShaderGroupNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline, uint32_t groupIndex)
-     * }
-     */
-    public static MethodHandle vkCmdBindPipelineShaderGroupNV$handle() {
-        return vkCmdBindPipelineShaderGroupNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdBindPipelineShaderGroupNV(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline, uint32_t groupIndex)
-     * }
-     */
-    public static void vkCmdBindPipelineShaderGroupNV(MemorySegment commandBuffer, int pipelineBindPoint, MemorySegment pipeline, int groupIndex) {
-        var mh$ = vkCmdBindPipelineShaderGroupNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdBindPipelineShaderGroupNV", commandBuffer, pipelineBindPoint, pipeline, groupIndex);
-            }
-            mh$.invokeExact(commandBuffer, pipelineBindPoint, pipeline, groupIndex);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCreateIndirectCommandsLayoutNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCreateIndirectCommandsLayoutNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCreateIndirectCommandsLayoutNV(VkDevice device, const VkIndirectCommandsLayoutCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkIndirectCommandsLayoutNV *pIndirectCommandsLayout)
-     * }
-     */
-    public static FunctionDescriptor vkCreateIndirectCommandsLayoutNV$descriptor() {
-        return vkCreateIndirectCommandsLayoutNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCreateIndirectCommandsLayoutNV(VkDevice device, const VkIndirectCommandsLayoutCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkIndirectCommandsLayoutNV *pIndirectCommandsLayout)
-     * }
-     */
-    public static MethodHandle vkCreateIndirectCommandsLayoutNV$handle() {
-        return vkCreateIndirectCommandsLayoutNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCreateIndirectCommandsLayoutNV(VkDevice device, const VkIndirectCommandsLayoutCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkIndirectCommandsLayoutNV *pIndirectCommandsLayout)
-     * }
-     */
-    public static int vkCreateIndirectCommandsLayoutNV(MemorySegment device, MemorySegment pCreateInfo, MemorySegment pAllocator, MemorySegment pIndirectCommandsLayout) {
-        var mh$ = vkCreateIndirectCommandsLayoutNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCreateIndirectCommandsLayoutNV", device, pCreateInfo, pAllocator, pIndirectCommandsLayout);
-            }
-            return (int)mh$.invokeExact(device, pCreateInfo, pAllocator, pIndirectCommandsLayout);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkDestroyIndirectCommandsLayoutNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkDestroyIndirectCommandsLayoutNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkDestroyIndirectCommandsLayoutNV(VkDevice device, VkIndirectCommandsLayoutNV indirectCommandsLayout, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static FunctionDescriptor vkDestroyIndirectCommandsLayoutNV$descriptor() {
-        return vkDestroyIndirectCommandsLayoutNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkDestroyIndirectCommandsLayoutNV(VkDevice device, VkIndirectCommandsLayoutNV indirectCommandsLayout, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static MethodHandle vkDestroyIndirectCommandsLayoutNV$handle() {
-        return vkDestroyIndirectCommandsLayoutNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkDestroyIndirectCommandsLayoutNV(VkDevice device, VkIndirectCommandsLayoutNV indirectCommandsLayout, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static void vkDestroyIndirectCommandsLayoutNV(MemorySegment device, MemorySegment indirectCommandsLayout, MemorySegment pAllocator) {
-        var mh$ = vkDestroyIndirectCommandsLayoutNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkDestroyIndirectCommandsLayoutNV", device, indirectCommandsLayout, pAllocator);
-            }
-            mh$.invokeExact(device, indirectCommandsLayout, pAllocator);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORMAT_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDepthBiasRepresentationEXT.VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORMAT_EXT = 0
-     * }
-     */
-    public static int VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORMAT_EXT() {
-        return VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORMAT_EXT;
-    }
-    private static final int VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDepthBiasRepresentationEXT.VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT = 1
-     * }
-     */
-    public static int VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT() {
-        return VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT;
-    }
-    private static final int VK_DEPTH_BIAS_REPRESENTATION_FLOAT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDepthBiasRepresentationEXT.VK_DEPTH_BIAS_REPRESENTATION_FLOAT_EXT = 2
-     * }
-     */
-    public static int VK_DEPTH_BIAS_REPRESENTATION_FLOAT_EXT() {
-        return VK_DEPTH_BIAS_REPRESENTATION_FLOAT_EXT;
-    }
-    private static final int VK_DEPTH_BIAS_REPRESENTATION_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDepthBiasRepresentationEXT.VK_DEPTH_BIAS_REPRESENTATION_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_DEPTH_BIAS_REPRESENTATION_MAX_ENUM_EXT() {
-        return VK_DEPTH_BIAS_REPRESENTATION_MAX_ENUM_EXT;
-    }
-
-    private static class vkCmdSetDepthBias2EXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDepthBias2EXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT *pDepthBiasInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDepthBias2EXT$descriptor() {
-        return vkCmdSetDepthBias2EXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT *pDepthBiasInfo)
-     * }
-     */
-    public static MethodHandle vkCmdSetDepthBias2EXT$handle() {
-        return vkCmdSetDepthBias2EXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBias2EXT(VkCommandBuffer commandBuffer, const VkDepthBiasInfoEXT *pDepthBiasInfo)
-     * }
-     */
-    public static void vkCmdSetDepthBias2EXT(MemorySegment commandBuffer, MemorySegment pDepthBiasInfo) {
-        var mh$ = vkCmdSetDepthBias2EXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDepthBias2EXT", commandBuffer, pDepthBiasInfo);
-            }
-            mh$.invokeExact(commandBuffer, pDepthBiasInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceMemoryReportEventTypeEXT.VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT = 0
-     * }
-     */
-    public static int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT() {
-        return VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT;
-    }
-    private static final int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceMemoryReportEventTypeEXT.VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT = 1
-     * }
-     */
-    public static int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT() {
-        return VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT;
-    }
-    private static final int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceMemoryReportEventTypeEXT.VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT = 2
-     * }
-     */
-    public static int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT() {
-        return VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT;
-    }
-    private static final int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceMemoryReportEventTypeEXT.VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT = 3
-     * }
-     */
-    public static int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT() {
-        return VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT;
-    }
-    private static final int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceMemoryReportEventTypeEXT.VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT = 4
-     * }
-     */
-    public static int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT() {
-        return VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT;
-    }
-    private static final int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceMemoryReportEventTypeEXT.VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_MAX_ENUM_EXT() {
-        return VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkDeviceMemoryReportFlagsEXT
-     * }
-     */
-    public static final OfInt VkDeviceMemoryReportFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkAcquireDrmDisplayEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkAcquireDrmDisplayEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkAcquireDrmDisplayEXT(VkPhysicalDevice physicalDevice, int32_t drmFd, VkDisplayKHR display)
-     * }
-     */
-    public static FunctionDescriptor vkAcquireDrmDisplayEXT$descriptor() {
-        return vkAcquireDrmDisplayEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkAcquireDrmDisplayEXT(VkPhysicalDevice physicalDevice, int32_t drmFd, VkDisplayKHR display)
-     * }
-     */
-    public static MethodHandle vkAcquireDrmDisplayEXT$handle() {
-        return vkAcquireDrmDisplayEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkAcquireDrmDisplayEXT(VkPhysicalDevice physicalDevice, int32_t drmFd, VkDisplayKHR display)
-     * }
-     */
-    public static int vkAcquireDrmDisplayEXT(MemorySegment physicalDevice, int drmFd, MemorySegment display) {
-        var mh$ = vkAcquireDrmDisplayEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkAcquireDrmDisplayEXT", physicalDevice, drmFd, display);
-            }
-            return (int)mh$.invokeExact(physicalDevice, drmFd, display);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetDrmDisplayEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetDrmDisplayEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetDrmDisplayEXT(VkPhysicalDevice physicalDevice, int32_t drmFd, uint32_t connectorId, VkDisplayKHR *display)
-     * }
-     */
-    public static FunctionDescriptor vkGetDrmDisplayEXT$descriptor() {
-        return vkGetDrmDisplayEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetDrmDisplayEXT(VkPhysicalDevice physicalDevice, int32_t drmFd, uint32_t connectorId, VkDisplayKHR *display)
-     * }
-     */
-    public static MethodHandle vkGetDrmDisplayEXT$handle() {
-        return vkGetDrmDisplayEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetDrmDisplayEXT(VkPhysicalDevice physicalDevice, int32_t drmFd, uint32_t connectorId, VkDisplayKHR *display)
-     * }
-     */
-    public static int vkGetDrmDisplayEXT(MemorySegment physicalDevice, int drmFd, int connectorId, MemorySegment display) {
-        var mh$ = vkGetDrmDisplayEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetDrmDisplayEXT", physicalDevice, drmFd, connectorId, display);
-            }
-            return (int)mh$.invokeExact(physicalDevice, drmFd, connectorId, display);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkPrivateDataSlot VkPrivateDataSlotEXT
-     * }
-     */
-    public static final AddressLayout VkPrivateDataSlotEXT = vulkan_h.C_POINTER;
-    /**
-     * {@snippet lang=c :
-     * typedef VkPrivateDataSlotCreateFlags VkPrivateDataSlotCreateFlagsEXT
-     * }
-     */
-    public static final OfInt VkPrivateDataSlotCreateFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkCreatePrivateDataSlotEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCreatePrivateDataSlotEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCreatePrivateDataSlotEXT(VkDevice device, const VkPrivateDataSlotCreateInfo *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkPrivateDataSlot *pPrivateDataSlot)
-     * }
-     */
-    public static FunctionDescriptor vkCreatePrivateDataSlotEXT$descriptor() {
-        return vkCreatePrivateDataSlotEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCreatePrivateDataSlotEXT(VkDevice device, const VkPrivateDataSlotCreateInfo *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkPrivateDataSlot *pPrivateDataSlot)
-     * }
-     */
-    public static MethodHandle vkCreatePrivateDataSlotEXT$handle() {
-        return vkCreatePrivateDataSlotEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCreatePrivateDataSlotEXT(VkDevice device, const VkPrivateDataSlotCreateInfo *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkPrivateDataSlot *pPrivateDataSlot)
-     * }
-     */
-    public static int vkCreatePrivateDataSlotEXT(MemorySegment device, MemorySegment pCreateInfo, MemorySegment pAllocator, MemorySegment pPrivateDataSlot) {
-        var mh$ = vkCreatePrivateDataSlotEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCreatePrivateDataSlotEXT", device, pCreateInfo, pAllocator, pPrivateDataSlot);
-            }
-            return (int)mh$.invokeExact(device, pCreateInfo, pAllocator, pPrivateDataSlot);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkDestroyPrivateDataSlotEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkDestroyPrivateDataSlotEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkDestroyPrivateDataSlotEXT(VkDevice device, VkPrivateDataSlot privateDataSlot, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static FunctionDescriptor vkDestroyPrivateDataSlotEXT$descriptor() {
-        return vkDestroyPrivateDataSlotEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkDestroyPrivateDataSlotEXT(VkDevice device, VkPrivateDataSlot privateDataSlot, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static MethodHandle vkDestroyPrivateDataSlotEXT$handle() {
-        return vkDestroyPrivateDataSlotEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkDestroyPrivateDataSlotEXT(VkDevice device, VkPrivateDataSlot privateDataSlot, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static void vkDestroyPrivateDataSlotEXT(MemorySegment device, MemorySegment privateDataSlot, MemorySegment pAllocator) {
-        var mh$ = vkDestroyPrivateDataSlotEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkDestroyPrivateDataSlotEXT", device, privateDataSlot, pAllocator);
-            }
-            mh$.invokeExact(device, privateDataSlot, pAllocator);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkSetPrivateDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_LONG_LONG,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_LONG_LONG
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkSetPrivateDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkSetPrivateDataEXT(VkDevice device, VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlot privateDataSlot, uint64_t data)
-     * }
-     */
-    public static FunctionDescriptor vkSetPrivateDataEXT$descriptor() {
-        return vkSetPrivateDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkSetPrivateDataEXT(VkDevice device, VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlot privateDataSlot, uint64_t data)
-     * }
-     */
-    public static MethodHandle vkSetPrivateDataEXT$handle() {
-        return vkSetPrivateDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkSetPrivateDataEXT(VkDevice device, VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlot privateDataSlot, uint64_t data)
-     * }
-     */
-    public static int vkSetPrivateDataEXT(MemorySegment device, int objectType, long objectHandle, MemorySegment privateDataSlot, long data) {
-        var mh$ = vkSetPrivateDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkSetPrivateDataEXT", device, objectType, objectHandle, privateDataSlot, data);
-            }
-            return (int)mh$.invokeExact(device, objectType, objectHandle, privateDataSlot, data);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetPrivateDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_LONG_LONG,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetPrivateDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkGetPrivateDataEXT(VkDevice device, VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlot privateDataSlot, uint64_t *pData)
-     * }
-     */
-    public static FunctionDescriptor vkGetPrivateDataEXT$descriptor() {
-        return vkGetPrivateDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkGetPrivateDataEXT(VkDevice device, VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlot privateDataSlot, uint64_t *pData)
-     * }
-     */
-    public static MethodHandle vkGetPrivateDataEXT$handle() {
-        return vkGetPrivateDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkGetPrivateDataEXT(VkDevice device, VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlot privateDataSlot, uint64_t *pData)
-     * }
-     */
-    public static void vkGetPrivateDataEXT(MemorySegment device, int objectType, long objectHandle, MemorySegment privateDataSlot, MemorySegment pData) {
-        var mh$ = vkGetPrivateDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetPrivateDataEXT", device, objectType, objectHandle, privateDataSlot, pData);
-            }
-            mh$.invokeExact(device, objectType, objectHandle, privateDataSlot, pData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceDiagnosticsConfigFlagBitsNV.VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = 1
-     * }
-     */
-    public static int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV() {
-        return VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV;
-    }
-    private static final int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceDiagnosticsConfigFlagBitsNV.VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = 2
-     * }
-     */
-    public static int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV() {
-        return VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV;
-    }
-    private static final int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceDiagnosticsConfigFlagBitsNV.VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 4
-     * }
-     */
-    public static int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV() {
-        return VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV;
-    }
-    private static final int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceDiagnosticsConfigFlagBitsNV.VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV = 8
-     * }
-     */
-    public static int VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV() {
-        return VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV;
-    }
-    private static final int VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceDiagnosticsConfigFlagBitsNV.VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_MAX_ENUM_NV() {
-        return VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_MAX_ENUM_NV;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkDeviceDiagnosticsConfigFlagsNV
-     * }
-     */
-    public static final OfInt VkDeviceDiagnosticsConfigFlagsNV = vulkan_h.C_INT;
-    /**
-     * {@snippet lang=c :
-     * typedef struct VkCudaModuleNV_T *VkCudaModuleNV
-     * }
-     */
-    public static final AddressLayout VkCudaModuleNV = vulkan_h.C_POINTER;
-    /**
-     * {@snippet lang=c :
-     * typedef struct VkCudaFunctionNV_T *VkCudaFunctionNV
-     * }
-     */
-    public static final AddressLayout VkCudaFunctionNV = vulkan_h.C_POINTER;
-
-    private static class vkCreateCudaModuleNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCreateCudaModuleNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCreateCudaModuleNV(VkDevice device, const VkCudaModuleCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkCudaModuleNV *pModule)
-     * }
-     */
-    public static FunctionDescriptor vkCreateCudaModuleNV$descriptor() {
-        return vkCreateCudaModuleNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCreateCudaModuleNV(VkDevice device, const VkCudaModuleCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkCudaModuleNV *pModule)
-     * }
-     */
-    public static MethodHandle vkCreateCudaModuleNV$handle() {
-        return vkCreateCudaModuleNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCreateCudaModuleNV(VkDevice device, const VkCudaModuleCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkCudaModuleNV *pModule)
-     * }
-     */
-    public static int vkCreateCudaModuleNV(MemorySegment device, MemorySegment pCreateInfo, MemorySegment pAllocator, MemorySegment pModule) {
-        var mh$ = vkCreateCudaModuleNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCreateCudaModuleNV", device, pCreateInfo, pAllocator, pModule);
-            }
-            return (int)mh$.invokeExact(device, pCreateInfo, pAllocator, pModule);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetCudaModuleCacheNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetCudaModuleCacheNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetCudaModuleCacheNV(VkDevice device, VkCudaModuleNV module, size_t *pCacheSize, void *pCacheData)
-     * }
-     */
-    public static FunctionDescriptor vkGetCudaModuleCacheNV$descriptor() {
-        return vkGetCudaModuleCacheNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetCudaModuleCacheNV(VkDevice device, VkCudaModuleNV module, size_t *pCacheSize, void *pCacheData)
-     * }
-     */
-    public static MethodHandle vkGetCudaModuleCacheNV$handle() {
-        return vkGetCudaModuleCacheNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetCudaModuleCacheNV(VkDevice device, VkCudaModuleNV module, size_t *pCacheSize, void *pCacheData)
-     * }
-     */
-    public static int vkGetCudaModuleCacheNV(MemorySegment device, MemorySegment module, MemorySegment pCacheSize, MemorySegment pCacheData) {
-        var mh$ = vkGetCudaModuleCacheNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetCudaModuleCacheNV", device, module, pCacheSize, pCacheData);
-            }
-            return (int)mh$.invokeExact(device, module, pCacheSize, pCacheData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCreateCudaFunctionNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCreateCudaFunctionNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkCreateCudaFunctionNV(VkDevice device, const VkCudaFunctionCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkCudaFunctionNV *pFunction)
-     * }
-     */
-    public static FunctionDescriptor vkCreateCudaFunctionNV$descriptor() {
-        return vkCreateCudaFunctionNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkCreateCudaFunctionNV(VkDevice device, const VkCudaFunctionCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkCudaFunctionNV *pFunction)
-     * }
-     */
-    public static MethodHandle vkCreateCudaFunctionNV$handle() {
-        return vkCreateCudaFunctionNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkCreateCudaFunctionNV(VkDevice device, const VkCudaFunctionCreateInfoNV *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkCudaFunctionNV *pFunction)
-     * }
-     */
-    public static int vkCreateCudaFunctionNV(MemorySegment device, MemorySegment pCreateInfo, MemorySegment pAllocator, MemorySegment pFunction) {
-        var mh$ = vkCreateCudaFunctionNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCreateCudaFunctionNV", device, pCreateInfo, pAllocator, pFunction);
-            }
-            return (int)mh$.invokeExact(device, pCreateInfo, pAllocator, pFunction);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkDestroyCudaModuleNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkDestroyCudaModuleNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkDestroyCudaModuleNV(VkDevice device, VkCudaModuleNV module, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static FunctionDescriptor vkDestroyCudaModuleNV$descriptor() {
-        return vkDestroyCudaModuleNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkDestroyCudaModuleNV(VkDevice device, VkCudaModuleNV module, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static MethodHandle vkDestroyCudaModuleNV$handle() {
-        return vkDestroyCudaModuleNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkDestroyCudaModuleNV(VkDevice device, VkCudaModuleNV module, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static void vkDestroyCudaModuleNV(MemorySegment device, MemorySegment module, MemorySegment pAllocator) {
-        var mh$ = vkDestroyCudaModuleNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkDestroyCudaModuleNV", device, module, pAllocator);
-            }
-            mh$.invokeExact(device, module, pAllocator);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkDestroyCudaFunctionNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkDestroyCudaFunctionNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkDestroyCudaFunctionNV(VkDevice device, VkCudaFunctionNV function, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static FunctionDescriptor vkDestroyCudaFunctionNV$descriptor() {
-        return vkDestroyCudaFunctionNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkDestroyCudaFunctionNV(VkDevice device, VkCudaFunctionNV function, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static MethodHandle vkDestroyCudaFunctionNV$handle() {
-        return vkDestroyCudaFunctionNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkDestroyCudaFunctionNV(VkDevice device, VkCudaFunctionNV function, const VkAllocationCallbacks *pAllocator)
-     * }
-     */
-    public static void vkDestroyCudaFunctionNV(MemorySegment device, MemorySegment function, MemorySegment pAllocator) {
-        var mh$ = vkDestroyCudaFunctionNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkDestroyCudaFunctionNV", device, function, pAllocator);
-            }
-            mh$.invokeExact(device, function, pAllocator);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdCudaLaunchKernelNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdCudaLaunchKernelNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdCudaLaunchKernelNV(VkCommandBuffer commandBuffer, const VkCudaLaunchInfoNV *pLaunchInfo)
-     * }
-     */
-    public static FunctionDescriptor vkCmdCudaLaunchKernelNV$descriptor() {
-        return vkCmdCudaLaunchKernelNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdCudaLaunchKernelNV(VkCommandBuffer commandBuffer, const VkCudaLaunchInfoNV *pLaunchInfo)
-     * }
-     */
-    public static MethodHandle vkCmdCudaLaunchKernelNV$handle() {
-        return vkCmdCudaLaunchKernelNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdCudaLaunchKernelNV(VkCommandBuffer commandBuffer, const VkCudaLaunchInfoNV *pLaunchInfo)
-     * }
-     */
-    public static void vkCmdCudaLaunchKernelNV(MemorySegment commandBuffer, MemorySegment pLaunchInfo) {
-        var mh$ = vkCmdCudaLaunchKernelNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdCudaLaunchKernelNV", commandBuffer, pLaunchInfo);
-            }
-            mh$.invokeExact(commandBuffer, pLaunchInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef struct VkAccelerationStructureKHR_T *VkAccelerationStructureKHR
-     * }
-     */
-    public static final AddressLayout VkAccelerationStructureKHR = vulkan_h.C_POINTER;
-
-    private static class vkGetDescriptorSetLayoutSizeEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetDescriptorSetLayoutSizeEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkGetDescriptorSetLayoutSizeEXT(VkDevice device, VkDescriptorSetLayout layout, VkDeviceSize *pLayoutSizeInBytes)
-     * }
-     */
-    public static FunctionDescriptor vkGetDescriptorSetLayoutSizeEXT$descriptor() {
-        return vkGetDescriptorSetLayoutSizeEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkGetDescriptorSetLayoutSizeEXT(VkDevice device, VkDescriptorSetLayout layout, VkDeviceSize *pLayoutSizeInBytes)
-     * }
-     */
-    public static MethodHandle vkGetDescriptorSetLayoutSizeEXT$handle() {
-        return vkGetDescriptorSetLayoutSizeEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkGetDescriptorSetLayoutSizeEXT(VkDevice device, VkDescriptorSetLayout layout, VkDeviceSize *pLayoutSizeInBytes)
-     * }
-     */
-    public static void vkGetDescriptorSetLayoutSizeEXT(MemorySegment device, MemorySegment layout, MemorySegment pLayoutSizeInBytes) {
-        var mh$ = vkGetDescriptorSetLayoutSizeEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetDescriptorSetLayoutSizeEXT", device, layout, pLayoutSizeInBytes);
-            }
-            mh$.invokeExact(device, layout, pLayoutSizeInBytes);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetDescriptorSetLayoutBindingOffsetEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetDescriptorSetLayoutBindingOffsetEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkGetDescriptorSetLayoutBindingOffsetEXT(VkDevice device, VkDescriptorSetLayout layout, uint32_t binding, VkDeviceSize *pOffset)
-     * }
-     */
-    public static FunctionDescriptor vkGetDescriptorSetLayoutBindingOffsetEXT$descriptor() {
-        return vkGetDescriptorSetLayoutBindingOffsetEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkGetDescriptorSetLayoutBindingOffsetEXT(VkDevice device, VkDescriptorSetLayout layout, uint32_t binding, VkDeviceSize *pOffset)
-     * }
-     */
-    public static MethodHandle vkGetDescriptorSetLayoutBindingOffsetEXT$handle() {
-        return vkGetDescriptorSetLayoutBindingOffsetEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkGetDescriptorSetLayoutBindingOffsetEXT(VkDevice device, VkDescriptorSetLayout layout, uint32_t binding, VkDeviceSize *pOffset)
-     * }
-     */
-    public static void vkGetDescriptorSetLayoutBindingOffsetEXT(MemorySegment device, MemorySegment layout, int binding, MemorySegment pOffset) {
-        var mh$ = vkGetDescriptorSetLayoutBindingOffsetEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetDescriptorSetLayoutBindingOffsetEXT", device, layout, binding, pOffset);
-            }
-            mh$.invokeExact(device, layout, binding, pOffset);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetDescriptorEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_LONG,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetDescriptorEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkGetDescriptorEXT(VkDevice device, const VkDescriptorGetInfoEXT *pDescriptorInfo, size_t dataSize, void *pDescriptor)
-     * }
-     */
-    public static FunctionDescriptor vkGetDescriptorEXT$descriptor() {
-        return vkGetDescriptorEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkGetDescriptorEXT(VkDevice device, const VkDescriptorGetInfoEXT *pDescriptorInfo, size_t dataSize, void *pDescriptor)
-     * }
-     */
-    public static MethodHandle vkGetDescriptorEXT$handle() {
-        return vkGetDescriptorEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkGetDescriptorEXT(VkDevice device, const VkDescriptorGetInfoEXT *pDescriptorInfo, size_t dataSize, void *pDescriptor)
-     * }
-     */
-    public static void vkGetDescriptorEXT(MemorySegment device, MemorySegment pDescriptorInfo, long dataSize, MemorySegment pDescriptor) {
-        var mh$ = vkGetDescriptorEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetDescriptorEXT", device, pDescriptorInfo, dataSize, pDescriptor);
-            }
-            mh$.invokeExact(device, pDescriptorInfo, dataSize, pDescriptor);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdBindDescriptorBuffersEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdBindDescriptorBuffersEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdBindDescriptorBuffersEXT(VkCommandBuffer commandBuffer, uint32_t bufferCount, const VkDescriptorBufferBindingInfoEXT *pBindingInfos)
-     * }
-     */
-    public static FunctionDescriptor vkCmdBindDescriptorBuffersEXT$descriptor() {
-        return vkCmdBindDescriptorBuffersEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdBindDescriptorBuffersEXT(VkCommandBuffer commandBuffer, uint32_t bufferCount, const VkDescriptorBufferBindingInfoEXT *pBindingInfos)
-     * }
-     */
-    public static MethodHandle vkCmdBindDescriptorBuffersEXT$handle() {
-        return vkCmdBindDescriptorBuffersEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdBindDescriptorBuffersEXT(VkCommandBuffer commandBuffer, uint32_t bufferCount, const VkDescriptorBufferBindingInfoEXT *pBindingInfos)
-     * }
-     */
-    public static void vkCmdBindDescriptorBuffersEXT(MemorySegment commandBuffer, int bufferCount, MemorySegment pBindingInfos) {
-        var mh$ = vkCmdBindDescriptorBuffersEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdBindDescriptorBuffersEXT", commandBuffer, bufferCount, pBindingInfos);
-            }
-            mh$.invokeExact(commandBuffer, bufferCount, pBindingInfos);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetDescriptorBufferOffsetsEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDescriptorBufferOffsetsEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDescriptorBufferOffsetsEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t firstSet, uint32_t setCount, const uint32_t *pBufferIndices, const VkDeviceSize *pOffsets)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDescriptorBufferOffsetsEXT$descriptor() {
-        return vkCmdSetDescriptorBufferOffsetsEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDescriptorBufferOffsetsEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t firstSet, uint32_t setCount, const uint32_t *pBufferIndices, const VkDeviceSize *pOffsets)
-     * }
-     */
-    public static MethodHandle vkCmdSetDescriptorBufferOffsetsEXT$handle() {
-        return vkCmdSetDescriptorBufferOffsetsEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDescriptorBufferOffsetsEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t firstSet, uint32_t setCount, const uint32_t *pBufferIndices, const VkDeviceSize *pOffsets)
-     * }
-     */
-    public static void vkCmdSetDescriptorBufferOffsetsEXT(MemorySegment commandBuffer, int pipelineBindPoint, MemorySegment layout, int firstSet, int setCount, MemorySegment pBufferIndices, MemorySegment pOffsets) {
-        var mh$ = vkCmdSetDescriptorBufferOffsetsEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDescriptorBufferOffsetsEXT", commandBuffer, pipelineBindPoint, layout, firstSet, setCount, pBufferIndices, pOffsets);
-            }
-            mh$.invokeExact(commandBuffer, pipelineBindPoint, layout, firstSet, setCount, pBufferIndices, pOffsets);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdBindDescriptorBufferEmbeddedSamplersEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdBindDescriptorBufferEmbeddedSamplersEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdBindDescriptorBufferEmbeddedSamplersEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t set)
-     * }
-     */
-    public static FunctionDescriptor vkCmdBindDescriptorBufferEmbeddedSamplersEXT$descriptor() {
-        return vkCmdBindDescriptorBufferEmbeddedSamplersEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdBindDescriptorBufferEmbeddedSamplersEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t set)
-     * }
-     */
-    public static MethodHandle vkCmdBindDescriptorBufferEmbeddedSamplersEXT$handle() {
-        return vkCmdBindDescriptorBufferEmbeddedSamplersEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdBindDescriptorBufferEmbeddedSamplersEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t set)
-     * }
-     */
-    public static void vkCmdBindDescriptorBufferEmbeddedSamplersEXT(MemorySegment commandBuffer, int pipelineBindPoint, MemorySegment layout, int set) {
-        var mh$ = vkCmdBindDescriptorBufferEmbeddedSamplersEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdBindDescriptorBufferEmbeddedSamplersEXT", commandBuffer, pipelineBindPoint, layout, set);
-            }
-            mh$.invokeExact(commandBuffer, pipelineBindPoint, layout, set);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetBufferOpaqueCaptureDescriptorDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetBufferOpaqueCaptureDescriptorDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetBufferOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkBufferCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static FunctionDescriptor vkGetBufferOpaqueCaptureDescriptorDataEXT$descriptor() {
-        return vkGetBufferOpaqueCaptureDescriptorDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetBufferOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkBufferCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static MethodHandle vkGetBufferOpaqueCaptureDescriptorDataEXT$handle() {
-        return vkGetBufferOpaqueCaptureDescriptorDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetBufferOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkBufferCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static int vkGetBufferOpaqueCaptureDescriptorDataEXT(MemorySegment device, MemorySegment pInfo, MemorySegment pData) {
-        var mh$ = vkGetBufferOpaqueCaptureDescriptorDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetBufferOpaqueCaptureDescriptorDataEXT", device, pInfo, pData);
-            }
-            return (int)mh$.invokeExact(device, pInfo, pData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetImageOpaqueCaptureDescriptorDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetImageOpaqueCaptureDescriptorDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetImageOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkImageCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static FunctionDescriptor vkGetImageOpaqueCaptureDescriptorDataEXT$descriptor() {
-        return vkGetImageOpaqueCaptureDescriptorDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetImageOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkImageCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static MethodHandle vkGetImageOpaqueCaptureDescriptorDataEXT$handle() {
-        return vkGetImageOpaqueCaptureDescriptorDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetImageOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkImageCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static int vkGetImageOpaqueCaptureDescriptorDataEXT(MemorySegment device, MemorySegment pInfo, MemorySegment pData) {
-        var mh$ = vkGetImageOpaqueCaptureDescriptorDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetImageOpaqueCaptureDescriptorDataEXT", device, pInfo, pData);
-            }
-            return (int)mh$.invokeExact(device, pInfo, pData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetImageViewOpaqueCaptureDescriptorDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetImageViewOpaqueCaptureDescriptorDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetImageViewOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkImageViewCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static FunctionDescriptor vkGetImageViewOpaqueCaptureDescriptorDataEXT$descriptor() {
-        return vkGetImageViewOpaqueCaptureDescriptorDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetImageViewOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkImageViewCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static MethodHandle vkGetImageViewOpaqueCaptureDescriptorDataEXT$handle() {
-        return vkGetImageViewOpaqueCaptureDescriptorDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetImageViewOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkImageViewCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static int vkGetImageViewOpaqueCaptureDescriptorDataEXT(MemorySegment device, MemorySegment pInfo, MemorySegment pData) {
-        var mh$ = vkGetImageViewOpaqueCaptureDescriptorDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetImageViewOpaqueCaptureDescriptorDataEXT", device, pInfo, pData);
-            }
-            return (int)mh$.invokeExact(device, pInfo, pData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetSamplerOpaqueCaptureDescriptorDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetSamplerOpaqueCaptureDescriptorDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetSamplerOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkSamplerCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static FunctionDescriptor vkGetSamplerOpaqueCaptureDescriptorDataEXT$descriptor() {
-        return vkGetSamplerOpaqueCaptureDescriptorDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetSamplerOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkSamplerCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static MethodHandle vkGetSamplerOpaqueCaptureDescriptorDataEXT$handle() {
-        return vkGetSamplerOpaqueCaptureDescriptorDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetSamplerOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkSamplerCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static int vkGetSamplerOpaqueCaptureDescriptorDataEXT(MemorySegment device, MemorySegment pInfo, MemorySegment pData) {
-        var mh$ = vkGetSamplerOpaqueCaptureDescriptorDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetSamplerOpaqueCaptureDescriptorDataEXT", device, pInfo, pData);
-            }
-            return (int)mh$.invokeExact(device, pInfo, pData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkAccelerationStructureCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static FunctionDescriptor vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT$descriptor() {
-        return vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkAccelerationStructureCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static MethodHandle vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT$handle() {
-        return vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(VkDevice device, const VkAccelerationStructureCaptureDescriptorDataInfoEXT *pInfo, void *pData)
-     * }
-     */
-    public static int vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(MemorySegment device, MemorySegment pInfo, MemorySegment pData) {
-        var mh$ = vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT", device, pInfo, pData);
-            }
-            return (int)mh$.invokeExact(device, pInfo, pData);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkGraphicsPipelineLibraryFlagBitsEXT.VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT = 1
-     * }
-     */
-    public static int VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT() {
-        return VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT;
-    }
-    private static final int VK_GRAPHICS_PIPELINE_LIBRARY_PRE_RASTERIZATION_SHADERS_BIT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkGraphicsPipelineLibraryFlagBitsEXT.VK_GRAPHICS_PIPELINE_LIBRARY_PRE_RASTERIZATION_SHADERS_BIT_EXT = 2
-     * }
-     */
-    public static int VK_GRAPHICS_PIPELINE_LIBRARY_PRE_RASTERIZATION_SHADERS_BIT_EXT() {
-        return VK_GRAPHICS_PIPELINE_LIBRARY_PRE_RASTERIZATION_SHADERS_BIT_EXT;
-    }
-    private static final int VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_SHADER_BIT_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkGraphicsPipelineLibraryFlagBitsEXT.VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_SHADER_BIT_EXT = 4
-     * }
-     */
-    public static int VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_SHADER_BIT_EXT() {
-        return VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_SHADER_BIT_EXT;
-    }
-    private static final int VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkGraphicsPipelineLibraryFlagBitsEXT.VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT = 8
-     * }
-     */
-    public static int VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT() {
-        return VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT;
-    }
-    private static final int VK_GRAPHICS_PIPELINE_LIBRARY_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkGraphicsPipelineLibraryFlagBitsEXT.VK_GRAPHICS_PIPELINE_LIBRARY_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_GRAPHICS_PIPELINE_LIBRARY_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_GRAPHICS_PIPELINE_LIBRARY_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkGraphicsPipelineLibraryFlagsEXT
-     * }
-     */
-    public static final OfInt VkGraphicsPipelineLibraryFlagsEXT = vulkan_h.C_INT;
-    private static final int VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateTypeNV.VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV = 0
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV() {
-        return VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateTypeNV.VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV = 1
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_TYPE_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateTypeNV.VK_FRAGMENT_SHADING_RATE_TYPE_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_TYPE_MAX_ENUM_NV() {
-        return VK_FRAGMENT_SHADING_RATE_TYPE_MAX_ENUM_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV = 0
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV = 1
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV = 4
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV = 5
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV = 6
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV = (int)9L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV = 9
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV = (int)10L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV = 10
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV = (int)11L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV = 11
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV() {
-        return VK_FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV = (int)12L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV = 12
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV() {
-        return VK_FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV = (int)13L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV = 13
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV() {
-        return VK_FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV = (int)14L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV = 14
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV() {
-        return VK_FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV = (int)15L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV = 15
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV() {
-        return VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV;
-    }
-    private static final int VK_FRAGMENT_SHADING_RATE_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFragmentShadingRateNV.VK_FRAGMENT_SHADING_RATE_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_FRAGMENT_SHADING_RATE_MAX_ENUM_NV() {
-        return VK_FRAGMENT_SHADING_RATE_MAX_ENUM_NV;
-    }
-
-    private static class vkCmdSetFragmentShadingRateEnumNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetFragmentShadingRateEnumNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer commandBuffer, VkFragmentShadingRateNV shadingRate, const VkFragmentShadingRateCombinerOpKHR combinerOps[2])
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetFragmentShadingRateEnumNV$descriptor() {
-        return vkCmdSetFragmentShadingRateEnumNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer commandBuffer, VkFragmentShadingRateNV shadingRate, const VkFragmentShadingRateCombinerOpKHR combinerOps[2])
-     * }
-     */
-    public static MethodHandle vkCmdSetFragmentShadingRateEnumNV$handle() {
-        return vkCmdSetFragmentShadingRateEnumNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetFragmentShadingRateEnumNV(VkCommandBuffer commandBuffer, VkFragmentShadingRateNV shadingRate, const VkFragmentShadingRateCombinerOpKHR combinerOps[2])
-     * }
-     */
-    public static void vkCmdSetFragmentShadingRateEnumNV(MemorySegment commandBuffer, int shadingRate, MemorySegment combinerOps) {
-        var mh$ = vkCmdSetFragmentShadingRateEnumNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetFragmentShadingRateEnumNV", commandBuffer, shadingRate, combinerOps);
-            }
-            mh$.invokeExact(commandBuffer, shadingRate, combinerOps);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkAccelerationStructureMotionInstanceTypeNV.VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV = 0
-     * }
-     */
-    public static int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV() {
-        return VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV;
-    }
-    private static final int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkAccelerationStructureMotionInstanceTypeNV.VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV = 1
-     * }
-     */
-    public static int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV() {
-        return VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV;
-    }
-    private static final int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkAccelerationStructureMotionInstanceTypeNV.VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV = 2
-     * }
-     */
-    public static int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV() {
-        return VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV;
-    }
-    private static final int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MAX_ENUM_NV = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkAccelerationStructureMotionInstanceTypeNV.VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MAX_ENUM_NV = 2147483647
-     * }
-     */
-    public static int VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MAX_ENUM_NV() {
-        return VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MAX_ENUM_NV;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkAccelerationStructureMotionInfoFlagsNV
-     * }
-     */
-    public static final OfInt VkAccelerationStructureMotionInfoFlagsNV = vulkan_h.C_INT;
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkAccelerationStructureMotionInstanceFlagsNV
-     * }
-     */
-    public static final OfInt VkAccelerationStructureMotionInstanceFlagsNV = vulkan_h.C_INT;
-    private static final int VK_IMAGE_COMPRESSION_DEFAULT_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFlagBitsEXT.VK_IMAGE_COMPRESSION_DEFAULT_EXT = 0
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_DEFAULT_EXT() {
-        return VK_IMAGE_COMPRESSION_DEFAULT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_DEFAULT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_DEFAULT_EXT = 1
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_DEFAULT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_DEFAULT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_EXPLICIT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_EXPLICIT_EXT = 2
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_EXPLICIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_EXPLICIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_DISABLED_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFlagBitsEXT.VK_IMAGE_COMPRESSION_DISABLED_EXT = 4
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_DISABLED_EXT() {
-        return VK_IMAGE_COMPRESSION_DISABLED_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFlagBitsEXT.VK_IMAGE_COMPRESSION_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_IMAGE_COMPRESSION_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkImageCompressionFlagsEXT
-     * }
-     */
-    public static final OfInt VkImageCompressionFlagsEXT = vulkan_h.C_INT;
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT = 0
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_1BPC_BIT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_1BPC_BIT_EXT = 1
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_1BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_1BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_2BPC_BIT_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_2BPC_BIT_EXT = 2
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_2BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_2BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_3BPC_BIT_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_3BPC_BIT_EXT = 4
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_3BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_3BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_4BPC_BIT_EXT = (int)8L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_4BPC_BIT_EXT = 8
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_4BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_4BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_5BPC_BIT_EXT = (int)16L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_5BPC_BIT_EXT = 16
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_5BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_5BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_6BPC_BIT_EXT = (int)32L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_6BPC_BIT_EXT = 32
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_6BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_6BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_7BPC_BIT_EXT = (int)64L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_7BPC_BIT_EXT = 64
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_7BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_7BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_8BPC_BIT_EXT = (int)128L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_8BPC_BIT_EXT = 128
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_8BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_8BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_9BPC_BIT_EXT = (int)256L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_9BPC_BIT_EXT = 256
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_9BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_9BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_10BPC_BIT_EXT = (int)512L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_10BPC_BIT_EXT = 512
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_10BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_10BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_11BPC_BIT_EXT = (int)1024L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_11BPC_BIT_EXT = 1024
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_11BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_11BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_12BPC_BIT_EXT = (int)2048L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_12BPC_BIT_EXT = 2048
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_12BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_12BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_13BPC_BIT_EXT = (int)4096L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_13BPC_BIT_EXT = 4096
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_13BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_13BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_14BPC_BIT_EXT = (int)8192L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_14BPC_BIT_EXT = 8192
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_14BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_14BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_15BPC_BIT_EXT = (int)16384L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_15BPC_BIT_EXT = 16384
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_15BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_15BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_16BPC_BIT_EXT = (int)32768L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_16BPC_BIT_EXT = 32768
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_16BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_16BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_17BPC_BIT_EXT = (int)65536L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_17BPC_BIT_EXT = 65536
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_17BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_17BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_18BPC_BIT_EXT = (int)131072L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_18BPC_BIT_EXT = 131072
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_18BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_18BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_19BPC_BIT_EXT = (int)262144L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_19BPC_BIT_EXT = 262144
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_19BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_19BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_20BPC_BIT_EXT = (int)524288L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_20BPC_BIT_EXT = 524288
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_20BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_20BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_21BPC_BIT_EXT = (int)1048576L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_21BPC_BIT_EXT = 1048576
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_21BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_21BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_22BPC_BIT_EXT = (int)2097152L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_22BPC_BIT_EXT = 2097152
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_22BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_22BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_23BPC_BIT_EXT = (int)4194304L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_23BPC_BIT_EXT = 4194304
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_23BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_23BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT = (int)8388608L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT = 8388608
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT;
-    }
-    private static final int VK_IMAGE_COMPRESSION_FIXED_RATE_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkImageCompressionFixedRateFlagBitsEXT.VK_IMAGE_COMPRESSION_FIXED_RATE_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_IMAGE_COMPRESSION_FIXED_RATE_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_IMAGE_COMPRESSION_FIXED_RATE_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkImageCompressionFixedRateFlagsEXT
-     * }
-     */
-    public static final OfInt VkImageCompressionFixedRateFlagsEXT = vulkan_h.C_INT;
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT = 0
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT = 1
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT = (int)2L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT = 2
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_EXECUTE_INVALID_EXT = (int)3L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_EXECUTE_INVALID_EXT = 3
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_EXECUTE_INVALID_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_EXECUTE_INVALID_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_UNKNOWN_EXT = (int)4L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_UNKNOWN_EXT = 4
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_UNKNOWN_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_UNKNOWN_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_INVALID_EXT = (int)5L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_INVALID_EXT = 5
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_INVALID_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_INVALID_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT = (int)6L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT = 6
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_ADDRESS_TYPE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultAddressTypeEXT.VK_DEVICE_FAULT_ADDRESS_TYPE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_DEVICE_FAULT_ADDRESS_TYPE_MAX_ENUM_EXT() {
-        return VK_DEVICE_FAULT_ADDRESS_TYPE_MAX_ENUM_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultVendorBinaryHeaderVersionEXT.VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT = 1
-     * }
-     */
-    public static int VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT() {
-        return VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT;
-    }
-    private static final int VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceFaultVendorBinaryHeaderVersionEXT.VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_MAX_ENUM_EXT() {
-        return VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_MAX_ENUM_EXT;
-    }
-
-    private static class vkGetDeviceFaultInfoEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetDeviceFaultInfoEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetDeviceFaultInfoEXT(VkDevice device, VkDeviceFaultCountsEXT *pFaultCounts, VkDeviceFaultInfoEXT *pFaultInfo)
-     * }
-     */
-    public static FunctionDescriptor vkGetDeviceFaultInfoEXT$descriptor() {
-        return vkGetDeviceFaultInfoEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetDeviceFaultInfoEXT(VkDevice device, VkDeviceFaultCountsEXT *pFaultCounts, VkDeviceFaultInfoEXT *pFaultInfo)
-     * }
-     */
-    public static MethodHandle vkGetDeviceFaultInfoEXT$handle() {
-        return vkGetDeviceFaultInfoEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetDeviceFaultInfoEXT(VkDevice device, VkDeviceFaultCountsEXT *pFaultCounts, VkDeviceFaultInfoEXT *pFaultInfo)
-     * }
-     */
-    public static int vkGetDeviceFaultInfoEXT(MemorySegment device, MemorySegment pFaultCounts, MemorySegment pFaultInfo) {
-        var mh$ = vkGetDeviceFaultInfoEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetDeviceFaultInfoEXT", device, pFaultCounts, pFaultInfo);
-            }
-            return (int)mh$.invokeExact(device, pFaultCounts, pFaultInfo);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetVertexInputEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetVertexInputEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetVertexInputEXT(VkCommandBuffer commandBuffer, uint32_t vertexBindingDescriptionCount, const VkVertexInputBindingDescription2EXT *pVertexBindingDescriptions, uint32_t vertexAttributeDescriptionCount, const VkVertexInputAttributeDescription2EXT *pVertexAttributeDescriptions)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetVertexInputEXT$descriptor() {
-        return vkCmdSetVertexInputEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetVertexInputEXT(VkCommandBuffer commandBuffer, uint32_t vertexBindingDescriptionCount, const VkVertexInputBindingDescription2EXT *pVertexBindingDescriptions, uint32_t vertexAttributeDescriptionCount, const VkVertexInputAttributeDescription2EXT *pVertexAttributeDescriptions)
-     * }
-     */
-    public static MethodHandle vkCmdSetVertexInputEXT$handle() {
-        return vkCmdSetVertexInputEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetVertexInputEXT(VkCommandBuffer commandBuffer, uint32_t vertexBindingDescriptionCount, const VkVertexInputBindingDescription2EXT *pVertexBindingDescriptions, uint32_t vertexAttributeDescriptionCount, const VkVertexInputAttributeDescription2EXT *pVertexAttributeDescriptions)
-     * }
-     */
-    public static void vkCmdSetVertexInputEXT(MemorySegment commandBuffer, int vertexBindingDescriptionCount, MemorySegment pVertexBindingDescriptions, int vertexAttributeDescriptionCount, MemorySegment pVertexAttributeDescriptions) {
-        var mh$ = vkCmdSetVertexInputEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetVertexInputEXT", commandBuffer, vertexBindingDescriptionCount, pVertexBindingDescriptions, vertexAttributeDescriptionCount, pVertexAttributeDescriptions);
-            }
-            mh$.invokeExact(commandBuffer, vertexBindingDescriptionCount, pVertexBindingDescriptions, vertexAttributeDescriptionCount, pVertexAttributeDescriptions);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT = (int)0L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceAddressBindingTypeEXT.VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT = 0
-     * }
-     */
-    public static int VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT() {
-        return VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT;
-    }
-    private static final int VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceAddressBindingTypeEXT.VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT = 1
-     * }
-     */
-    public static int VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT() {
-        return VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT;
-    }
-    private static final int VK_DEVICE_ADDRESS_BINDING_TYPE_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceAddressBindingTypeEXT.VK_DEVICE_ADDRESS_BINDING_TYPE_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_DEVICE_ADDRESS_BINDING_TYPE_MAX_ENUM_EXT() {
-        return VK_DEVICE_ADDRESS_BINDING_TYPE_MAX_ENUM_EXT;
-    }
-    private static final int VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceAddressBindingFlagBitsEXT.VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT = 1
-     * }
-     */
-    public static int VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT() {
-        return VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT;
-    }
-    private static final int VK_DEVICE_ADDRESS_BINDING_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkDeviceAddressBindingFlagBitsEXT.VK_DEVICE_ADDRESS_BINDING_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_DEVICE_ADDRESS_BINDING_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_DEVICE_ADDRESS_BINDING_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkDeviceAddressBindingFlagsEXT
-     * }
-     */
-    public static final OfInt VkDeviceAddressBindingFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(VkDevice device, VkRenderPass renderpass, VkExtent2D *pMaxWorkgroupSize)
-     * }
-     */
-    public static FunctionDescriptor vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI$descriptor() {
-        return vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(VkDevice device, VkRenderPass renderpass, VkExtent2D *pMaxWorkgroupSize)
-     * }
-     */
-    public static MethodHandle vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI$handle() {
-        return vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(VkDevice device, VkRenderPass renderpass, VkExtent2D *pMaxWorkgroupSize)
-     * }
-     */
-    public static int vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(MemorySegment device, MemorySegment renderpass, MemorySegment pMaxWorkgroupSize) {
-        var mh$ = vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI", device, renderpass, pMaxWorkgroupSize);
-            }
-            return (int)mh$.invokeExact(device, renderpass, pMaxWorkgroupSize);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSubpassShadingHUAWEI {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSubpassShadingHUAWEI"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSubpassShadingHUAWEI(VkCommandBuffer commandBuffer)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSubpassShadingHUAWEI$descriptor() {
-        return vkCmdSubpassShadingHUAWEI.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSubpassShadingHUAWEI(VkCommandBuffer commandBuffer)
-     * }
-     */
-    public static MethodHandle vkCmdSubpassShadingHUAWEI$handle() {
-        return vkCmdSubpassShadingHUAWEI.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSubpassShadingHUAWEI(VkCommandBuffer commandBuffer)
-     * }
-     */
-    public static void vkCmdSubpassShadingHUAWEI(MemorySegment commandBuffer) {
-        var mh$ = vkCmdSubpassShadingHUAWEI.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSubpassShadingHUAWEI", commandBuffer);
-            }
-            mh$.invokeExact(commandBuffer);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdBindInvocationMaskHUAWEI {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdBindInvocationMaskHUAWEI"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdBindInvocationMaskHUAWEI(VkCommandBuffer commandBuffer, VkImageView imageView, VkImageLayout imageLayout)
-     * }
-     */
-    public static FunctionDescriptor vkCmdBindInvocationMaskHUAWEI$descriptor() {
-        return vkCmdBindInvocationMaskHUAWEI.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdBindInvocationMaskHUAWEI(VkCommandBuffer commandBuffer, VkImageView imageView, VkImageLayout imageLayout)
-     * }
-     */
-    public static MethodHandle vkCmdBindInvocationMaskHUAWEI$handle() {
-        return vkCmdBindInvocationMaskHUAWEI.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdBindInvocationMaskHUAWEI(VkCommandBuffer commandBuffer, VkImageView imageView, VkImageLayout imageLayout)
-     * }
-     */
-    public static void vkCmdBindInvocationMaskHUAWEI(MemorySegment commandBuffer, MemorySegment imageView, int imageLayout) {
-        var mh$ = vkCmdBindInvocationMaskHUAWEI.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdBindInvocationMaskHUAWEI", commandBuffer, imageView, imageLayout);
-            }
-            mh$.invokeExact(commandBuffer, imageView, imageLayout);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef void *VkRemoteAddressNV
-     * }
-     */
-    public static final AddressLayout VkRemoteAddressNV = vulkan_h.C_POINTER;
-
-    private static class vkGetMemoryRemoteAddressNV {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetMemoryRemoteAddressNV"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetMemoryRemoteAddressNV(VkDevice device, const VkMemoryGetRemoteAddressInfoNV *pMemoryGetRemoteAddressInfo, VkRemoteAddressNV *pAddress)
-     * }
-     */
-    public static FunctionDescriptor vkGetMemoryRemoteAddressNV$descriptor() {
-        return vkGetMemoryRemoteAddressNV.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetMemoryRemoteAddressNV(VkDevice device, const VkMemoryGetRemoteAddressInfoNV *pMemoryGetRemoteAddressInfo, VkRemoteAddressNV *pAddress)
-     * }
-     */
-    public static MethodHandle vkGetMemoryRemoteAddressNV$handle() {
-        return vkGetMemoryRemoteAddressNV.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetMemoryRemoteAddressNV(VkDevice device, const VkMemoryGetRemoteAddressInfoNV *pMemoryGetRemoteAddressInfo, VkRemoteAddressNV *pAddress)
-     * }
-     */
-    public static int vkGetMemoryRemoteAddressNV(MemorySegment device, MemorySegment pMemoryGetRemoteAddressInfo, MemorySegment pAddress) {
-        var mh$ = vkGetMemoryRemoteAddressNV.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetMemoryRemoteAddressNV", device, pMemoryGetRemoteAddressInfo, pAddress);
-            }
-            return (int)mh$.invokeExact(device, pMemoryGetRemoteAddressInfo, pAddress);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkGetPipelinePropertiesEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            vulkan_h.C_INT,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER,
-            vulkan_h.C_POINTER
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkGetPipelinePropertiesEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * VkResult vkGetPipelinePropertiesEXT(VkDevice device, const VkPipelineInfoEXT *pPipelineInfo, VkBaseOutStructure *pPipelineProperties)
-     * }
-     */
-    public static FunctionDescriptor vkGetPipelinePropertiesEXT$descriptor() {
-        return vkGetPipelinePropertiesEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * VkResult vkGetPipelinePropertiesEXT(VkDevice device, const VkPipelineInfoEXT *pPipelineInfo, VkBaseOutStructure *pPipelineProperties)
-     * }
-     */
-    public static MethodHandle vkGetPipelinePropertiesEXT$handle() {
-        return vkGetPipelinePropertiesEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * VkResult vkGetPipelinePropertiesEXT(VkDevice device, const VkPipelineInfoEXT *pPipelineInfo, VkBaseOutStructure *pPipelineProperties)
-     * }
-     */
-    public static int vkGetPipelinePropertiesEXT(MemorySegment device, MemorySegment pPipelineInfo, MemorySegment pPipelineProperties) {
-        var mh$ = vkGetPipelinePropertiesEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkGetPipelinePropertiesEXT", device, pPipelineInfo, pPipelineProperties);
-            }
-            return (int)mh$.invokeExact(device, pPipelineInfo, pPipelineProperties);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    private static final int VK_FRAME_BOUNDARY_FRAME_END_BIT_EXT = (int)1L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFrameBoundaryFlagBitsEXT.VK_FRAME_BOUNDARY_FRAME_END_BIT_EXT = 1
-     * }
-     */
-    public static int VK_FRAME_BOUNDARY_FRAME_END_BIT_EXT() {
-        return VK_FRAME_BOUNDARY_FRAME_END_BIT_EXT;
-    }
-    private static final int VK_FRAME_BOUNDARY_FLAG_BITS_MAX_ENUM_EXT = (int)2147483647L;
-    /**
-     * {@snippet lang=c :
-     * enum VkFrameBoundaryFlagBitsEXT.VK_FRAME_BOUNDARY_FLAG_BITS_MAX_ENUM_EXT = 2147483647
-     * }
-     */
-    public static int VK_FRAME_BOUNDARY_FLAG_BITS_MAX_ENUM_EXT() {
-        return VK_FRAME_BOUNDARY_FLAG_BITS_MAX_ENUM_EXT;
-    }
-    /**
-     * {@snippet lang=c :
-     * typedef VkFlags VkFrameBoundaryFlagsEXT
-     * }
-     */
-    public static final OfInt VkFrameBoundaryFlagsEXT = vulkan_h.C_INT;
-
-    private static class vkCmdSetPatchControlPointsEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetPatchControlPointsEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetPatchControlPointsEXT(VkCommandBuffer commandBuffer, uint32_t patchControlPoints)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetPatchControlPointsEXT$descriptor() {
-        return vkCmdSetPatchControlPointsEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetPatchControlPointsEXT(VkCommandBuffer commandBuffer, uint32_t patchControlPoints)
-     * }
-     */
-    public static MethodHandle vkCmdSetPatchControlPointsEXT$handle() {
-        return vkCmdSetPatchControlPointsEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetPatchControlPointsEXT(VkCommandBuffer commandBuffer, uint32_t patchControlPoints)
-     * }
-     */
-    public static void vkCmdSetPatchControlPointsEXT(MemorySegment commandBuffer, int patchControlPoints) {
-        var mh$ = vkCmdSetPatchControlPointsEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetPatchControlPointsEXT", commandBuffer, patchControlPoints);
-            }
-            mh$.invokeExact(commandBuffer, patchControlPoints);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetRasterizerDiscardEnableEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetRasterizerDiscardEnableEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetRasterizerDiscardEnableEXT(VkCommandBuffer commandBuffer, VkBool32 rasterizerDiscardEnable)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetRasterizerDiscardEnableEXT$descriptor() {
-        return vkCmdSetRasterizerDiscardEnableEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetRasterizerDiscardEnableEXT(VkCommandBuffer commandBuffer, VkBool32 rasterizerDiscardEnable)
-     * }
-     */
-    public static MethodHandle vkCmdSetRasterizerDiscardEnableEXT$handle() {
-        return vkCmdSetRasterizerDiscardEnableEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetRasterizerDiscardEnableEXT(VkCommandBuffer commandBuffer, VkBool32 rasterizerDiscardEnable)
-     * }
-     */
-    public static void vkCmdSetRasterizerDiscardEnableEXT(MemorySegment commandBuffer, int rasterizerDiscardEnable) {
-        var mh$ = vkCmdSetRasterizerDiscardEnableEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetRasterizerDiscardEnableEXT", commandBuffer, rasterizerDiscardEnable);
-            }
-            mh$.invokeExact(commandBuffer, rasterizerDiscardEnable);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class vkCmdSetDepthBiasEnableEXT {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            vulkan_h.C_POINTER,
-            vulkan_h.C_INT
-        );
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(
-                    vulkan_h.findOrThrow("vkCmdSetDepthBiasEnableEXT"),
-                    DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBiasEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthBiasEnable)
-     * }
-     */
-    public static FunctionDescriptor vkCmdSetDepthBiasEnableEXT$descriptor() {
-        return vkCmdSetDepthBiasEnableEXT.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBiasEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthBiasEnable)
-     * }
-     */
-    public static MethodHandle vkCmdSetDepthBiasEnableEXT$handle() {
-        return vkCmdSetDepthBiasEnableEXT.HANDLE;
-    }
-    /**
-     * {@snippet lang=c :
-     * void vkCmdSetDepthBiasEnableEXT(VkCommandBuffer commandBuffer, VkBool32 depthBiasEnable)
-     * }
-     */
-    public static void vkCmdSetDepthBiasEnableEXT(MemorySegment commandBuffer, int depthBiasEnable) {
-        var mh$ = vkCmdSetDepthBiasEnableEXT.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("vkCmdSetDepthBiasEnableEXT", commandBuffer, depthBiasEnable);
-            }
-            mh$.invokeExact(commandBuffer, depthBiasEnable);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
     }
 }
 
