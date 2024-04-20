@@ -14,9 +14,7 @@ import java.io.IOException;
 import java.lang.foreign.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.example.VKResult.*;
 import static org.vulkan.vulkan_h.*;
