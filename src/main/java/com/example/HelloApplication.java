@@ -5,18 +5,23 @@ import com.example.resourcetype.ImageMemory;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelBuffer;
+import javafx.scene.image.PixelFormat;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vulkan.*;
 
 import java.io.IOException;
 import java.lang.foreign.*;
+import java.lang.invoke.MethodHandle;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static com.example.VKResult.*;
+import static com.example.VKResult.VK_SUCCESS;
+import static com.example.VKResult.vkResult;
 import static org.vulkan.vulkan_h.*;
 
 /**
@@ -33,6 +38,34 @@ import static org.vulkan.vulkan_h.*;
  * 10. render loop
  */
 public class HelloApplication extends HelloApplication1 {
+
+  public static void main(String... args) throws Throwable {
+    // ===== 【Important】before JavaFX launch，Using FFM & libc setenv to set environments =====
+    /**
+     *     "VK_DRIVER_FILES":"\(currentPath)/share/vulkan/icd.d/MoltenVK_icd.json",
+     *     "VK_LAYER_PATH":"\(currentPath)/share/vulkan/explicit_layer.d"
+     */
+    Linker linker = Linker.nativeLinker();
+    SymbolLookup libc = linker.defaultLookup();
+    MemorySegment setenvSym = libc.find("setenv").orElseThrow();
+
+    // int setenv(const char *name, const char *value, int overwrite);
+    FunctionDescriptor setenvFd = FunctionDescriptor.of(ValueLayout.JAVA_INT, ValueLayout.ADDRESS, ValueLayout.ADDRESS, ValueLayout.JAVA_INT);
+    MethodHandle setenvMH = linker.downcallHandle(setenvSym, setenvFd);
+
+    //fixme change to your custom path
+    String vkDriverPath = "/Users/chengenzhao/VulkanSDK/1.3.280.1/macOS/share/vulkan/icd.d/MoltenVK_icd.json";
+    String vkLayerPath = "/Users/chengenzhao/VulkanSDK/1.3.280.1/macOS/share/vulkan/explicit_layer.d";
+
+    try (Arena arena = Arena.ofConfined()) {
+      // setenv
+      setenvMH.invoke(arena.allocateFrom("VK_DRIVER_FILES"), arena.allocateFrom(vkDriverPath), 1);
+      setenvMH.invoke(arena.allocateFrom("VK_LAYER_PATH"), arena.allocateFrom(vkLayerPath), 1);
+    }
+
+    System.setProperty("prism.lcdtext", "false");
+    HelloApplication.launch(HelloApplication.class, args);
+  }
 
   private static final boolean DEBUG = true;
 
@@ -150,7 +183,7 @@ public class HelloApplication extends HelloApplication1 {
 
       @Override
       public void handle(long now) {
-        if(!running)
+        if (!running)
           return;
         var result = vkWaitForFences(device, 1, pFence, VK_TRUE(), 0L);
         switch (vkResult(result)) {
@@ -212,10 +245,6 @@ public class HelloApplication extends HelloApplication1 {
     super.stop();
 
     animationTimer.stop();
-  }
-
-  public static void main(String[] args) {
-    launch();
   }
 
   private static void drawFrame(Arena arena, MemorySegment graphicsQueue, MemorySegment commandBuffers, MemorySegment renderPass, MemorySegment framebuffer, MemorySegment fence, PipelineLayout pipelineLayout) {

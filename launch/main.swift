@@ -3,7 +3,7 @@
 //  launch
 //
 //  Created by Chengen Zhao on 2024/3/10.
-//
+//  could be replaced by FFM codes in the beginning part of main function
 
 import Foundation
 

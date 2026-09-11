@@ -228,10 +228,24 @@ public abstract class HelloApplication1 extends Application {
     VkApplicationInfo.engineVersion(appInfo, 0x010000);
     VkApplicationInfo.apiVersion(appInfo, VK_API_VERSION_1_0());
 
+    String[] extensionNames = {
+      "VK_KHR_portability_enumeration",
+      "VK_KHR_surface",
+      "VK_MVK_macos_surface"
+    };
+
+    MemorySegment ppExtensionNames = arena.allocate(ValueLayout.ADDRESS, extensionNames.length);
+    for (int i = 0; i < extensionNames.length; i++) {
+      ppExtensionNames.setAtIndex(ValueLayout.ADDRESS, i, arena.allocateFrom(extensionNames[i]));
+    }
+
     var instanceCreateInfo = VkInstanceCreateInfo.allocate(arena);
     VkInstanceCreateInfo.sType(instanceCreateInfo, VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO());
     VkInstanceCreateInfo.flags(instanceCreateInfo, VkInstanceCreateInfo.flags(instanceCreateInfo) | VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR());
     VkInstanceCreateInfo.pApplicationInfo(instanceCreateInfo, appInfo);
+    VkInstanceCreateInfo.enabledExtensionCount(instanceCreateInfo, extensionNames.length);
+    VkInstanceCreateInfo.ppEnabledExtensionNames(instanceCreateInfo, ppExtensionNames);
+
     //we probably don't need surface, using JavaFX to render the end frame
     var enabledExtensionList = new ArrayList<MemorySegment>();
     enabledExtensionList.add(VK_KHR_SURFACE_EXTENSION_NAME());
